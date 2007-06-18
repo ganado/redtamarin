@@ -3,7 +3,7 @@
 
 = Introduction =
 
-Tamarin is big, and while delving into it, trying to understand how things are connected together, I'll take sole nots that might be helpfull for others (but mainly I write down all this for me :p).
+Tamarin is big, and while delving into it, trying to understand how things are connected together, I'll take some notes that might be helpfull for others (but mainly I write down all this for me :p).
 
 == as types in c++ ==
 
@@ -21,4 +21,22 @@ Tamarin is big, and while delving into it, trying to understand how things are c
  * NULL_TYPE
  * NAMESPACE_TYPE
 
+in many cases you want to pass an object without knowing its type
+{{{
+public native function test( obj:* ):String
+}}}
+
+but in the cpp you will need to test its type to avoid crash of the vm
+
+{{{
+Stringp TestClass::test(Atom obj)
+{
+    AvmCore* core = this->core();
+    if( core->istype( obj, CLASS_TYPE ) )
+    {
+    ...
+    }
+
+}
+}}}
 

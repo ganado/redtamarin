@@ -40,3 +40,18 @@ Stringp TestClass::test(Atom obj)
 }
 }}}
 
+== types correspondance ==
+
+in [http://redtamarin.googlecode.com/svn/trunk/mozilla/js/tamarin/core/NativeFunction.h NativeFunction.h] you can see this info
+
+
+|| AS type   || C++ type ||
+|| Void      || Atom, if parameter, void if return type ||
+|| Object    || Atom ||
+|| Boolean   || bool ||
+|| Number    || double ||
+|| String    || Stringp (String *) ||
+|| Class     || ClassClosure* ||
+|| MovieClip || MovieClipObject* (similar for any other class) ||
+
+

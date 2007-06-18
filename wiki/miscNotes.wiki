@@ -5,6 +5,15 @@
 
 Tamarin is big, and while delving into it, trying to understand how things are connected together, I'll take some notes that might be helpfull for others (but mainly I write down all this for me :p).
 
+== where to start ==
+
+start with [http://redtamarin.googlecode.com/svn/trunk/mozilla/js/tamarin/core/avmplus.h avmplus.h]
+{{{
+The avmplus::AvmCore class is the main entry point of the
+AVM+ virtual machine, and is probably a good place to start
+when trying to comprehend the codebase.
+}}}
+
 == as types in c++ ==
 
 [http://redtamarin.googlecode.com/svn/trunk/mozilla/js/tamarin/core/AvmCore.h AvmCore.h] define
@@ -27,7 +36,6 @@ public native function test( obj:* ):String
 }}}
 
 but in the cpp you will need to test its type to avoid crash of the vm
-
 {{{
 Stringp TestClass::test(Atom obj)
 {
@@ -53,3 +61,17 @@ in [http://redtamarin.googlecode.com/svn/trunk/mozilla/js/tamarin/core/NativeFun
 || String    || Stringp (String `*`) ||
 || Class     || !ClassClosure`*` ||
 || !MovieClip || !MovieClipObject`*` (similar for any other class) ||
+
+== the special cases of Atom ==
+
+An `Atom` is not just the `[object Object]`, see [http://redtamarin.googlecode.com/svn/trunk/mozilla/js/tamarin/core/AtomConstants.h AtomConstants.h] for a full detail
+{{{
+The atom is a primitive value in ActionScript.  Since
+ActionScript is a dynamically typed language, an atom can
+belong to one of several types: null, undefined, number,
+integer, string, boolean, object reference.
+}}}
+
+it's cool because you can do whicked dynamic stuff with it but it can be hard to debug in cpp where it's not dynamic.
+
+

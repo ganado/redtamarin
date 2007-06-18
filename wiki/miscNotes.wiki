@@ -50,8 +50,7 @@ in [http://redtamarin.googlecode.com/svn/trunk/mozilla/js/tamarin/core/NativeFun
 || Object    || Atom ||
 || Boolean   || bool ||
 || Number    || double ||
-|| String    || Stringp (String *) ||
-|| Class     || ClassClosure* ||
-|| MovieClip || MovieClipObject* (similar for any other class) ||
-
+|| String    || Stringp (String `*`) ||
+|| Class     || ClassClosure`*` ||
+|| MovieClip || MovieClipObject`*` (similar for any other class) ||
 

@@ -1,0 +1,24 @@
+#summary misc notes
+#labels notes
+
+= Introduction =
+
+Tamarin is big, and while delving into it, trying to understand how things are connected together, I'll take sole nots that might be helpfull for others (but mainly I write down all this for me :p).
+
+== as types in c++ ==
+
+[http://redtamarin.googlecode.com/svn/trunk/mozilla/js/tamarin/core/AvmCore.h AvmCore.h] define
+ * OBJECT_TYPE
+ * CLASS_TYPE
+ * FUNCTION_TYPE
+ * ARRAY_TYPE
+ * STRING_TYPE
+ * NUMBER_TYPE
+ * INT_TYPE
+ * UINT_TYPE
+ * BOOLEAN_TYPE
+ * VOID_TYPE
+ * NULL_TYPE
+ * NAMESPACE_TYPE
+
+

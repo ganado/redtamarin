@@ -51,6 +51,5 @@ in [http://redtamarin.googlecode.com/svn/trunk/mozilla/js/tamarin/core/NativeFun
 || Boolean   || bool ||
 || Number    || double ||
 || String    || Stringp (String `*`) ||
-|| Class     || ClassClosure`*` ||
-|| MovieClip || MovieClipObject`*` (similar for any other class) ||
-
+|| Class     || !ClassClosure`*` ||
+|| !MovieClip || !MovieClipObject`*` (similar for any other class) ||

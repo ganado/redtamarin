@@ -93,9 +93,7 @@ else
     }
 }}}
 
-setenv - Set an environment variable.
-
-getenv - Retrieve an environment variable.
+setenv/getenv - Set/Retrieve an environment variable.
 {{{
 import C.stdlib.*;
 

@@ -1,0 +1,182 @@
+#summary start here.
+#labels Featured
+
+= Introduction =
+
+here you will find some infos on how to setup
+redtamarin and use it.
+
+
+= compiling =
+
+redtamarin is based on the [http://www.mozilla.org/projects/tamarin/ tamarin] source code
+and so follow the same principle for the [http://developer.mozilla.org/en/docs/Tamarin_Build_Documentation compilation and build].
+
+but as redtamarin source is on svn and tamarin source is on mercurial
+this require a special setup.
+
+== how to setup ==
+
+ 1. create a working directory
+
+{{{
+$ mkdir working-directory
+}}}
+
+ 2. then checkout tamarin with mercurial
+
+{{{
+$ cd working-directory
+$ hg clone http://hg.mozilla.org/tamarin-central tamarin-central
+}}}
+
+you should have this structure now
+{{{
+..
+  |_ working-directory
+       |_ tamarin-central
+}}}
+
+ 3. also get the zlib module (needed to compile under windows)
+
+{{{
+cvs -d :pserver:anonymous:anonymous@cvs-mirror.mozilla.org:/cvsroot
+ export -r HEAD mozilla/modules/zlib
+}}}
+
+copy the module to have this structure
+{{{
+..
+  |_ modules
+  |      |_ zlib
+  |           |_ ...
+  |
+  |_ working-directory
+       |_ tamarin-central
+}}}
+
+ 4. then checkout redTamarin inside tamarin-central
+
+{{{
+$ cd tamarin-central
+$ svn checkout http://redtamarin.googlecode.com/svn/trunk/RED/src/ red
+}}}
+
+your final structure should look like that
+{{{
+..
+  |_ modules
+  |      |_ zlib
+  |           |_ ...
+  |
+  |_ working-directory
+       |_ tamarin-central
+             |_ axscript
+             |_ build
+             |_ codegen
+             |_ core
+             |_ ...
+             |_ red  <- here our code from svn
+}}}
+
+== how to compile ==
+
+for now I support only OS X and Windows
+(Linux should be able to compile too but untested)
+
+to compile under windows use
+{{{
+../working-directory/tamarin-central/red/platform/win32/redtamarin_8.sln
+}}}
+
+note:
+this is a solution for Visual C++ Express 2008
+it's what I use, maybe you'll need some tweaks to make it work with other compilers.
+
+to compile under OS X use
+{{{
+../working-directory/tamarin-central/red/platform/mac/redshell/redshell.xcodeproj
+}}}
+
+it should work in any Xcode
+
+= testing =
+
+Wether you compile your own redshell executable or want to run those executable
+
+you will need another tool: the ActionScript Compiler, or in short ASC
+you can find the [http://opensource.adobe.com/wiki/display/flexsdk/Get+Source+Code source of asc.jar in the Flex SDK]
+
+Follow [http://opensource.adobe.com/wiki/display/flexsdk/Setup their instructions to compile the Flex SDK]
+
+this is required so you can compile *.as to *.abc
+and then run the *.abc with the redshell executable
+
+== I don't want compile C/C++/Java, I just want to write AS code dammit ==
+
+I hear you :)
+
+download this zip (not here yet), and unzip it, you should get
+
+{{{
+..
+ |_ red_v0.1.0.100  <- version of redshell
+      |_ bin
+      |   |_ asc.jar
+      |   |_ redshell     <- mac executable
+      |   |_ redshell.exe <- win32 executable
+      |   |_ builtin.abc
+      |   |_ toplevel.abc
+      |_ buildAndRun.bat  <- for Windows
+      |_ buildAndRun.sh   <- for OS X
+      |_ buildEXE.bat     <- for Windows
+      |_ buildEXE.sh      <- for OS X
+
+
+}}}
+
+write some code in `test.as`
+{{{
+import avmplus.System;
+import redtamarin.getRedTamarinVersion;
+
+trace( "hello world" );
+
+trace( "avmplus v" + System.getAvmplusVersion() );
+trace( "redtamarin v" + getRedTamarinVersion() );
+
+}}}
+
+and then build it and run it
+
+on OS X
+{{{
+$ ./buildAndRun.sh test.as
+}}}
+
+on Windows
+{{{
+c:\> buildAndRun.bat test.as
+}}}
+
+both will output
+{{{
+test.abc, 123 bytes written
+hello world
+avmplus v1.0 cyclone
+redtamarin v0.1.0.100
+}}}
+
+the `buildAndRun` just build an *.abc using asc.jar
+then run it with the redshell executable
+
+when you're happy with your tests, 
+you can then build an executable using `buildEXE` scripts
+
+
+== I want code completion ==
+
+(put a little tutorial to use Flex Builder here)
+
+
+

@@ -94,6 +94,7 @@ else
 }}}
 
 setenv - Set an environment variable.
+
 getenv - Retrieve an environment variable.
 {{{
 import C.stdlib.*;

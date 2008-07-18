@@ -1,0 +1,23 @@
+#summary some example of usage.
+#labels Featured
+
+= Introduction =
+
+Here you'll find some small code snippet to illustrate the use of redtamarin.
+
+
+= unistd =
+
+{{{
+import C.unistd.sleep;
+
+trace( "sleep 5sec..." );
+sleep( 5 ); //in seconds
+trace( "...and wake up" );
+}}}
+
+{{{
+import C.unistd.getcwd;
+
+trace( "current working directory: " + getcwd() );
+}}}

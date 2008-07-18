@@ -3,9 +3,9 @@
 
 = Introduction =
 
-Here you'll find some small code snippet to illustrate the use of redtamarin.
+Here you'll find some small code snippet to illustrate the use of redtamarin libraries.
 
-The first goal of redtamarin is to allow people to use C functions from ActionScript
+The first goal of redtamarin is to allow people to use C functions from !ActionScript
 
 if in C you got
 {{{
@@ -15,7 +15,7 @@ char *home = getenv("HOME");
 
 }}}
 
-then in ActionScript you can do
+then in !ActionScript you can do
 {{{
 import C.stdlib.*;
 
@@ -24,8 +24,16 @@ var home:String = getenv("HOME");
 }}}
 
 
-= unistd =
+for people coming from C/C++, they should find the same function
+they are used to (they can also check [http://blogs.adobe.com/kiwi/2006/05/as3_language_101_for_cc_coders_1.html AS3 language 101 for C/C++ coders]).
 
+fro people coming from AS3, like me, they can have more system access
+and have more fun.
+
+
+== unistd ==
+
+sleep
 {{{
 import C.unistd.sleep;
 
@@ -34,6 +42,7 @@ sleep( 5 ); //in seconds
 trace( "...and wake up" );
 }}}
 
+getcwd
 {{{
 import C.unistd.getcwd;
 

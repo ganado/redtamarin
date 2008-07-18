@@ -27,8 +27,11 @@ var home:String = getenv("HOME");
 for people coming from C/C++, they should find the same function
 they are used to (they can also check [http://blogs.adobe.com/kiwi/2006/05/as3_language_101_for_cc_coders_1.html AS3 language 101 for C/C++ coders]).
 
-fro people coming from AS3, like me, they can have more system access
+for people coming from AS3, like me, they can have more system access
 and have more fun.
+
+The second goal of redtamarin is to add native objects like pipes, sockets, etc.
+(more to come about that later)
 
 
 == unistd ==

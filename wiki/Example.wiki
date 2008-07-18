@@ -5,6 +5,24 @@
 
 Here you'll find some small code snippet to illustrate the use of redtamarin.
 
+The first goal of redtamarin is to allow people to use C functions from ActionScript
+
+if in C you got
+{{{
+#include <stdlib.h>
+
+char *home = getenv("HOME");
+
+}}}
+
+then in ActionScript you can do
+{{{
+import C.stdlib.*;
+
+var home:String = getenv("HOME");
+
+}}}
+
 
 = unistd =
 

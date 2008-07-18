@@ -47,7 +47,7 @@ trace( "redtamarin v" + redtamarin.version );
 technically I just added `(redshell)` to the avmplus version
 as I don't change the VM itself but just add more functionalities.
 
-the 'redtamarin.version' is here so you can identify the API version,
+the `redtamarin.version` is here so you can identify the API version,
 which I should document in changes document soon.
 
 

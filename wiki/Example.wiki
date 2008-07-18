@@ -34,6 +34,23 @@ The second goal of redtamarin is to add native objects like pipes, sockets, etc.
 (more to come about that later)
 
 
+== basic stuff ==
+
+{{{
+import avmplus.System;
+import redtamarin.version;
+trace( "hello world" );
+trace( "avmplus v" + System.getAvmplusVersion() );
+trace( "redtamarin v" + redtamarin.version );
+}}}
+
+technically I just added `(redshell)` to the avmplus version
+as I don't change the VM itself but just add more functionalities.
+
+the 'redtamarin.version' is here so you can identify the API version,
+which I should document in changes document soon.
+
+
 == stdlib ==
 
 atexit - Register a callback function for program exit.

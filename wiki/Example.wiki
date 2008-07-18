@@ -34,9 +34,62 @@ The second goal of redtamarin is to add native objects like pipes, sockets, etc.
 (more to come about that later)
 
 
+== stdlib ==
+
+atexit - Register a callback function for program exit.
+{{{
+import C.stdlib.*;
+
+var f1:Function = function():void
+{
+    trace( "f1" );
+}
+
+var f2:Function = function():void
+{
+    trace( "f2" );
+}
+
+atexit( f1 );
+atexit( f2 );
+
+exit(0);
+}}}
+
+system - Execute an external command.
+{{{
+import C.stdlib.system;
+import avmplus.File;
+
+var filename:String = "list.txt";
+
+system( "ls > " + filename );
+
+if( File.exists( filename ) )
+    {
+    trace( "-- " + filename + " --" );
+    trace( File.read( filename ) );
+    }
+else
+    {
+    trace( filename + " not found" );
+    }
+}}}
+
+setenv - Set an environment variable.
+getenv - Retrieve an environment variable.
+{{{
+import C.stdlib.*;
+
+trace( "FOOBAR: " + getenv("FOOBAR") );
+setenv( "FOOBAR", "/foo/bar" );
+trace( "FOOBAR: " + getenv("FOOBAR") );
+}}}
+
+
 == unistd ==
 
-sleep
+sleep - Suspend execution for an interval of time.
 {{{
 import C.unistd.sleep;
 
@@ -45,7 +98,8 @@ sleep( 5 ); //in seconds
 trace( "...and wake up" );
 }}}
 
-getcwd
+
+getcwd - Get the pathname of the current working directory.
 {{{
 import C.unistd.getcwd;
 

@@ -105,6 +105,31 @@ trace( "FOOBAR: " + getenv("FOOBAR") );
 
 == unistd ==
 
+access - Determine accessibility of file.
+{{{
+import C.stdlib.system;
+import C.unistd.*;
+
+import avmplus.File;
+
+var filename:String = "list.txt";
+
+system( "ls > " + filename );
+
+if( File.exists( filename ) )
+    {
+    trace( "-- " + filename + " --" );
+    trace( "exists:     " + (access( filename, F_OK )==0?true:false) );
+    trace( "can read:   " + (access( filename, R_OK )==0?true:false) );
+    trace( "can write:  " + (access( filename, W_OK )==0?true:false) );
+    trace( "can R/W:    " + (access( filename, RW_OK )==0?true:false) );
+    }
+else
+    {
+    trace( filename + " not found" );
+    }
+}}}
+
 sleep - Suspend execution for an interval of time.
 {{{
 import C.unistd.sleep;

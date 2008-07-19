@@ -130,6 +130,16 @@ else
     }
 }}}
 
+chdir - Change working directory.
+{{{
+import C.unistd.chdir;
+import C.unistd.getcwd;
+
+trace( "current working directory: " + getcwd() );
+chdir( "/" );
+trace( "current working directory: " + getcwd() );
+}}}
+
 sleep - Suspend execution for an interval of time.
 {{{
 import C.unistd.sleep;

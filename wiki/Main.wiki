@@ -7,7 +7,7 @@ here you will find some infos on how to setup
 redtamarin and use it.
 
 
-= compiling =
+= Compiling =
 
 redtamarin is based on the [http://www.mozilla.org/projects/tamarin/ tamarin] source code
 and so follow the same principle for the [http://developer.mozilla.org/en/docs/Tamarin_Build_Documentation compilation and build].
@@ -100,7 +100,7 @@ to compile under OS X use
 
 it should work in any Xcode
 
-= testing =
+= Testing =
 
 Wether you compile your own redshell executable or want to run those executable
 
@@ -173,6 +173,7 @@ then run it with the redshell executable
 when you're happy with your tests, 
 you can then build an executable using `buildEXE` scripts
 
+= IDE =
 
 == I want code completion ==
 

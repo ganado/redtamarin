@@ -116,7 +116,7 @@ and then run the *.abc with the redshell executable
 
 I hear you :)
 
-download this zip (see downloads tab), and unzip it, you should get
+download this zip (see [http://code.google.com/p/redtamarin/downloads/list downloads] tab), and unzip it, you should get
 
 {{{
 ..
@@ -171,7 +171,26 @@ the `buildAndRun` just build an *.abc using asc.jar
 then run it with the redshell executable
 
 when you're happy with your tests, 
-you can then build an executable using `buildEXE` scripts
+you can then build both an OS X and Windows executable using `buildEXE` scripts
+
+on OS X
+{{{
+$ ./buildEXE.sh test.as
+}}}
+
+on Windows
+{{{
+c:\> buildEXE.bat test.as
+}}}
+
+`test` will be the executable for OS X
+(if you generate it from Windows you will need to make it executable under OS X using `chmod +x test`)
+
+`test.exe` qill be the executable for Windows
+
+those executables merge the redshell executable with the *.abc file
+and so have no dependencies.
+
 
 = IDE =
 

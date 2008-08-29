@@ -104,7 +104,7 @@ it should work in any Xcode
 
 Wether you compile your own redshell executable or want to run those executable
 
-you will need another tool: the ActionScript Compiler, or in short ASC
+you will need another tool: the !ActionScript Compiler, or in short ASC
 you can find the [http://opensource.adobe.com/wiki/display/flexsdk/Get+Source+Code source of asc.jar in the Flex SDK]
 
 Follow [http://opensource.adobe.com/wiki/display/flexsdk/Setup their instructions to compile the Flex SDK]
@@ -112,7 +112,7 @@ Follow [http://opensource.adobe.com/wiki/display/flexsdk/Setup their instruction
 this is required so you can compile *.as to *.abc
 and then run the *.abc with the redshell executable
 
-== I don't want compile C/C++/Java, I just want to write AS code dammit ==
+== I don't want to compile C/C++/Java, I just want to write AS code dammit ==
 
 I hear you :)
 

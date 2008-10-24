@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+  <ModulePrefs title="Introduction to redtamarin" width="480" height="385">
+    <Require feature="flash"/>
+  </ModulePrefs>
+  <Content type="html"><![CDATA[
+    <div id="video"></div>    
+    <script>
+      _IG_RegisterOnloadHandler(function() {
+        _IG_EmbedFlash("http://www.youtube.com/v/5Wy0_bVJKkk", _gel("video"), {
+          width: 480,
+          height: 385
+        });
+      });
+    </script>
+  ]]></Content>
+</Module>

@@ -6,8 +6,3 @@
 || <wiki:gadget url="http://redtamarin.googlecode.com/svn/gadgets/introduction_to_redtamarin.xml" width="480" height="385" border="0" /> || <wiki:gadget url="http://redtamarin.googlecode.com/svn/gadgets/introduction_to_redtamarin-script.xml" width="600" height="400" border="0" /> ||
 
 links: [http://uk.youtube.com/watch?v=5Wy0_bVJKkk video] [http://docs.google.com/View?docID=dcfgjs6p_215gbt7vwd8 script]
-
-
-|| <wiki:gadget url="http://redtamarin.googlecode.com/svn/gadgets/introduction_to_redtamarin.xml" width="480" height="385" border="0" /> || <wiki:gadget url="http://redtamarin.googlecode.com/svn/gadgets/introduction_to_redtamarin-script.xml" width="600" height="400" border="0" /> ||
-
-links: [http://uk.youtube.com/watch?v=5Wy0_bVJKkk video] [http://docs.google.com/View?docID=dcfgjs6p_215gbt7vwd8 script]

@@ -1,0 +1,14 @@
+#summary different tutorials to get you started.
+
+= Introduction =
+
+Add your content here.
+
+
+= Videos =
+
+<wiki:gadget url="http://redtamarin.googlecode.com/svn/gadgets/introduction_to_redtamarin.xml" width="480" height="385" /> 
+
+= Text =
+
+Introduction to redtamarin

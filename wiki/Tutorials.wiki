@@ -1,9 +1,5 @@
 #summary different tutorials to get you started.
-
-= Introduction =
-
-Add your content here.
-
+#labels Featured,Phase-Deploy,Phase-Support
 
 = Videos =
 

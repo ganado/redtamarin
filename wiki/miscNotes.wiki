@@ -74,4 +74,21 @@ integer, string, boolean, object reference.
 
 it's cool because you can do whicked dynamic stuff with it but it can be hard to debug in cpp where it's not dynamic.
 
+== defining native errors ==
 
+even if you define your error as a non-native class
+{{{
+    public dynamic class IOError extends Error
+    {
+        public function IOError( message:String = "" )
+        {
+            super( message );
+        }
+    }
+}}}
+
+if you want to be able to throw the error from C/C++
+you need to define the error like that (in avmshell)
+{{{
+NATIVE_CLASS(abcclass_flash_errors_IOError, NativeErrorClass,   ErrorObject)
+}}}

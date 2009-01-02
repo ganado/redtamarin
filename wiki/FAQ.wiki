@@ -27,7 +27,7 @@
  Nope. You obtain a single independant executable.
 
  * *Are they similar tools out there ?*
- Yes, look at [http://www.jsdb.org/ JSDB], it's the same principle, it's the [http://www.mozilla.org/js/spidermonkey/ SpiderMonkey engine] running on the command-line that can embed JavaScript files in a single executable.
+ Yes, look at [http://www.jsdb.org/ JSDB], it's the same principle, it's the [http://www.mozilla.org/js/spidermonkey/ SpiderMonkey engine] running on the command-line that can embed !JavaScript files in a single executable.
 
  * *What's the use of the C libraries (stdlib, etc.) under AS3 ?*
  On one part, it promotes the porting of C source code to AS3 source code, that way some AS3 coder can extends those command-line tools more easyly with their language of choice (AS3), and on another part, it promotes C coders to get interested at the AS3 language without missing C functions they are used to.

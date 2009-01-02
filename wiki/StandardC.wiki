@@ -17,6 +17,12 @@ The goal is to be able to call from AS3 the following libraries
  unistd.h, windows.h, etc.<br>
  see: http://www.crossplatformbook.com/posix.html
 
+references:
+ * http://en.wikipedia.org/wiki/ANSI_C
+ * http://en.wikipedia.org/wiki/POSIX
+ * http://en.wikipedia.org/wiki/Category:C_standard_library
+ * http://www.cplusplus.com/reference/clibrary/
+
 example:
 {{{
 //C

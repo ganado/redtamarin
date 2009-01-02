@@ -1,0 +1,4 @@
+#summary Working with redtamarin.
+
+Everythign you need to know to use redtamarin<br>
+aka "I don't want to compile C/C++/Java, I just want to write AS code dammit"

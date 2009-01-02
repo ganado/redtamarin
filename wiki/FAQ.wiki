@@ -1,7 +1,7 @@
 #summary Frequently Asked Questions.
 
  * What's the main difference with [http://www.mozilla.org/projects/tamarin/ Tamarin] ?
-   Tamarin focus on VM and optimization (like GC, nanoJIT, etc.), redtamarin focus on shell and APIs.
+ Tamarin focus on VM and optimization (like GC, nanoJIT, etc.), redtamarin focus on shell and APIs.
 
  * test
-   answer
+ answer

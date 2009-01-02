@@ -1,6 +1,7 @@
   * [Main ↑ Home]
   * [FAQ FAQ]
   * [Coders Programming redtamarin]
+    * [NativeClasses HOWTO work with Native Classes]
     * [Build HOWTO Build]
   * [API API reference]
     * [StandardC C Standard Libraries]

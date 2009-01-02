@@ -28,7 +28,6 @@ public class System;
   public native static function debugger():void;
   public native static function isDebugger():Boolean;
   public native static function getTimer():uint;
-  private native static function getArgv():Array;
   public native static function readLine():String;
   public native static function get totalMemory():Number;
   public native static function get freeMemory():Number;

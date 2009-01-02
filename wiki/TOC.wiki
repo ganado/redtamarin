@@ -4,5 +4,6 @@
   * [API API reference]
     * [StandardC C Standard Libraries]
     * [FlashPlatform Flash Platform APIs]
+    * [AVMPlus AVMPlus APIs]
   * [Examples Examples]
   

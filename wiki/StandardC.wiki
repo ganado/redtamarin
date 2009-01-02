@@ -46,11 +46,8 @@ var test:String = getenv( "HOME" );
 
 advantages:
 
- * the cross-plaform part is done in the native part (C/C++) of the avmshell
- so you don't need to bother about it in AS3.
- * most of the function signatures are equivalent,
- so you don't need to re-learn how to use those functions
- or really have little to learn.
+ * the cross-plaform part is done in the native part (C/C++) of the avmshell so you don't need to bother about it in AS3.
+ * most of the function signatures are equivalent, so you don't need to re-learn how to use those functions or really have little to learn.
 
 === Implemented ===
 

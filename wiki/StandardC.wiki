@@ -28,7 +28,7 @@ char test = getenv("HOME");
 
 {{{
 //AS3
-import C.stdlib.*
+import C.stdlib.*;
 
 //public function getenv( name:String ):String;
 var test:String = getenv( "HOME" );
@@ -42,9 +42,14 @@ note: here we will use the AS3 notation
 
  * package C.stdlib
  {{{
-public const EXIT_SUCCESS:int
-public const EXIT_FAILURE:int
-public function rand():int
+public const EXIT_SUCCESS:int;
+public const EXIT_FAILURE:int;
+public function rand():int;
+public function abort():void;
+public function exit( status:int = 0 ):void;
+public function getenv( name:String ):String;
+public function setenv( name:String, value:String, rewrite:int = 0 ):int;
+public function system( command:String ):int;
  }}}
 
 

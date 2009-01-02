@@ -1,6 +1,6 @@
 #summary C Standard Libraries.
 
-= Introduction =
+== Introduction ==
 
 The goal is to be able to call from AS3 the following libraries
 
@@ -17,7 +17,16 @@ The goal is to be able to call from AS3 the following libraries
  unistd.h, windows.h, etc.
  see: http://www.crossplatformbook.com/posix.html
 
-= Implemented =
+=== Implemented ===
 
- * stdlib
+note: here we will use the AS3 notation
+
+ * package C.stdlib
+ {{{
+public const EXIT_SUCCESS:int
+public const EXIT_FAILURE:int
+public function rand():int
+ }}}
+
+
    

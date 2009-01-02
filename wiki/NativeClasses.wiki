@@ -1,4 +1,4 @@
-#summary HOWTO wrok with Native Classes.
+#summary HOWTO work with Native Classes.
 
 === Introduction ===
 

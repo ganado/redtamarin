@@ -9,7 +9,7 @@ so you can literally copy/paste code to compile for redtamarin.
 === Implemented ===
 
 note:<br>
-a minus sign `-` indicate a missing property from the flash platform API.
+a minus sign `-` indicate a missing property from the flash platform API.<br>
 a plus sign `+` indicate a property existing in redtamarin but not in the flash platform API.
 
  * package *flash.errors*

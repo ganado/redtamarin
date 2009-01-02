@@ -53,7 +53,7 @@ advantages:
 
 note: here we will use the AS3 notation
 
- * package C.stdlib
+ * package *C.stdlib*
  {{{
 public const EXIT_SUCCESS:int;
 public const EXIT_FAILURE:int;

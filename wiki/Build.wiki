@@ -9,3 +9,28 @@ see https://developer.mozilla.org/En/Tamarin_Build_Documentation Tamarin Build D
 === Ant ===
 
 TODO
+
+
+=== building by-hand on the command-line ===
+
+1. compile the abc files
+{{{
+ $ cd redtamarin-trunk/src/core
+ $ ./builtin.py
+}}}
+
+{{{
+ $ cd redtamarin-trunk/src/shell
+ $ ./shell_toplevel.py
+}}}
+
+2. compile
+{{{
+ $ cd redtamarin-trunk
+ $ cd src
+ $ mkdir objdir-release
+ $ cd objdir-release
+ $ python ../configure.py --enable-shell
+ $ make
+ ...
+}}}

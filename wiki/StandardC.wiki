@@ -31,7 +31,7 @@ example:
 #include <stdlib.h>
 
 //char *getenv( const char *name );
-char test = getenv("HOME");
+char *test = getenv("HOME");
 }}}
 
 {{{

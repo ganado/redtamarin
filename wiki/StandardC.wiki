@@ -1,0 +1,23 @@
+#summary C Standard Libraries.
+
+= Introduction =
+
+The goal is to be able to call from AS3 the following libraries
+
+ * ANSI Standard library
+ assert.h, ctype.h, errno.h, float.h, limits.h, locale.h,<br>
+ math.h, setjmp.h, signal.h, stdarg.h, stddef.h,<br>
+ stdio.h, stdlib.h, string.h, time.h
+
+ * POSIX.1 library
+ that are compatible with
+   * Mac OS X (gcc 3.3)
+   * Microsoft Windows Runtime Library (MS VIsual C++ 7.0)
+   * Linux (gcc 3.2.2)
+ unistd.h, windows.h, etc.
+ see: http://www.crossplatformbook.com/posix.html
+
+= Implemented =
+
+ * stdlib
+   

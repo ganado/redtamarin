@@ -33,6 +33,6 @@
  On one part, it promotes the porting of C source code to AS3 source code, that way some AS3 coder can extends those command-line tools more easyly with their language of choice (AS3), and on another part, it promotes C coders to get interested at the AS3 language without missing C functions they are used to.
 
  * *What's the use of the flash platform APIs ?*
- It allows to port existing AS3 source code targeted at the Flash player or [http://www.adobe.com/products/air/ AIR] to work on the command-line.
+ It allows to port existing AS3 source code, targeted at the [http://www.adobe.com/products/flashplayer/ Flash player] or [http://www.adobe.com/products/air/ AIR], to work on the command-line.
 
  

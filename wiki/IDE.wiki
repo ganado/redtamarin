@@ -1,0 +1,152 @@
+#summary HOWTO Setup your IDE.
+
+=== Introduction ===
+
+Yes you can reuse the tools you use for Flash/Flex to have code completion
+for your command-line projects :).
+
+
+=== using Flex Builder 3 ===
+
+first create a workspace dedicated to this kind of project
+
+{{{
+File/Switch Workspace/Other...
+}}}
+
+Under OS X I create a "Tamarin" workspace
+{{{
+/code/Tamarin
+}}}
+
+Before creating any project you need to edit
+a config file, in the terminal go to your workspace directory
+
+{{{
+$ cd /code/Tamarin
+}}}
+
+then go in this directory
+{{{
+$ pwd
+/code/Tamarin
+$ cd .metadata/.plugins/com.adobe.flexbuilder.codemodel/extraClassPath/
+}}}
+
+here you will see a `Global.as` file
+
+you need to overwrite it
+{{{
+$ rm Global.as
+$ touch Global.as
+}}}
+
+now in Flex Builder 3 create an ActionScript project
+
+you get this structure
+{{{
+[projectname]
+   |_ bin-debug
+   |_ html-template
+   |_ src
+}}}
+
+from the Downloads tab use the most recent red zip
+(for ex: red_v0.1.0.102.zip) and unzip in your project
+to obtain that structure
+
+{{{
+[projectname]
+   |_ bin
+       |_ asc.jar
+       |_ builtin.abc
+       |_ redshell
+       |_ redhsell.exe
+       |_ toplevel.abc
+   |_ bin-debug
+   |_ html-template
+   |_ src
+   |_ buildAndRun.bat
+   |_ buildAndRun.sh
+   |_ buildEXE.bat
+   |_ buildEXE.sh
+}}}
+
+now add the redshell AS3 library
+
+in your project create a `libs` directory
+
+and import the library from svn
+
+{{{
+$ cd /code/Tamarin/[projectname]/libs
+$ svn co http://redtamarin.googlecode.com/svn/as3/redshell/trunk/src/ redshell
+}}}
+
+now your project structure should look like this
+
+{{{
+[projectname]
+   |_ bin
+       |_ asc.jar
+       |_ builtin.abc
+       |_ redshell
+       |_ redhsell.exe
+       |_ toplevel.abc
+   |_ bin-debug
+   |_ html-template
+   |_ libs
+       |_ redshell
+            |_ actionscript.lang.as
+            |_ Array.as
+            |_ etc.
+   |_ src
+   |_ buildAndRun.bat
+   |_ buildAndRun.sh
+   |_ buildEXE.bat
+   |_ buildEXE.sh
+}}}
+
+now you need to configure your project
+
+go into the project properties
+
+in  `ActionScript build path`
+
+on the tab `source path` add `libs/redshell`
+
+on the tab `library path` remove any Flex SDK SWC
+
+in `Builders`
+
+deselect the default `Flex`
+
+and create your own builder, for ex `[projectname]_build`
+
+for the `Location` use `${workspace_loc:/[projectname]/buildAndRun.sh}`
+
+for the `Working directory` use `${workspace_loc:/[projectname]}`
+
+for the `Arguments` use `${resource_loc}`
+
+save
+
+create a basic `main.as` in the `src` folder
+
+for ex:
+{{{
+import C.unistd.getcwd;
+
+trace( getcwd() );
+}}}
+
+now in Flex Builder, select the `main.as` tab
+and build the project
+
+in the console you should obtain
+{{{
+main.abc, 138 bytes written
+/code/Tamarin/cwd_test
+}}}
+
+in this case I named my project `cwd_test`

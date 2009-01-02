@@ -3,5 +3,13 @@
  * What's the main difference with [http://www.mozilla.org/projects/tamarin/ Tamarin] ?
  Tamarin focus on VM and optimization (like GC, nanoJIT, etc.), redtamarin focus on shell and APIs.
 
- * test
- answer
+ * Why use SVN when Tamarin use Mercurial ?
+ Mainly because Google Porject hosting use SVN and because I prefer SVN (yep arbitrary choice).
+
+ * Which Operating System are supported ?
+ Most of the ones that Tamarin supports, mainly OS X, Windows and Linux (Ubuntu),
+ but others as Windows CE could also be supported (testers welcome).
+
+ * Why the focus on command-line tools with ActionScript 3 ?
+ Because it's missing in the regular AS3 toolchain and command-line tools can save your butt
+ on numerous occasions.

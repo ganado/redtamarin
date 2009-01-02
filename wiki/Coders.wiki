@@ -1,0 +1,3 @@
+#summary Programming redtamarin.
+
+everyting you need to know to compile, setup, etc.

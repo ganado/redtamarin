@@ -1,6 +1,7 @@
   * [Main ↑ Home]
   * [FAQ FAQ]
   * [Coders Programming redtamarin]
+    * [Build HOWTO Build]
   * [API API reference]
     * [StandardC C Standard Libraries]
     * [FlashPlatform Flash Platform APIs]

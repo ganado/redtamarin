@@ -4,7 +4,7 @@
  Tamarin focus on VM and optimization (like GC, nanoJIT, etc.), redtamarin focus on shell and APIs.
 
  * *Why use SVN when Tamarin use [http://www.selenic.com/mercurial/ Mercurial] ?*
- Mainly because Google Porject hosting use SVN and because I prefer SVN (yep arbitrary choice).
+ Mainly because [http://code.google.com/hosting/ Google Project hosting] use SVN and because I prefer SVN (yep arbitrary choice).
 
  * *Which Operating System are supported ?*
  Most of the ones that Tamarin supports, mainly OS X, Windows and Linux (Ubuntu),

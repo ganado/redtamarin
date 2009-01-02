@@ -14,8 +14,27 @@ The goal is to be able to call from AS3 the following libraries
    * Mac OS X (gcc 3.3)
    * Microsoft Windows Runtime Library (MS VIsual C++ 7.0)
    * Linux (gcc 3.2.2)
- unistd.h, windows.h, etc.
+ unistd.h, windows.h, etc.<br>
  see: http://www.crossplatformbook.com/posix.html
+
+example:
+{{{
+//C
+#include <stdlib.h>
+
+//char *getenv( const char *name );
+char test = getenv("HOME");
+}}}
+
+{{{
+//AS3
+import C.stdlib.*
+
+//public function getenv( name:String ):String;
+var test:String = getenv( "HOME" );
+
+}}}
+
 
 === Implemented ===
 

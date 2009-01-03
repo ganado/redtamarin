@@ -73,6 +73,7 @@ public const R_OK:int;
 public function access( path:String, mode:int ):int;
 public function chdir( path:String ):int;
 public function getcwd():String;
+public function gethostname():String;
 public function sleep( second:uint ):void;
  }}}
 

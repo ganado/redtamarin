@@ -65,5 +65,15 @@ public function setenv( name:String, value:String, rewrite:int = 0 ):int;
 public function system( command:String ):int;
  }}}
 
+ * package *C.unistd*
+ {{{
+public const F_OK:int;
+public const W_OK:int;
+public const R_OK:int;
+public function access( path:String, mode:int ):int;
+public function chdir( path:String ):int;
+public function getcwd():String;
+public function sleep( second:uint ):void;
+ }}}
 
    

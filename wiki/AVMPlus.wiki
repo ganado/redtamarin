@@ -58,7 +58,6 @@ public class CompatibilityMode;
   public static const flashPlayer:uint;
 
 public class redtamarin;
-  public static function assert( expression:int ):void;
   public static function get compatibility():uint;
   public static function set compatibility( mode:uint ):void;
   public static function get version():String;

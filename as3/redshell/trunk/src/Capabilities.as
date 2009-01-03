@@ -139,7 +139,7 @@
         
         public static function get isDebugger():Boolean
         {
-            return System.isDebugger();
+            return avmplus.System.isDebugger();
         }
         
         public static function get isEmbeddedInAcrobat():Boolean
@@ -337,7 +337,7 @@
                 
                 case CompatibilityMode.tamarin:
                 default:
-                var tmp:String = System.getAvmplusVersion().split( " " )[0] + ".0.0";
+                var tmp:String = avmplus.System.getAvmplusVersion().split( " " )[0] + ".0.0";
                 _version = tmp.split( "." ).join( "," );
             }
             

@@ -86,7 +86,7 @@ $ cd objdir-release
 $ python ../configure.py --enable-shell --enable-zlib-include-dir=/usr/include/zlib
 $ make
 ...
-}}
+}}}
 
 files released are *redshell.nix* and *redshell_d.nix*
 

@@ -101,7 +101,6 @@ if( File.exists( filename ) )
     trace( "exists:     " + (access( filename, F_OK )==0?true:false) );
     trace( "can read:   " + (access( filename, R_OK )==0?true:false) );
     trace( "can write:  " + (access( filename, W_OK )==0?true:false) );
-    trace( "can R/W:    " + (access( filename, RW_OK )==0?true:false) );
     }
 else
     {

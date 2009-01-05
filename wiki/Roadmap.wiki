@@ -1,6 +1,30 @@
 #summary Past and future release plan.
 #labels Featured
 
+== v0.4 ==
+
+ * utilities to work with ABC, SWF, SWC, etc.
+ * redshell as3 lib as a SWC
+
+release: (TBD)
+
+tags: n/a
+
+
+== v0.3 ==
+
+ * more C libs
+ * more flash platform APIs
+ * Socket, SocketServer
+ * full system info
+   * "Mac OS X 10.5.1" instead of "Macintosh"
+ * locale/language detection
+
+release: (TBD)
+
+tags: n/a
+
+
 == v0.2 ==
 
  * sync with Tamarin 703:2cee46be9ce0
@@ -13,9 +37,10 @@ release: (TBD)
 
 tags: n/a
 
+
 == v0.1 ==
 
- * basic libs stdlib, unistd
+ * basic C libs stdlib, unistd
  * release for Windows and OS X
 
 release: 28/08/2008

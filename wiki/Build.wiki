@@ -5,6 +5,85 @@
 Basically we follow the same process than Tamarin<br>
 see [http://developer.mozilla.org/En/Tamarin_Build_Documentation Tamarin Build Documentation]
 
+=== OS X ===
+
+the *redshell_d* (debug) executable is compiled with
+ {{{
+$ xcodebuild -project platform/mac/shell/shell.xcodeproj -configuration Debug
+ }}}
+
+but the release is compiled with make+gcc
+{{{
+$ cd redtamarin-trunk/src
+$ mkdir objdir-release
+$ cd objdir-release
+$ python ../configure.py --enable-shell
+$ make
+...
+}}}
+
+I release only i386, ping me if you want PPC or simply use
+{{{
+$ xcodebuild ARCHS=ppc -project platform/mac/shell/shell.xcodeproj
+}}}
+
+=== Windows ===
+
+if you got problem by retrieving the zlib with
+{{{
+$ hg clone http://hg.mozilla.org/mozilla-central mozilla-central
+$ mkdir modules
+$ xcopy /s/e mozilla-central\modules\zlib\*.* modules\zlib
+}}}
+
+you can also try
+{{{
+cvs -d :pserver:anonymous:anonymous@cvs-mirror.mozilla.org:/cvsroot
+ export -r HEAD mozilla/modules/zlib
+}}}
+
+setup your directories like this
+{{{
+..
+  |_ modules
+  |      |_ zlib
+  |           |_ ...
+  |
+  |_ redtamarin-trunk
+       |_ src
+}}}
+
+and just open the solution in Visual Studio,<br>
+it should compile without any changes
+
+
+=== Linux ===
+
+compiled with make+gcc (same as OS-X)
+
+but if you obtain an error because the zlib is missing
+
+download the zlib http://www.zlib.net/zlib-1.2.3.tar.gz
+
+{{{
+$ sudo mv ~/Desktop/zlib-1.2.3 /user/include/zlib
+}}}
+
+also install the zlib dev lib
+{{{
+$ sudo apt-get install zlib1g-dev
+}}}
+
+and with make
+{{{
+$ cd redtamarin-trunk/src
+$ mkdir objdir-release
+$ cd objdir-release
+$ python ../configure.py --enable-shell --enable-zlib-include-dir=/usr/include/zlib
+$ make
+...
+}}
+
 
 === Ant ===
 

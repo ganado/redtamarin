@@ -33,9 +33,9 @@ tags: n/a
  * release for Windows, OS X and Linux
  * separate subproject *redshell as3 library*
 
-release: (TBD)
+release: 05/01/2009
 
-tags: n/a
+tags: [http://redtamarin.googlecode.com/svn/tags/0.2.0 0.2.0]
 
 
 == v0.1 ==

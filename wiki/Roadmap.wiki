@@ -15,7 +15,7 @@ tags: n/a
 
  * more C libs
  * more flash platform APIs
- * Socket, SocketServer
+ * Socket, !SocketServer
  * full system info
    * "Mac OS X 10.5.1" instead of "Macintosh"
  * locale/language detection

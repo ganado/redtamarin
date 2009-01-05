@@ -1,5 +1,4 @@
   * [Main ↑ Home]
-  * [FAQ FAQ]
   * [Users Working with redtamarin]
     * [GettingStarted Getting Started]
     * [IDE HOWTO Setup your IDE]
@@ -13,4 +12,5 @@
     * [AVMPlus AVMPlus APIs]
   * [Examples Examples]
   * [Tutorials Tutorials]
+  * [FAQ FAQ]
   

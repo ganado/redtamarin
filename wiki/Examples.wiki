@@ -1,6 +1,6 @@
 #summary some examples of usage.
 
-= Introduction =
+=== Introduction ===
 
 Here you'll find some small code snippet to illustrate the use of redtamarin libraries.
 

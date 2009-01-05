@@ -1,4 +1,4 @@
-#summary some example of usage.
+#summary some examples of usage.
 
 = Introduction =
 

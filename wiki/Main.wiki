@@ -1,114 +1,23 @@
 #summary start here.
 #labels Featured
 
-= Introduction =
+== Introduction ==
 
-here you will find some infos on how to setup
-redtamarin and use it.
+redtamarin is build over the [http://www.mozilla.org/projects/tamarin/ Tamarin] project and add maybe 0.1% of functionalities :P
 
+== history ==
 
-= Compiling =
+At first I was using a mixed system to update from Mercurial and then sync to a local subversion repository and then sync to the google code project, then later I was using another mixed system that was mixing directories from both the Tamarin mercurial repo and this project SVN repo, both were not practical, hard to update.
 
-redtamarin is based on the [http://www.mozilla.org/projects/tamarin/ tamarin] source code
-and so follow the same principle for the [http://developer.mozilla.org/en/docs/Tamarin_Build_Documentation compilation and build].
+Also, messing a little too much with the Tamarin source code, I ended up having dirty C/C++ code.
 
-but as redtamarin source is on svn and tamarin source is on mercurial
-this require a special setup.
+Since the Tamarin release *703:2cee46be9ce0* ([https://developer.mozilla.org/En/Tamarin/Tamarin_Releases 02/12/2008]), I decided to make it cleaner.
 
-== how to setup ==
+Now from redtamarin v0.2, the source code of Tamarin is fully sync'ed in this project repository, and as the C/C++ is better organized, update etc. should stay clean in the forseen futur :).
 
- 1. create a working directory
+The code is currently tested and compiled on those systems:
+ * Mac OS X 10.5.6 (gcc+make and xcode)
+ * Windows XP SP2  (MS Visual Studio C++ 2008 express edition)
+ * Linux Ubuntu 7.10 (gcc+make)
 
-{{{
-$ mkdir working-directory
-}}}
-
- 2. then checkout tamarin with mercurial
-
-{{{
-$ cd working-directory
-$ hg clone http://hg.mozilla.org/tamarin-central tamarin-central
-}}}
-
-you should have this structure now
-{{{
-..
-  |_ working-directory
-       |_ tamarin-central
-}}}
-
- 3. also get the zlib module (needed to compile under windows)
-
-{{{
-cvs -d :pserver:anonymous:anonymous@cvs-mirror.mozilla.org:/cvsroot
- export -r HEAD mozilla/modules/zlib
-}}}
-
-copy the module to have this structure
-{{{
-..
-  |_ modules
-  |      |_ zlib
-  |           |_ ...
-  |
-  |_ working-directory
-       |_ tamarin-central
-}}}
-
- 4. then checkout redTamarin inside tamarin-central
-
-{{{
-$ cd tamarin-central
-$ svn checkout http://redtamarin.googlecode.com/svn/trunk/RED/src/ red
-}}}
-
-your final structure should look like that
-{{{
-..
-  |_ modules
-  |      |_ zlib
-  |           |_ ...
-  |
-  |_ working-directory
-       |_ tamarin-central
-             |_ axscript
-             |_ build
-             |_ codegen
-             |_ core
-             |_ ...
-             |_ red  <- here our code from svn
-}}}
-
-== how to compile ==
-
-for now I support only OS X and Windows
-(Linux should be able to compile too but untested)
-
-to compile under windows use
-{{{
-../working-directory/tamarin-central/red/platform/win32/redtamarin_8.sln
-}}}
-
-note:
-this is a solution for Visual C++ Express 2008
-it's what I use, maybe you'll need some tweaks to make it work with other compilers.
-
-to compile under OS X use
-{{{
-../working-directory/tamarin-central/red/platform/mac/redshell/redshell.xcodeproj
-}}}
-
-it should work in any Xcode
-
-= Testing =
-
-Wether you compile your own redshell executable or want to run those executable
-
-you will need another tool: the !ActionScript Compiler, or in short ASC
-you can find the [http://opensource.adobe.com/wiki/display/flexsdk/Get+Source+Code source of asc.jar in the Flex SDK]
-
-Follow [http://opensource.adobe.com/wiki/display/flexsdk/Setup their instructions to compile the Flex SDK]
-
-this is required so you can compile *.as to *.abc
-and then run the *.abc with the redshell executable
-
+contributors welcome, even if it just compiling on your system :).

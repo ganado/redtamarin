@@ -12,7 +12,7 @@ the *redshell_d* (debug) executable is compiled with
 $ xcodebuild -project platform/mac/shell/shell.xcodeproj -configuration Debug
  }}}
 
-but the release is compiled with make+gcc
+but the release *redshell* is compiled with make+gcc
 {{{
 $ cd redtamarin-trunk/src
 $ mkdir objdir-release
@@ -26,6 +26,8 @@ I release only i386, ping me if you want PPC or simply use
 {{{
 $ xcodebuild ARCHS=ppc -project platform/mac/shell/shell.xcodeproj
 }}}
+
+files released are *redshell* and *redshell_d*
 
 === Windows ===
 
@@ -56,6 +58,8 @@ setup your directories like this
 and just open the solution in Visual Studio,<br>
 it should compile without any changes
 
+files released are *redshell.exe* and *redshell_d.exe*
+
 
 === Linux ===
 
@@ -84,6 +88,7 @@ $ make
 ...
 }}
 
+files released are *redshell.nix* and *redshell_d.nix*
 
 === Ant ===
 

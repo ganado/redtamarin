@@ -12,6 +12,17 @@ the *redshell_d* (debug) executable is compiled with
 $ xcodebuild -project platform/mac/shell/shell.xcodeproj -configuration Debug
  }}}
 
+or
+
+ {{{
+$ cd redtamarin-trunk/src
+$ mkdir objdir-release
+$ cd objdir-release
+$ python ../configure.py --enable-shell --enable-debugger
+$ make
+ }}}
+
+
 but the release *redshell* is compiled with make+gcc
 {{{
 $ cd redtamarin-trunk/src

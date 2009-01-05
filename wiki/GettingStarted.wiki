@@ -9,12 +9,13 @@ download this zip (see [http://code.google.com/p/redtamarin/downloads/list downl
       |   |_ asc.jar
       |   |_ redshell     <- mac executable
       |   |_ redshell.exe <- win32 executable
+      |   |_ redshell.nix <- linux executable
       |   |_ builtin.abc
       |   |_ toplevel.abc
       |_ buildAndRun.bat  <- for Windows
-      |_ buildAndRun.sh   <- for OS X
+      |_ buildAndRun.sh   <- for OS X / Linux
       |_ buildEXE.bat     <- for Windows
-      |_ buildEXE.sh      <- for OS X
+      |_ buildEXE.sh      <- for OS X / Linux
 
 
 }}}
@@ -33,7 +34,7 @@ trace( "redtamarin v" + version );
 
 and then build it and run it
 
-on OS X
+on OS X and Linux
 {{{
 $ ./buildAndRun.sh test.as
 }}}
@@ -55,9 +56,9 @@ the `buildAndRun` just build an `*.abc` using asc.jar
 then run it with the redshell executable
 
 when you're happy with your tests, 
-you can then build both an OS X and Windows executable using `buildEXE` scripts
+you can then build both an OS X, Linux and Windows executable using `buildEXE` scripts
 
-on OS X
+on OS X / Linux
 {{{
 $ ./buildEXE.sh test.as
 }}}
@@ -67,10 +68,10 @@ on Windows
 c:\> buildEXE.bat test.as
 }}}
 
-`test` will be the executable for OS X
-(if you generate it from Windows you will need to make it executable under OS X using `chmod +x test`)
+`test` will be the executable for OS X / Linux
+(if you generate it from Windows you will need to make it executable under OS X / Linux using `chmod +x test`)
 
 `test.exe` will be the executable for Windows
 
-those executables merge the redshell executable with the `*.abc` file
+those executables merge the *redshell* executable with the `*.abc` file
 and so have no dependencies.

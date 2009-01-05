@@ -35,7 +35,7 @@ tags: n/a
 
 release: 05/01/2009
 
-tags: [http://redtamarin.googlecode.com/svn/tags/0.2.0 0.2.0]
+tags: [http://redtamarin.googlecode.com/svn/tags/0.2.0 0.2.0] [http://redtamarin.googlecode.com/svn/as3/redshell/tags/0.2.0 redshell AS3 0.2.0]
 
 
 == v0.1 ==

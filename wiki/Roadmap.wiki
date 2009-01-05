@@ -1,0 +1,23 @@
+#summary Past and future release plan.
+#labels Featured
+
+== v0.2 ==
+
+ * sync with Tamarin 703:2cee46be9ce0
+ * cleaner code
+ * some flash platform APIs
+ * release for Windows, OS X and Linux
+ * separate subproject *redshell as3 library*
+
+release: (TBD)
+
+tags: n/a
+
+== v0.1 ==
+
+ * basic libs stdlib, unistd
+ * release for Windows and OS X
+
+release: 28/08/2008
+
+tags: n/a

@@ -20,6 +20,7 @@ public function debugger():void;
 
 public class System;
   public static const argv:Array;
+  public static const executablePath:String;
   public native static function exit(status:int):void;
   public native static function exec(command:String):int;
   public native static function getAvmplusVersion():String;

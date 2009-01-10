@@ -9,8 +9,9 @@ so you can literally copy/paste code to compile for redtamarin.
 === Implemented ===
 
 note:<br>
-a minus sign `-` indicate a missing property from the flash platform API.<br>
-a plus sign `+` indicate a property existing in redtamarin but not in the flash platform API.
+a *-* sign indicate a missing property from the flash platform API.<br>
+a *+* indicate a property existing in redtamarin but not in the flash platform API.<br>
+a *#* indicate a mock in redtamarin (the object exists but is a fake).
 
  * package *flash.errors*
  {{{
@@ -33,6 +34,53 @@ public dynamic class StackOverflowError;
 -public class SQLErrorOperation;
  }}}
 
+ * package *flash.events*
+ {{{
+#public class Event;
+ #public function get bubbles():Boolean
+ #public function get cancelable():Boolean
+ #public function get currentTarget():Object
+ #public function get eventPhase():uint
+ #public function get target():Object
+ #public function get type():String
+ #public function clone():Event;
+ #public function formatToString(className:String, ... arguments):String
+ #public function isDefaultPrevented():Boolean
+ #public function preventDefault():void
+ #public function stopImmediatePropagation():void
+ #public function stopPropagation():void
+ #public function toString():String
+
+public interface IEventDispatcher;
+  function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void;
+  function dispatchEvent(event:Event):Boolean;
+  function hasEventListener(type:String):Boolean;
+  function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void;
+  function willTrigger(type:String):Boolean;
+
+#public class EventDispatcher implements IEventDispatcher;
+ #public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void;
+ #public function dispatchEvent(event:Event):Boolean;
+ #public function hasEventListener(type:String):Boolean;
+ #public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void;
+ #public function willTrigger(type:String):Boolean;
+ }}}
+
+ * package *flash.display*
+ {{{
+#public class DisplayObject extends EventDispatcher;
+
+#public class InteractiveObject extends DisplayObject;
+
+#public class DisplayObjectContainer extends InteractiveObject;
+
+#public class Stage extends DisplayObjectContainer;
+
+#public class Sprite extends DisplayObjectContainer;
+
+#public class Shape extends DisplayObject;
+ }}}
+
  * package *flash.utils*
  {{{
 -public function clearInterval(id:uint):void;
@@ -46,6 +94,8 @@ public function getTimer():int;
 -public function setInterval(closure:Function, delay:Number, ... arguments):uint;
 -public function setTimeout(closure:Function, delay:Number, ... arguments):uint;
 -public function unescapeMultiByte(value:String):String;
+
+#public namespace flash_proxy;
 
 public class ByteArray;
   public native function get bytesAvailable():uint;
@@ -108,7 +158,17 @@ public class Endian;
 
 -public interface IExternalizable;
 
--public class Proxy;
+#public class Proxy;
+ #flash_proxy function callProperty(name:*, ... rest):*;
+ #flash_proxy function deleteProperty(name:*):Boolean;
+ #flash_proxy function getDescendants(name:*):*;
+ #flash_proxy function getProperty(name:*):*;
+ #flash_proxy function hasProperty(name:*):Boolean;
+ #flash_proxy function isAttribute(name:*):Boolean;
+ #flash_proxy function nextName(index:int):String;
+ #flash_proxy function nextNameIndex(index:int):int;
+ #flash_proxy function nextValue(index:int):*;
+ #flash_proxy function setProperty(name:*, value:*):void
 
 -public class Timer;
  }}}

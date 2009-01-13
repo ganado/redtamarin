@@ -35,57 +35,83 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package avmplus
+package flash.data
 {
+    import flash.events.EventDispatcher;
     
-    public class CompatibilityMode
+    
+    public class EncryptedLocalStore
     {
-        public static const tamarin:uint     = 0;
-        public static const redtamarin:uint  = 1;
-        public static const flashPlayer:uint = 2;
+        
     }
     
-    [native(cls="RedtamarinClass", methods="auto")]
-    public class redtamarin
+    public class SQLCollationType
     {
-        /* note:
-           the assert here is just an example,
-           use it will crash the avmshell.
-           
-           ex:
-           import avmplus.redtamarin;
-           redtamarin.assert( 0 );
-           
-           result:
-           redtamarin-trunk/src/shell/../extensions/RedtamarinClass.cpp:65:
-           failed assertion `expression'
-           ./test.sh: line 11: 58465 Abort trap   $avmshell test.abc
-        */
-        //private native static function __avmassert( expression:Number ):void;
         
-        private static var _compatibility:uint = CompatibilityMode.redtamarin;
+    }
+    
+    public class SQLColumnNameStyle
+    {
         
-        /*
-        public static function assert( expression:* ):void
-        {
-            redtamarin.__avmassert( expression );
-        }
-        */
+    }
+    
+    public class SQLColumnSchema
+    {
         
-        public static function get compatibility():uint
-        {
-            return _compatibility;
-        }
+    }
+    
+    public class SQLConnection extends EventDispatcher
+    {
         
-        public static function set compatibility( mode:uint ):void
-        {
-            _compatibility = mode;
-        }
+    }
+    
+    public class SQLSchema
+    {
         
-        public static function get version():String
-        {
-            return "0.2.5." + parseInt( "$Rev: 234 $".split( " " )[1] );
-        }
+    }
+    
+    public class SQLIndexSchema extends SQLSchema
+    {
+        
+    }
+    
+    public class SQLMode
+    {
+        
+    }
+    
+    public class SQLResult
+    {
+        
+    }
+    
+    public class SQLSchemaResult
+    {
+        
+    }
+    
+    public class SQLStatement extends EventDispatcher
+    {
+        
+    }
+    
+    public class SQLTableSchema extends SQLSchema
+    {
+        
+    }
+    
+    public class SQLTransactionLockType
+    {
+        
+    }
+    
+    public class SQLTriggerSchema extends SQLSchema
+    {
+        
+    }
+    
+    public class SQLViewSchema extends SQLTableSchema
+    {
         
     }
     

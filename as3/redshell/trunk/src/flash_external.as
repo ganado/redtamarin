@@ -35,56 +35,32 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package avmplus
+package flash.external
 {
     
-    public class CompatibilityMode
+    public final class ExternalInterface
     {
-        public static const tamarin:uint     = 0;
-        public static const redtamarin:uint  = 1;
-        public static const flashPlayer:uint = 2;
-    }
-    
-    [native(cls="RedtamarinClass", methods="auto")]
-    public class redtamarin
-    {
-        /* note:
-           the assert here is just an example,
-           use it will crash the avmshell.
-           
-           ex:
-           import avmplus.redtamarin;
-           redtamarin.assert( 0 );
-           
-           result:
-           redtamarin-trunk/src/shell/../extensions/RedtamarinClass.cpp:65:
-           failed assertion `expression'
-           ./test.sh: line 11: 58465 Abort trap   $avmshell test.abc
-        */
-        //private native static function __avmassert( expression:Number ):void;
         
-        private static var _compatibility:uint = CompatibilityMode.redtamarin;
+        public static var marshallExceptions:Boolean = false;
         
-        /*
-        public static function assert( expression:* ):void
+        public static function get available():Boolean
         {
-            redtamarin.__avmassert( expression );
-        }
-        */
-        
-        public static function get compatibility():uint
-        {
-            return _compatibility;
+            return false;
         }
         
-        public static function set compatibility( mode:uint ):void
+        public static function get objectID():String
         {
-            _compatibility = mode;
+            return "";
         }
         
-        public static function get version():String
+        public static function addCallback(functionName:String, closure:Function):void
         {
-            return "0.2.5." + parseInt( "$Rev: 234 $".split( " " )[1] );
+            
+        }
+        
+        public static function call(functionName:String, ... arguments):*
+        {
+            return null;
         }
         
     }

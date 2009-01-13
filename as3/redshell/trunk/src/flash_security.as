@@ -19,7 +19,7 @@
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
- *   Adobe AS3 Team
+ *   Zwetan Kjukov <zwetan@gmail>.
  *
  * Alternatively, the contents of this file may be used under the terms of
  * either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -35,11 +35,35 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package flash.utils
+package flash.security
 {
-	public class Endian
-	{
-		public static const BIG_ENDIAN:String = "bigEndian";
-		public static const LITTLE_ENDIAN:String = "littleEndian";
-	}
+    import flash.events.EventDispatcher;
+    import flash.utils.IDataInput;
+    
+    public interface IURIDereferencer
+    {
+        function dereference(uri:String):IDataInput;
+    }
+    
+    public final class RevocationCheckSettings
+    {
+        
+    }
+    
+    public final class SignatureStatus
+    {
+        
+    }
+    
+    public final class SignerTrustSettings
+    {
+        
+    }
+    
+    public class XMLSignatureValidator extends EventDispatcher
+    {
+        
+    }
+    
 }
+

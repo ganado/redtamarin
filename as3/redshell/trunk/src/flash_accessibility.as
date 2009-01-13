@@ -35,93 +35,37 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package flash.net
+package flash.accessibility
 {
-    import flash.utils.Endian;
     
-    [native(cls="SocketClass", instance="SocketObject", methods="auto")]
-    public class Socket
+    public final class Accessibility
     {
-        private var _connected:Boolean = false;
-        private var _endian:String     = Endian.BIG_ENDIAN;
-        private var _objectEncoding:uint;
-        private var _timeout:uint      = 20000; //ms
         
-        public function Socket( host:String = null, port:int = 0 )
+        public static function get active():Boolean
         {
-            //init( "hello world" );
+            return false;
         }
         
-        private native function init( test:String ):void;
-        
-        public native function get inited():String;
-        
-        public function get bytesAvailable():uint
-        {
-            return 0;
-        }
-        
-        public function get connected():Boolean
-        {
-            return _connected;
-        }
-        
-        public function get endian():String
-        {
-            return _endian;
-        }
-        
-        public function set endian( value:String ):void
-        {
-            _endian = value;
-        }
-        
-        public function get objectEncoding():uint
-        {
-            return _objectEncoding;
-        }
-        
-        public function set objectEncoding( value:uint ):void
-        {
-            _objectEncoding = value;
-        }
-        
-        public function get timeout():uint
-        {
-            return _timeout;
-        }
-        
-        public function set timeout( value:uint ):void
-        {
-            _timeout = value;
-        }
-        
-        
-        public function close():void
+        public static function updateProperties():void
         {
             
         }
         
-        public function connect( host:String, port:int ):void
+    }
+    
+    public class AccessibilityProperties
+    {
+        public var description:String = "";
+        public var forceSimple:Boolean = false;
+        public var name:String = "";
+        public var noAutoLabeling:Boolean = false;
+        public var shortcut:String = "";
+        public var silent:Boolean = false;
+        
+        public function AccessibilityProperties()
         {
             
         }
-        
-        public function flush():void
-        {
-            
-        }
-        
-        public function readByte():int
-        {
-            return 0;
-        }
-        
-        public function writeByte( value:int ):void
-        {
-            
-        }
-        
     }
     
 }

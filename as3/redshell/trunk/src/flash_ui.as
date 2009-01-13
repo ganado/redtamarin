@@ -35,57 +35,48 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package avmplus
+package flash.ui
 {
+    import flash.display.NativeMenu;
+    import flash.display.NativeMenuItem;
     
-    public class CompatibilityMode
+    public final class ContextMenu extends NativeMenu
     {
-        public static const tamarin:uint     = 0;
-        public static const redtamarin:uint  = 1;
-        public static const flashPlayer:uint = 2;
+        
     }
     
-    [native(cls="RedtamarinClass", methods="auto")]
-    public class redtamarin
+    public final class ContextMenuBuiltInItems
     {
-        /* note:
-           the assert here is just an example,
-           use it will crash the avmshell.
-           
-           ex:
-           import avmplus.redtamarin;
-           redtamarin.assert( 0 );
-           
-           result:
-           redtamarin-trunk/src/shell/../extensions/RedtamarinClass.cpp:65:
-           failed assertion `expression'
-           ./test.sh: line 11: 58465 Abort trap   $avmshell test.abc
-        */
-        //private native static function __avmassert( expression:Number ):void;
         
-        private static var _compatibility:uint = CompatibilityMode.redtamarin;
+    }
+    
+    public final class ContextMenuClipboardItems
+    {
         
-        /*
-        public static function assert( expression:* ):void
-        {
-            redtamarin.__avmassert( expression );
-        }
-        */
+    }
+    
+    public final class ContextMenuItem extends NativeMenuItem
+    {
         
-        public static function get compatibility():uint
-        {
-            return _compatibility;
-        }
+    }
+    
+    public final class Keyboard
+    {
         
-        public static function set compatibility( mode:uint ):void
-        {
-            _compatibility = mode;
-        }
+    }
+    
+    public final class KeyLocation
+    {
         
-        public static function get version():String
-        {
-            return "0.2.5." + parseInt( "$Rev: 234 $".split( " " )[1] );
-        }
+    }
+    
+    public final class Mouse
+    {
+        
+    }
+    
+    public final class MouseCursor
+    {
         
     }
     

@@ -35,57 +35,110 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-package avmplus
+package flash.text
 {
+    import flash.display.DisplayObject;
+    import flash.display.InteractiveObject;
+    import flash.events.EventDispatcher;
     
-    public class CompatibilityMode
+    
+    public final class AntiAliasType
     {
-        public static const tamarin:uint     = 0;
-        public static const redtamarin:uint  = 1;
-        public static const flashPlayer:uint = 2;
+        
     }
     
-    [native(cls="RedtamarinClass", methods="auto")]
-    public class redtamarin
+    public class AttributeRange
     {
-        /* note:
-           the assert here is just an example,
-           use it will crash the avmshell.
-           
-           ex:
-           import avmplus.redtamarin;
-           redtamarin.assert( 0 );
-           
-           result:
-           redtamarin-trunk/src/shell/../extensions/RedtamarinClass.cpp:65:
-           failed assertion `expression'
-           ./test.sh: line 11: 58465 Abort trap   $avmshell test.abc
-        */
-        //private native static function __avmassert( expression:Number ):void;
         
-        private static var _compatibility:uint = CompatibilityMode.redtamarin;
+    }
+    
+    public final class CSMSettings
+    {
         
-        /*
-        public static function assert( expression:* ):void
-        {
-            redtamarin.__avmassert( expression );
-        }
-        */
+    }
+    
+    public class Font
+    {
         
-        public static function get compatibility():uint
-        {
-            return _compatibility;
-        }
+    }
+    
+    public final class FontStyle
+    {
         
-        public static function set compatibility( mode:uint ):void
-        {
-            _compatibility = mode;
-        }
+    }
+    
+    public final class FontType
+    {
         
-        public static function get version():String
-        {
-            return "0.2.5." + parseInt( "$Rev: 234 $".split( " " )[1] );
-        }
+    }
+    
+    public final class GridFitType
+    {
+        
+    }
+    
+    public final class StaticText extends DisplayObject
+    {
+        
+    }
+    
+    public dynamic class StyleSheet extends EventDispatcher
+    {
+        
+    }
+    
+    public final class TextColorType
+    {
+        
+    }
+    
+    public final class TextDisplayMode
+    {
+        
+    }
+    
+    public class TextExtent
+    {
+        
+    }
+    
+    public class TextField extends InteractiveObject
+    {
+        
+    }
+    
+    public final class TextFieldAutoSize
+    {
+        
+    }
+    
+    public final class TextFieldType
+    {
+        
+    }
+    
+    public class TextFormat
+    {
+        
+    }
+    
+    public final class TextFormatAlign
+    {
+        
+    }
+    
+    public class TextLineMetrics
+    {
+        
+    }
+    
+    public final class TextRenderer
+    {
+        
+    }
+    
+    public class TextSnapshot
+    {
         
     }
     

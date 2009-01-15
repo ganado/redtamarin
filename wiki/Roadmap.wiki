@@ -5,6 +5,10 @@
 
  * utilities to work with ABC, SWF, SWC, etc.
  * redshell as3 lib as a SWC
+ * tools
+   * extract ABC from SWF
+   * inject ABC into SWF
+   * etc.
 
 release: (TBD)
 
@@ -20,10 +24,7 @@ tags: n/a
  * !LocalConnection implementation
  * full system info
    * "Mac OS X 10.5.1" instead of "Macintosh"
- * tools
-   * extract ABC from SWF
-   * inject ABC into SWF
-   * etc.
+ * exe tools to replace the build scripts
  
 release: (TBD)
 

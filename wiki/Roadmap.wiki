@@ -29,7 +29,7 @@ tags: n/a
 
  * all flash platform APIs (most as mock / empty classes)
  * locale/language detection
- * executable path (argv[0])
+ * executable path (`argv[0]`)
  * [http://code.google.com/p/astuce/source/browse/#svn/cli/trunk ASTUce CLI] is build on redshell 0.2.5
 
 release: 13/01/2009

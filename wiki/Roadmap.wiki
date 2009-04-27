@@ -1,14 +1,24 @@
 #summary Past and future release plan.
 #labels Featured
 
+== v0.5 ==
+
+ * Socket, !SocketServer implementations
+ * !SharedObject (read/write) implementation
+ * !LocalConnection implementation
+
+release: (TBD)
+
+tags: n/a
+
 == v0.4 ==
 
- * utilities to work with ABC, SWF, SWC, etc.
- * redshell as3 lib as a SWC
- * tools
-   * extract ABC from SWF
-   * inject ABC into SWF
-   * etc.
+ * first shot at an event system
+ * more flash platform APIs implementation
+   * try to implement Proxy flash_proxy
+ * full system info
+   * "Mac OS X 10.5.1" instead of "Macintosh"
+
 
 release: (TBD)
 
@@ -17,15 +27,21 @@ tags: n/a
 
 == v0.3 ==
 
- * more C libs
- * more flash platform APIs implementation
- * Socket, !SocketServer implementations
- * !SharedObject (read/write) implementation
- * !LocalConnection implementation
- * full system info
-   * "Mac OS X 10.5.1" instead of "Macintosh"
+ * sync with last Tamarin (support for swf, eval, etc.)
+ * utilities to work with ABC, SWF, SWC, etc.
+ * redshell as3 lib as a SWC
+ * tools
+   * extract ABC from SWF
+   * inject ABC into SWF
+   * etc.
  * exe tools to replace the build scripts
- 
+ * more C libs
+
+maybe:
+ * replace avmshell.cpp by a redshell.cpp
+ * ant automated build
+   * reuse command lines test in pythong from Tamarin
+
 release: (TBD)
 
 tags: n/a

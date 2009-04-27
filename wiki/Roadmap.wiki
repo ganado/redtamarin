@@ -35,6 +35,9 @@ tags: n/a
    * inject ABC into SWF
    * etc.
  * exe tools to replace the build scripts
+ * File I/O
+   * low level fopen etc.
+   * high level API as AIR
  * more C libs
 
 maybe:

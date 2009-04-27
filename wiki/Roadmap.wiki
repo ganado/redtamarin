@@ -35,9 +35,13 @@ tags: n/a
    * inject ABC into SWF
    * etc.
  * exe tools to replace the build scripts
- * File I/O
+ * File I/O API
    * low level fopen etc.
    * high level API as AIR
+ * executable API
+   * more than just system()
+   * make different tests with pipe etc.
+   * copy what JSDB do with Stream =)
  * more C libs
 
 maybe:

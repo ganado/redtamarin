@@ -23,12 +23,12 @@ download this zip (see [http://code.google.com/p/redtamarin/downloads/list downl
 write some code in `test.as`
 {{{
 import avmplus.System;
-import redtamarin.version;
+import avmplus.redtamarin;
 
 trace( "hello world" );
 
 trace( "avmplus v" + System.getAvmplusVersion() );
-trace( "redtamarin v" + version );
+trace( "redtamarin v" + redtamarin.version );
 
 }}}
 

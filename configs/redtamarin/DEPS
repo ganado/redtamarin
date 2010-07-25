@@ -6,5 +6,4 @@ vars = {
 
 deps = {
          Var("root") + "/src/asc"                    : Var("flexsdk") + "/trunk/modules/asc",
-         Var("root") + "/src/tamarin"                : Var("repo") + "/trunk",
        }

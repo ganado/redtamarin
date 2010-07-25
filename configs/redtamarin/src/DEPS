@@ -4,5 +4,5 @@ vars = {
        }
 
 deps = {
-         Var("root") + "/src/tamarin"                : Var("repo") + "/trunk",
+         "tamarin"                : Var("repo") + "/trunk",
        }

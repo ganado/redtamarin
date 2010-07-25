@@ -1,9 +1,0 @@
-vars = {
-         "repo"    : "https://redtamarin.googlecode.com/svn",
-         "root"    : "redtamarin",
-       }
-
-deps = {
-         Var("root") + "/src/asc"                    : "http://opensource.adobe.com/svn/opensource/flex/sdk/trunk/modules/asc",
-         Var("root") + "/src/tamarin"                : Var("repo") + "/trunk",
-       }

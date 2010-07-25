@@ -1,8 +1,0 @@
-vars = {
-         "repo"    : "https://redtamarin.googlecode.com/svn",
-         "root"    : "redtamarin",
-       }
-
-deps = {
-
-       }

@@ -1,11 +1,15 @@
 vars = {
-         "repo"    : "https://redtamarin.googlecode.com/svn",
-         "root"    : "redtamarin",
+         "repo"     : "https://redtamarin.googlecode.com/svn",
+         "platform" : "https://maashaack.googlecode.com/svn/platform",
+         "root"     : "redtamarin",
        }
 
 deps = {
          Var("root") + "/src/asc"                    : "http://opensource.adobe.com/svn/opensource/flex/sdk/trunk/modules/asc",
          Var("root") + "/src/tamarin"                : Var("repo") + "/redtamarin-root",
+         Var("root") + "/src/tamarin/as3/avmglue"    : Var("platform") + "/avmglue/trunk/src",
+         Var("root") + "/src/tamarin/as3/clib"       : Var("platform") + "/clib/trunk/src",
+         Var("root") + "/src/tamarin/api/clib"       : Var("repo") + "/api/clib/trunk",
          Var("root") + "/src/tamarin/extensions"     : Var("repo") + "/trunk/extensions",
          Var("root") + "/src/tamarin/platform"       : Var("repo") + "/trunk/platform",
          Var("root") + "/src/tamarin/shell"          : Var("repo") + "/trunk/shell",

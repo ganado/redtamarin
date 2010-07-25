@@ -1,3 +1,11 @@
+* 0.2.6
+- reorganized everything
+- tamarin-redux is sync'ed on redshell repo
+- our /tamarin-redux is updated from a redshell hg archive
+- now we use gclient on top of svn
+- /trunk contains only redtamarin changes
+  mainly: extensions, platform, shell, VMPI
+
 * 0.2.5
 - added System.executablePath to get argv[0]
 - added locale/language/languages support

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="redtamarin" default="main" basedir=".">
+
+    <target name="clean">
+    </target>
+
+    <target name="before">
+        <mkdir dir="bin-debug"/>
+    </target>
+    
+    <target name="main" depends="clean,before,build,after">
+    </target>
+
+    <target name="after">
+        <copy file="src/tamarin/core/builtin.abc" todir="bin-debug"/>
+        <copy file="src/tamarin/shell/shell_toplevel.abc" todir="bin-debug"/>
+    </target>
+
+    <target name="build" depends="build-asc,build-shell_toplevel,build-tamarin">
+    </target>
+
+    <target name="build-asc">
+
+        <ant antfile="src/asc/build/java/build.xml" target="main" inheritAll="false" />
+        <copy file="src/asc/lib/asc.jar" todir="src/tamarin/utils"/>
+        <copy file="src/asc/lib/asc.jar" todir="bin-debug"/>
+    
+    </target>
+
+    <target name="build-shell_toplevel">
+
+        <exec executable="python" dir="src/tamarin/shell" failonerror="true">
+            <arg value="shell_toplevel.py"/>
+            <arg value="shell_toplevel.as"/>
+        </exec>
+    
+    </target>
+
+    <target name="build-tamarin">
+
+        <exec executable="make" dir="src/tamarin/objdir-release" failonerror="true">
+        </exec>
+        <copy file="src/tamarin/objdir-release/shell/redshell" todir="bin-debug"/>
+        <chmod file="bin-debug/redshell" perm="+x"/>
+    
+    </target>
+
+
+    <!--
+         $ hg clone http://hg.mozilla.org/tamarin-redux/
+         $ cd tamarin-redux
+         $ mkdir objdir-release
+         $ cd objdir-release
+         $ python ../configure.py - -enable-shell
+         $ make
+      -->
+    <target name="build-setup">
+
+        <mkdir dir="src/tamarin/objdir-release"/>
+
+        <exec executable="python" dir="src/tamarin/objdir-release" failonerror="true">
+            <arg value="../configure.py"/>
+            <arg value="--enable-shell"/>
+            <arg value="--enable-debugger"/>
+        </exec>
+    
+    </target>
+
+
+</project>
+

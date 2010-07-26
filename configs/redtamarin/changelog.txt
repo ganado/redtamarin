@@ -5,6 +5,8 @@
 - now we use gclient on top of svn
 - /trunk contains only redtamarin changes
   mainly: extensions, platform, shell, VMPI
+- added VMPI_getExecutablePath to replace argv[0]
+- added System.executablePath in avmplus.* AS3
 
 * 0.2.5
 - added System.executablePath to get argv[0]

@@ -25,7 +25,7 @@ here what you will obtain after a checkout
    |_ .gclient
    |_ redtamarin
                 |_ build
-                |       |_ ...
+                |     |_ ...
                 |
                 |_ build.xml
                 |_ changelog.txt

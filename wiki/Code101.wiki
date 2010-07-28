@@ -1,0 +1,30 @@
+#summary get the code.
+
+== Introduction ==
+
+See [Organization].
+
+You will need the [http://code.google.com/p/maashaack/wiki/gclient gclient] command-line tool to checkout the code.
+
+== Details ==
+
+to do a first checkout
+{{{
+$ gclient config https://redtamarin.googlecode.com/svn/configs/redtamarin
+$ gclient update
+}}}
+
+gclient will iterate trough the different dependencies defined in `DEPS`<br>
+and do a `svn checkout` per dependency.
+
+later to update the directories you just need to do
+{{{
+$ gclient sync
+}}}
+
+
+if you are a committer, you need to enter a directory to update your changes
+{{{
+$ cd src/tamarin/VMPI
+$ svn commit -m "updating VMPI"
+}}}

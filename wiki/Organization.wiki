@@ -85,3 +85,18 @@ And finally, with a structure like this we can use Ant to automate the build and
 
 now hopefully when you will [http://code.google.com/p/redtamarin/source/browse/#svn/trunk browse the trunk]
 you will understand why it list only four directories ;).
+
+
+== misc ==
+
+All our AS3 source code reside on [http://code.google.com/p/maashaack maashaack].
+
+You will find the different AS3 projects realted to redtamarin under the [http://code.google.com/p/maashaack/source/browse/#svn/platform /platform] directory.
+
+For more informations you can consult
+ * [http://code.google.com/p/maashaack/wiki/OverView#Platform Documentation/Overview#Platform]
+ * the [http://code.google.com/p/maashaack/wiki/avmglue avmglue] project
+ * the [http://code.google.com/p/maashaack/wiki/swfinfos swfinfos] tool
+ * the [http://code.google.com/p/maashaack/wiki/flashdoc flashdoc] tool
+ * the [http://code.google.com/p/maashaack/wiki/soldump soldump] tool
+ * etc.

@@ -80,3 +80,8 @@ And as we work at the API level, we also added 2 directories: `/tamarin/api` and
 `/tamarin/api` contains the C/C++ implementations of the API.
 
 `/tamarin/as3` contains the AS3 implementations of the API and are hosted on [http://code.google.com/p/maashaack maashaack].
+
+And finally, with a structure like this we can use Ant to automate the build and other things.
+
+now hopefully when you will [http://code.google.com/p/redtamarin/source/browse/#svn/trunk browse the trunk]
+you will understand why it list only four directories ;).

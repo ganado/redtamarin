@@ -51,8 +51,8 @@ here what you will obtain after a checkout
                    |_ Doxyfile                  
                    |_ esc                         <- /tamarin-redux/esc/
                    |_ eval                        <- /tamarin-redux/eval/
-                   |_ extensions            <- /trunk/extensions/
-                   |_ localization           <- /tamarin-redux/localization/
+                   |_ extensions         <- /trunk/extensions/
+                   |_ localization       <- /tamarin-redux/localization/
                    |_ manifest.mk             
                    |_ MMgc               <- /tamarin-redux/MMgc/
                    |_ nanojit            <- /tamarin-redux/nanojit/

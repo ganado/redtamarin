@@ -21,6 +21,8 @@ so we're checking a subpath of the [http://opensource.adobe.com/wiki/display/fle
 here what you will obtain after a checkout
 {{{
 
+* = external repositories
+
   ..
    |_ .gclient
    |_ redtamarin
@@ -67,19 +69,14 @@ here what you will obtain after a checkout
 
 }}}
 
+As you can see, we work on a very small part of the original Tamarin project.
 
-`.gclient` is the solution file and will look like that
-{{{
-solutions = [
-  { "name"        : "redtamarin",
-    "url"         : "https://redtamarin.googlecode.com/svn/configs/redtamarin",
-    "custom_deps" : {
-      # To use the trunk of a component instead of what's in DEPS:
-      #"component": "https://svnserver/component/trunk/",
-      # To exclude a component from your working copy:
-      #"data/really_large_component": None,
-    },
-    "safesync_url": ""
-  },
-]
-}}}
+Because our goal is to add native implementations, we mainly need to work with: extensions, platform, shell and VMPI.
+
+All the other directories are directly checked out from `/tamarin-redux` which allow us to sync and update frequently from the original tamarin-redux.
+
+And as we work at the API level, we also added 2 directories: `/tamarin/api` and `/tamarin/as3`.
+
+`/tamarin/api` contains the C/C++ implementations of the API.
+
+`/tamarin/as3` contains the AS3 implementations of the API and are hosted on [http://code.google.com/p/maashaack maashaack].

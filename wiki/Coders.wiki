@@ -1,3 +1,5 @@
 #summary Programming redtamarin.
 
 everything you need to know to compile, setup, etc.
+
+You will probably need to [http://code.google.com/p/maashaack/wiki/Tools Set up your development environment] before being able to compile ASC, Tamarin, etc.

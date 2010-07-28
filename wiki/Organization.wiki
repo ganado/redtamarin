@@ -66,3 +66,20 @@ here what you will obtain after a checkout
                    |_ vprof              <- /tamarin-redux/vprof/
 
 }}}
+
+
+`.gclient` is the solution file and will look like that
+{{{
+solutions = [
+  { "name"        : "redtamarin",
+    "url"         : "https://redtamarin.googlecode.com/svn/configs/redtamarin",
+    "custom_deps" : {
+      # To use the trunk of a component instead of what's in DEPS:
+      #"component": "https://svnserver/component/trunk/",
+      # To exclude a component from your working copy:
+      #"data/really_large_component": None,
+    },
+    "safesync_url": ""
+  },
+]
+}}}

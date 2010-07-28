@@ -6,7 +6,7 @@ Because the [http://hg.mozilla.org/tamarin-central tamarin-central] and [http://
 we need to have a special setup.
 
 On another google project [http://code.google.com/p/redshell/ redshell] we sync every week with the tamarin-redux repository, here why:
- * we want to use google code
+ * we want to use google code ([http://code.google.com/p/redshell/source/list look at this])
  * it allow us to send back back patches to the Tamarin project
  * it allow us to semi-automate an `hg archive + svn commit`
 

@@ -1,0 +1,68 @@
+#summary how the redtamarin is organized.
+
+== Introduction ==
+
+Because the [http://hg.mozilla.org/tamarin-central tamarin-central] and [http://hg.mozilla.org/tamarin-redux tamarin-redux] repositories use [http://mercurial.selenic.com/ Mercurial] and that we prefer to work with Subversion
+we need to have a special setup.
+
+On another google project [http://code.google.com/p/redshell/ redshell] we sync every week with the tamarin-redux repository, here why:
+ * we want to use google code
+ * it allow us to send back back patches to the Tamarin project
+ * it allow us to semi-automate an `hg archive + svn commit`
+
+So, each week (in general every sunday), we override this path [http://redtamarin.googlecode.com/svn/tamarin-redux/ /svn/tamarin-redux] with the content of redshell.
+
+Also, we need to be in sync with ASC (ActionScript Compiler)<br>
+so we're checking a subpath of the [http://opensource.adobe.com/wiki/display/flexsdk/Flex+SDK Adobe Flex SDK]<br>
+[http://opensource.adobe.com/svn/opensource/flex/sdk/trunk/modules/asc /modules/asc]
+
+== Project structure ==
+
+here what you will obtain after a checkout
+{{{
+
+  ..
+   |_ .gclient
+   |_ redtamarin
+                |_ build
+                |       |_ ...
+                |
+                |_ build.xml
+                |_ changelog.txt
+                |_ DEPS
+                |_ license.txt
+                |_ src
+                      |_ asc
+                      |     |_ ...                             <- */trunk/modules/asc (Flex SDK)
+                      |
+                      |_ tamarin                         <- /redtamarin-root/ (eg. single files configure.py, manifest.mk, etc.)
+                              |_ api
+                              |     |_ clib                  <- /api/clib/trunk/
+                              |
+                              |_ as3
+                              |     |_ avmglue         <- */platform/avmglue/trunk/src/ (maashaack)
+                              |     |_ clib                  <- */platform/clib/trunk/src/ (maashaack)
+                              |
+                              |_ axscript                  <- /tamarin-redux/axscript/
+                              |_ build                       <- /tamarin-redux/build/
+                              |_ configure.py              
+                              |_ core                        <- /tamarin-redux/core/
+                              |_ doc                         <- /tamarin-redux/doc/
+                              |_ Doxyfile                  
+                              |_ esc                         <- /tamarin-redux/esc/
+                              |_ eval                        <- /tamarin-redux/eval/
+                              |_ extensions            <- /trunk/extensions/
+                              |_ localization           <- /tamarin-redux/localization/
+                              |_ manifest.mk             
+                              |_ MMgc                     <- /tamarin-redux/MMgc/
+                              |_ nanojit                   <- /tamarin-redux/nanojit/
+                              |_ other-licenses     <- /tamarin-redux/other-licenses/
+                              |_ pcre                       <- /tamarin-redux/pcre/
+                              |_ platform                <- /trunk/platform/
+                              |_ shell                       <- /trunk/shell/
+                              |_ tests                       <- /tamarin-redux/tests/
+                              |_ utils                        <- /tamarin-redux/utils/
+                              |_ VMPI                       <- /trunk/VMPI/
+                              |_ vprof                      <- /tamarin-redux/vprof/
+
+}}}

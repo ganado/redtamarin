@@ -18,7 +18,7 @@ so we're checking a subpath of the [http://opensource.adobe.com/wiki/display/fle
 
 == Project structure ==
 
-here what you will obtain after a checkout
+here what you will obtain after a checkout (see [Code101 get the code])
 {{{
 
 * = external repositories

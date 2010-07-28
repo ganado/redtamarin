@@ -3,6 +3,7 @@
     * [GettingStarted Getting Started]
     * [IDE HOWTO Setup your IDE]
   * [Coders Programming redtamarin]
+    * [Organization Organization]
     * [Code101 Get the code]
     * [NativeClasses HOWTO work with Native Classes]
     * [Build HOWTO Build]

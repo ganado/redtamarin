@@ -57,7 +57,7 @@ here what you will obtain after a checkout
                    |_ MMgc                     <- /tamarin-redux/MMgc/
                    |_ nanojit                   <- /tamarin-redux/nanojit/
                    |_ other-licenses     <- /tamarin-redux/other-licenses/
-                   |_ pcre                       <- /tamarin-redux/pcre/
+                   |_ pcre                    <- /tamarin-redux/pcre/
                    |_ platform                <- /trunk/platform/
                    |_ shell                       <- /trunk/shell/
                    |_ tests                       <- /tamarin-redux/tests/

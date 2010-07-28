@@ -55,7 +55,7 @@ here what you will obtain after a checkout
                    |_ localization           <- /tamarin-redux/localization/
                    |_ manifest.mk             
                    |_ MMgc               <- /tamarin-redux/MMgc/
-                   |_ nanojit             <- /tamarin-redux/nanojit/
+                   |_ nanojit            <- /tamarin-redux/nanojit/
                    |_ other-licenses     <- /tamarin-redux/other-licenses/
                    |_ pcre               <- /tamarin-redux/pcre/
                    |_ platform           <- /trunk/platform/

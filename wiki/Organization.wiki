@@ -38,13 +38,13 @@ here what you will obtain after a checkout
                |_ tamarin                         <- /redtamarin-root/ (eg. single files configure.py, manifest.mk, etc.)
                    |_ api
                    |   |_ clib                  <- /api/clib/trunk/
-                              |
-                              |_ as3
-                              |     |_ avmglue         <- */platform/avmglue/trunk/src/ (maashaack)
-                              |     |_ clib                  <- */platform/clib/trunk/src/ (maashaack)
-                              |
-                              |_ axscript                  <- /tamarin-redux/axscript/
-                              |_ build                       <- /tamarin-redux/build/
+                   |
+                   |_ as3
+                   |    |_ avmglue         <- */platform/avmglue/trunk/src/ (maashaack)
+                   |    |_ clib                  <- */platform/clib/trunk/src/ (maashaack)
+                   |
+                   |_ axscript                  <- /tamarin-redux/axscript/
+                   |_ build                       <- /tamarin-redux/build/
                               |_ configure.py              
                               |_ core                        <- /tamarin-redux/core/
                               |_ doc                         <- /tamarin-redux/doc/

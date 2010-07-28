@@ -91,7 +91,7 @@ you will understand why it list only four directories ;).
 
 All our AS3 source code reside on [http://code.google.com/p/maashaack maashaack].
 
-You will find the different AS3 projects realted to redtamarin under the [http://code.google.com/p/maashaack/source/browse/#svn/platform /platform] directory.
+You will find the different AS3 projects related to redtamarin under the [http://code.google.com/p/maashaack/source/browse/#svn/platform /platform] directory.
 
 For more informations you can consult
  * [http://code.google.com/p/maashaack/wiki/OverView#Platform Documentation/Overview#Platform]

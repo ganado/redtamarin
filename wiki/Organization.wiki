@@ -60,7 +60,7 @@ here what you will obtain after a checkout
                    |_ pcre               <- /tamarin-redux/pcre/
                    |_ platform           <- /trunk/platform/
                    |_ shell              <- /trunk/shell/
-                   |_ tests                       <- /tamarin-redux/tests/
+                   |_ tests              <- /tamarin-redux/tests/
                    |_ utils                        <- /tamarin-redux/utils/
                    |_ VMPI                       <- /trunk/VMPI/
                    |_ vprof                      <- /tamarin-redux/vprof/

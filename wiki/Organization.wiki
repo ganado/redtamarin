@@ -24,16 +24,16 @@ here what you will obtain after a checkout
   ..
    |_ .gclient
    |_ redtamarin
-                |_ build
-                |     |_ ...
-                |
-                |_ build.xml
-                |_ changelog.txt
-                |_ DEPS
-                |_ license.txt
-                |_ src
-                      |_ asc
-                      |     |_ ...                             <- */trunk/modules/asc (Flex SDK)
+           |_ build
+           |     |_ ...
+           |
+           |_ build.xml
+           |_ changelog.txt
+           |_ DEPS
+           |_ license.txt
+           |_ src
+                 |_ asc
+                 |     |_ ...                             <- */trunk/modules/asc (Flex SDK)
                       |
                       |_ tamarin                         <- /redtamarin-root/ (eg. single files configure.py, manifest.mk, etc.)
                               |_ api

@@ -49,8 +49,8 @@ here what you will obtain after a checkout
                    |_ core                        <- /tamarin-redux/core/
                    |_ doc                         <- /tamarin-redux/doc/
                    |_ Doxyfile                  
-                   |_ esc                         <- /tamarin-redux/esc/
-                   |_ eval                        <- /tamarin-redux/eval/
+                   |_ esc                <- /tamarin-redux/esc/
+                   |_ eval               <- /tamarin-redux/eval/
                    |_ extensions         <- /trunk/extensions/
                    |_ localization       <- /tamarin-redux/localization/
                    |_ manifest.mk             

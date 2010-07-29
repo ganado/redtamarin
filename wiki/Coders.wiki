@@ -17,7 +17,8 @@ have a hotmail/msn account ready<br>
 open VC++ and click help/register (use IE, chrome or firefox does not work)
 
 You need to install Mozilla Build [http://ftp.mozilla.org/pub/mozilla.org/mozilla/libraries/win32/MozillaBuildSetup-1.4.exe MozillaBuildSetup-1.4]<br>
- and add `C:\mozilla-build\msys\bin` to your environment variables
+and add `C:\mozilla-build\msys\bin` to your environment variables<br>
+see [https://developer.mozilla.org/En/Developer_Guide/Build_Instructions/Windows_Prerequisites#MozillaBuild]
 
 === OS X ===
 

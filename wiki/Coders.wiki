@@ -3,3 +3,30 @@
 everything you need to know to compile, setup, etc.
 
 You will probably need to [http://code.google.com/p/maashaack/wiki/Tools Set up your development environment] before being able to compile ASC, Tamarin, etc.
+
+
+Here some additions for compiling C/C++
+
+=== Windows ===
+
+You need to install *Microsoft Visual C++ 2008 Express Edition* (or later version)<br>
+[ http://www.microsoft.com/express/download/default.aspx]
+
+note:<br>
+have a hotmail/msn account ready<br>
+open VC++ and click help/register (use IE, chrome or firefox does not work)
+
+You need to install Mozilla Build [http://ftp.mozilla.org/pub/mozilla.org/mozilla/libraries/win32/MozillaBuildSetup-1.4.exe MozillaBuildSetup-1.4]<br>
+ and add `C:\mozilla-build\msys\bin` to your environment variables
+
+=== OS X ===
+
+
+=== Linux ===
+(I'm testing on Ubuntu 8.04 so if you have another flavour adapt accordingly)
+
+You need to install *build-essential*
+{{{
+$ sudo apt-get install build-essential
+}}}
+(strangely this basic thing can be a stopper for more than one)

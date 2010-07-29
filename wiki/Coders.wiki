@@ -20,6 +20,21 @@ You need to install Mozilla Build [http://ftp.mozilla.org/pub/mozilla.org/mozill
 and add `C:\mozilla-build\msys\bin` to your environment variables<br>
 see [https://developer.mozilla.org/En/Developer_Guide/Build_Instructions/Windows_Prerequisites#MozillaBuild]
 
+Configure cygwin bash to run VS C++ on the command line
+
+open your .bash_profile and add
+{{{
+# NOTE: The INCLUDE, LIB and LIBPATH must contain windows path information and separator and not cygwin paths.
+VS_HOME_PATH="/c/Program Files/Microsoft Visual Studio 9.0"
+VS_HOME="c:\Program Files\Microsoft Visual Studio 9.0"
+
+export PATH="$VS_HOME_PATH/Common7/IDE:$VS_HOME_PATH/VC/bin:$VS_HOME_PATH/Common7/Tools:$VS_HOME_PATH/VC/VCPackages:$PATH"
+export INCLUDE="$VS_HOME\VC\atlmfc\include;$VS_HOME\VC\include;C:\Program Files\Microsoft SDKs\Windows\v6.0A\Include;"
+export LIB="$VS_HOME\VC\atlmfc\lib;$VS_HOME\VC\lib;C:\Program Files\Microsoft SDKs\Windows\v6.0A\Lib"
+export LIBPATH="$VS_HOME\VC\atlmfc\lib;$VS_HOME\VC\lib;C:\Program Files\Microsoft SDKs\Windows\v6.0A\Lib"
+}}}
+
+
 === OS X ===
 
 

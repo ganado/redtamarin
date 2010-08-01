@@ -100,7 +100,7 @@ extern void VMPI_log(const char* message);
 //...
 }}}
 
-which have their respective implementations in *WinPortUtils.cpp*, *PosixPortUtils.cpp*, etc.
+which have their respective implementations in *!WinPortUtils.cpp*, *!PosixPortUtils.cpp*, etc.
 
 [http://code.google.com/p/redtamarin/source/browse/tamarin-redux/VMPI/WinPortUtils.cpp WinPortUtils.cpp]
 {{{

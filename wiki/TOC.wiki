@@ -7,6 +7,7 @@
     * [Code101 Get the code]
     * [NativeClasses HOWTO work with Native Classes]
     * [Build HOWTO Build]
+    * [Cross Platform CrossPlatform]
     * [Roadmap Roadmap]
   * [API API reference]
     * [StandardC C Standard Libraries]

@@ -190,12 +190,19 @@ TODO
 
 some interesting links
  * C Reference Card (ANSI) [http://www.usna.edu/EE/ee462/MANUALS/ansi-c-refcard-letter.pdf PDF]
+ * [http://www.cplusplus.com/]
+ * [http://www.parashift.com/c++-faq-lite/ C++ FAQ LITE]
  * [http://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html The GNU C Reference Manual]
- * [http://msdn.microsoft.com/en-us/library/ms811903.aspx MSDN UNIX Application Migration Guide]
  * Optimizing software in C++: An optimization guide for Windows, Linux and Mac platforms [http://www.agner.org/optimize/ home] [http://www.agner.org/optimize/optimizing_cpp.pdf PDF]
  * [http://www.crossplatformbook.com/posix.html POSIX.1 API Support] (cross reference MacOS X, Linux, MS Visual C++ RTL, Cygwin, MinGW, and NSPR 4.3)
  * [http://www.unix.org/apis.html Unix98 API tables]
  * [http://www.unix.org/version3/apis.html Unix03 (Single Unix Specification) API tables]
 
 some interesting books
- * [http://crossplatformbook.com/ Cross-Platform Development in C++]
+ * [http://publications.gbdirect.co.uk/c_book/ The C Book] (free)
+ * [http://beej.us/guide/bgc/ Beej's Guide to C Programming] (free)
+ * [http://crossplatformbook.com/ Cross-Platform Development in C++] (not free but essential)
+ * [http://msdn.microsoft.com/en-us/library/ms811903.aspx MSDN UNIX Application Migration Guide] (free)
+ * [http://beej.us/guide/bgnet/ Beej's Guide to Network Programming] (free)
+ * [http://beej.us/guide/bgipc/ Beej's Guide to Unix Interprocess Communication] (free)
+ * [http://beej.us/guide/bggdb/ Beej's Quick Guide to GDB] (free)

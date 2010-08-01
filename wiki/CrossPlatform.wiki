@@ -18,7 +18,7 @@ But in the recent updates of Tamarin, Adobe introduced a more elegant way of doi
 
 It basically works like that
 
-You have a command header [http://code.google.com/p/redtamarin/source/browse/tamarin-redux/VMPI/VMPI.h VMPI.h]
+You have a common header [http://code.google.com/p/redtamarin/source/browse/tamarin-redux/VMPI/VMPI.h VMPI.h]
 
 that gonna fetch the platform header
 {{{

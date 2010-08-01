@@ -162,3 +162,28 @@ void VMPI_log(const char* message)
 }
 //...
 }}}
+
+
+This end up being elegant and easy to maintain, and so if we want to add our own cross platform functionalities we need to keep using VMPI.
+
+== How To add a common functionality ==
+
+TODO
+
+step 1 - edit VMPI.h to add the common definition
+step 2 - add the implementation in !PosixPortUtils.cpp
+step 3 - add the implementation in !WinPortUtils.cpp
+step 4 - test
+
+
+== Misc ==
+
+Under WIN32, even if you compile in a cygwin environment, you should test both with cygwin and a basic command prompt as they don't always react the same ( argv[0], path separator, environment variables, etc.).
+
+Also, if Mac OS X and Linux use both the !PosixPortUtils.cpp, you still have to use either ifdef or another specialized incude for special case (eg. !MacDebugUtil.cpp).
+
+== Cross Platform C/C++ ==
+
+Welcome to hell :)
+
+TODO

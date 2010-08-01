@@ -4,5 +4,161 @@
 
 One of the main advantage of the Flash Platform is to be able to write your code in AS3 and have it running across different Operating Systems: Windows, OS X, Linux, Android, etc.
 
+But for this to work you need to have your native implementation (in C/C++) dealing with the cross platform code.
+
+Adobe do a pretty good job at that with Flash and AIR, and here the goal is to do the same with redtamarin.
 
 
+== VMPI ==
+
+Before, we were using ifdef in native classes and it was kind of painful to maintain<br>
+see [http://code.google.com/p/redtamarin/source/browse/tags/0.2.5/src/extensions/StdlibClass.cpp#106].
+
+But in the recent updates of Tamarin, Adobe introduced a more elegant way of doing it with *VMPI*.
+
+It basically works like that
+
+You have a command header [http://code.google.com/p/redtamarin/source/browse/tamarin-redux/VMPI/VMPI.h VMPI.h]
+
+that gonna fetch the platform header
+{{{
+//...
+#if AVMSYSTEM_WIN32
+  #include "win32/win32-platform.h"
+#elif AVMSYSTEM_UNIX
+  #include "unix/unix-platform.h"
+#elif AVMSYSTEM_MAC
+  #include "mac/mac-platform.h"
+#elif AVMSYSTEM_SYMBIAN
+  #include "symbian/symbian-platform.h"
+#endif
+//...
+}}}
+
+[http://code.google.com/p/redtamarin/source/browse/tamarin-redux/platform/win32/win32-platform.h win32-platform.h]
+{{{
+//...
+#define VMPI_memcpy         ::memcpy
+#define VMPI_memset         ::memset
+#define VMPI_memcmp         ::memcmp
+#define VMPI_memmove        ::memmove
+#define VMPI_memchr         ::memchr
+#define VMPI_strcmp         ::strcmp
+#define VMPI_strcat         ::strcat
+#define VMPI_strchr         ::strchr
+#define VMPI_strrchr        ::strrchr
+#define VMPI_strcpy         ::strcpy
+#define VMPI_strlen         ::strlen
+#define VMPI_strncat        ::strncat
+#define VMPI_strncmp        ::strncmp
+#define VMPI_strncpy        ::strncpy
+#define VMPI_strtol         ::strtol
+#define VMPI_strstr         ::strstr
+//...
+}}}
+
+[http://code.google.com/p/redtamarin/source/browse/tamarin-redux/platform/mac/mac-platform.h mac-platform.h]
+{{{
+//...
+#define VMPI_memcpy         ::memcpy
+#define VMPI_memset         ::memset
+#define VMPI_memcmp         ::memcmp
+#define VMPI_memmove        ::memmove
+#define VMPI_memchr         ::memchr
+#define VMPI_strcmp         ::strcmp
+#define VMPI_strcat         ::strcat
+#define VMPI_strchr         ::strchr
+#define VMPI_strrchr        ::strrchr
+#define VMPI_strcpy         ::strcpy
+#define VMPI_strlen         ::strlen
+#define VMPI_strncat        ::strncat
+#define VMPI_strncmp        ::strncmp
+#define VMPI_strncpy        ::strncpy
+#define VMPI_strtol         ::strtol
+#define VMPI_strstr         ::strstr
+//...
+}}}
+
+this is for the basics, but *VMPI.h* define more common functions
+{{{
+//...
+/**
+* This method should return the difference in milliseconds between local time and UTC
+* @return offset in milliseconds
+*/
+extern double       VMPI_getLocalTimeOffset();
+
+//...
+
+/**
+* This method is called to output log messages
+* The implementation of this method is platform-defined
+*  @param message NULL-terminated UTF8-encoded string
+* @return none
+*/
+extern void VMPI_log(const char* message);
+//...
+}}}
+
+which have their respective implementations in *WinPortUtils.cpp*, *PosixPortUtils.cpp*, etc.
+
+[http://code.google.com/p/redtamarin/source/browse/tamarin-redux/VMPI/WinPortUtils.cpp WinPortUtils.cpp]
+{{{
+//...
+double VMPI_getLocalTimeOffset()
+{
+    TIME_ZONE_INFORMATION tz = UpdateTimeZoneInfo();
+    return -tz.Bias * 60.0 * 1000.0;
+}
+
+//...
+
+void VMPI_log(const char* message)
+{
+#ifndef UNDER_CE
+    ::OutputDebugStringA(message);
+#endif
+
+    if(logFunc)
+        logFunc(message);
+    else {
+        printf("%s",message);
+        fflush(stdout);
+    }
+}
+//...
+}}}
+
+[http://code.google.com/p/redtamarin/source/browse/tamarin-redux/VMPI/PosixPortUtils.cpp PosixPortUtils.cpp]
+{{{
+//...
+double VMPI_getLocalTimeOffset()
+{
+    struct tm* t;
+    time_t current, localSec, globalSec;
+
+    // The win32 implementation ignores the passed in time
+    // and uses current time instead, so to keep similar
+    // behaviour we will do the same
+    time( &current );
+
+    t = localtime( &current );
+    localSec = mktime( t );
+
+    t = gmtime( &current );
+    globalSec = mktime( t );
+
+    return double( localSec - globalSec ) * 1000.0;
+}
+
+//...
+
+void VMPI_log(const char* message)
+{
+    if(logFunc)
+        logFunc(message);
+    else
+        printf("%s",message);
+}
+//...
+}}}

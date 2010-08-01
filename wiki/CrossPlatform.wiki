@@ -1,0 +1,8 @@
+#summary notes about writing cross platform C/C++.
+
+== Introduction ==
+
+One of the main advantage of the Flash Platform is to be able to write your code in AS3 and have it running across different Operating Systems: Windows, OS X, Linux, Android, etc.
+
+
+

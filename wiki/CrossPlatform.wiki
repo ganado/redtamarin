@@ -170,10 +170,10 @@ This end up being elegant and easy to maintain, and so if we want to add our own
 
 TODO
 
-step 1 - edit VMPI.h to add the common definition
-step 2 - add the implementation in !PosixPortUtils.cpp
-step 3 - add the implementation in !WinPortUtils.cpp
-step 4 - test
+ * step 1 - edit VMPI.h to add the common definition
+ * step 2 - add the implementation in !PosixPortUtils.cpp
+ * step 3 - add the implementation in !WinPortUtils.cpp
+ * step 4 - test
 
 
 == Misc ==
@@ -187,3 +187,15 @@ Also, if Mac OS X and Linux use both the !PosixPortUtils.cpp, you still have to 
 Welcome to hell :)
 
 TODO
+
+some interesting links
+ * C Reference Card (ANSI) [http://www.usna.edu/EE/ee462/MANUALS/ansi-c-refcard-letter.pdf PDF]
+ * [http://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html The GNU C Reference Manual]
+ * [http://msdn.microsoft.com/en-us/library/ms811903.aspx MSDN UNIX Application Migration Guide]
+ * Optimizing software in C++: An optimization guide for Windows, Linux and Mac platforms [http://www.agner.org/optimize/ home] [http://www.agner.org/optimize/optimizing_cpp.pdf PDF]
+ * [http://www.crossplatformbook.com/posix.html POSIX.1 API Support] (cross reference MacOS X, Linux, MS Visual C++ RTL, Cygwin, MinGW, and NSPR 4.3)
+ * [http://www.unix.org/apis.html Unix98 API tables]
+ * [http://www.unix.org/version3/apis.html Unix03 (Single Unix Specification) API tables]
+
+some interesting books
+ * [http://crossplatformbook.com/ Cross-Platform Development in C++]

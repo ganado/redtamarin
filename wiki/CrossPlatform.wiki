@@ -175,12 +175,16 @@ TODO
  * step 3 - add the implementation in !WinPortUtils.cpp
  * step 4 - test
 
+notes:<br>
+ * use basic types in VMPI like char, double, etc.
+ * once in your native class you can use avmplus types like Stringp, Atom, etc.
+
 
 == Misc ==
 
-Under WIN32, even if you compile in a cygwin environment, you should test both with cygwin and a basic command prompt as they don't always react the same ( argv[0], path separator, environment variables, etc.).
+Under WIN32, even if you compile in a cygwin environment, you should test both with cygwin and a basic command prompt as they don't always react the same ( `argv[0]`, path separator, environment variables, etc.).
 
-Also, if Mac OS X and Linux use both the !PosixPortUtils.cpp, you still have to use either ifdef or another specialized incude for special case (eg. !MacDebugUtil.cpp).
+Also, if Mac OS X and Linux use both the !PosixPortUtils.cpp, you still have to use either ifdef or another specialized include for special case (eg. !MacDebugUtil.cpp).
 
 == Cross Platform C/C++ ==
 

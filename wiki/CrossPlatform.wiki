@@ -201,7 +201,7 @@ some interesting links
 some interesting books
  * [http://publications.gbdirect.co.uk/c_book/ The C Book] (free)
  * [http://beej.us/guide/bgc/ Beej's Guide to C Programming] (free)
- * [http://crossplatformbook.com/ Cross-Platform Development in C++] (not free but essential)
+ * [http://crossplatformbook.com/ Cross-Platform Development in C++] (not free)
  * [http://msdn.microsoft.com/en-us/library/ms811903.aspx MSDN UNIX Application Migration Guide] (free)
  * [http://beej.us/guide/bgnet/ Beej's Guide to Network Programming] (free)
  * [http://beej.us/guide/bgipc/ Beej's Guide to Unix Interprocess Communication] (free)

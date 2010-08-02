@@ -37,6 +37,8 @@ export LIBPATH="$VS_HOME\VC\atlmfc\lib;$VS_HOME\VC\lib;C:\Program Files\Microsof
 
 === OS X ===
 
+You need to install the Developer Tools (the 2nd install DVD) or you can download them here [http://developer.apple.com/technologies/tools/]<br>
+this will install Xcode, etc.
 
 === Linux ===
 (I'm testing on Ubuntu 8.04 so if you have another flavour adapt accordingly)

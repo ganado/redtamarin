@@ -34,6 +34,9 @@ export LIB="$VS_HOME\VC\atlmfc\lib;$VS_HOME\VC\lib;C:\Program Files\Microsoft SD
 export LIBPATH="$VS_HOME\VC\atlmfc\lib;$VS_HOME\VC\lib;C:\Program Files\Microsoft SDKs\Windows\v6.0A\Lib"
 }}}
 
+misc:<br>
+if you have limited RAM the build could end up with a fatal error, be sure to have at least 2GB of RAM (eg. for a VM setup).
+
 
 === OS X ===
 

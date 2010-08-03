@@ -16,7 +16,7 @@
   * Documentation
     * [Tamarin Tamarin]
     * [ASC ActionScript Compiler]
-    * [ABC Action Byte Code]
+    * [ABC ActionScript Byte Code]
     * [Examples Examples]
     * [Tutorials Tutorials]
     * [FAQ FAQ]

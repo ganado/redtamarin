@@ -14,4 +14,4 @@ Add your content here.
 
 *documents:*
  * [http://dougmccune.com/flex/FOTB_Decompiling_Doug_McCune.pdf Steal this Code - Decompiling SWFs for fun and profit](PDF) by [http://dougmccune.com/blog/ Doug McCune]
- * [www.vpri.org/pdf/m2009010_for_avm2.pdf An Assembler for AVM2 using S-Expression](PDF) by [http://propella.blogspot.com/ Takashi Yamamiya]
+ * [www.vpri.org/pdf/m2009010_for_avm2.pdf An Assembler for AVM2 using S-Expression] (PDF) by [http://propella.blogspot.com/ Takashi Yamamiya]

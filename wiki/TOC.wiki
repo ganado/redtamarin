@@ -7,6 +7,7 @@
     * [Code101 Get the code]
     * [NativeClasses HOWTO work with Native Classes]
     * [Build HOWTO Build]
+    * [Tamarin Tamarin]
     * [CrossPlatform Cross Platform]
     * [Roadmap Roadmap]
   * [API API reference]

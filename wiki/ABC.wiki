@@ -9,7 +9,7 @@ Add your content here.
 
 *links:*
  * [http://github.com/propella/abcsx abcsx] !ActionScript Byte Code assembler/disassembler in PLT Scheme and Gauche.
- *[http://github.com/claus/as3abc as3abc] Low level Actionscript 3 library to parse, create, modify and publish ABC files.
+ * [http://github.com/claus/as3abc as3abc] Low level Actionscript 3 library to parse, create, modify and publish ABC files.
  * [http://github.com/mzp/scheme-abc scheme-abc] Scheme compiler for !ActionScript3 Bytecode/Flash
 
 *documents:*

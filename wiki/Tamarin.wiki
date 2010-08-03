@@ -11,4 +11,4 @@ Add your content here.
  * [http://www.mozilla.org/projects/tamarin/ The Tamarin project]
 
 *documents:*
- * [http://www.adobe.com/devnet/actionscript/articles/avm2overview.pdf AVM2 Overview PDF] ([https://wiki.mozilla.org/Tamarin::AVM2_Overview_Errata errata])
+ * [http://www.adobe.com/devnet/actionscript/articles/avm2overview.pdf AVM2 Overview PDF] ([https://wiki.mozilla.org/Tamarin::AVM2_Overview_Errata errata])([http://wiki.libspark.org/wiki/AVM2/Overview japanese translation])

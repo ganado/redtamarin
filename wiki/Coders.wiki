@@ -41,7 +41,7 @@ if you have limited RAM the build could end up with a fatal error, be sure to ha
 === OS X ===
 
 You need to install the Developer Tools (the 2nd install DVD) or you can download them here [http://developer.apple.com/technologies/tools/]<br>
-this will install Xcode, etc.
+this will install Xcode, make, etc.
 
 === Linux ===
 (I'm testing on Ubuntu 8.04 so if you have another flavour adapt accordingly)
@@ -51,3 +51,5 @@ You need to install *build-essential*
 $ sudo apt-get install build-essential
 }}}
 (strangely this basic thing can be a stopper for more than one)
+
+form that all should be smooth.

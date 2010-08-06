@@ -2,10 +2,20 @@
 
 == Introduction ==
 
-Those APIs are specific to the avmshell running on the command-line.
+Those API are specific to *redshell* (avmshell) running on the command-line.
+
+In short, anything that is considered native goes into the *avmplus* AS3 package.
 
 
 == Implementation ==
 
+Tamarin provide *avmplus.System* and *avmplus.File*, we plan to extend on them.
+
+And we plan to add more, for ex: *avmplus.Process*, *avmplus.Host*, etc.
+
 
 == Limitation ==
+
+Because we want redtamarin to stay a [CrossPlatform cross platform] tool we may not implement some features specific to a particular Operating System.
+
+With some exceptions, for example, being able to access the Windows registry could be usefull.

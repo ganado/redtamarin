@@ -49,32 +49,22 @@ advantages:
  * the cross-plaform part is done in the native part (C/C++) of the avmshell so you don't need to bother about it in AS3.
  * most of the function signatures are equivalent, so you don't need to re-learn how to use those functions or really have little to learn.
 
-=== Implemented ===
+== Implementation ==
 
-note: here we will use the AS3 notation
+This is what we call the *clib* project (yes clib instead of libc to avoid confusion ;)).
 
- * package *C.stdlib*
- {{{
-public const EXIT_SUCCESS:int;
-public const EXIT_FAILURE:int;
-public function rand():int;
-public function abort():void;
-public function exit( status:int = 0 ):void;
-public function getenv( name:String ):String;
-public function setenv( name:String, value:String, rewrite:int = 0 ):int;
-public function system( command:String ):int;
- }}}
+clib AS3 can be found here [http://code.google.com/p/maashaack/source/browse/#svn/platform/clib/trunk/src /platform/clib] (hosted on maashaack)
 
- * package *C.unistd*
- {{{
-public const F_OK:int;
-public const W_OK:int;
-public const R_OK:int;
-public function access( path:String, mode:int ):int;
-public function chdir( path:String ):int;
-public function getcwd():String;
-public function gethostname():String;
-public function sleep( second:uint ):void;
- }}}
+clib C/C++ can be found here [http://code.google.com/p/redtamarin/source/browse/#svn/api/clib/trunk /api/clib]
 
-   
+All those classes are part of the *avmshell* namespace (C/C++) and part of the *C* package (AS3), and are compiled by default into the *redshell* client.
+
+TODO
+
+== Limitation ==
+
+We can not port everything to AS3, for example in `<stdio.h>` you can use something as `FILE *fopen(const char *restrict filename, const char *restrict mode);`, well... returning a pointer to a `FILE` typedef to AS3 can bring a whole lot of problems so we not gonna do it.
+
+As a general rule, if a C function return a supported type it will be implemented, even a struct we will support it, but as soon as a pointer is involved we just don't do it.
+
+To manipulate files in a "managed" way it will be done with the *File* class in the AVMPlus API.

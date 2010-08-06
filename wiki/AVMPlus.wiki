@@ -5,61 +5,7 @@
 Those APIs are specific to the avmshell running on the command-line.
 
 
-=== Implemented ===
-
- * unamed package
- {{{
-public function print(...s):void;
-public function trace(...s):void;
-public function readLine():String;
- }}}
-
- * package *avmplus*
- {{{
-public function debugger():void;
-
-public class System;
-  public static const argv:Array;
-  public static const executablePath:String;
-  public native static function exit(status:int):void;
-  public native static function exec(command:String):int;
-  public native static function getAvmplusVersion():String;
-  public native static function trace(a:Array):void;
-  public native static function write(s:String):void;
-  public native static function debugger():void;
-  public native static function isDebugger():Boolean;
-  public native static function getTimer():uint;
-  public native static function readLine():String;
-  public native static function get totalMemory():Number;
-  public native static function get freeMemory():Number;
-  public native static function get privateMemory():Number;
-  public native static function isGlobal(o:Object):Boolean;
-
-public class Domain;
-  ...
-
-public class File;
-  public native static function exists(filename:String):Boolean;
-  public native static function read(filename:String):String;
-  public native static function write(filename:String, data:String):void;
-  public static function fileToByteArray(filename:String, readOnly:Boolean):ByteArray;
-  public static function writeByteArray(filename:String, bytes:ByteArray):Boolean;
-
-public class JObject;
-  ...
-
-public class StringBuilder;
-  ...
+== Implementation ==
 
 
-
-public class CompatibilityMode;
-  public static const tamarin:uint;
-  public static const redtamarin:uint;
-  public static const flashPlayer:uint;
-
-public class redtamarin;
-  public static function get compatibility():uint;
-  public static function set compatibility( mode:uint ):void;
-  public static function get version():String;
- }}}
+== Limitation ==

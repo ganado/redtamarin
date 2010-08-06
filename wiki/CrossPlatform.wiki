@@ -210,3 +210,10 @@ some interesting books
  * [http://beej.us/guide/bgnet/ Beej's Guide to Network Programming] (free)
  * [http://beej.us/guide/bgipc/ Beej's Guide to Unix Interprocess Communication] (free)
  * [http://beej.us/guide/bggdb/ Beej's Quick Guide to GDB] (free)
+
+
+most of the API implemented are double-checked and referenced with
+ * [http://www.open-std.org/JTC1/SC22/WG14/www/standards ISO/IEC 9899 - Programming languages - C] [http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1256.pdf PDF]
+ * [http://www.unix.org/single_unix_specification/ The Single UNIX Specification Version 3 Interface]
+ * [http://msdn.microsoft.com/en-us/library/59ey50w6.aspx Microsoft Run-Time Library Reference]
+ * [http://www.dinkumware.com/manuals/default.aspx?manual=compleat&page=lib_over.html Dinkum Compleat Reference]

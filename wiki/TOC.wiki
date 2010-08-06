@@ -10,7 +10,7 @@
     * [CrossPlatform Cross Platform]
     * [Roadmap Roadmap]
   * [API API reference]
-    * [StandardC C Standard Libraries]
+    * [StandardC C Libraries]
     * [FlashPlatform Flash Platform API]
     * [AVMPlus AVMPlus API]
   * Documentation

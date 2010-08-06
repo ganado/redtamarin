@@ -85,3 +85,25 @@ We can not port everything to AS3, for example in `<stdio.h>` you can use someth
 As a general rule, if a C function return a supported type it will be implemented, even a struct we will support it, but as soon as a pointer is involved we just don't do it.
 
 To manipulate files in a "managed" way it will be done with the *File* class in the AVMPlus API.
+
+We will also impose our own "limitations", for things like `strlen`, `strdup`, etc. we may decide to not implement them just because they duplicate what's working well in AS3, with `strlen` vs `mystr.length` it's not a big problem, but in the case of `strdup` vs `mystr2 = mystr;` here a problem could occurs as `strdup` call `malloc()` and usually you would want to call `free()` to free the memory allocated, and doing this in the AVM does not make a lot of sens.
+
+here the C version
+{{{
+#include <stdlib.h>
+#include <string.h>
+
+char s1[] = "This is some text";
+char *s2;
+s2 = strdup( s1 );
+free( s2 );
+
+}}}
+
+and in AS3 you just need to do that
+{{{
+var s1:String = "This is some text";
+var s2:String;
+
+s2 = s1;
+}}}

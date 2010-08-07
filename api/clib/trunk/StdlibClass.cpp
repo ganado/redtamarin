@@ -84,6 +84,33 @@ namespace avmshell
         return core()->newStringUTF8( str );
     }
 
+    int StdlibClass::setenv(Stringp name, Stringp value, int overwrite)
+    {
+        Toplevel* toplevel = this->toplevel();
+        
+        if (!name) {
+            toplevel->throwArgumentError(kNullArgumentError, "name");
+        }
+        
+        if (!value) {
+            toplevel->throwArgumentError(kNullArgumentError, "value");
+        }
+        
+        StUTF8String nameUTF8(name);
+        StUTF8String valueUTF8(value);
+        return VMPI_setenv(nameUTF8.c_str(), valueUTF8.c_str(), overwrite);
+    }
+    
+    int StdlibClass::unsetenv(Stringp name)
+    {
+        if (!name) {
+            toplevel()->throwArgumentError(kNullArgumentError, "name");
+        }
+        
+        StUTF8String nameUTF8(name);
+        return VMPI_unsetenv(nameUTF8.c_str());
+    }
+
     int StdlibClass::__system(Stringp command)
     {
         if (!command) {

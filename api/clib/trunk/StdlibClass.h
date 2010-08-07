@@ -55,6 +55,8 @@ namespace avmshell
         void abort();
         void exit(int status);
         Stringp getenv(Stringp name);
+        int setenv(Stringp name, Stringp value, int overwrite);
+        int unsetenv(Stringp name);
         int __system(Stringp command);
 
 

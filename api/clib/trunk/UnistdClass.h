@@ -49,7 +49,12 @@ namespace avmshell
         UnistdClass(VTable* cvtable);
         ~UnistdClass();
 
+        int get_F_OK();
+        int get_X_OK();
+        int get_W_OK();
+        int get_R_OK();
 
+        int access(Stringp path, int mode);
         Stringp getcwd();
 
 

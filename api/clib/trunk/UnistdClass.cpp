@@ -53,6 +53,36 @@ namespace avmshell
         
     }
 
+    int UnistdClass::get_F_OK()
+    {
+        return F_OK;
+    }
+    
+    int UnistdClass::get_X_OK()
+    {
+        return X_OK;
+    }
+    
+    int UnistdClass::get_W_OK()
+    {
+        return W_OK;
+    }
+    
+    int UnistdClass::get_R_OK()
+    {
+        return R_OK;
+    }
+
+
+    int UnistdClass::access(Stringp path, int mode)
+    {
+        if (!path) {
+            toplevel()->throwArgumentError(kNullArgumentError, "path");
+        }
+        StUTF8String pathUTF8(path);
+        return VMPI_access(pathUTF8.c_str(), mode);
+    }
+
     Stringp UnistdClass::getcwd()
     {
         char path[256];

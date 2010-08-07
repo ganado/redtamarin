@@ -53,6 +53,11 @@ namespace avmshell
         
     }
 
+    Stringp CStringClass::strerror(int errnum)
+    {
+        return core()->newStringUTF8( VMPI_strerror(errnum) );
+    }
+
     unsigned int CStringClass::strlen(Stringp str)
     {
         if (!str) {

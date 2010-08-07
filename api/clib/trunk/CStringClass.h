@@ -50,6 +50,7 @@ namespace avmshell
         ~CStringClass();
 
 
+        Stringp strerror(int errnum);
         unsigned int strlen(Stringp str);
 
 

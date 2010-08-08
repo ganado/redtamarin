@@ -79,6 +79,7 @@ namespace avmshell
         if (!path) {
             toplevel()->throwArgumentError(kNullArgumentError, "path");
         }
+        
         StUTF8String pathUTF8(path);
         return VMPI_access(pathUTF8.c_str(), mode);
     }
@@ -90,5 +91,24 @@ namespace avmshell
         return core()->newStringUTF8( path );
     }
 
+    int UnistdClass::mkdir(Stringp path)
+    {
+        if (!path) {
+            toplevel()->throwArgumentError(kNullArgumentError, "path");
+        }
+        
+        StUTF8String pathUTF8(path);
+        return VMPI_mkdir(pathUTF8.c_str());
+    }
+    
+    int UnistdClass::rmdir(Stringp path)
+    {
+        if (!path) {
+            toplevel()->throwArgumentError(kNullArgumentError, "path");
+        }
+        
+        StUTF8String pathUTF8(path);
+        return VMPI_rmdir(pathUTF8.c_str());
+    }
 
 }

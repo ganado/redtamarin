@@ -56,6 +56,8 @@ namespace avmshell
 
         int access(Stringp path, int mode);
         Stringp getcwd();
+        int mkdir(Stringp path);
+        int rmdir(Stringp path);
 
 
         DECLARE_SLOTS_UnistdClass;

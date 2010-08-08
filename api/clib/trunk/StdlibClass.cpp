@@ -111,6 +111,16 @@ namespace avmshell
         return VMPI_unsetenv(nameUTF8.c_str());
     }
 
+    Stringp StdlibClass::realpath(Stringp path)
+    {
+        if (!path) {
+            toplevel()->throwArgumentError(kNullArgumentError, "path");
+        }
+
+        StUTF8String pathUTF8(path);
+        return core()->newStringUTF8( VMPI_realpath(pathUTF8.c_str()) );
+    }
+
     int StdlibClass::__system(Stringp command)
     {
         if (!command) {

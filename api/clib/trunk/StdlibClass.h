@@ -57,6 +57,7 @@ namespace avmshell
         Stringp getenv(Stringp name);
         int setenv(Stringp name, Stringp value, int overwrite);
         int unsetenv(Stringp name);
+        Stringp realpath(Stringp path);
         int __system(Stringp command);
 
 

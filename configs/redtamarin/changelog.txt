@@ -1,3 +1,11 @@
+* 0.2.8
+- added VMPI_rmdir, VMPI_mkdir, VMPI_remove, VMPI_rename
+- added C.stdio in AS3 and StdioClass in C/C++
+- added VMPI_realpath POSIX use realpath(), WIN32 use GetFullPathNameA()
+- added rmdir() mkdir() in C.unistd.*
+- added remove() rename() in C.stdio.*
+- added realpath() in C.stdlib.*
+
 * 0.2.7
 - added VMPI_access, VMPI_getcwd, VMPI_setenv, VMPI_unsetenv
 - added C.string, C.errno in AS3 and CStringClass, CerrnoClass in C/C++

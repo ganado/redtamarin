@@ -14,6 +14,14 @@ Tamarin provide *avmplus.System* and *avmplus.File*, we plan to extend on them.
 And we plan to add more, for ex: *avmplus.Process*, *avmplus.Host*, etc.
 
 
+*Wishlist and/or priority:*
+
+ * filesystem: add a complete set of features to deal with files, directories, paths, etc.
+ * Process: controlling another executable and connecting to its stdin, stderr, stdout
+ * IPC: Inter-Process Communication so we can implement native *LocalConnection*
+ * Socket: basic raw sockets, client and server
+
+
 == Limitation ==
 
 Because we want redtamarin to stay a [CrossPlatform cross platform] tool we may not implement some features specific to a particular Operating System.

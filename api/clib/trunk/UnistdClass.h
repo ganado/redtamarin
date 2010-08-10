@@ -54,10 +54,41 @@ namespace avmshell
         int get_W_OK();
         int get_R_OK();
 
+        int get_S_IFMT();
+        int get_S_IFIFO();
+        int get_S_IFCHR();
+        int get_S_IFDIR();
+        int get_S_IFBLK();
+        int get_S_IFREG();
+        int get_S_IFLNK();
+        int get_S_IFSOCK();
+
+        int get_S_IRWXU();
+        int get_S_IRUSR();
+        int get_S_IWUSR();
+        int get_S_IXUSR();
+
+        int get_S_IRWXG();
+        int get_S_IRGRP();
+        int get_S_IWGRP();
+        int get_S_IXGRP();
+        
+        int get_S_IRWXO();
+        int get_S_IROTH();
+        int get_S_IWOTH();
+        int get_S_IXOTH();
+
+        int get_S_IREAD();
+        int get_S_IWRITE();
+        int get_S_IEXEC();
+        
+
         int access(Stringp path, int mode);
+        int chmod(Stringp path, int mode);
         Stringp getcwd();
         int mkdir(Stringp path);
         int rmdir(Stringp path);
+
 
 
         DECLARE_SLOTS_UnistdClass;

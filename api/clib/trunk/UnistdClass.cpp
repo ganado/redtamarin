@@ -74,6 +74,128 @@ namespace avmshell
     }
 
 
+    int UnistdClass::get_S_IFMT()
+    {
+        return S_IFMT;
+    }
+
+    int UnistdClass::get_S_IFIFO()
+    {
+        return S_IFIFO;
+    }
+
+    int UnistdClass::get_S_IFCHR()
+    {
+        return S_IFCHR;
+    }
+
+    int UnistdClass::get_S_IFDIR()
+    {
+        return S_IFDIR;
+    }
+
+    int UnistdClass::get_S_IFBLK()
+    {
+        return S_IFBLK;
+    }
+
+    int UnistdClass::get_S_IFREG()
+    {
+        return S_IFREG;
+    }
+
+    int UnistdClass::get_S_IFLNK()
+    {
+        return S_IFLNK;
+    }
+
+    int UnistdClass::get_S_IFSOCK()
+    {
+        return S_IFSOCK;
+    }
+
+
+    int UnistdClass::get_S_IRWXU()
+    {
+        return S_IRWXU;
+    }
+
+    int UnistdClass::get_S_IRUSR()
+    {
+        return S_IRUSR;
+    }
+
+    int UnistdClass::get_S_IWUSR()
+    {
+        return S_IWUSR;
+    }
+
+    int UnistdClass::get_S_IXUSR()
+    {
+        return S_IXUSR;
+    }
+
+
+    int UnistdClass::get_S_IRWXG()
+    {
+        return S_IRWXG;
+    }
+
+    int UnistdClass::get_S_IRGRP()
+    {
+        return S_IRGRP;
+    }
+
+    int UnistdClass::get_S_IWGRP()
+    {
+        return S_IWGRP;
+    }
+
+    int UnistdClass::get_S_IXGRP()
+    {
+        return S_IXGRP;
+    }
+
+
+    int UnistdClass::get_S_IRWXO()
+    {
+        return S_IRWXO;
+    }
+
+    int UnistdClass::get_S_IROTH()
+    {
+        return S_IROTH;
+    }
+
+    int UnistdClass::get_S_IWOTH()
+    {
+        return S_IWOTH;
+    }
+
+    int UnistdClass::get_S_IXOTH()
+    {
+        return S_IXOTH;
+    }
+
+
+    int UnistdClass::get_S_IREAD()
+    {
+        return S_IREAD;
+    }
+    
+    int UnistdClass::get_S_IWRITE()
+    {
+        return S_IWRITE;
+    }
+    
+    int UnistdClass::get_S_IEXEC()
+    {
+        return S_IEXEC;
+    }
+
+
+
+
     int UnistdClass::access(Stringp path, int mode)
     {
         if (!path) {
@@ -82,6 +204,16 @@ namespace avmshell
         
         StUTF8String pathUTF8(path);
         return VMPI_access(pathUTF8.c_str(), mode);
+    }
+
+    int UnistdClass::chmod(Stringp path, int mode)
+    {
+        if (!path) {
+            toplevel()->throwArgumentError(kNullArgumentError, "path");
+        }
+        
+        StUTF8String pathUTF8(path);
+        return VMPI_chmod(pathUTF8.c_str(), mode);
     }
 
     Stringp UnistdClass::getcwd()

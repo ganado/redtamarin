@@ -220,7 +220,7 @@ namespace avmshell
             do {
                 entry = readdir(root);
                 if(entry) {
-                    if(directory == (entry->d_type==DT_DIR)) {
+                    if(directory == (entry->d_type == DT_DIR)) {
                         list->setUintProperty(count++, core->newStringUTF8(entry->d_name)->atom());
                     }
                 }

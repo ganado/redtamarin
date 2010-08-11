@@ -1,3 +1,9 @@
+* 0.2.9
+- added VMPI_chmod
+- updated VMPI_getFileMode for WIN32
+- added dirent.h implementation for WIN32
+- added listFiles() in avmplus.FileSystem AS3
+
 * 0.2.8
 - added VMPI_rmdir, VMPI_mkdir, VMPI_remove, VMPI_rename
 - added C.stdio in AS3 and StdioClass in C/C++
@@ -5,6 +11,10 @@
 - added rmdir() mkdir() in C.unistd.*
 - added remove() rename() in C.stdio.*
 - added realpath() in C.stdlib.*
+- added S_IFMT, S_IFIFO, ... S_RWXU, S_IRUSR, etc. to C.unistd.*
+- added VMPI_getFileMode, VMPI_isRegularFile, VMPI_isDirectory (POSIX)
+- added getFileMode() isRegularFile() isDirectory() in avmplus.FileSystem AS3
+- added strmode() in C.string.* AS3
 
 * 0.2.7
 - added VMPI_access, VMPI_getcwd, VMPI_setenv, VMPI_unsetenv

@@ -13,5 +13,6 @@ Add your content here.
  * [http://github.com/mzp/scheme-abc scheme-abc] Scheme compiler for !ActionScript3 Bytecode/Flash
 
 *documents:*
+ * (PDF) [http://llvm.org/devmtg/2009-10/Petersen_OptimizingActionScriptBytecode.pdf Optimizing ActionScript Bytecode using LLVM] by Scott Petersen (Adobe)
  * (PDF) [http://dougmccune.com/flex/FOTB_Decompiling_Doug_McCune.pdf Steal this Code - Decompiling SWFs for fun and profit] by [http://dougmccune.com/blog/ Doug McCune]
  * (PDF) [http://www.vpri.org/pdf/m2009010_for_avm2.pdf An Assembler for AVM2 using S-Expression] by [http://propella.blogspot.com/ Takashi Yamamiya]

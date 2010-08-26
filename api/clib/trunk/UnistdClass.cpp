@@ -223,6 +223,13 @@ namespace avmshell
         return core()->newStringUTF8( path );
     }
 
+    Stringp UnistdClass::gethostname()
+    {
+        char hostname[256];
+        VMPI_gethostname(hostname, (size_t)256);
+        return core()->newStringUTF8( hostname );
+    }
+
     int UnistdClass::mkdir(Stringp path)
     {
         if (!path) {

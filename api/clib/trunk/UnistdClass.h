@@ -86,6 +86,7 @@ namespace avmshell
         int access(Stringp path, int mode);
         int chmod(Stringp path, int mode);
         Stringp getcwd();
+        Stringp gethostname();
         int mkdir(Stringp path);
         int rmdir(Stringp path);
 

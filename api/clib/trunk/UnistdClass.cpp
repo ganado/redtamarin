@@ -230,6 +230,13 @@ namespace avmshell
         return core()->newStringUTF8( hostname );
     }
 
+    Stringp UnistdClass::getlogin()
+    {
+        char username[256];
+        VMPI_getUserName( username );
+        return core()->newStringUTF8( username );
+    }
+
     int UnistdClass::mkdir(Stringp path)
     {
         if (!path) {

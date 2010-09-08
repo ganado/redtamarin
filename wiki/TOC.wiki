@@ -10,9 +10,9 @@
     * [CrossPlatform Cross Platform]
     * [Roadmap Roadmap]
   * [API API reference]
-    * [StandardC Standard C API]
-    * [FlashPlatform Flash Platform API]
-    * [AVMPlus AVMPlus API]
+    * [StandardC Standard C]
+    * [FlashPlatform Flash Platform]
+    * [AVMPlus AVMPlus]
   * Documentation
     * [Tamarin Tamarin]
     * [ASC ActionScript Compiler]

@@ -35,9 +35,9 @@ The Lower Level API, or *AVMAPI*, is a combination of the Builtins classes, the 
 *for ex:* C.stdlib.* , avmplus.FileSystem, avmplus.OperatingSystem, etc.
 
 those classes are
-  * always compiled within redtamarin
-    (you need to -import file.abc to compile your code other their symbols
-     but the file.abc is embeded by default in the redtamarin executable)
+  * always compiled within redtamarin<br>
+(you need to -import file.abc to compile your code other their symbols<br>
+but the file.abc is embeded by default in the redtamarin executable)
   * implement most of their functionalities as native
   * considered as "interfaces"
 

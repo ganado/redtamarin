@@ -1,3 +1,52 @@
 #summary API reference.
 
-Everything you need to know about the APIs supported by the redshell.
+== Introduction ==
+
+Because Tamarin define very few API, we decided to implement our own API.
+
+Make no mistake, designing an API is a very hard task (maybe the hardest ?) and we'll probably not get it right (ever),
+but to be able to offer native functionalities we needed anyway to provide a way for you (the developer) to access these native definitions.
+
+Also, the AS3 language being already quite powerful with just few builtin classes, when you add native system call
+you kind of multiply exponentially all the things you can do with the language.
+
+So, instead of trying to target the perfect API, we will target a good enougth API and show you how you can write your own API, but off course if you like our API you can still use it :).
+
+The following will hopefully explain clearly why we did things in a certain way.
+
+
+== API Layers ==
+
+There are different layers of implementations, from closer to the metal (native implementations) to AS3 wrapper code (around already existing AS3 code).
+
+The code design is based on this idea
+<pre>
+If you don't like to use flash.net.URLLoader class for whatever reason
+we simply give you the tools to wrap your own class to suit your taste.
+</pre>
+
+In short, that means we provide you `avmplus::FileSystem.write( filename, data )` and you can define `sys::File` which when initialized `new File( filename )` will write the file directly.
+
+
+=== Layer 0 : Lower Level ===
+
+The Lower Level API, or *AVMAPI*, is a combination of the Builtins classes, the Standard C classes and the AVMPlus classes.
+
+*for ex:* C.stdlib.* , avmplus.FileSystem, avmplus.OperatingSystem, etc.
+
+those classes are
+  * always compiled within redtamarin
+    (you need to -import file.abc to compile your code other their symbols
+     but the file.abc is embeded by default in the redtamarin executable)
+  * implement most of their functionalities as native
+  * considered as "interfaces"
+
+
+=== Layer 1 : Flash Platform ===
+
+The Flash Platform API, or *FPAPI*, is based on the fact that most of our/your usage of the AS3 language is within the Flash Player host or the AIR host.
+
+*for ex:* flash.display.Sprite, flash.system.Capabilities, flash.filesystem.File, etc.
+
+Tamarin by default implement almost NONE of the FPAPI.
+=== Layer 2 : Any Other ===

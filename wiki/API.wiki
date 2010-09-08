@@ -32,7 +32,7 @@ In short, that means we provide you `avmplus::FileSystem.write( filename, data )
 
 The Lower Level API, or *AVMAPI*, is a combination of the Builtins classes, the Standard C classes and the AVMPlus classes.
 
-*for ex:* C.stdlib.!* , avmplus.FileSystem, avmplus.OperatingSystem, etc.
+*for ex:* `C.stdlib.*` , `avmplus.FileSystem`, `avmplus.OperatingSystem`, etc.
 
 those classes are
   * always compiled within redtamarin
@@ -51,7 +51,7 @@ those classes are
 
 The Flash Platform API, or *FPAPI*, is based on the fact that most of our/your usage of the AS3 language is within the Flash Player host or the AIR host.
 
-*for ex:* flash.display.Sprite, flash.system.Capabilities, flash.filesystem.File, etc.
+*for ex:* `flash.display.Sprite`, `flash.system.Capabilities`, `flash.filesystem.File`, etc.
 
 Tamarin by default implement almost NONE of the FPAPI.
 === Layer 2 : Any Other ===

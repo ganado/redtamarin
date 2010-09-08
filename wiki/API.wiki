@@ -63,7 +63,7 @@ With redtamarin we took an hybrid approach
   (HAVE TO compile with ASC.jar, but can still use asdoc)
   * on a case by case basis, and when we have the required lower level API to do so,
   we add a concrete implementation of the FPAPI in parallel of the mock implementation.
-  For that, we use the Conditional Compilations `MOCK:API` and `REDTAMARIN::API`.
+  For that, we use the Conditional Compilations `MOCK::API` and `REDTAMARIN::API`.
   * generates `*.abc` files that need to be included with your project
 
 TODO

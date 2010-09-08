@@ -36,10 +36,15 @@ The Lower Level API, or *AVMAPI*, is a combination of the Builtins classes, the 
 
 those classes are
   * always compiled within redtamarin
-  (you need to -import file.abc to compile your code other their symbols
-  but the file.abc is embeded by default in the redtamarin executable)
+  you need to -import file.abc to compile your code over the symbols
+  but the file.abc is embeded by default in the redtamarin executable.
   * implement most of their functionalities as native
+  the class definition is in AS3 but the implementation is in C/C++
+  * cross-platform
+  if we add a functionality it HAVE TO work on Windows, OS X, Linux, etc.
   * considered as "interfaces"
+  if foobar class exists in v0.1, it will always be present in 0.2, 0.3, etc.
+  at the very worst we will "add to it" but NEVER "remove from it"
 
 
 === Layer 1 : Flash Platform ===

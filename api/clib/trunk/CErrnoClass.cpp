@@ -244,6 +244,68 @@ namespace avmshell
     }
 
 
+    int CErrnoClass::get_ENETDOWN()
+    {
+        return ENETDOWN;
+    }
+    
+    int CErrnoClass::get_ENETUNREACH()
+    {
+        return ENETUNREACH;
+    }
+    
+    int CErrnoClass::get_ENETRESET()
+    {
+        return ENETRESET;
+    }
+    
+    int CErrnoClass::get_ECONNABORTED()
+    {
+        return ECONNABORTED;
+    }
+    
+    int CErrnoClass::get_ECONNRESET()
+    {
+        return ECONNRESET;
+    }
+    
+    int CErrnoClass::get_ENOBUFS()
+    {
+        return ENOBUFS;
+    }
+    
+    int CErrnoClass::get_EISCONN()
+    {
+        return EISCONN;
+    }
+    
+    int CErrnoClass::get_ENOTCONN()
+    {
+        return ENOTCONN;
+    }
+    
+    int CErrnoClass::get_ESHUTDOWN()
+    {
+        return ESHUTDOWN;
+    }
+    
+    int CErrnoClass::get_ETOOMANYREFS()
+    {
+        return ETOOMANYREFS;
+    }
+    
+    int CErrnoClass::get_ETIMEDOUT()
+    {
+        return ETIMEDOUT;
+    }
+    
+    int CErrnoClass::get_ECONNREFUSED()
+    {
+        return ECONNREFUSED;
+    }
+    
+
+
     int CErrnoClass::get_errno()
     {
         return errno;

@@ -89,6 +89,18 @@ namespace avmshell
         int get_ENOSYS();
         int get_ENOTEMPTY();
 
+        int get_ENETDOWN();
+        int get_ENETUNREACH();
+        int get_ENETRESET();
+        int get_ECONNABORTED();
+        int get_ECONNRESET();
+        int get_ENOBUFS();
+        int get_EISCONN();
+        int get_ENOTCONN();
+        int get_ESHUTDOWN();
+        int get_ETOOMANYREFS();
+        int get_ETIMEDOUT();
+        int get_ECONNREFUSED();
         
         int get_errno();
         void set_errno(int value);

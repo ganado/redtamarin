@@ -3,129 +3,65 @@
 === Introduction ===
 
 Basically we follow the same process than Tamarin<br>
-see [http://developer.mozilla.org/En/Tamarin_Build_Documentation Tamarin Build Documentation]
+see [http://developer.mozilla.org/En/Tamarin_Build_Documentation Tamarin Build Documentation].
 
-=== OS X ===
+But we got all that wrapped up in a nice Ant build to automate a couple of things.
 
-the *redshell_d* (debug) executable is compiled with
- {{{
-$ xcodebuild -project platform/mac/shell/shell.xcodeproj -configuration Debug
- }}}
-
-or
-
- {{{
-$ cd redtamarin-trunk/src
-$ mkdir objdir-release
-$ cd objdir-release
-$ python ../configure.py --enable-shell --enable-debugger
-$ make
- }}}
-
-
-but the release *redshell* is compiled with make+gcc
-{{{
-$ cd redtamarin-trunk/src
-$ mkdir objdir-release
-$ cd objdir-release
-$ python ../configure.py --enable-shell
-$ make
-...
-}}}
-
-I release only i386, ping me if you want PPC or simply use
-{{{
-$ xcodebuild ARCHS=ppc -project platform/mac/shell/shell.xcodeproj
-}}}
-
-files released are *redshell* and *redshell_d*
-
-=== Windows ===
-
-if you got problem by retrieving the zlib with
-{{{
-$ hg clone http://hg.mozilla.org/mozilla-central mozilla-central
-$ mkdir modules
-$ xcopy /s/e mozilla-central\modules\zlib\*.* modules\zlib
-}}}
-
-you can also try
-{{{
-cvs -d :pserver:anonymous:anonymous@cvs-mirror.mozilla.org:/cvsroot
- export -r HEAD mozilla/modules/zlib
-}}}
-
-setup your directories like this
-{{{
-..
-  |_ modules
-  |      |_ zlib
-  |           |_ ...
-  |
-  |_ redtamarin-trunk
-       |_ src
-}}}
-
-and just open the solution in Visual Studio,<br>
-it should compile without any changes
-
-files released are *redshell.exe* and *redshell_d.exe*
-
-
-=== Linux ===
-
-compiled with make+gcc (same as OS-X)
-
-but if you obtain an error because the zlib is missing
-
-download the zlib http://www.zlib.net/zlib-1.2.3.tar.gz
-
-{{{
-$ sudo mv ~/Desktop/zlib-1.2.3 /user/include/zlib
-}}}
-
-also install the zlib dev lib
-{{{
-$ sudo apt-get install zlib1g-dev
-}}}
-
-and with make
-{{{
-$ cd redtamarin-trunk/src
-$ mkdir objdir-release
-$ cd objdir-release
-$ python ../configure.py --enable-shell --enable-zlib-include-dir=/usr/include/zlib
-$ make
-...
-}}}
-
-files released are *redshell.nix* and *redshell_d.nix*
 
 === Ant ===
 
+There is more than one type of build
+
+==== Local ====
+
+The local build use `build.xml` and should be used when you edit/add/remove code/features/bugs/etc. locally.
+
+In short, it's what I use when I add features to redtamarin :).
+
+simple usage
+{{{
+$ ant
+}}}
+
+The build will check if you have `asc.jar` available, if not, it will build it for you.
+
+The build will always run the `nativegen.py` on the `shell_toplevel.as`.
+
+And will finally run `make` from the `objdir-release`,<br>
+if the `objdir-release` is not found, the build will run `configure.py` for you first.
+
+So, by default, it will build redtamarin as *release*<br>
+if an error occurs you will see the error message but not the stacktrace.
+
+If you want to build as *release-debugger* use
+{{{
+$ ant -Dsetup=debugger
+}}}
+with that if an error occurs, on top of the error message you'll be able to see the stacktrace<br>
+and you will be able to use options like `-Dastrace N`, `-Dverbose`, etc.
+
+and If you want to build as *debug-debugger* use
+{{{
+$ ant -Dsetup=debug
+}}}
+almost the same as *release-debugger* but with that you'll be able to have even more debug infos.
+
+in case of doubt, you can easyly test your runtime version
+{{{
+$ ./redshell -Dversion
+shell 1.4 release-debugger build cyclone
+features AVMSYSTEM_32BIT;AVMSYSTEM_UNALIGNED_INT_ACCESS;AVMSYSTEM_UNALIGNED_FP_ACCESS;AVMSYSTEM_LITTLE_ENDIAN;AVMSYSTEM_IA32;AVMSYSTEM_MAC;AVMFEATURE_DEBUGGER;AVMFEATURE_ALLOCATION_SAMPLER;AVMFEATURE_JIT;AVMFEATURE_ABC_INTERP;AVMFEATURE_EVAL;AVMFEATURE_PROTECT_JITMEM;AVMFEATURE_SHARED_GCHEAP;AVMFEATURE_STATIC_FUNCTION_PTRS;AVMFEATURE_MEMORY_PROFILER;AVMFEATURE_CACHE_GQCN;
+}}}
+
+
+==== Release ====
+
+The release build use `release.xml` and should be used to produce a release of redtamarin.
+
+That's basically all the files that end up in a zip files for the download section.
+
+This build will always generate asc.jar, even if it already exists.
+
+This build will always run the `nativegen.py` on the `shell_toplevel.as`.
+
 TODO
-
-
-=== building by-hand on the command-line ===
-
-1. compile the abc files
-{{{
- $ cd redtamarin-trunk/src/core
- $ ./builtin.py
-}}}
-
-{{{
- $ cd redtamarin-trunk/src/shell
- $ ./shell_toplevel.py
-}}}
-
-2. compile
-{{{
- $ cd redtamarin-trunk
- $ cd src
- $ mkdir objdir-release
- $ cd objdir-release
- $ python ../configure.py --enable-shell
- $ make
- ...
-}}}

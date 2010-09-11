@@ -90,6 +90,7 @@ namespace avmshell
         Stringp getlogin();
         int mkdir(Stringp path);
         int rmdir(Stringp path);
+        void sleep(int milliseconds);
 
 
 

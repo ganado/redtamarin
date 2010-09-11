@@ -257,4 +257,9 @@ namespace avmshell
         return VMPI_rmdir(pathUTF8.c_str());
     }
 
+    void UnistdClass::sleep(int milliseconds)
+    {
+        VMPI_sleep(milliseconds);
+    }
+
 }

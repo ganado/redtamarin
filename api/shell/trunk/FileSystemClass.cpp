@@ -231,4 +231,24 @@ namespace avmshell
         return list;
     }
 
+    double FileSystemClass::getFreeDiskSpace(Stringp filename)
+    {
+        if (!filename) {
+            toplevel()->throwArgumentError(kNullArgumentError, "filename");
+        }
+        
+        StUTF8String filenameUTF8(filename);
+        return VMPI_getFreeDiskSpace(filenameUTF8.c_str());
+    }
+
+    double FileSystemClass::getTotalDiskSpace(Stringp filename)
+    {
+        if (!filename) {
+            toplevel()->throwArgumentError(kNullArgumentError, "filename");
+        }
+        
+        StUTF8String filenameUTF8(filename);
+        return VMPI_getTotalDiskSpace(filenameUTF8.c_str());
+    }
+
 }

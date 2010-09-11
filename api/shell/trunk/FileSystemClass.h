@@ -56,6 +56,8 @@ namespace avmshell
         bool isRegularFile(Stringp filename);
         bool isDirectory(Stringp filename);
         ArrayObject * listFiles(Stringp filename, bool directory);
+        double getFreeDiskSpace(Stringp filename);
+        double getTotalDiskSpace(Stringp filename);
 
         DECLARE_SLOTS_FileSystemClass;
     };

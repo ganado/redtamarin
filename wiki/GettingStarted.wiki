@@ -1,5 +1,7 @@
 #summary Getting Started.
 
+|| *important:* this project is under heavy changes, consider this wiki page obsolete ||
+
 download this zip (see [http://code.google.com/p/redtamarin/downloads/list downloads] tab), and unzip it, you should get
 
 {{{

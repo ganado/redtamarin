@@ -1,11 +1,28 @@
 #summary start here.
 #labels Featured
 
-== Introduction ==
+Welcome to the redtamarin project.
 
-redtamarin is build over the [http://www.mozilla.org/projects/tamarin/ Tamarin] project and add maybe 0.1% of functionalities :P
+[http://code.google.com/p/redtamarin/w/list list all the wiki pages]
 
-== history ==
+Simply put, redtamarin is based on the [http://www.mozilla.org/projects/tamarin/ Tamarin] project
+(eg. the Flash Player Virtual Machine) and allow to run AS3 code on the command-line.
+
+But because Tamarin only support the AS3 builtins (Object, Array, etc.),
+redtamarin add numerous native functionalities, so you can test if your program
+run under Windows or Linux, or read/write files, or send data with sockets, etc.
+
+Put another way, if Adobe AIR allow you to build desktop executable with a GUI,
+redtamarin allow you to build desktop executable with a CLI.
+
+=== Mission Statement ===
+
+*To support the use of the AS3 language for cross-platform command-line executable,
+as single exe either for the desktop or the server, as scripts for automation,
+as tools for the Flash Platform community.*
+
+
+=== history ===
 
 At first I was using a mixed system to update from Mercurial and then sync to a local subversion repository and then sync to the google code project, then later I was using another mixed system that was mixing directories from both the Tamarin mercurial repo and this project SVN repo, both were not practical, hard to update.
 
@@ -21,8 +38,9 @@ As of *25/07/2010* redtamarin have taken a completely different approach
  * etc. (TODO explain the other changes)
 
 The code is currently tested and compiled on those systems:
- * Mac OS X 10.5.6 (gcc+make and xcode)
- * Windows XP SP2  (MS Visual Studio C++ 2008 express edition)
- * Linux Ubuntu 7.10 (gcc+make)
+ * Mac OS X 10.6.2
+ * Windows XP SP3
+ * Linux Ubuntu 8.04.3 Desktop
+ * more to come (especially 64bit versions)
 
 contributors welcome, even if it just compiling on your system :).

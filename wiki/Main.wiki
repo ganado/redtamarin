@@ -23,7 +23,7 @@ as tools for the Flash Platform community.*
 
 
 
-=== status ===
+=== Status ===
 
  * this project started because I'm a fan of [http://www.jsdb.org JSDB] but I prefer to write my code in AS3
  * then I thought why not make something like AIR but for the command-line
@@ -31,8 +31,18 @@ as tools for the Flash Platform community.*
  * getting somewhat better at C/C++ and having a huge needs for command-line tools in AS3 I started to rethink the project
  * I'm now completely dedicated (if not obsessed) to implement a lot of functionalities
 
+=== Goals ===
 
-=== history ===
+ * the short goal of the project is to provide most of the C standard library (ANSI and POSIX) to an !ActionScript environment. - *DONE*
+ * the medium goal is to provide specialized libraries to use sockets or database like SQLite etc.
+    * FileSystem API *DONE*
+    * OperatingSystem API *DONE*
+    * basic socket (stream, datagram, broadcast, client, server) *DONE*
+    * (more to come)
+ * the long term goal is to provide a native API that replicate some part of the Flash Player and Adobe Integrated Runtime ([http://www.adobe.com/products/air/ AIR]) API
+
+
+=== History ===
 
 At first I was using a mixed system to update from Mercurial and then sync to a local subversion repository and then sync to the google code project, then later I was using another mixed system that was mixing directories from both the Tamarin mercurial repo and this project SVN repo, both were not practical, hard to update.
 

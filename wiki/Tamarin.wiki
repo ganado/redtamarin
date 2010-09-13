@@ -1,6 +1,6 @@
 #summary about the Tamarin project.
 
-== Introduction ==
+=== Introduction ===
 
 <pre>
 The goal of the "Tamarin" project is to implement a high-performance,
@@ -20,7 +20,9 @@ The !ActionScript compiler is available as a component from the open source Flex
 </pre>
 
 
-== Ressources ==
+Without Tamarin, redtamarin would not exists, so kudos to Adobe to have open sourced this fantastic project.
+
+=== Ressources ===
 
 *links:*
  * [http://www.mozilla.org/projects/tamarin/ The Tamarin project]

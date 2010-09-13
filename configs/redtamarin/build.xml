@@ -2,11 +2,102 @@
 
 <project name="redtamarin" default="main" basedir=".">
 
+    <target name="flag">
+    <echo>                                                           
+                              ```````                                                               
+                      ``..--:://++++/::-..`                                                         
+                  `.::/+ossyyyyyyyyyyyyyso+:-                                                       
+                `-+oyyyyyyysoo///::////+osyss/-                                                     
+               :+syyyss+/--.````./+ooo/:`.-oyso:`                                                   
+             -:yyyoo-.``      `-ssysso-` `.oyys+.                                                   
+            `+sys+-`          .:yyy+/.``.:+syyo-`                                                   
+           ./syo/`            `-syyso+++ssyss+:                                                     
+           -syy/:              `-//++++++//:-``                                                     
+           -yyy:-                `````````    ``....``                                              
+          .:yyy/-                       ``.:/oossssss+/:::/+:-.``                                   
+          `:yyyo/`                    ../+sssyyyyyyyyyysssyysss+/..                                 
+           -syyys+-`               `.:osyyyyyyyyyyyyyyyyyyyyyyyyys+-`                               
+           `-+syyyo+-.`          `.+oyyyyyyyyyyyyyyyyyyyyyyyyyyyyys/.                               
+             .-ooyyyso+/:``    `-+oyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyo:`                               
+               `.:osyyyyso+:--++syyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyss-                               
+                 `..oosyyyysssyyyyyyyyyyyyyysooooossyyyyyyyyyyyyyyys-                               
+                    `.:++ssyyyyyyyyyyyyyyyy+:`` ``-:/osyyyyyyyyyyyo/.                               
+                        `:/+syyyyyyyyyyyyyy:.        :/yyyyyyyyyy+:`                                
+                           `:/yyyyyyyyyyyyyso:-`     -/yyyyyyyyyy:.                                 
+                            ``ooyyyyyyyyyyyyysso:-   /oyyyyssyyyyo/``                               
+                              /+yyyyyyss++osyyyyo+ `:oyyso/::/ssyyso:-                              
+                            ``+oyyyyso:-``.oyyyy/-.:syys+.`  `.+syyyyy:-                            
+                           `/+yyyyyo/.../+osyyo/. /oyyy+:      -/yyyyys+.`                          
+                         `-+syyys+/.../oyyyss:-`  :+yyys+:.`   ``:::/+sso:-                         
+                       ``+oyss+/-.` ./syyyy+/..````-+osyssoo:-.``   ``-/yss//-.``````               
+                    `.:ossso:-``    ./osyyyssssso+/:-../+ssssssoo/:-.``./oyysssso++++:-`            
+                ``-:osyyy+:`          .-++ooossoooo+/.    `./+yyyyyyss/:`/oyyyyyooossso/.`          
+               .:ossyyyyy+/:::..           ``..```           -syyyyyyyyo/.`++o++ `..--..`           
+               -/s+/:/osyyyyyyo/``   .___ __                  `-+ooooooo+:._``...                    
+                `-_______--:____`  __|  //  |______    _____ __`__._____`_|__| ____                   
+                  \_  __ \_/ __ \ / __ |\   __\__  \  /     \\__  \\_  __ \  |/    \ 
+                   |  | \/\  ___// /_/ | |  |  / __ \|  Y Y  \/ __ \|  | \/  |   |  \
+                   |__|    \___  >____ | |__| (____  /__|_|  (____  /__|  |__|___|  /
+                               \/     \/           \/      \/     \/              \/           
+    </echo>
+    </target>
+
     <target name="clean">
     </target>
 
-    <target name="before">
+    <target name="before" depends="define-tasks,define-constants">
         <mkdir dir="bin-debug"/>
+    </target>
+
+    <target name="define-constants">
+        <property file="build/build.properties"/>
+
+        <condition property="TARGET" value="${TARGET_MAC}">
+            <os family="mac"/>
+        </condition>
+
+        <condition property="TARGET" value="${TARGET_UNIX}">
+            <os family="unix"/>
+        </condition>
+        
+        <condition property="TARGET" value="${TARGET_WIN}">
+            <os family="windows" />
+        </condition>
+
+        <if>
+            <and>
+            <available file="${asc.jar.path1}" type="file" property="found.ascpath1" />
+            <available file="${asc.jar.path2}" type="file" property="found.ascpath2" />
+            </and>
+        <then>
+            <property name="found.ascpath" value="true"/>
+        </then>
+        <else>
+            <property name="found.ascpath" value="false"/>
+        </else>
+        </if>
+
+        <if>
+            <not>
+            <available file="${RELEASE_DIR}" type="dir" property="found.releasedir" />
+            </not>
+        <then>
+            <antcall target="config-setup" />
+        </then>
+        </if>
+        
+    </target>
+
+    <target name="define-tasks">
+        
+        <!-- Define additional ant tasks -->
+        <taskdef resource="net/sf/antcontrib/antlib.xml">
+            <classpath >
+                <fileset dir="build/ant/" includes="ant-contrib-1.0b3.jar"/>
+            </classpath>
+        </taskdef>
+        <echo message="ant-contrib tasks defined" />
+        
     </target>
     
     <target name="main" depends="clean,before,build,after">
@@ -17,9 +108,18 @@
         <copy file="src/tamarin/shell/shell_toplevel.abc" todir="bin-debug"/>
     </target>
 
-    <target name="build" depends="build-asc,build-shell_toplevel,build-tamarin">
+    <target name="build" depends="check-asc,build-shell_toplevel,build-tamarin">
     </target>
 
+    <target name="check-asc">
+        <if>
+            <equals arg1="${found.ascpath}" arg2="false"/>
+        <then>
+            <antcall target="build-asc" />
+        </then>
+        </if>
+    </target>
+    
     <target name="build-asc">
 
         <ant antfile="src/asc/build/java/build.xml" target="main" inheritAll="false" />
@@ -37,32 +137,65 @@
     
     </target>
 
-    <target name="build-tamarin">
+    <target name="config-setup">
 
-        <exec executable="make" dir="src/tamarin/objdir-release" failonerror="true">
-        </exec>
-        <copy file="src/tamarin/objdir-release/shell/redshell" todir="bin-debug"/>
-        <chmod file="bin-debug/redshell" perm="+x"/>
+        <switch value="${setup}">
+            <case value="release">
+                <antcall target="build-setup-release" />
+            </case>
+            <case value="debugger">
+                <antcall target="build-setup-debugger" />
+            </case>
+            <case value="debug">
+                <antcall target="build-setup-debug" />
+            </case>
+            <default>
+                <antcall target="build-setup-release" />
+            </default>
+        </switch>
     
     </target>
 
+    <target name="build-tamarin">
+        
+        <exec executable="make" dir="${RELEASE_DIR}" failonerror="true" />
+        <copy file="${RELEASE_DIR}/shell/${TARGET}" todir="bin-debug"/>
+        <chmod file="bin-debug/${TARGET}" perm="+x"/>
+    
+    </target>
 
-    <!--
-         $ hg clone http://hg.mozilla.org/tamarin-redux/
-         $ cd tamarin-redux
-         $ mkdir objdir-release
-         $ cd objdir-release
-         $ python ../configure.py - -enable-shell
-         $ make
-      -->
-    <target name="build-setup">
+    <target name="build-setup-release">
 
-        <mkdir dir="src/tamarin/objdir-release"/>
+        <mkdir dir="${RELEASE_DIR}"/>
 
-        <exec executable="python" dir="src/tamarin/objdir-release" failonerror="true">
+        <exec executable="python" dir="${RELEASE_DIR}" failonerror="true">
+            <arg value="../configure.py"/>
+            <arg value="--enable-shell"/>
+        </exec>
+    
+    </target>
+
+    <target name="build-setup-debugger">
+
+        <mkdir dir="${RELEASE_DIR}"/>
+
+        <exec executable="python" dir="${RELEASE_DIR}" failonerror="true">
             <arg value="../configure.py"/>
             <arg value="--enable-shell"/>
             <arg value="--enable-debugger"/>
+        </exec>
+    
+    </target>
+    
+    <target name="build-setup-debug">
+
+        <mkdir dir="${RELEASE_DIR}"/>
+
+        <exec executable="python" dir="${RELEASE_DIR}" failonerror="true">
+            <arg value="../configure.py"/>
+            <arg value="--enable-shell"/>
+            <arg value="--enable-debugger"/>
+            <arg value="--enable-debug"/>
         </exec>
     
     </target>

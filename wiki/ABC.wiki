@@ -11,7 +11,7 @@ Add your content here.
  * [http://github.com/propella/abcsx abcsx] !ActionScript Byte Code assembler/disassembler in PLT Scheme and Gauche.
  * [http://github.com/claus/as3abc as3abc] Low level Actionscript 3 library to parse, create, modify and publish ABC files.
  * [http://github.com/mzp/scheme-abc scheme-abc] Scheme compiler for !ActionScript3 Bytecode/Flash
- * [http://wiki.libspark.org/wiki/Shibuya.abc_1 Shibuya.abc]
+ * [http://wiki.libspark.org/wiki/Shibuya.abc_1 Shibuya.abc] (custom avmshell to serve `*.abc` files server side)
 
 *documents:*
  * (PDF) [http://llvm.org/devmtg/2009-10/Petersen_OptimizingActionScriptBytecode.pdf Optimizing ActionScript Bytecode using LLVM] by Scott Petersen (Adobe)

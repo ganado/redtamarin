@@ -52,4 +52,4 @@ $ sudo apt-get install build-essential
 }}}
 (strangely this basic thing can be a stopper for more than one)
 
-form that all should be smooth.
+after that all should go smooth.

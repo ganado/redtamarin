@@ -11,6 +11,8 @@ Adobe do a pretty good job at that with Flash and AIR, and here the goal is to d
 
 == VMPI ==
 
+The *Virtual Machine Platform Interface* (or Virtual Machine Porting Interface).
+
 Before, we were using ifdef in native classes and it was kind of painful to maintain<br>
 see [http://code.google.com/p/redtamarin/source/browse/tags/0.2.5/src/extensions/StdlibClass.cpp#106].
 

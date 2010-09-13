@@ -8,15 +8,15 @@
  which is based upon and extends ECMAScript 3rd edition (ES3).
 
  !ActionScript provides many extensions to the ECMAScript language,
- including packages, namespaces, classes, and optional strict typing of variables.
- "Tamarin" implements both a high-performance just-in-time compiler and interpreter. 
+including packages, namespaces, classes, and optional strict typing of variables.
+"Tamarin" implements both a high-performance just-in-time compiler and interpreter. 
 
  The Tamarin virtual machine is used within the Adobe® Flash® Player
- and is also being adopted for use by projects outside Adobe.
+and is also being adopted for use by projects outside Adobe.
 
  The Tamarin just-in-time compiler (the "NanoJIT") is a collaboratively developed component
- used by both Tamarin and Mozilla TraceMonkey.
- The !ActionScript compiler is available as a component from the open source Flex SDK
+used by both Tamarin and Mozilla TraceMonkey.
+The !ActionScript compiler is available as a component from the open source Flex SDK
 </pre>
 
 

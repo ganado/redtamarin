@@ -13,6 +13,9 @@
     * [StandardC Standard C]
     * [FlashPlatform Flash Platform]
     * [AVMPlus AVMPlus]
+       * [FileSystem File System API]
+       * [OperatingSystem Operating System API]
+       * [Socket Sockets API]
   * Documentation
     * [Tamarin Tamarin]
     * [ASC ActionScript Compiler]

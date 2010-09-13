@@ -8,7 +8,7 @@ Written in Java, and distributed as a Jar file (asc.jar),<br>
 it allows to compile `*.as` source code to an `*.abc` file ([ABC ActionScript Byte Code]),<br>
 or to a `*.swf` file, or to an executable file.
 
-=== Usage ===
+=== Options ===
 
 {{{
 ActionScript 3.0 for AVM+
@@ -46,7 +46,7 @@ Usage:
   -api <version> = compile program as a specfic version between 660 and 670
 }}}
 
-=== Details ===
+=== Usage ===
 
 with helloworld.as
 {{{
@@ -72,3 +72,12 @@ $ java -ea -DAS3 -DAVMPLUS -classpath asc.jar macromedia.asc.embedding.ScriptCom
    -abcfuture -builtin -apiversioning -import builtin.abc -out shell_toplevel
    shell_toplevel.as Domain.as ByteArray.as ...
 }}}
+
+=== Misc. ===
+
+In the futur we will try to provide an `asc.exe` made with redtamarin<br>
+that will add the following features
+ * act as a wrapper, detect if Java is installed
+ * detect the `asc.jar`, if not found install or download it from the internet
+ * support wildcard includes, eg. `asc -import builtin.abc src/*.as main.as`
+ * etc.

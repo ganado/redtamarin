@@ -1,8 +1,28 @@
+* 0.3.0
+- created C.socket AS3 for C socket const (POSIX only, eg. AF_INET, SOCK_STREAM, etc.)
+- added error const for sockets in C.errno.* AS3 (POSIX only eg. ENOTCONN, ECONNREFUSED etc.)
+- created CSocketClass
+- created Socket, PosixSocket
+- added socket methods to Platform, PosixPartialPlatform
+- created SocketClass and avmplus.Socket AS3
+- documentation
+- (port to WIN32)
+
 * 0.2.9
 - added VMPI_chmod
 - updated VMPI_getFileMode for WIN32
 - added dirent.h implementation for WIN32
 - added listFiles() in avmplus.FileSystem AS3
+- added VMPI_getOperatingSystem* VMPI_isNullTerminated, VMPI_int2char
+- added avmplus.OperatingSystem AS3
+- added VMPI_gethostname, VMPI_getUserName
+- added gethostname() and getlogin() in C.unistd.* AS3
+- full Operating System informations (name, nodename, username, hostname, release, version, machine,
+  vendor, vendorName, vendorVersion, vendorDescription, codeName)
+- added VMPI_sleep POSIX
+- added sleep() in C.unistd.* AS3 (POSIX only)
+- added VMPI_getDiskSpace, VMPI_getTotalDiskSpace
+- added getFreeDiskSpace(), getTotalDiskSpace(), getUsedDiskSpace() in avmplus.FileSystem AS3
 
 * 0.2.8
 - added VMPI_rmdir, VMPI_mkdir, VMPI_remove, VMPI_rename

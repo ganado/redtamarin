@@ -62,10 +62,13 @@ helloworld.abc, 127 bytes written
 
 When you need to compile "system" libraries you will need more options
 {{{
-$ java -jar asc.jar -abcfuture -builtin -apiversioning -import builtin.abc shell_toplevel.as
+$ java -jar asc.jar -abcfuture -builtin -apiversioning -import builtin.abc
+   shell_toplevel.as Domain.as ByteArray.as ...
 }}}
 
 or
 {{{
-$ java -ea -DAS3 -DAVMPLUS -classpath asc.jar macromedia.asc.embedding.ScriptCompiler -abcfuture -builtin -apiversioning -import builtin.abc -out shell_toplevel shell_toplevel.as Domain.as ByteArray.as ...
+$ java -ea -DAS3 -DAVMPLUS -classpath asc.jar macromedia.asc.embedding.ScriptCompiler
+   -abcfuture -builtin -apiversioning -import builtin.abc -out shell_toplevel
+   shell_toplevel.as Domain.as ByteArray.as ...
 }}}

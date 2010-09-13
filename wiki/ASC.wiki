@@ -4,7 +4,8 @@
 
 The !ActionScript Compiler, or *ASC*, is available as a component from the open source [http://opensource.adobe.com/wiki/display/flexsdk/Flex+SDK Flex SDK].
 
-Written in Java, and distributed as a Jar file (asc.jar), it allows to compile `*.as` source code to `*.abc` (),
+Written in Java, and distributed as a Jar file (asc.jar),<br>
+it allows to compile `*.as` source code to an `*.abc` file ([ABC ActionScript Byte Code]),<br>
 or to a `*.swf` file, or to an executable file.
 
 === Usage ===
@@ -46,3 +47,15 @@ Usage:
 }}}
 
 === Details ===
+
+A very basic usage
+
+helloworld.as
+{{{
+trace( "hello world" );
+}}}
+
+{{{
+$ java -jar asc.jar -AS3 -import builtin.abc -import toplevel.abc helloworld.as
+helloworld.abc, 127 bytes written
+}}}

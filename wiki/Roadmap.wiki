@@ -1,6 +1,8 @@
 #summary Past and future release plan.
 #labels Featured
 
+|| *important:* this project is under heavy changes, consider this wiki page obsolete ||
+
 == v0.5 ==
 
  * Socket, !SocketServer implementations

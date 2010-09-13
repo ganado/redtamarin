@@ -10,7 +10,9 @@ On another google project [http://code.google.com/p/redshell/ redshell] we sync 
  * it allow us to send back back patches to the Tamarin project
  * it allow us to semi-automate an `hg archive + svn commit`
 
-So, each week (in general every sunday), we override this path [http://redtamarin.googlecode.com/svn/tamarin-redux/ /svn/tamarin-redux] with the content of redshell.
+So, ~~each week (in general every sunday)~~ in a regular basis, we override this path [http://redtamarin.googlecode.com/svn/tamarin-redux/ /svn/tamarin-redux] with the content of redshell.
+
+We try to stay in sync with the last official releases made by Adobe, for example, if Adobe release AIR 2.0, then we probably sync right after that.
 
 Also, we need to be in sync with ASC (!ActionScript Compiler)<br>
 so we're checking a subpath of the [http://opensource.adobe.com/wiki/display/flexsdk/Flex+SDK Adobe Flex SDK] the 

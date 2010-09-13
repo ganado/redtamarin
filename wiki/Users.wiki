@@ -1,4 +1,12 @@
 #summary Working with redtamarin.
 
-Everythign you need to know to use redtamarin<br>
-aka "I don't want to compile C/C++/Java, I just want to write AS code dammit"
+Everything you need to know on how to use redtamarin<br>
+aka "I don't want to compile C/C++/Java, I just want to write AS code dammit".
+
+== First Thing First ==
+
+The project is named *redtamarin*, but you end up using an executable named *redshell*.
+
+
+
+== etc. ==

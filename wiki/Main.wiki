@@ -1,7 +1,7 @@
 #summary start here.
 #labels Featured
 
-Welcome to the redtamarin project.
+Welcome to the *redtamarin* project.
 
 [http://code.google.com/p/redtamarin/w/list list all the wiki pages]
 

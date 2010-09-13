@@ -1,11 +1,13 @@
 #summary about the ActionScript Compiler.
 
-== Introduction ==
+=== Introduction ===
 
-Add your content here.
+The !ActionScript Compiler, or *ASC*, is available as a component from the open source [http://opensource.adobe.com/wiki/display/flexsdk/Flex+SDK Flex SDK].
 
+Written in Java, and distributed as a Jar file (asc.jar), it allows to compile `*.as` source code to `*.abc` (),
+or to a `*.swf` file, or to an executable file.
 
-== Usage ==
+=== Usage ===
 
 {{{
 ActionScript 3.0 for AVM+
@@ -43,4 +45,4 @@ Usage:
   -api <version> = compile program as a specfic version between 660 and 670
 }}}
 
-== Details ==
+=== Details ===

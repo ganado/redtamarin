@@ -22,6 +22,16 @@ as single exe either for the desktop or the server, as scripts for automation,
 as tools for the Flash Platform community.*
 
 
+
+=== status ===
+
+ * this project started because I'm a fan of [http://www.jsdb.org JSDB] but I prefer to write my code in AS3
+ * then I thought why not make something like AIR but for the command-line
+ * I started a bit shy in my corner without promoting the project at all, but it appears 600+ people downloaded it
+ * getting somewhat better at C/C++ and having a huge needs for command-line tools in AS3 I started to rethink the project
+ * I'm now completely dedicated (if not obsessed) to implement a lot of functionalities
+
+
 === history ===
 
 At first I was using a mixed system to update from Mercurial and then sync to a local subversion repository and then sync to the google code project, then later I was using another mixed system that was mixing directories from both the Tamarin mercurial repo and this project SVN repo, both were not practical, hard to update.
@@ -43,4 +53,4 @@ The code is currently tested and compiled on those systems:
  * Linux Ubuntu 8.04.3 Desktop
  * more to come (especially 64bit versions)
 
-contributors welcome, even if it just compiling on your system :).
+*contributors welcome!*, even if it just compiling on your system :).

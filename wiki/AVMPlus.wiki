@@ -16,10 +16,13 @@ And we plan to add more, for ex: *avmplus.Process*, *avmplus.Host*, etc.
 
 *Wishlist and/or priority:*
 
- * filesystem: add a complete set of features to deal with files, directories, paths, etc.
- * Process: controlling another executable and connecting to its stdin, stderr, stdout
- * IPC: Inter-Process Communication so we can implement native *LocalConnection*
+ * file system: add a complete set of features to deal with files, directories, paths, etc.
+ * operating system: obtain detailled informations about the system
  * Socket: basic raw sockets, client and server
+ * full support of stdin, stdout, stderr
+ * process: controlling another executable and connecting to its stdin, stderr, stdout
+ * IPC: Inter-Process Communication so we can implement native *LocalConnection*
+
 
 
 == Limitation ==

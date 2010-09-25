@@ -176,13 +176,7 @@ namespace avmshell
         if(!data) {
             toplevel()->throwArgumentError(kNullArgumentError, "data");
         }
-
-        //void * memcpy ( void * destination, const void * source, size_t num );
-
-        //size_t fwrite ( const void * ptr, size_t size, size_t count, FILE * stream );
-
-        //fwrite(&(this->GetByteArray())[0], this->get_length(), 1, stdout);
-
+        
         const void *bytes = &(data->GetByteArray())[0];
         int totalSent = 0;
         int bytesleft = data->get_length();
@@ -203,13 +197,14 @@ namespace avmshell
     }
 
 
-    int SocketObject::_receive(int size, int flags)
+    int SocketObject::_receive(int flags)
     {
         int result = 0;
-        char buffer[size];
-        int len = size-1;
+        char buffer[1024];
+        int len = 1024-1;
 
-        received_buffer[0] = '\0'; //reset the received buffer;
+        //received_buffer[0] = '\0'; //reset the received buffer;
+        VMPI_memset(&received_buffer, 0, sizeof(received_buffer));
         
         result = socket->Receive(buffer, len, flags);
         
@@ -221,11 +216,11 @@ namespace avmshell
         return result;
     }
 
-    int SocketObject::_receiveBinary(int size, int flags)
+    int SocketObject::_receiveBinary(int flags)
     {
         int result = 0;
-        char buffer[size];
-        int len = size-1;
+        char buffer[1024];
+        int len = 1024-1;
 
         received_binary->setLength(0); //reset the received buffer
         

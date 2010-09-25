@@ -4,6 +4,86 @@
 
 Some personal notes about Tamarin, can be howto, recipe, things to remember, etc.
 
+
+== I consider this code C/C++ ==
+
+When you're a noob like me and try to find informations on the web,  forums etc.<br>
+you will see two camps: the pure ANSI C crowd vs the pure C++ crowd<br>
+and yes I understand that C and C++ are not the same thing.
+
+and it get even get worst when you include the different version of C, C89 vs C99,<br>
+the different operating systems, C under Linux vs C under Windows, etc.
+
+to be honest, I don't give a shit<br>
+I need my code to work with Tamarin without breaking it<br>
+and still being cross-platform,<br>
+so whatever Tamarin does, I will follow the same path.
+
+Now in the case of Tamarin, I consider the code to be C/C++, and here why
+
+Most of the time they keep the type used to the strict minimum,<br>
+for ex if a C++ String could be used, a char array is used,<br>
+or if a C++ vector could be used, again a char array is used,<br>
+etc.
+
+My logic is that the guys from Adobe, Mozilla, etc. know a hell lot better than me about C/C++<br>
+do they try to make things harder for the noob like me?<br>
+no I don't think so<br>
+so why they don't use things that to me look simpler ?<br>
+it must have to do with cross platform portability and performance
+
+So, for things like VMPI, let's say the low-level stuff, even if things are structured as C++ classes,<br>
+the underlying implementation is what I could call "pure C".
+
+And only when you arrive around native classes implementations that you can see<br>
+more advanced types used, like `Stringp`, `ArrayObject`, etc.
+
+Yeah, depending at which "layer" you are working<br>
+the code will feel C'ish or C++'ish<br>
+hence why I call that C/C++.
+
+
+== C++ Constructor(s) vs AS3 Constructor ==
+
+Native classes can be a kind of special beast sometime,<br>
+and here the constructor case is very very special.
+
+If you come from an AS3 background and you spend a bit of time<br>
+researching how you can optimize your code, you probably heard<br>
+Adobe telling you that you should keep your constructors "light"<br>
+as "don't initialize too much code in your AS3 constructors".
+
+see [Tamarin] - Performance Tuning<br>
+slide 43<br>
+{{{
+ Interpret vs. JIT
+  * We make a simple "hotspot"-like decision about wether to interpret or JIT
+  * Initialization functions ($init, $cinit) are interpreted
+  * Everything else is JIT
+  * Upshot: Don't put performance-intensive code in class initialization
+}}}
+
+OK, that's one part of the story, here the second part from a C++ point of view.
+
+When you define a native class, you basically define 4 things
+ * a C++ base class, ex: `ByteArrayClass`
+ * a C++ instance class, ex: `ByteArrayObject`
+ * an AS3 class definition using the keyword `native`, ex: `ByteArray.as`
+ * an AS3 metadata that link the C++ definitions to the AS3 definition
+  {{{
+package flash.utils
+{
+
+    [native(cls="::avmshell::ByteArrayClass", instance="::avmshell::ByteArrayObject", methods="auto")]
+    public class ByteArray
+    {
+    //...
+    }
+
+}
+  }}}
+
+
 == Creating a !ByteArray on the C++ side  ==
 
 {{{

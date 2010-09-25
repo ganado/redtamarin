@@ -9,6 +9,9 @@
     * [Build HOWTO Build]
     * [CrossPlatform Cross Platform]
     * [Roadmap Roadmap]
+    * misc. notes
+       [TamarinNotes notes about Tamarin]
+       [CrossPlatformNotes notes about cross-platform C/C++]
   * [API API reference]
     * [StandardC Standard C]
        * [C_stdlib stdlib]

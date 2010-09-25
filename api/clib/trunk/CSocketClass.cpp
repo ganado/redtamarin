@@ -141,11 +141,6 @@ namespace avmshell
         return MSG_DONTROUTE;
     }
     
-    int CSocketClass::get_MSG_EOR()
-    {
-        return MSG_EOR;
-    }
-    
     int CSocketClass::get_MSG_OOB()
     {
         return MSG_OOB;

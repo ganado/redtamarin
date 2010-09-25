@@ -69,7 +69,6 @@ namespace avmshell
 
         int get_MSG_CTRUNC();
         int get_MSG_DONTROUTE();
-        int get_MSG_EOR();
         int get_MSG_OOB();
         int get_MSG_PEEK();
         int get_MSG_TRUNC();

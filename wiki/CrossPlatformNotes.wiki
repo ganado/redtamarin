@@ -1,0 +1,38 @@
+#summary notes about cross-platform C/C++.
+
+== Introduction ==
+
+If writing C/C++ on one Operating System can be hard,<br>
+writing C/C++ for more than one Operating System is a bitch.
+
+And when you try to do that when you are a C/C++ noob<br>
+it's like trying to make ice cube in a god damn fucking hell.
+
+SO here some notes to keep my sanity :).
+
+== Resetting data in a char array ==
+
+Let's say you want to receive data in a buffer (char array) and while in a loop reset the data
+
+first attempt
+{{{
+char buffer[1024];
+
+buffer[0] = '\0';
+
+//your loop
+}}}
+
+this in theory should work everywhere, as a char array contain 1 char per index,
+if you set the first index to be null terminated, then another function should see your char array as empty
+
+well ...on some POSIX it is working like that, but not everywhere (not WIN32)
+
+so yeah you really HAVE TO clean it up the proper way
+{{{
+char buffer[1024];
+
+memset( &buffer, 0, sizeof(buffer) );
+
+//your loop
+}}}

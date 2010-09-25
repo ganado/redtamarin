@@ -1,0 +1,28 @@
+#summary notes about Tamarin.
+
+== Introduction ==
+
+Some personal notes about Tamarin, can be howto, recipe, things to remember, etc.
+
+== Creating a ByteArray on the C++ side  ==
+
+{{{
+ByteArrayObject* bytes;
+
+//you first need a ByteArray class that you instanciate from your nativeID definition
+ByteArrayClass *ba = (ByteArrayClass*)toplevel()->getBuiltinExtensionClass(NativeID::abcclass_flash_utils_ByteArray);
+
+//default arguments
+Atom args[1] = {nullObjectAtom};
+
+//then you build the ByteArray instance from a ScriptObject
+bytes = (ByteArrayObject*)AvmCore::atomToScriptObject(ba->construct(0, args));
+
+//not sure if this is necessary but seems safer to reset the ByteArray to zero
+bytes->setLength(0);
+}}}
+
+the AS3 equivalent is
+{{{
+var bytes:ByteArray = new ByteArray();
+}}}

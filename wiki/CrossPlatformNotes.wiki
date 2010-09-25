@@ -66,11 +66,10 @@ typedef UINT_PTR        SOCKET;
 
 You can almost get away with it if you keep the descriptor as a private member in an abstract class `Socket`, and then use the correct type with `PosixSocket` for POSIX and `WinSocket` for WIN32.
 
-But, at one moment or another you will have to build your socket class by passing a socket descriptor and for that you have to setup on a common type.
+But, at one moment or another you will have to build your socket class by passing a socket descriptor as an argument and for that to happen you have to agree on a common type (shared by your POSIX and WIN32 code).
 
 Luckily, I found this post [http://stackoverflow.com/questions/1953639/is-it-safe-to-cast-socket-to-int-under-win64 Is it safe to cast SOCKET to int under Win64?]<br>
 which mention this comment from the openSSL source code
-
 {{{
 /*
  * Even though sizeof(SOCKET) is 8, it's safe to cast it to int, because
@@ -80,9 +79,7 @@ which mention this comment from the openSSL source code
 }}}
 
 and after some tests under Windows I can say:<br>
-yes you can cast your `SOCKET` to `int`!
-
-(note: I need to test under Windows 64bit but I'm pretty confident it should work there too)
+yes you can cast your `SOCKET` to `int`! (and vise versa)
 
 here an example
 {{{
@@ -96,3 +93,5 @@ here an example
         return (int)socket; //UINT_PTR casted to int
     }
 }}}
+
+(note: I need to test under Windows 64bit but I'm pretty confident it should work there too)

@@ -73,15 +73,71 @@ When you define a native class, you basically define 4 things
   {{{
 package flash.utils
 {
-
     [native(cls="::avmshell::ByteArrayClass", instance="::avmshell::ByteArrayObject", methods="auto")]
     public class ByteArray
     {
     //...
     }
-
 }
   }}}
+
+
+here some basic rules
+ * any static native AS3 definition will be associated with the base class (eg. `ByteArrayClass`)
+ * any non-static native AS3 definition will be associated with the instance class (eg. `ByteArrayObject`)
+
+So, for example, if you need only native static in an AS3 class, you just need one base class and you can forgot the instance class.
+
+And here the unspoken rules:
+ * the C++ base class `createInstance()` method is used to create an instance of the class
+ * the C++ instance class constructor is independent of the AS3 constructor
+ * the C++ instance class can have more than one constructor
+
+So, for example, if you want from the AS3 constructor to pass custom arguments to the C++ side you will end up using a method.
+
+See for example the Bitmap and BitmapData class
+{{{
+package flash.display
+{
+    public class Bitmap extends DisplayObject
+    {
+        public function Bitmap( bitmapData:BitmapData = null, pixelSnapping:String = "auto", smoothing:Boolean = false )
+        {
+            super();
+            ctor();
+        }
+
+        private native function ctor( bitmapData:BitmapData, pixelSnapping:String, smoothing:Boolean ):void;
+
+        //...
+
+    }
+}
+}}}
+
+{{{
+package flash.display
+{
+    public class BitmapData implements IBitmapDrawable
+    {
+        public function Bitmap( width:int, height:int, transparent:Boolean = true, fillColor:uint = 0xFFFFFFFF )
+        {
+            super();
+            ctor();
+        }
+
+        private native function ctor( width:int, height:int, transparent:Boolean, fillColor:uint ):void;
+
+        //...
+
+    }
+}
+}}}
+
+The AS3 constructor does not map to the C++ class constructor.
+
+And with that, you can setup your native class with different constructors and/or optional constructors.
+
 
 
 == Creating a !ByteArray on the C++ side  ==

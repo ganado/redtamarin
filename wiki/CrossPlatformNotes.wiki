@@ -8,7 +8,9 @@ writing C/C++ for more than one Operating System is a bitch.
 And when you try to do that when you are a C/C++ noob<br>
 it's like trying to make ice cube in a god damn fucking hell.
 
-SO here some notes to keep my sanity :).
+So here some notes to keep my sanity :).
+
+Oh, and I will use *xp* each time I want to mention *cross-platform*.
 
 == Resetting data in a char array ==
 
@@ -36,3 +38,43 @@ memset( &buffer, 0, sizeof(buffer) );
 
 //your loop
 }}}
+
+== Socket Descriptor ==
+
+Under POSIX a socket descriptor is just an `int`
+{{{
+#include <sys/socket.h>
+
+int socket(int domain, int type, int protocol);
+}}}
+
+But under Windows, Winsock use a typedef `SOCKET` defined as a `UINT_PTR`
+{{{
+SOCKET WSAAPI socket(
+  __in  int af,
+  __in  int type,
+  __in  int protocol
+);
+
+//...
+/*
+ * The new type to be used in all
+ * instances which refer to sockets.
+ */
+typedef UINT_PTR        SOCKET;
+}}}
+
+You can almost get away with it if you keep the descriptor as a private member in an abstract class `Socket`, and then use the correct type with `PosixSocket` for POSIX and `WinSocket` for WIN32.
+
+But, at one moment or another you will have to build your socket class by passing a socket descriptor and for that you have to setup on a common type.
+
+Luckily, I found this post [http://stackoverflow.com/questions/1953639/is-it-safe-to-cast-socket-to-int-under-win64 Is it safe to cast SOCKET to int under Win64?],br>
+which mention
+
+<pre>
+/*
+ * Even though sizeof(SOCKET) is 8, it's safe to cast it to int, because
+ * the value constitutes an index in per-process table of limited size
+ * and not a real pointer.
+ */
+</pre>

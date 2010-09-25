@@ -69,7 +69,9 @@ You can almost get away with it if you keep the descriptor as a private member<b
 in an abstract class `Socket`, and then use the correct type with `PosixSocket` for POSIX<br>
 and `WinSocket` for WIN32.
 
-But, at one moment or another you will have to build your socket class by passing a socket descriptor as an argument and for that to happen you have to agree on a common type (shared by your POSIX and WIN32 code).
+But, at one moment or another you will have to build your socket class<br>
+by passing a socket descriptor as an argument<br>
+and for that to happen you have to agree on a common type.
 
 Luckily, I found this post [http://stackoverflow.com/questions/1953639/is-it-safe-to-cast-socket-to-int-under-win64 Is it safe to cast SOCKET to int under Win64?]<br>
 which mention this comment from the openSSL source code

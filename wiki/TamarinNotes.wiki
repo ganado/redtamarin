@@ -53,8 +53,7 @@ researching how you can optimize your code, you probably heard<br>
 Adobe telling you that you should keep your constructors "light"<br>
 as "don't initialize too much code in your AS3 constructors".
 
-see [Tamarin] - Performance Tuning<br>
-slide 43<br>
+see [Tamarin] - Performance Tuning (slide 43)
 {{{
  Interpret vs. JIT
   * We make a simple "hotspot"-like decision about wether to interpret or JIT

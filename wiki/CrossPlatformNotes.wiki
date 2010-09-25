@@ -68,13 +68,13 @@ You can almost get away with it if you keep the descriptor as a private member i
 
 But, at one moment or another you will have to build your socket class by passing a socket descriptor and for that you have to setup on a common type.
 
-Luckily, I found this post [http://stackoverflow.com/questions/1953639/is-it-safe-to-cast-socket-to-int-under-win64 Is it safe to cast SOCKET to int under Win64?],br>
+Luckily, I found this post [http://stackoverflow.com/questions/1953639/is-it-safe-to-cast-socket-to-int-under-win64 Is it safe to cast SOCKET to int under Win64?]<br>
 which mention
 
-<pre>
+{{{
 /*
  * Even though sizeof(SOCKET) is 8, it's safe to cast it to int, because
  * the value constitutes an index in per-process table of limited size
  * and not a real pointer.
  */
-</pre>
+}}}

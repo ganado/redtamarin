@@ -25,7 +25,7 @@ buffer[0] = '\0';
 //your loop
 }}}
 
-this in theory should work everywhere, as a char array contain 1 char per index,
+this in theory should work everywhere, as a char array contain 1 char per index,<br>
 if you set the first index to be null terminated, then another function should see your char array as empty
 
 well ...on some POSIX it is working like that, but not everywhere (not WIN32)
@@ -38,6 +38,7 @@ memset( &buffer, 0, sizeof(buffer) );
 
 //your loop
 }}}
+
 
 == Socket Descriptor ==
 

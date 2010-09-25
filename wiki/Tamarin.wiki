@@ -29,3 +29,4 @@ Without Tamarin, redtamarin would not exists, so kudos to Adobe to have open sou
 
 *documents:*
  * (PDF) [http://www.adobe.com/devnet/actionscript/articles/avm2overview.pdf AVM2 Overview] ([https://wiki.mozilla.org/Tamarin::AVM2_Overview_Errata errata]) ([http://wiki.libspark.org/wiki/AVM2/Overview japanese translation])
+ * (PDF) [http://www.onflex.org/ACDS/AS3TuningInsideAVM2JIT.pdf ActionScript 3.0 and AVM2: Performance Tuning] by Gary Grossman (Adobe)

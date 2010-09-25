@@ -63,12 +63,12 @@ namespace avmshell
         bool isValid();
 
         void _customSocket(int family, int socktype, int protocol);
-        bool _connect(Stringp host, Stringp host);
+        bool _connect(Stringp host, Stringp port);
         bool _close();
         int _send(Stringp data, int flags);
         int _sendBinary(ByteArrayObject *data, int flags);
-        int _receive(int size, int flags);
-        int _receiveBinary(int size, int flags);
+        int _receive(int flags);
+        int _receiveBinary(int flags);
         bool _bind(const int port);
         bool _listen(int backlog);
         SocketObject* _accept();
@@ -76,9 +76,8 @@ namespace avmshell
     private:
         Socket* socket;
         int lastDataSent;
-        char received_buffer[1024]; //todo: add a MAX_BUFFER getter
+        char received_buffer[1024];
         ByteArrayObject* received_binary;
-
         
         DECLARE_SLOTS_SocketObject;
     };

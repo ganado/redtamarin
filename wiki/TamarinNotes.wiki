@@ -95,7 +95,7 @@ And here the unspoken rules:
 
 So, for example, if you want from the AS3 constructor to pass custom arguments to the C++ side you will end up using a method.
 
-See for example the Bitmap and BitmapData class
+See for example the Bitmap and !BitmapData class
 {{{
 package flash.display
 {

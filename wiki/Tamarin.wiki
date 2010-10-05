@@ -26,7 +26,9 @@ Without Tamarin, redtamarin would not exists, so kudos to Adobe to have open sou
 
 *links:*
  * [http://www.mozilla.org/projects/tamarin/ The Tamarin project]
+ * [http://learn.adobe.com/wiki/display/AVM2/ActionScript+Virtual+Machine+2 ActionScript Virtual Machine 2 wiki]
 
 *documents:*
  * (PDF) [http://www.adobe.com/devnet/actionscript/articles/avm2overview.pdf AVM2 Overview] ([https://wiki.mozilla.org/Tamarin::AVM2_Overview_Errata errata]) ([http://wiki.libspark.org/wiki/AVM2/Overview japanese translation])
  * (PDF) [http://www.onflex.org/ACDS/AS3TuningInsideAVM2JIT.pdf ActionScript 3.0 and AVM2: Performance Tuning] by Gary Grossman (Adobe)
+ * (PDF) [http://learn.adobe.com/wiki/spaces/exportspace.action?key=AVM2 AVM2 wiki export]

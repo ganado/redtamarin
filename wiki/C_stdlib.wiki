@@ -7,7 +7,7 @@
 
 == API ==
 
-*package:* C.stdlib
+*package* C.stdlib
 
 *constants*
  * `EXIT_SUCCESS:int`

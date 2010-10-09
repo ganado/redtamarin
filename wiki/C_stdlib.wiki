@@ -9,6 +9,10 @@
 
 *package:* C.stdlib
 
+*constants*
+ * `EXIT_SUCCESS:int`
+ * `EXIT_FAILURE:int`
+
 *functions*
  * `abort():void`
  * `exit( status:int = -1 ):void`

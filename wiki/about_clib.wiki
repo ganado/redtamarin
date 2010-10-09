@@ -1,0 +1,130 @@
+#summary about C libraries in AS3.
+
+== Introduction ==
+
+A *C library* in AS3 is a bit of a challenge, there is some things you can translate and other things you can't.
+
+Most of those libraries are implemented within a single C++ native class but we consider the AS3 class internal and static.
+
+
+== Default package ==
+
+Everything that is considered being a C library include reside in the `C.*` root package.
+
+We use the name of include for the package containing the internal class definition and the function definition.
+
+For example, with `stdlib.h`
+ * the name of the package will be `C.stdlib.*`
+ * the internal class definition will be `internal class __stdlib`
+ * and we will declare the functions at the package level `public function abort() {}`
+
+== Library setup ==
+
+Here the AS3 basic setup for `stdlib.h`
+
+{{{
+package C.stdlib
+{
+    
+    [native(cls="::avmshell::StdlibClass", methods="auto")]
+    internal class __stdlib
+    {
+        public native static function get EXIT_SUCCESS():int;
+        public native static function get EXIT_FAILURE():int;
+
+        public native static function abort():void;                    //void abort(void);
+        public native static function exit( status:int = 0 ):void;     //void exit(int status);
+        public native static function __system( command:String ):int;  //int system(const char *s);
+    }
+    
+    /** Success termination code. */
+    public const EXIT_SUCCESS:int = __stdlib.EXIT_SUCCESS;
+
+    /** Failure termination code.*/
+    public const EXIT_FAILURE:int = __stdlib.EXIT_FAILURE;
+    
+    /**
+     * Cause abnormal program termination.
+     */
+    public function abort():void
+    {
+        __stdlib.abort();
+    }
+    
+    /**
+     * Terminate program execution.
+     */
+    public function exit( status:int = 0 ):void
+    {
+        __stdlib.exit( status );
+    }
+
+    /**
+     * Issue a command.
+     */
+    public function system( command:String ):int
+    {
+        return __stdlib.__system( command );
+    }   
+}
+}}}
+
+
+The usage is pretty simple
+{{{
+import C.stdlib.*;
+
+if( myprogram.ending )
+{
+    exit( EXIT_SUCCESS );
+}
+
+}}}
+
+so why are we defining it like that ?
+
+in short, because it's easier in Tamarin to link a native class to an AS3 class instead of linking each function to a particular C++ function call.
+
+Yes, it add a bit of overhead (the function redirection) when you call a function, but really it is small that you would probably never notice it (in term of speed).
+
+== Constants ==
+
+Why on earth are we using native getters instead of simply declaring an AS3 constant ?
+
+make sens
+{{{
+public const EXIT_SUCCESS:int = 0;
+public const EXIT_FAILURE:int = 1;
+}}}
+
+look insane
+{{{
+public const EXIT_SUCCESS:int = __stdlib.EXIT_SUCCESS; //public native static function get EXIT_SUCCESS():int;
+public const EXIT_FAILURE:int = __stdlib.EXIT_FAILURE;  //public native static function get EXIT_FAILURE():int;
+}}}
+
+So, yes we do it like that and yeah I can admit it looks insane but we have  good reason for that :).
+
+It is because how C works cross platform.
+
+It does not happen all the time, it is more or less standard, but sometimes for the same constant definition, depending on which OS you are compiling for, the value will be different.
+
+Our goal is to be cross platform, so instead on relying on the value, we are relying on the naming of the constant.
+
+We don't care if for whatever reason your favorite Linux distro define `EXIT_SUCCESS` as `-1` instead of the standard `0`,
+what we do care about is that we reuse the name `EXIT_SUCCESS` and its meaning `it is a successful exit of the program`.
+
+The overhead ? well ... not that much, on the AS3 side you can define a constant only once, and so as soon as you open the package the constant is defined by the call to the native getter, so yeah a little bit of overhead but this would happen only once.
+
+== Package Level Functions ==
+
+In C you don't really have classes definitions, the `*.h` includes are like a bunch of functions put together (hey don't flame me if you're a C puriste),
+so the logic has been to do the same on the AS3 side, at the package level we declare more or less the same bunch of functions.
+
+== The Other Stuff ==
+
+*passing references, pointers*<br>
+not gonna happen, it is much much more simple to just pass and returns values.
+
+*returning struct*<br>
+it could happen, but for now we decided to not do that, we stick to builtin AS3 types.

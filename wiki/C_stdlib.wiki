@@ -8,3 +8,12 @@
 == API ==
 
 *package:* C.stdlib
+
+*functions*
+ * `abort():void`
+ * `exit( status:int = -1 ):void`
+ * `getenv( name:String ):String`
+ * `setenv( name:String, value:String, overwrite:Boolean = false ):int`
+ * `unsetenv( name:String ):int`
+ * `realpath( path:String ):String`
+ * `system( command:String ):int`

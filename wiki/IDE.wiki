@@ -8,7 +8,24 @@ Yes you can code completion for your command-line projects :).
 
 [http://projects.gnome.org/gedit/ download gedit]
 
-With *gedit* you can add [http://live.gnome.org/Gedit/HighlighterAndBundles AS3 syntax highlighting] and [http://live.gnome.org/GeditPlugins word completion]
+With *gedit* you can add [http://live.gnome.org/Gedit/HighlighterAndBundles AS3 syntax highlighting] and [http://live.gnome.org/GeditPlugins word completion]<br>
+ok, it's not completely ideal but it can get you going.
+
+=== Other IDE ===
+
+Basically any text editor supporting AS3 syntax highlighting should be enougth, here a small list
+ * [http://www.flos-freeware.ch/notepad2.html Notepad 2] (Windows only)
+ * [http://www.activestate.com/komodo-edit Komodo Edit] (Windows/OSX/Linux) 
+ * [http://smultron.sourceforge.net/ Smultron] (OSX only)
+ * etc.
+
+Here a special mention for [http://code.google.com/p/minibuilder/ minibuilder],<br>
+an open source project which intend to support Tamarin AVM project (see [http://code.google.com/p/minibuilder/wiki/AVMProject here] and [http://code.google.com/p/minibuilder/wiki/AVM2ProjectStater here]).
+
+Yes I can admit, editing AS3 code for a custom AVM like redtmarin is a pain,<br>
+most of the IDE out there think that by default you will use `playerglobal.swc`<br>
+and that is exactly what we are not using :p.
+
 
 
 === using Flex Builder 3 ===

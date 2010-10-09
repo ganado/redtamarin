@@ -63,4 +63,5 @@ The code is currently tested and compiled on those systems:
  * Linux Ubuntu 8.04.3 Desktop
  * more to come (especially 64bit versions)
 
-*contributors welcome!*, even if it just compiling on your system :).
+*contributors welcome!*, even if it just compiling on your system :)<br>
+send an email `[my username] @ gmail (dot) com`

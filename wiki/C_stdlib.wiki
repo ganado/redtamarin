@@ -1,0 +1,10 @@
+#summary stdlib for AS3.
+
+== Introduction ==
+
+*stdlib* is the general purpose standard library in C, look at [http://en.wikipedia.org/wiki/Stdlib.h stdlib.h].
+
+
+== API ==
+
+*package:* C.stdlib

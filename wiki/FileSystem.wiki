@@ -1,0 +1,47 @@
+#summary the FileSystem API.
+
+== Introduction ==
+
+The FileSystem API provides methods to access and manipulate computer files, directories and data.
+
+
+== API ==
+
+*class* avmplus.FileSystem
+
+*methods*
+ * `exists( filename:String ):Boolean`
+ * `read( filename:String ):String`
+ * `write( filename:String, data:String ):void`
+ * `getFileMode( filename:String ):int`
+ * `canAccess( filename:String ):Boolean`
+ * `canWrite( filename:String ):Boolean`
+ * `canRead( filename:String ):Boolean`
+ * `isRegularFile( filename:String ):Boolean`
+ * `isDirectory( filename:String ):Boolean`
+ * `listFiles( filename:String, directory:Boolean = false ):Array`
+ * `getFreeDiskSpace( filename:String ):Number`
+ * `getTotalDiskSpace( filename:String ):Number`
+ * `getUsedDiskSpace( filename:String ):Number`
+ * `fileToByteArray( filename:String ):ByteArray`
+ * `writeByteArray( filename:String, bytes:ByteArray ):void`
+
+*not implemented*
+ * `isHidden( filename:String ):Boolean`
+ * `normalizePath( filename:String ):String`
+ * `absolutePath( filename:String ):String`
+ * `fileSize( filename:String ):Number`
+ * `directorySize( filename:String ):Number`
+ * `getCreationTime( filename:String ):Date`
+ * `getLastModifiedTime( filename:String ):Date`
+ * `getLastOpenedTime( filename:String ):Date`
+ * `totalSize( filename:String, recursive:Boolean = false ):Number`
+ * `copyFile( origin:String, destination:String ):Boolean`
+ * `copyDirectory( origin:String, destination:String ):Boolean`
+ * `copy( origin:String, destination:String, recursive:Boolean = false ):Boolean`
+ * `rename( filename:String, newname:String ):Boolean`
+ * `move( filename:String, target:String ):Boolean`
+ * `createDirectory( filename:String, recursive:Boolean = false ):Boolean`
+ * `removeFile( filename:String ):Boolean`
+ * `removeDirectory( filename:String ):Boolean`
+ * `remove( filename:String, recursive:Boolean = false ):Boolean`

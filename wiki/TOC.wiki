@@ -14,6 +14,7 @@
        * [CrossPlatformNotes notes about cross-platform C/C++]
   * [API API reference]
     * [StandardC Standard C]
+       * [about_clib about C libraries]
        * [C_stdlib stdlib]
        * [C_unistd unistd]
        * [C_string string]

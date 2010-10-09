@@ -116,10 +116,16 @@ what we do care about is that we reuse the name `EXIT_SUCCESS` and its meaning `
 
 The overhead ? well ... not that much, on the AS3 side you can define a constant only once, and so as soon as you open the package the constant is defined by the call to the native getter, so yeah a little bit of overhead but this would happen only once.
 
-== Package Level Functions ==
+== Package Level Definitions ==
 
 In C you don't really have classes definitions, the `*.h` includes are like a bunch of functions put together (hey don't flame me if you're a C puriste),
 so the logic has been to do the same on the AS3 side, at the package level we declare more or less the same bunch of functions.
+
+The logic is if in C you include a header file and so have access to all the functions declared in that particular include,<br>
+in AS3 if you open a package then you have access to all the functions declared in that particular package.
+
+In short, at the package level you have *function* and/or *constant*  definitions.
+
 
 == The Other Stuff ==
 

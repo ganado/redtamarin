@@ -2,8 +2,13 @@
 
 === Introduction ===
 
-Yes you can reuse the tools you use for Flash/Flex to have code completion
-for your command-line projects :).
+Yes you can code completion for your command-line projects :).
+
+=== using gedit ===
+
+[http://projects.gnome.org/gedit/ download gedit]
+
+With *gedit* you can add [http://live.gnome.org/Gedit/HighlighterAndBundles AS3 syntax highlighting] and [http://live.gnome.org/GeditPlugins word completion]
 
 
 === using Flex Builder 3 ===

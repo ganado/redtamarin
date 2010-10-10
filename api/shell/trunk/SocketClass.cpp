@@ -55,7 +55,7 @@ namespace avmshell
         }
         
         lastDataSent = 0;
-        received_buffer[0] = '\0';
+        VMPI_memset(&received_buffer, 0, sizeof(received_buffer));
 
         ByteArrayClass *ba = (ByteArrayClass*)toplevel()->getBuiltinExtensionClass(NativeID::abcclass_flash_utils_ByteArray);
         Atom args[1] = {nullObjectAtom};
@@ -68,7 +68,7 @@ namespace avmshell
         Platform::GetInstance()->destroySocket(socket);
         socket = NULL;
         lastDataSent = 0;
-        received_buffer[0] = '\0';
+        VMPI_memset(&received_buffer, 0, sizeof(received_buffer));
         received_binary = NULL;
     }
 
@@ -203,8 +203,7 @@ namespace avmshell
         char buffer[1024];
         int len = 1024-1;
 
-        //received_buffer[0] = '\0'; //reset the received buffer;
-        VMPI_memset(&received_buffer, 0, sizeof(received_buffer));
+        VMPI_memset(&received_buffer, 0, sizeof(received_buffer)); //reset the received buffer
         
         result = socket->Receive(buffer, len, flags);
         

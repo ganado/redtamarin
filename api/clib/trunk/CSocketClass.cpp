@@ -235,4 +235,88 @@ namespace avmshell
         return INADDR_BROADCAST;
     }
 
+    ArrayObject * CSocketClass::__gethostbyaddr(Stringp addr, bool numeric)
+    {
+        Toplevel* toplevel = this->toplevel();
+        AvmCore* core = this->core();
+        
+        if (!addr) {
+            toplevel->throwArgumentError(kNullArgumentError, "addr");
+        }
+
+        StUTF8String addrUTF8(addr);
+        ArrayObject *list = toplevel->arrayClass->newArray();
+
+        int count = 0;
+        
+        struct in_addr ipv4addr;
+        struct in_addr **addr_list;
+        struct hostent *host;
+        
+        inet_pton(AF_INET, addrUTF8.c_str(), &ipv4addr);
+        host = gethostbyaddr(&ipv4addr, sizeof ipv4addr, AF_INET);
+
+        if(host != NULL) {
+            if(numeric) {
+                addr_list = (struct in_addr **)host->h_addr_list;
+                int i;
+                for(i = 0; addr_list[i] != NULL; i++) {
+                    list->setUintProperty(i, core->newStringUTF8( inet_ntoa(*addr_list[i]) )->atom());
+                }
+            }
+            else {
+                list->setUintProperty(count++, core->newStringUTF8( host->h_name )->atom());
+                if(host->h_aliases) {
+                    int x;
+                    for(x=0; host->h_aliases[x]; ++x) {
+                        list->setUintProperty(count++, core->newStringUTF8( host->h_aliases[x] )->atom());
+                    }
+                }
+            }
+        }
+        
+        return list;
+    }
+
+    ArrayObject * CSocketClass::__gethostbyname(Stringp hostname, bool numeric)
+    {
+        Toplevel* toplevel = this->toplevel();
+        AvmCore* core = this->core();
+        
+        if (!hostname) {
+            toplevel->throwArgumentError(kNullArgumentError, "hostname");
+        }
+
+        StUTF8String hostnameUTF8(hostname);
+        ArrayObject *list = toplevel->arrayClass->newArray();
+
+        int count = 0;
+        
+        struct in_addr **addr_list;
+        struct hostent *host;
+        
+        host = gethostbyname(hostnameUTF8.c_str());
+
+        if(host != NULL) {
+            if(numeric) {
+                addr_list = (struct in_addr **)host->h_addr_list;
+                int i;
+                for(i = 0; addr_list[i] != NULL; i++) {
+                    list->setUintProperty(i, core->newStringUTF8( inet_ntoa(*addr_list[i]) )->atom());
+                }
+            }
+            else {
+                list->setUintProperty(count++, core->newStringUTF8( host->h_name )->atom());
+                if(host->h_aliases) {
+                    int x;
+                    for(x=0; host->h_aliases[x]; ++x) {
+                        list->setUintProperty(count++, core->newStringUTF8( host->h_aliases[x] )->atom());
+                    }
+                }
+            }
+        }
+        
+        return list;
+    }
+
 }

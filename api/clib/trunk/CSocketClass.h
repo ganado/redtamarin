@@ -92,6 +92,9 @@ namespace avmshell
         int get_INADDR_ANY();
         int get_INADDR_BROADCAST();
 
+        ArrayObject * __gethostbyaddr(Stringp addr, bool numeric);
+        ArrayObject * __gethostbyname(Stringp hostname, bool numeric);
+
         DECLARE_SLOTS_CSocketClass;
     };
 

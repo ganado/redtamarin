@@ -27,6 +27,7 @@ The FileSystem API provides methods to access and manipulate computer files, dir
  * `writeByteArray( filename:String, bytes:ByteArray ):void`
 
 *not implemented*
+ * `getDrives():Array`
  * `isHidden( filename:String ):Boolean`
  * `isEmptyDirectory( filename:String ):Boolean`
  * `normalizePath( filename:String ):String`

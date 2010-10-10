@@ -5,6 +5,13 @@
 The FileSystem API provides methods to access and manipulate computer files, directories and data.
 
 
+== Details ==
+
+ * everything is blocking
+ * we do not support unicode filename yet (eg. WIN32 use `char` not `wchar`
+ * it's pretty "raw", no optimizations of any kind (eg. directories traversal)
+
+
 == API ==
 
 *class* avmplus.FileSystem

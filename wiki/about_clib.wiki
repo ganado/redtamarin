@@ -126,6 +126,35 @@ in AS3 if you open a package then you have access to all the functions declared 
 
 In short, at the package level you have *function* and/or *constant*  definitions.
 
+== Interaction with Other Libraries ==
+
+If you need C definitions as helper for another native class implementation, adding them in the C libraries is the good thing to do.
+
+Example with sockets.
+
+we have *avmplus::Socket* which is a socket class implementation, but because this class may need some C definitions, we add them in the *C.socket* package.
+
+here a default socket
+{{{
+import avmplus.Socket;
+
+var sock:Socket = new Socket();
+}}}
+this will create by default a stream socket (TCP protocol).
+
+if we need a custom socket
+{{{
+import C.socket.*;
+import avmplus.Socket;
+
+var sock:Socket = new Socket( AF_INET, SOCK_DGRAM, IPPROTO_UDP );
+}}}
+this will create a datagram socket (UDP protocol).
+
+You can see `C.socket.*` as a helper for the *Socket* class.
+
+
+
 
 == The Other Stuff ==
 

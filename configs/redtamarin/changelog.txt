@@ -6,7 +6,10 @@
 - added socket methods to Platform, PosixPartialPlatform
 - created SocketClass and avmplus.Socket AS3
 - documentation
-- (port to WIN32)
+- port to WIN32 impl of WinSocket
+  SOCKET are casted as int
+  small changes
+- added gethostbyaddr() and gethostbyname()
 
 * 0.2.9
 - added VMPI_chmod

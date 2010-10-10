@@ -161,3 +161,23 @@ the AS3 equivalent is
 {{{
 var bytes:ByteArray = new ByteArray();
 }}}
+
+
+== Quickly get the size of a native object ==
+
+use *flash.sampler.getSize()*
+
+for example
+{{{
+import avmplus.Socket;
+import flash.sampler.*;
+
+var sock:Socket = new Socket();
+var size:Number = getSize( sock );
+trace( "socket = " + sock );
+trace( size + " bytes" );
+
+//output
+//socket = [object Socket]
+//1080 bytes
+}}}

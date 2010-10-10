@@ -28,10 +28,11 @@ The FileSystem API provides methods to access and manipulate computer files, dir
 
 *not implemented*
  * `isHidden( filename:String ):Boolean`
+ * `isEmptyDirectory( filename:String ):Boolean`
  * `normalizePath( filename:String ):String`
  * `absolutePath( filename:String ):String`
  * `fileSize( filename:String ):Number`
- * `directorySize( filename:String ):Number`
+ * `directorySize( filename:String, recursive:Boolean = false ):Number`
  * `getCreationTime( filename:String ):Date`
  * `getLastModifiedTime( filename:String ):Date`
  * `getLastOpenedTime( filename:String ):Date`
@@ -43,5 +44,5 @@ The FileSystem API provides methods to access and manipulate computer files, dir
  * `move( filename:String, target:String ):Boolean`
  * `createDirectory( filename:String, recursive:Boolean = false ):Boolean`
  * `removeFile( filename:String ):Boolean`
- * `removeDirectory( filename:String ):Boolean`
+ * `removeDirectory( filename:String, recursive:Boolean = false ):Boolean`
  * `remove( filename:String, recursive:Boolean = false ):Boolean`

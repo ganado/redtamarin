@@ -27,6 +27,7 @@ Without Tamarin, redtamarin would not exists, so kudos to Adobe to have open sou
 *links:*
  * [http://www.mozilla.org/projects/tamarin/ The Tamarin project]
  * [http://learn.adobe.com/wiki/display/AVM2/ActionScript+Virtual+Machine+2 ActionScript Virtual Machine 2 wiki]
+ * [http://code.google.com/p/mod-actionscript/ mod-actionscript] Apache module for running server-side ActionScript 3
 
 *documents:*
  * (PDF) [http://www.adobe.com/devnet/actionscript/articles/avm2overview.pdf AVM2 Overview] ([https://wiki.mozilla.org/Tamarin::AVM2_Overview_Errata errata]) ([http://wiki.libspark.org/wiki/AVM2/Overview japanese translation])

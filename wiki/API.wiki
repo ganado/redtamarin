@@ -72,4 +72,54 @@ TODO
 
 Any other API, or for short `*API` (or "Any API"), ...
 
+With enougth lower level API (being able to use sockets, connect to a DB like SQLite, etc.)<br>
+we will be able to create "wrapper" for any other API.
+
+So for example if you like how [http://en.wikipedia.org/wiki/CommonJS CommonJS] or Python or PHP are doing stuff,<br>
+you will be able to reuse their API using an AS3 syntax.
+
+Here a small example with [http://wiki.commonjs.org/wiki/Filesystem/A/0 CommonJS Filesystem/A/0]
+{{{
+package fs
+{
+    import avmplus.FileSystem;
+    import C.unistd.chmod;
+
+    public function makeDirectory( path:String, permissions_opt:* ):void
+    {
+        FileSystem.createDirectory( path );
+        if( permissions_opt )
+        {
+            var permisssions:int = _translatePermissions( permissions_opt );
+            chmod( path, permissions );
+        }
+    }
+
+    public function workingDirectory():String
+    {
+        return FileSystem.workingDirectory;
+    }
+
+    public function changeWorkingDirectory( path:String ):void
+    {
+        FileSystem.workingDirectory = path;
+    }
+
+    public function exists( path:String ):Boolean
+    {
+        return FileSystem.exists( path );
+    }
+
+    public function isFile( path:String ):Boolean
+    {
+        return FileSystem.isRegularFile( path );
+    }
+}
+}}}
+
+
+
+
+
+
 TODO

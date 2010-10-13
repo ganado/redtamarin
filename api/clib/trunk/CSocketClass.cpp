@@ -243,19 +243,15 @@ namespace avmshell
         if (!addr) {
             toplevel->throwArgumentError(kNullArgumentError, "addr");
         }
-
+        
         StUTF8String addrUTF8(addr);
         ArrayObject *list = toplevel->arrayClass->newArray();
-
-        int count = 0;
         
-        struct in_addr ipv4addr;
+        int count = 0;
         struct in_addr **addr_list;
         struct hostent *host;
+        host = VMPI_gethostbyaddr( addrUTF8.c_str() );
         
-        inet_pton(AF_INET, addrUTF8.c_str(), &ipv4addr);
-        host = gethostbyaddr(&ipv4addr, sizeof ipv4addr, AF_INET);
-
         if(host != NULL) {
             if(numeric) {
                 addr_list = (struct in_addr **)host->h_addr_list;
@@ -286,17 +282,17 @@ namespace avmshell
         if (!hostname) {
             toplevel->throwArgumentError(kNullArgumentError, "hostname");
         }
-
+        
         StUTF8String hostnameUTF8(hostname);
         ArrayObject *list = toplevel->arrayClass->newArray();
-
+        
         int count = 0;
         
         struct in_addr **addr_list;
         struct hostent *host;
         
         host = gethostbyname(hostnameUTF8.c_str());
-
+        
         if(host != NULL) {
             if(numeric) {
                 addr_list = (struct in_addr **)host->h_addr_list;

@@ -109,6 +109,23 @@ It is because how C works cross platform.
 
 It does not happen all the time, it is more or less standard, but sometimes for the same constant definition, depending on which OS you are compiling for, the value will be different.
 
+[http://lkml.indiana.edu/hypermail/linux/kernel/0312.2/1241.html here a famous example by Linus Torvalds]
+{{{
+[...]
+- the original errno.h used different error numbers than "original UNIX"
+
+I know this because I cursed it later when it meant that doing things 
+like binary emulation wasn't as trivial - you had to translate the 
+error numbers.
+
+- same goes for "signal.h": while a lot of the standard signals are well 
+documented (ie "SIGKILL is 9"), historically we had lots of confusion 
+(ie I think "real UNIX" has SIGBUS at 10, while Linux didn't originally 
+have any SIGBUS at all, and later put it at 7 which was originally 
+SIGUNUSED.
+[...]
+}}}
+
 Our goal is to be cross platform, so instead on relying on the value, we are relying on the naming of the constant.
 
 We don't care if for whatever reason your favorite Linux distro define `EXIT_SUCCESS` as `-1` instead of the standard `0`,

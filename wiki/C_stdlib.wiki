@@ -18,18 +18,20 @@
 = Functions =
 
 == abort ==
+----
 {{{
 public function abort():void
 }}}
 Cause abnormal program termination.
-----
+
 
 == exit ==
+----
 {{{
 public function exit( status:int = -1 ):void
 }}}
 Terminate program execution.
-----
+
 
 == getenv ==
 {{{

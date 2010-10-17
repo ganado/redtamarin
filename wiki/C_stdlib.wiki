@@ -1,8 +1,15 @@
 #summary stdlib for AS3.
 
 = About =
+Standard library definitions.
 
-*stdlib* is the general purpose standard library in C, look at [http://en.wikipedia.org/wiki/Stdlib.h stdlib.h].
+*product:* redtamarin 0.3
+
+*since:* 0.3.0
+
+*references:*
+ * http://www.dinkumware.com/manuals/default.aspx?manual=compleat&page=stdlib.html
+ * http://en.wikipedia.org/wiki/Stdlib.h
 
 *package* C.stdlib
 
@@ -11,6 +18,7 @@
 
 || *EXIT_SUCCESS* || Success termination code. ||
 || *EXIT_FAILURE* || Failure termination code. ||
+*since:* 0.3.0
 
 
 ----
@@ -22,6 +30,8 @@ public function abort():void
 }}}
 Cause abnormal program termination.
 
+*since:* 0.3.0
+
 
 == exit ==
 {{{
@@ -29,6 +39,7 @@ public function exit( status:int = -1 ):void
 }}}
 Terminate program execution.
 
+*since:* 0.3.0
 
 == getenv ==
 {{{

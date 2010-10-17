@@ -6,7 +6,8 @@
 
 *package* C.stdlib
 
-====
+----
+----
 = Constants =
 
 || *EXIT_SUCCESS* || Success termination code. ||

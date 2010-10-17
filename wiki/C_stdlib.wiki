@@ -3,6 +3,8 @@
 = About =
 Standard library definitions.
 
+*package:* {{{C.stdlib.*}}}
+
 *product:* redtamarin 0.3
 
 *since:* 0.3.0
@@ -11,13 +13,12 @@ Standard library definitions.
  * http://www.dinkumware.com/manuals/default.aspx?manual=compleat&page=stdlib.html
  * http://en.wikipedia.org/wiki/Stdlib.h
 
-*package* C.stdlib
-
 ----
 = Constants =
 
 || *EXIT_SUCCESS* || Success termination code. ||
 || *EXIT_FAILURE* || Failure termination code. ||
+
 *since:* 0.3.0
 
 
@@ -41,6 +42,7 @@ Terminate program execution.
 
 *since:* 0.3.0
 
+
 == getenv ==
 {{{
 public function getenv( name:String ):String
@@ -55,6 +57,8 @@ var home:String = getenv( "HOME" );
 trace( "user home: " + home ); //user home: /Users/somebody
 }}}
 
+*since:* 0.3.0
+
 
 == setenv ==
 {{{
@@ -62,11 +66,17 @@ public function setenv( name:String, value:String, overwrite:Boolean = false ):i
 }}}
 Add or change an environment variable.
 
+*since:* 0.3.0
+
+
 == unsetenv ==
 {{{
 public function unsetenv( name:String ):int
 }}}
 Remove an environment variable.
+
+*since:* 0.3.0
+
 
 == realpath ==
 {{{
@@ -74,10 +84,15 @@ public function realpath( path:String ):String
 }}}
 Resolve a pathname.
 
+*since:* 0.3.0
+
+
 == system ==
 {{{
 public function system( command:String ):int
 }}}
 Issue a command.
+
+*since:* 0.3.0
 
 ----

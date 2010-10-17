@@ -1,6 +1,14 @@
 #summary stdlib for AS3.
 
-<wiki:toc max_depth="2" />
+<wiki:comment>
+Because we are defining libraries for Tamarin we can not really use asdoc to document the source code.
+So the rule is to document everything in the wiki page.
+Yeah it sucks because we have to sync by hand, we'll try to automate it later.
+
+on the source code file, we use only one comment
+
+/* documentation: http://code.google.com/p/redtamarin/wiki/C_stdlib */
+</wiki:comment>
 
 = About =
 Standard library definitions.

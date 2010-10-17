@@ -6,14 +6,14 @@
 
 *package* C.stdlib
 
-
+----
 = Constants =
 
 || *EXIT_SUCCESS* || Success termination code. ||
 || *EXIT_FAILURE* || Failure termination code. ||
 
 
-
+----
 = Functions =
 
 == abort ==
@@ -67,3 +67,5 @@ Resolve a pathname.
 public function system( command:String ):int
 }}}
 Issue a command.
+
+----

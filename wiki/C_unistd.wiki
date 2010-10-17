@@ -13,7 +13,7 @@ on the source code file, we use only one comment
 = About =
 POSIX operating system API.
 
-*package:* {{{C.name.*}}}
+*package:* {{{C.unistd.*}}}
 
 *product:* redtamarin 0.3
 

@@ -1,23 +1,48 @@
 #summary stdlib for AS3.
 
-== Introduction ==
+= About =
 
 *stdlib* is the general purpose standard library in C, look at [http://en.wikipedia.org/wiki/Stdlib.h stdlib.h].
 
-
-== API ==
-
 *package* C.stdlib
 
-*constants*
- * `EXIT_SUCCESS:int`
- * `EXIT_FAILURE:int`
 
-*functions*
- * `abort():void`
- * `exit( status:int = -1 ):void`
- * `getenv( name:String ):String`
- * `setenv( name:String, value:String, overwrite:Boolean = false ):int`
- * `unsetenv( name:String ):int`
- * `realpath( path:String ):String`
- * `system( command:String ):int`
+= Constants =
+
+== EXIT_SUCCESS ==
+{{{public const EXIT_SUCCESS:int}}}
+Success termination code.
+
+== EXIT_FAILURE ==
+{{{public const EXIT_FAILURE:int}}}
+Failure termination code.
+
+= Functions =
+
+== abort ==
+{{{public function abort():void}}}
+Cause abnormal program termination.
+
+== exit ==
+{{{public function exit( status:int = -1 ):void}}}
+Terminate program execution.
+
+== getenv ==
+{{{public function getenv( name:String ):String}}}
+Retrieve an environment variable.
+
+== setenv ==
+{{{public function setenv( name:String, value:String, overwrite:Boolean = false ):int}}}
+Add or change an environment variable.
+
+== unsetenv ==
+{{{public function unsetenv( name:String ):int}}}
+Remove an environment variable.
+
+== realpath ==
+{{{public function realpath( path:String ):String}}}
+Resolve a pathname.
+
+== system ==
+{{{public function system( command:String ):int}}}
+Issue a command.

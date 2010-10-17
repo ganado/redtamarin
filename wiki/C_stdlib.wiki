@@ -9,17 +9,11 @@
 
 = Constants =
 
-== EXIT_SUCCESS ==
 {{{
-public const EXIT_SUCCESS:int
+EXIT_SUCCESS - Success termination code.
+EXIT_FAILURE  - Failure termination code.
 }}}
-Success termination code.
 
-== EXIT_FAILURE ==
-{{{
-public const EXIT_FAILURE:int
-}}}
-Failure termination code.
 
 = Functions =
 

@@ -10,7 +10,9 @@
 = Constants =
 
 == EXIT_SUCCESS ==
-{{{public const EXIT_SUCCESS:int}}}
+{{{
+public const EXIT_SUCCESS:int
+}}}
 Success termination code.
 
 == EXIT_FAILURE ==

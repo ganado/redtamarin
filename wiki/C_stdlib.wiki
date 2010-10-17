@@ -36,21 +36,31 @@ public function exit( status:int = -1 ):void
 Terminate program execution.
 
 == getenv ==
-{{{public function getenv( name:String ):String}}}
+{{{
+public function getenv( name:String ):String
+}}}
 Retrieve an environment variable.
 
 == setenv ==
-{{{public function setenv( name:String, value:String, overwrite:Boolean = false ):int}}}
+{{{
+public function setenv( name:String, value:String, overwrite:Boolean = false ):int
+}}}
 Add or change an environment variable.
 
 == unsetenv ==
-{{{public function unsetenv( name:String ):int}}}
+{{{
+public function unsetenv( name:String ):int
+}}}
 Remove an environment variable.
 
 == realpath ==
-{{{public function realpath( path:String ):String}}}
+{{{
+public function realpath( path:String ):String
+}}}
 Resolve a pathname.
 
 == system ==
-{{{public function system( command:String ):int}}}
+{{{
+public function system( command:String ):int
+}}}
 Issue a command.

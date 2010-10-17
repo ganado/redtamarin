@@ -149,4 +149,8 @@ Suspend execution for an interval of time.
 
 *since:* 0.3.0
 
+
+== chdir ==
+<font color="red">missing</font>
+
 ----

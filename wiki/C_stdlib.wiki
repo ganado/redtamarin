@@ -16,17 +16,23 @@ public const EXIT_SUCCESS:int
 Success termination code.
 
 == EXIT_FAILURE ==
-{{{public const EXIT_FAILURE:int}}}
+{{{
+public const EXIT_FAILURE:int
+}}}
 Failure termination code.
 
 = Functions =
 
 == abort ==
-{{{public function abort():void}}}
+{{{
+public function abort():void
+}}}
 Cause abnormal program termination.
 
 == exit ==
-{{{public function exit( status:int = -1 ):void}}}
+{{{
+public function exit( status:int = -1 ):void
+}}}
 Terminate program execution.
 
 == getenv ==

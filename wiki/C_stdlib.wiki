@@ -9,10 +9,9 @@
 
 = Constants =
 
-{{{
-EXIT_SUCCESS - Success termination code.
-EXIT_FAILURE  - Failure termination code.
-}}}
+ * *EXIT_SUCCESS* - Success termination code.
+ * *EXIT_FAILURE* - Failure termination code.
+
 
 
 = Functions =

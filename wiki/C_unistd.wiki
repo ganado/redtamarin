@@ -11,7 +11,7 @@ on the source code file, we use only one comment
 </wiki:comment>
 
 = About =
-Definition.
+POSIX operating system API.
 
 *package:* {{{C.name.*}}}
 
@@ -20,14 +20,48 @@ Definition.
 *since:* 0.3.0
 
 *references:*
- * link1
- * link2
+ * http://www.opengroup.org/onlinepubs/009695399/basedefs/unistd.h.html
+ * http://en.wikipedia.org/wiki/Unistd.h
 
 ----
 = Constants =
 
-|| *CONST_A* || Definition A. ||
-|| *CONST_B* || Definition B. ||
+== Access ==
+|| *F_OK*  || Check for existence. ||
+|| *X_OK*  || Check for execute permission. ||
+|| *W_OK* || Check for write permission. ||
+|| *R_OK*  || Check for read permission. ||
+
+*since:* 0.3.0
+
+== File type ==
+|| *S_IFMT*   || Type of file mask. ||
+|| *S_IFIFO*   || Named pipe (fifo). ||
+|| *S_IFCHR* || Character special (device). ||
+|| *S_IFDIR*  || Directory. ||
+|| *S_IFBLK*  || Block special (device). ||
+|| *S_IFREG*  || Regular file. ||
+|| *S_IFLNK* || Symbolic link. ||
+|| *S_IFSOCK* || Socket. ||
+
+*since:* 0.3.0
+
+== File mode ==
+|| *S_IRWXU* || Read/Write/Execute mask for owner. ||
+|| *S_IRUSR* || Read permission for owner. ||
+|| *S_IWUSR* || Write permission for owner. ||
+|| *S_IXUSR* || Execute permission for owner. ||
+|| *S_IRWXG* || Read/Write/Execute mask for group. ||
+|| *S_IRGRP* || Read permission for group. ||
+|| *S_IWGRP* || Write permission for group. ||
+|| *S_IXGRP* || Execute permission for group. ||
+|| *S_IRWXO* || Read/Write/Execute mask for other. ||
+|| *S_IROTH* || Read permission for other. ||
+|| *S_IWOTH* || Write permission for other. ||
+|| *S_IXOTH* || Execute permission for other. ||
+|| *S_IREAD* || Read permission for all (backward compatability). ||
+|| *S_IWRITE* || Write permission for all (backward compatability). ||
+|| *S_IEXEC* || Execute permission for all (backward compatability). ||
 
 *since:* 0.3.0
 
@@ -35,11 +69,83 @@ Definition.
 ----
 = Functions =
 
-== test ==
+== access ==
 {{{
-public function test():void
+public function access( path:String, mode:int ):int
 }}}
-Definition test.
+Determine accessibility of a file.
+
+*since:* 0.3.0
+
+
+== getcwd ==
+{{{
+public function getcwd():String
+}}}
+Get the pathname of the current working directory.
+
+*since:* 0.3.0
+
+
+== gethostname ==
+{{{
+public function gethostname():String
+}}}
+Get the name of the current host.
+
+*since:* 0.3.0
+
+
+== getlogin ==
+{{{
+public function getlogin():String
+}}}
+Get the login name of the current user.
+
+*since:* 0.3.0
+
+
+== mkdir ==
+{{{
+public function mkdir( path:String ):int
+}}}
+Make directory.
+
+*since:* 0.3.0
+
+
+== rmdir ==
+{{{
+public function rmdir( path:String ):int
+}}}
+Remove directory.
+
+*since:* 0.3.0
+
+
+== chmod ==
+{{{
+public function chmod( path:String, mode:int ):int
+}}}
+Change mode of a file.
+
+*note:*<br>
+under WIN32 chmod is limited, you will only be able to set read or write at the user level
+`chmod( "myfile.txt", S_WRITE );`
+will be the same as
+`chmod( "myfile.txt", (S_IWUSR | S_IWGRP | S_IWOTH ) );`
+
+*since:* 0.3.0
+
+
+== sleep ==
+{{{
+public function sleep( milliseconds:uint ):void
+}}}
+Suspend execution for an interval of time.
+
+*note:*<br>
+`sleep()` in C usually use seconds, here we are using milliseconds.
 
 *since:* 0.3.0
 

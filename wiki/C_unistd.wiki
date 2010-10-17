@@ -151,6 +151,12 @@ Suspend execution for an interval of time.
 
 
 == chdir ==
-<font color="red">missing</font>
+<font color="red">not implemented</font>
+Change working directory.
+
+
+== unlink ==
+<font color="red">not implemented</font>
+Remove a directory entry.
 
 ----

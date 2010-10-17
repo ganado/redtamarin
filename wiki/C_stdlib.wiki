@@ -7,7 +7,6 @@
 *package* C.stdlib
 
 ----
-
 = Constants =
 
 || *EXIT_SUCCESS* || Success termination code. ||
@@ -18,7 +17,6 @@
 = Functions =
 
 == abort ==
-----
 {{{
 public function abort():void
 }}}
@@ -26,7 +24,6 @@ Cause abnormal program termination.
 
 
 == exit ==
-----
 {{{
 public function exit( status:int = -1 ):void
 }}}
@@ -44,10 +41,9 @@ Retrieve an environment variable.
 import C.stdlib.*;
 
 var home:String = getenv( "HOME" );
-
 trace( "user home: " + home ); //user home: /Users/somebody
-
 }}}
+
 
 == setenv ==
 {{{

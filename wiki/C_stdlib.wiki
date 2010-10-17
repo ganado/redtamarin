@@ -34,6 +34,16 @@ public function getenv( name:String ):String
 }}}
 Retrieve an environment variable.
 
+*example:* basic usage
+{{{
+import C.stdlib.*;
+
+var home:String = getenv( "HOME" );
+
+trace( "user home: " + home ); //user home: /Users/somebody
+
+}}}
+
 == setenv ==
 {{{
 public function setenv( name:String, value:String, overwrite:Boolean = false ):int

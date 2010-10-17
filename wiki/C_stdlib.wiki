@@ -7,7 +7,7 @@
 *package* C.stdlib
 
 ----
-----
+
 = Constants =
 
 || *EXIT_SUCCESS* || Success termination code. ||
@@ -22,12 +22,14 @@
 public function abort():void
 }}}
 Cause abnormal program termination.
+----
 
 == exit ==
 {{{
 public function exit( status:int = -1 ):void
 }}}
 Terminate program execution.
+----
 
 == getenv ==
 {{{

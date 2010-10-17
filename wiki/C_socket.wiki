@@ -1,0 +1,46 @@
+#summary socket for AS3.
+
+<wiki:comment>
+Because we are defining libraries for Tamarin we can not really use asdoc to document the source code.
+So the rule is to document everything in the wiki page.
+Yeah it sucks because we have to sync by hand, we'll try to automate it later.
+
+on the source code file, we use only one comment
+
+/* documentation: http://code.google.com/p/redtamarin/wiki/C_stdlib */
+</wiki:comment>
+
+= About =
+Definition.
+
+*package:* {{{C.name.*}}}
+
+*product:* redtamarin 0.3
+
+*since:* 0.3.0
+
+*references:*
+ * link1
+ * link2
+
+----
+= Constants =
+
+|| *CONST_A* || Definition A. ||
+|| *CONST_B* || Definition B. ||
+
+*since:* 0.3.0
+
+
+----
+= Functions =
+
+== test ==
+{{{
+public function test():void
+}}}
+Definition test.
+
+*since:* 0.3.0
+
+----

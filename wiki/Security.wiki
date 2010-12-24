@@ -22,7 +22,7 @@ as any other server side language (Python, PHP for ex).
 === Ressources ===
 
 *links:*
- * [https://www.flashsec.org flashsec] wiki dedicated to Adobe Flash/Flex/AIR and ActionScript security
+ * [https://www.flashsec.org flashsec] wiki dedicated to Adobe Flash/Flex/AIR and !ActionScript security
  * [https://www.flashsec.org/wiki/Simple_AS3_Decompiler_Using_Tamarin Simple AS3 Decompiler Using Tamarin] (flashsec)
  * [http://blog.48bits.com/2010/02/15/debuggeando-codigo-jiteado-de-actionscript/ Debugging ActionScript JITed code] by Ariel E. Coronel
 

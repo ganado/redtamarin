@@ -1,13 +1,31 @@
 #summary our take on security.
 
-== Introduction ==
+=== Introduction ===
 
-Add your content here.
+Let be clear, with redtamarin the goal is to run on the command-line,
+so you are more likely to have a shell running some *.abc file
+or being an executable that embed this *.abc file.
+
+My philosophy is: if you are an executable you have full access to everything,
+whether you use ActionScript, Python, Java, PHP, C#, C++, C, or whatever
+to `format c:` does not really matter.
+
+But that does not mean we will ignore completely the security problems,
+for one in some case we will try to emulate the what the Flash Player or AIR do
+(ex: emule Flash Player 9 web profile to test some code),
+second, the same as Adobe, we don't want malformed *.abc to execute code because of a buffer overflow,
+and third when redtamarin will focus to run on the server side we want it to be as secure
+as any other server side language (Python, PHP for ex).
 
 
-== Details ==
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+=== Ressources ===
+
+*links:*
+ * [https://www.flashsec.org flashsec] wiki dedicated to Adobe Flash/Flex/AIR and ActionScript security
+ * [https://www.flashsec.org/wiki/Simple_AS3_Decompiler_Using_Tamarin Simple AS3 Decompiler Using Tamarin] (flashsec)
+ * [http://blog.48bits.com/2010/02/15/debuggeando-codigo-jiteado-de-actionscript/ Debugging ActionScript JITed code] by Ariel E. Coronel
+
+*documents:*
+ * (PDF) [http://documents.iss.net/whitepapers/IBM_X-Force_WP_final.pdf Application-Specific Attacks: Leveraging the ActionScript Virtual Machine] By Mark Dowd (X-Force Researcher IBM Internet Security Systems)
+ * (PPT) [http://www.owasp.org/images/b/bb/Hacking_The_World_With_Flash.ppt Hacking The World With Flash: Analyzing Vulnerabilities in Flash and the Risk of Exploitation] by Paul Craig (Security-Assessment.com / OWASP 29/2008)

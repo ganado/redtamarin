@@ -9,6 +9,19 @@ Virtual Machine of Tamarin). The full definition of ABC includes a specification
 syntax, static semantics and runtime behavior.
 }}}
 
+from [http://learn.adobe.com/wiki/display/AVM2/4.+The+ActionScript+Byte+Code+(abc)+format Adobe dev connection - the ABC format]
+{{{
+Syntactically complete sections of ActionScript code are processed by a compiler into ActionScript Byte Code segments. These segments are described by the abcFile structure, which is defined below. The abcFile structure is the unit of loading and execution used by the AVM2.
+
+The abcFile structure describes the interpretation of a block of 8-bit bytes. Despite the name, the contents of an abcFile does not need to be read from a file in the file system; it can be generated dynamically by a run-time compiler or other tools. The use of the word "file" is historical.
+
+The abcFile structure comprises primitive data, structured data, and arrays of primitive and structured data. The following sections describe all the data formats.
+
+Primitive data include integers and floating-point numbers encoded in various ways.
+
+Structured data, including the abcFile itself, are presented here using a C-like structural notation, with individual named fields. Fields within this structure are in reality just sequences of bytes that are interpreted according to their type. The fields are stored sequentially without any padding or alignment.
+}}}
+
 
 == Ressources ==
 

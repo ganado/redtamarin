@@ -22,14 +22,34 @@ The !ActionScript compiler is available as a component from the open source Flex
 
 Without Tamarin, redtamarin would not exists, so kudos to Adobe to have open sourced this fantastic project.
 
+also from the [http://learn.adobe.com/wiki/display/AVM2/1.1+Concepts AVM2 wiki]
+<pre>
+The AVM2 was designed to support the ActionScript (AS) 3.0 language, and for the remaining chapters it is assumed that the reader is aware of the terminology and concepts of the language.
+
+The following vocabulary and associated definitions are taken from the ActionScript 3.0 Language Specification and are presented only as a review of the material. For full details, refer to the language specification.
+
+Virtual Machine - A virtual machine is a mechanism that takes as its input the description of a computation and that performs that computation. For the AVM2, the input is in the form of an ABC file, which contains compiled programs; these comprise constant data, instructions from the AVM2 instruction set, and various kinds of metadata.
+Script - A script set of traits and an initializer method; a script populates a top-level environment with definitions and data.
+Bytecode, code - Bytecode or code is a specification of computation in the form of a sequence of simple actions on the virtual machine state.
+Scope - Scope is a mapping from names to locations, where no two names are the same. Scopes can nest, and nested scopes can contain bindings (associations between names and locations) that shadow the bindings of the nesting scope.
+Object - An object is an unordered collection of named properties, which are containers that hold values. A value in ActionScript 3.0 is either an Object reference or one of the special values null or undefined.
+Namespace - Namespaces are used to control the visibility of a set of properties independent of the major structure of the program.
+Class - A class is a named description of a group of objects. Objects are created from classes by instantiation.
+Inheritance - New classes can be derived from older classes by the mechanism known as inheritance or subclassing. The new class is called the derived class or subclass of the old class, and the old class is called the base class or superclass.
+Trait - A trait is a fixed-name property shared by all objects that are instances of the same class; a set of traits expresses the type of an object.
+Method - The word method is used with two separate meanings. One meaning is a method body, which is an object that contains code as well as data that belong to that code or that describe the code. The other meaning is a method closure, which is a method body together with a reference to the environment in which the closure was created. In this document, functions, constructors, ActionScript 3.0 class methods, and other objects that can be invoked are collectively referred to as method closures.
+Verification - The contents of an ABC file undergo verification when the file is loaded into the AVM2. The ABC file is rejected by the verifier if it does not conform to the AVM2 Overview. Verification is described in 3. Loading, linking, verification, and execution.
+Just-in-Time (JIT) Compiler - AVM2 implementations may contain an optional run-time compiler for transforming AVM2 instructions into processor-specific instructions. Although not an implementation requirement, employing a JIT compiler provides a performance benefit for many applications.
+</pre>
+
 === Ressources ===
 
 *links:*
- * [http://www.mozilla.org/projects/tamarin/ The Tamarin project]
- * [http://learn.adobe.com/wiki/display/AVM2/ActionScript+Virtual+Machine+2 ActionScript Virtual Machine 2 wiki]
+ * [http://www.mozilla.org/projects/tamarin/ The Tamarin project] (Mozilla)
+ * [http://learn.adobe.com/wiki/display/AVM2/ActionScript+Virtual+Machine+2 ActionScript Virtual Machine 2 wiki] (Adobe)
  * [http://code.google.com/p/mod-actionscript/ mod-actionscript] Apache module for running server-side !ActionScript 3
 
 *documents:*
  * (PDF) [http://www.adobe.com/devnet/actionscript/articles/avm2overview.pdf AVM2 Overview] ([https://wiki.mozilla.org/Tamarin::AVM2_Overview_Errata errata]) ([http://wiki.libspark.org/wiki/AVM2/Overview japanese translation])
  * (PDF) [http://www.onflex.org/ACDS/AS3TuningInsideAVM2JIT.pdf ActionScript 3.0 and AVM2: Performance Tuning] by Gary Grossman (Adobe)
- * (PDF) [http://learn.adobe.com/wiki/spaces/exportspace.action?key=AVM2 AVM2 wiki export]
+ * (PDF) [http://learn.adobe.com/wiki/spaces/exportspace.action?key=AVM2 AVM2 wiki export] (Adobe)

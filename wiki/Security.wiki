@@ -3,8 +3,8 @@
 === Introduction ===
 
 Let be clear, with redtamarin the goal is to run on the command-line,
-so you are more likely to have a shell running some *.abc file
-or being an executable that embed this *.abc file.
+so you are more likely to have a shell running some `*.abc` file
+or being an executable that embed this `*.abc` file.
 
 My philosophy is: if you are an executable you have full access to everything,
 whether you use ActionScript, Python, Java, PHP, C#, C++, C, or whatever
@@ -13,7 +13,7 @@ to `format c:` does not really matter.
 But that does not mean we will ignore completely the security problems,
 for one in some case we will try to emulate the what the Flash Player or AIR do
 (ex: emule Flash Player 9 web profile to test some code),
-second, the same as Adobe, we don't want malformed *.abc to execute code because of a buffer overflow,
+second, the same as Adobe, we don't want malformed `*.abc` to execute code because of a buffer overflow,
 and third when redtamarin will focus to run on the server side we want it to be as secure
 as any other server side language (Python, PHP for ex).
 

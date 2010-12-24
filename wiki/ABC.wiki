@@ -2,7 +2,12 @@
 
 == Introduction ==
 
-Add your content here.
+from [http://hg.mozilla.org/tamarin-redux/file/d8b78be5b40f/doc/verifier.txt verifier.txt]
+{{{
+ABC (originally for Action Block Code) is the language executed by the AVM (ActionScript 
+Virtual Machine of Tamarin). The full definition of ABC includes a specification of its 
+syntax, static semantics and runtime behavior.
+}}}
 
 
 == Ressources ==

@@ -8,7 +8,7 @@ or being an executable that embed this `*.abc` file.
 
 My philosophy is: if you are an executable you have full access to everything,
 whether you use ActionScript, Python, Java, PHP, C#, C++, C, or whatever
-to `format c:` does not really matter.
+to *`format c:`* does not really matter.
 
 But that does not mean we will ignore completely the security problems,
 for one in some case we will try to emulate the what the Flash Player or AIR do

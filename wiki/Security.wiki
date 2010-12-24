@@ -13,10 +13,15 @@ to *`format c:`* does not really matter.
 But that does not mean we will ignore completely the security problems,<br>
 for one in some case we will try to emulate the what the Flash Player or AIR do<br>
 (ex: emule Flash Player 9 web profile to test some code),<br>
-second, the same as Adobe, we don't want malformed `*.abc` to execute code because of a buffer overflow,<br>
+second, the same as Adobe, we don't want malformed `*.abc` to execute malicious code<br>
+because of a buffer overflow,<br>
 and third when redtamarin will focus to run on the server side we want it to be as secure<br>
 as any other server side language (Python, PHP for ex).
 
+Last but not least, our goal with tamarin is to provide tools for the Flash Community,<br>
+and we plan to have some focusing on security, wether some analysis tool that warn you<br>
+about some "login","password" strings in your SWF or some other that would automate<br>
+obfuscation and/or encryption, anyway expect some parts of redtamarin to be all about security.
 
 
 === Ressources ===

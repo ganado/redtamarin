@@ -63,7 +63,7 @@ Since the Tamarin release *703:2cee46be9ce0* ([https://developer.mozilla.org/En/
 Now from redtamarin v0.2, the source code of Tamarin is fully sync'ed in this project repository, and as the C/C++ is better organized, update etc. should stay clean in the  futur :). *<-- this has failed big time*
 
 As of *25/07/2010* redtamarin have taken a completely different approach
- * now we use the [http://code.google.com/p/redshell/ redshell] project to stay in sync' with [http://hg.mozilla.org/tamarin-redux tamarin-redux] (sync is done every week)
+ * now we use the [http://code.google.com/p/redshell/ redshell] project to stay in sync' with [http://hg.mozilla.org/tamarin-redux tamarin-redux] (sync is done ~~every week~~ more often :p)
  * from redshell, we do an `hg archive` and overwrite the `/tamarin-redux` directory, see [http://code.google.com/p/redtamarin/source/detail?r=252 this change] for example.
  * etc. (TODO explain the other changes)
 

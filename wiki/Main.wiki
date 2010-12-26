@@ -30,16 +30,26 @@ as tools for the Flash Platform community.*
  * I started a bit shy in my corner without promoting the project at all, but it appears 600+ people downloaded it
  * getting somewhat better at C/C++ and having a huge needs for command-line tools in AS3 I started to rethink the project
  * I'm now completely dedicated (if not obsessed) to implement a lot of functionalities
+ * there has been a drop of activity between october and december 2010 (new job)
 
 === Goals ===
 
  * the short goal of the project is to provide most of the C standard library (ANSI and POSIX) to an !ActionScript environment. - *DONE*
  * the medium goal is to provide specialized libraries to use sockets or database like SQLite etc.
-    * FileSystem API *DONE*
+    * FileSystem API * HALF DONE* (adding even more)
     * OperatingSystem API *DONE*
     * basic socket (stream, datagram, broadcast, client, server) *DONE*
     * (more to come)
  * the long term goal is to provide a native API that replicate some part of the Flash Player and Adobe Integrated Runtime ([http://www.adobe.com/products/air/ AIR]) API
+ * I'm bad a documenting, so I'll try this time to document on the go and provide example for all the APIs
+ * some people contact me by email, when I can I add features related to their needs
+
+=== Sync ===
+
+here the list of sync from [http://code.google.com/p/redtamarin] which is a mirror of tamarin-redux
+ * *25/07/2010* tamarin-redux-e07844ed9e
+ * *26/12/2010* tamarin-redux-d8b78be5b40f
+
 
 
 === History ===

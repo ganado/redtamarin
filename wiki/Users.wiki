@@ -3,10 +3,50 @@
 Everything you need to know on how to use redtamarin<br>
 aka "I don't want to compile C/C++/Java, I just want to write AS code dammit".
 
-== First Thing First ==
+=== First Thing First ===
 
 The project is named *redtamarin*, but you end up using an executable named *redshell*.
 
+So what is this "shell" thingy ?
+
+The same you can have the Flash Player as a plugin on the browser (or the standalone flash projector) that can take a `*.swf` file and play it, you have the `redshell` that can take either a `*.swf` or `*.abc` files and execute them.
+
+WHAT ? redshell can play `*.swf` files ?
+
+yes, but don't get too excited, redshell can play only the `*.abc` parts inside the `*.swf`.
+
+See it like that, either you want to execute only one `*.abc`, and so you pass it directly to redshell,
+or you want to execute numerous `*.abc` one after another, and then you pass a `*.swf` file that act as a container for those different `*.abc` files.
+
+Also you can run `*.as` files with redshell, but here again there are some limitations.
+
+Assuming you are an AS3 developer, here the workflow you get with redtamarin
+ * you compile your `*.as` files using the redtamarin API (or not) into one or more `*.abc` file(s)
+ * compile, test, unit test, etc. ...  rinse and repeat
+ * once you are happy with it, you can distribute
+   * an abc file that can be used as a library (like a swc if you prefer)
+   * redshell + your abc file
+   * redshell + your swf file (containing different abc files)
+   * your file exe (redshell embedding the abc file)
+   * your file exe (redshell embedding a swf file that contains different abc files)
+* you can generate different executable (for Windows, OS X, Linux, etc.)
+
+Ultimately, your goal is to produce a command-line executable that you code in AS3.
+
+=== etc. ===
 
 
-== etc. ==
+=== Who 's talking about it ? ===
+
+One strange thing with redtamarin is that I didn't promoted it at all and still it reached 600+ downloads.
+
+I talk a little bit about it on twitter (you can follow me if you want [http://twitter.com/#!/zwetan @zwetan]).
+
+Here some different articles and blog post mentioning redtamarin:
+
+ * [http://stackoverflow.com/questions/1056056/is-it-possible-to-create-a-command-line-swf Is it possible to create a 'command line' swf?] (stackoverflow)
+ * [http://stackoverflow.com/questions/717329/server-side-action-script-3-0 Server side Action Script 3.0] (stackoverflow)
+ * [http://memmie.lenglet.name/flash/actionscript/font-streaming Font streaming]
+ * [http://labs.influxis.com/?p=598 Project Variant and a question to the community.]
+ * [http://blog.48bits.com/2010/02/15/debuggeando-codigo-jiteado-de-actionscript/ Debuggeando código JITeado de ActionScript] (Debugging ActionScript JITed code)
+ * [http://www.la-digitale.com/index/redtamarin Cibler Redtamarin avec Flashdevelop]

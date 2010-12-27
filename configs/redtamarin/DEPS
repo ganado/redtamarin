@@ -17,7 +17,6 @@ deps = {
          Var("root") + "/src/tamarin/platform"       : Var("repo") + "/trunk/platform",
          Var("root") + "/src/tamarin/shell"          : Var("repo") + "/trunk/shell",
          Var("root") + "/src/tamarin/VMPI"           : Var("repo") + "/trunk/VMPI",
-         Var("root") + "/src/tamarin/axscript"       : Var("repo") + "/tamarin-redux/axscript",
          Var("root") + "/src/tamarin/build"          : Var("repo") + "/tamarin-redux/build",
          Var("root") + "/src/tamarin/core"           : Var("repo") + "/tamarin-redux/core",
          Var("root") + "/src/tamarin/doc"            : Var("repo") + "/tamarin-redux/doc",

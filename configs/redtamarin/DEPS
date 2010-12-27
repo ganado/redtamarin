@@ -29,5 +29,6 @@ deps = {
          Var("root") + "/src/tamarin/pcre"           : Var("repo") + "/tamarin-redux/pcre",
          Var("root") + "/src/tamarin/test"           : Var("repo") + "/tamarin-redux/test",
          Var("root") + "/src/tamarin/utils"          : Var("repo") + "/tamarin-redux/utils",
+         Var("root") + "/src/tamarin/vmbase"         : Var("repo") + "/tamarin-redux/vmbase",
          Var("root") + "/src/tamarin/vprof"          : Var("repo") + "/tamarin-redux/vprof",
        }

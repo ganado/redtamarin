@@ -47,10 +47,12 @@ INCLUDES += \
   -I$(topsrcdir)/other-licenses/zlib \
   -I$(topsrcdir)/shell \
   -I$(topsrcdir)/VMPI \
+  -I$(topsrcdir)/vmbase \
   $(NULL)
 
 $(call RECURSE_DIRS,other-licenses/zlib)
 $(call RECURSE_DIRS,VMPI)
+$(call RECURSE_DIRS,vmbase)
 $(call RECURSE_DIRS,MMgc)
 
 ifdef ENABLE_TAMARIN
@@ -76,6 +78,9 @@ endif
 ifeq (mips,$(TARGET_CPU))
 $(call RECURSE_DIRS,nanojit)
 endif
+ifeq (sh4,$(TARGET_CPU))
+$(call RECURSE_DIRS,nanojit)
+endif
 ifeq (darwin,$(TARGET_OS))
 $(call RECURSE_DIRS,platform/mac)
 endif
@@ -83,6 +88,9 @@ ifeq (windows,$(TARGET_OS))
 $(call RECURSE_DIRS,platform/win32)
 endif
 ifeq (linux,$(TARGET_OS))
+$(call RECURSE_DIRS,platform/unix)
+endif
+ifeq (android,$(TARGET_OS))
 $(call RECURSE_DIRS,platform/unix)
 endif
 ifeq (sunos,$(TARGET_OS))

@@ -6,6 +6,29 @@ A *C library* in AS3 is a bit of a challenge, there is some things you can trans
 
 Most of those libraries are implemented within a single C++ native class but we consider the AS3 class internal and static.
 
+== Documentation ==
+
+Here few things to know on how those libs are documented.
+
+Because we are defining libraries for Tamarin we can not really use asdoc to document the source code.
+
+So the rule is to document everything in the wiki page.
+
+*The general rule:*
+
+Everything you see in the wiki pages is considered a native implementations,<br>
+you can access it in AS3 but the code doing the real work is in C/C++.
+
+If you don't see it in the wiki pages, that means either we decided to ignore it and it is unlikely to be implemented.
+
+*Here some special case:*
+
+<font color="blue">not native</font><br>
+that means this particular code is implemented in AS3
+
+<font color="red">not implemented</font><br>
+that means this particular code is planed for implementation but not implemented yet
+
 
 == Default package ==
 

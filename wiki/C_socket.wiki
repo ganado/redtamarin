@@ -7,21 +7,21 @@ Yeah it sucks because we have to sync by hand, we'll try to automate it later.
 
 on the source code file, we use only one comment
 
-/* documentation: http://code.google.com/p/redtamarin/wiki/C_stdlib */
+/* documentation: http://code.google.com/p/redtamarin/wiki/C_socket */
 </wiki:comment>
 
 = About =
-Definition.
+Socket constants and function helpers.
 
-*package:* {{{C.name.*}}}
+*package:* {{{C.socket.*}}}
 
 *product:* redtamarin 0.3
 
 *since:* 0.3.0
 
 *references:*
- * link1
- * link2
+ * http://en.wikipedia.org/wiki/Berkeley_sockets
+ * http://pubs.opengroup.org/onlinepubs/007908799/xns/syssocket.h.html
 
 ----
 = Constants =
@@ -35,12 +35,38 @@ Definition.
 ----
 = Functions =
 
-== test ==
+== gethostbyaddr ==
 {{{
-public function test():void
+public function gethostbyaddr( addr:String, numeric:Boolean = false ):Array
 }}}
-Definition test.
+Network host database function<br>
+which returns a list of hostnames or IP addresses ('numeric=true') by providing an IP address.
+
+*example:* basic usage
+{{{
+import C.socket.*;
+
+//TODO
+}}}
 
 *since:* 0.3.0
+
+
+== gethostbyname ==
+{{{
+public function gethostbyname( hostname:String, numeric:Boolean = false ):Array
+}}}
+Network host database function<br>
+which returns a list of hostnames or IP addresses ('numeric=true') by providing a hostname.
+
+*example:* basic usage
+{{{
+import C.socket.*;
+
+//TODO
+}}}
+
+*since:* 0.3.0
+
 
 ----

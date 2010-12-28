@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+  usage
+  
+    clean everything
+    $ant reset
+
+    build debug
+    $ant -Dsetup=debug
+ -->
 <project name="redtamarin" default="main" basedir=".">
 
     <target name="flag">
@@ -43,6 +52,14 @@
     </target>
 
     <target name="clean">
+    </target>
+
+    <target name="reset">
+        <property file="build/build.properties"/>
+
+        <delete dir="bin-debug"/>
+        <delete dir="${RELEASE_DIR}"/>
+        <delete file="${asc.jar.path1}"/>
     </target>
 
     <target name="before" depends="define-tasks,define-constants">
@@ -121,6 +138,9 @@
     </target>
     
     <target name="build-asc">
+
+        <!-- Patch api versioning first -->
+        <copy file="src/tamarin/core/api-versions.java" tofile="src/asc/src/java/macromedia/asc/util/APIVersions.java"/>
 
         <ant antfile="src/asc/build/java/build.xml" target="main" inheritAll="false" />
         <copy file="src/asc/lib/asc.jar" todir="src/tamarin/utils"/>

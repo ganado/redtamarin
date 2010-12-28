@@ -108,8 +108,8 @@ import C.socket.*;
 trace( "origin: " + gethostbyname( "youtube.com", true ) ); //origin: 74.125.95.93,74.125.127.93
 
 //and now we can we can request with the IP address
-trace( "names: " + gethostbyaddr( "74.125.95.93") ); //names: iw-in-f93.1e100.net,93.95.125.74.in-addr.arpa
-trace( "ips: " + gethostbyaddr( "74.125.95.93", true) ); //ips: 74.125.95.93
+trace( "names: " + gethostbyaddr("74.125.95.93") ); //names: iw-in-f93.1e100.net,93.95.125.74.in-addr.arpa
+trace( "ips: " + gethostbyaddr("74.125.95.93", true) ); //ips: 74.125.95.93
 }}}
 
 *since:* 0.3.0
@@ -127,8 +127,8 @@ by providing a hostname.
 {{{
 import C.socket.*;
 
-trace( "names: " + gethostbyname( "www.youtube.com") ); //names: youtube-ui.l.google.com,www.youtube.com
-trace( "ips: " + gethostbyname( "www.youtube.com", true) ); //ips: 209.85.143.93,209.85.143.190,209.85.143.136,209.85.143.91
+trace( "names: " + gethostbyname("www.youtube.com") ); //names: youtube-ui.l.google.com,www.youtube.com
+trace( "ips: " + gethostbyname("www.youtube.com", true) ); //ips: 209.85.143.93,209.85.143.190,209.85.143.136,209.85.143.91
 }}}
 
 *since:* 0.3.0

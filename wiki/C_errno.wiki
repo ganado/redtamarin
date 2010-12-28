@@ -115,7 +115,7 @@ var filename:String = "dummy_file";
 if( !FileSystem.exists( filename ) )
 {
      trace( "errno = " + errno ); //errno = 2
-     trace( strerror( errno ) );      //No such file or directory
+     trace( strerror( errno ) );    //No such file or directory
 }
 }}}
 

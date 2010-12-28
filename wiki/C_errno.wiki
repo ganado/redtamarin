@@ -95,11 +95,30 @@ System error numbers.
 ----
 = Functions =
 
-== test ==
+== errno ==
 {{{
-public function test():void
+public function get errno():int
+public function set errno( value:int ):void
 }}}
-Definition test.
+Error return value.
+
+Designates an object that is assigned a value greater than zero on certain library errors.
+
+*example:* basic usage
+{{{
+import C.errno.*;
+import C.string.*;
+import avmplus.FileSystem;
+
+var filename:String = "dummy_file";
+
+if( !FileSystem.exists( filename ) )
+{
+     trace( "errno = " + errno ); //errno = 2
+     trace( strerror( errno ) );      //No such file or directory
+}
+}}}
+
 
 *since:* 0.3.0
 

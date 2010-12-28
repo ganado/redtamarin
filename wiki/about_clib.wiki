@@ -32,6 +32,9 @@ that means this particular code is implemented in AS3
 that means this particular code is planed for implementation but not implemented yet
 
 
+Off course, if you don't see something that should be implemented or<br>
+see something wrongly documented, etc.  [http://code.google.com/p/redtamarin/issues/entry please create an issue].
+
 == Default package ==
 
 Everything that is considered being a C library include reside in the `C.*` root package.

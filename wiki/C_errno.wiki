@@ -119,6 +119,10 @@ if( !FileSystem.exists( filename ) )
 }
 }}}
 
+*note:*<br>
+the system will not reset the error number for you<br>
+for each `errno` you catch you will have to reset it<br>
+`errno = 0`.
 
 *since:* 0.3.0
 

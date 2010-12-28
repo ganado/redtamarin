@@ -43,7 +43,7 @@ Remove a file.
 
 *note:*<br>
 under WIN32, you can get a "File Permission Denied" if you try to remove a directory path<br>
-you should instead use `rmdir()` in [C_unistd C.unistd].
+you should instead use `rmdir()` in [C_unistd#rmdir C.unistd].
 
 *since:* 0.3.0
 

@@ -7,27 +7,27 @@ Yeah it sucks because we have to sync by hand, we'll try to automate it later.
 
 on the source code file, we use only one comment
 
-/* documentation: http://code.google.com/p/redtamarin/wiki/C_stdlib */
+/* documentation: http://code.google.com/p/redtamarin/wiki/C_stdio */
 </wiki:comment>
 
 = About =
-Definition.
+Input and Output operations on streams and files.
 
-*package:* {{{C.name.*}}}
+*package:* {{{C.stdio.*}}}
 
 *product:* redtamarin 0.3
 
 *since:* 0.3.0
 
 *references:*
- * link1
- * link2
+ * http://www.dinkumware.com/manuals/default.aspx?manual=compleat&page=stdio.html
+ * http://en.wikipedia.org/wiki/Stdio.h
 
 ----
 = Constants =
 
-|| *CONST_A* || Definition A. ||
-|| *CONST_B* || Definition B. ||
+|| *FILENAME_MAX* || Maximum size in bytes of the longest filename string that the implementation guarantees can be opened. ||
+|| *PATH_MAX* || Maximum number of bytes in a pathname. ||
 
 *since:* 0.3.0
 
@@ -35,11 +35,24 @@ Definition.
 ----
 = Functions =
 
-== test ==
+== remove ==
 {{{
-public function test():void
+public function remove( filename:String ):int
 }}}
-Definition test.
+Remove a file.
+
+*note:*<br>
+under WIN32, you can get a "File Permission Denied" if you try to remove a directory path<br>
+you should instead use `rmdir()` in [C_unistd C.unistd].
+
+*since:* 0.3.0
+
+
+== rename ==
+{{{
+public function rename( oldname:String, newname:String ):int
+}}}
+Rename a file.
 
 *since:* 0.3.0
 

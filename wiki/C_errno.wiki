@@ -26,15 +26,15 @@ System error numbers.
 ----
 = Constants =
 
-*General errors*
+== General errors ==
 || *EDOM* || Numerical argument out of domain. ||
 || *EILSEQ* || Illegal byte sequence. ||
 || *ERANGE* || Result too large. ||
 
 *since:* 0.3.0
-<br><br>
 
-*POSIX Additional errors*
+
+== POSIX Additional errors ==
 || *EPERM* || Operation not permitted. ||
 || *ENOENT* || No such file or directory. ||
 || *ESRCH* || No such process. ||
@@ -72,10 +72,8 @@ System error numbers.
 || *ENOTEMPTY* || Directory not empty. ||
 
 *since:* 0.3.0
-<br><br>
 
-
-*Socket errors*
+== Socket errors ==
 || *ENETDOWN* || Network is down. ||
 || *ENETUNREACH* || Network is unreachable. ||
 || *ENETRESET* || Network dropped connection on reset. ||
@@ -90,7 +88,7 @@ System error numbers.
 || *ECONNREFUSED* || Connection refused. ||
 
 *since:* 0.3.0
-<br><br>
+
 
 ----
 = Functions =

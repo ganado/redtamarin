@@ -26,11 +26,68 @@ Socket constants and function helpers.
 ----
 = Constants =
 
-|| *CONST_A* || Definition A. ||
-|| *CONST_B* || Definition B. ||
+== Socket types ==
+|| *SOCK_RAW* || Raw Protocol Interface. ||
+|| *SOCK_STREAM* || Byte-stream socket. ||
+|| *SOCK_DGRAM* || Datagram socket. ||
 
 *since:* 0.3.0
 
+== Socket options ==
+|| *SO_ACCEPTCONN* || Socket is accepting connections. ||
+|| *SO_BROADCAST* || Transmission of broadcast messages is supported. ||
+|| *SO_DONTROUTE* || Bypass normal routing. ||
+|| *SO_KEEPALIVE* || Connections are kept alive with periodic messages. ||
+|| *SO_OOBINLINE* || Out-of-band data is transmitted in line. ||
+|| *SO_RCVBUF* || Receive buffer size. ||
+|| *SO_RCVTIMEO* || Receive timeout. ||
+|| *SO_REUSEADDR* || Reuse of local addresses is supported. ||
+|| *SO_SNDBUF* || Send buffer size. ||
+|| *SO_SNDTIMEO* || Send timeout. ||
+|| *SO_TYPE* || Socket type. ||
+
+*since:* 0.3.0
+
+== Socket messages ==
+|| *MSG_CTRUNC* || Control data truncated. ||
+|| *MSG_DONTROUTE* || Send without using routing tables. ||
+|| *MSG_OOB* || Out-of-band data. ||
+|| *MSG_PEEK* || Leave received data in queue. ||
+|| *MSG_TRUNC* || Normal data truncated. ||
+|| *MSG_WAITALL* || Attempt to fill the read buffer. ||
+
+*since:* 0.3.0
+
+== Socket domains ==
+|| *AF_INET* || Internet domain sockets for use with IPv4 addresses. ||
+|| *AF_INET6* || Internet domain sockets for use with IPv6 addresses. ||
+|| *AF_UNSPEC* || Unspecified. ||
+
+*since:* 0.3.0
+
+== Socket protocols ==
+|| *IPPROTO_IP* || Internet protocol. ||
+|| *IPPROTO_IPV6* || Internet Protocol Version 6. ||
+|| *IPPROTO_ICMP* || Control message protocol. ||
+|| *IPPROTO_RAW* || Raw IP Packets Protocol. ||
+|| *IPPROTO_TCP* || Transmission control protocol. ||
+|| *IPPROTO_UDP* || User datagram protocol. ||
+
+*since:* 0.3.0
+
+== Shutdown options ==
+|| *SHUT_RD* || Disables further receive operations. ||
+|| *SHUT_RDWR* || Disables further send and receive operations. ||
+|| *SHUT_WR* || Disables further send operations. ||
+
+*since:* 0.3.0
+
+== Misc. ==
+|| *SOMAXCONN* || The maximum backlog queue length. ||
+|| *INADDR_ANY* || IPv4 local host address. ||
+|| *INADDR_BROADCAST* || IPv4 broadcast address. ||
+
+*since:* 0.3.0
 
 ----
 = Functions =

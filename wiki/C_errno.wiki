@@ -26,13 +26,12 @@ System error numbers.
 ----
 = Constants =
 
-|| *CONST_A* || Definition A. ||
-|| *CONST_B* || Definition B. ||
-
 *General errors*
 || *EDOM* || Numerical argument out of domain. ||
 || *EILSEQ* || Illegal byte sequence. ||
 || *ERANGE* || Result too large. ||
+*since:* 0.3.0
+<BR>
 
 *POSIX Additional errors*
 || *EPERM* || Operation not permitted. ||
@@ -70,6 +69,9 @@ System error numbers.
 || *ENOLCK* || No locks available. ||
 || *ENOSYS* || Function not implemented. ||
 || *ENOTEMPTY* || Directory not empty. ||
+*since:* 0.3.0
+<BR>
+
 
 *Socket errors*
 || *ENETDOWN* || Network is down. ||
@@ -84,9 +86,8 @@ System error numbers.
 || *ETOOMANYREFS* || Too many references: can't splice. ||
 || *ETIMEDOUT* || Operation timed out. ||
 || *ECONNREFUSED* || Connection refused. ||
-
 *since:* 0.3.0
-
+<BR>
 
 ----
 = Functions =

@@ -7,27 +7,83 @@ Yeah it sucks because we have to sync by hand, we'll try to automate it later.
 
 on the source code file, we use only one comment
 
-/* documentation: http://code.google.com/p/redtamarin/wiki/C_stdlib */
+/* documentation: http://code.google.com/p/redtamarin/wiki/C_errno */
 </wiki:comment>
 
 = About =
-Definition.
+System error numbers.
 
-*package:* {{{C.name.*}}}
+*package:* {{{C.errno.*}}}
 
 *product:* redtamarin 0.3
 
 *since:* 0.3.0
 
 *references:*
- * link1
- * link2
+ * http://www.dinkumware.com/manuals/default.aspx?manual=compleat&page=errno.html
+ * http://en.wikipedia.org/wiki/Errno.h
 
 ----
 = Constants =
 
 || *CONST_A* || Definition A. ||
 || *CONST_B* || Definition B. ||
+
+*General errors*
+|| *EDOM* || Numerical argument out of domain. ||
+|| *EILSEQ* || Illegal byte sequence. ||
+|| *ERANGE* || Result too large. ||
+
+*POSIX Additional errors*
+|| *EPERM* || Operation not permitted. ||
+|| *ENOENT* || No such file or directory. ||
+|| *ESRCH* || No such process. ||
+|| *EINTR* || Interrupted system call. ||
+|| *EIO* || Input/output error. ||
+|| *ENXIO* || Device not configured. ||
+|| *E2BIG* || Argument list too long. ||
+|| *ENOEXEC* || Exec format error. ||
+|| *EBADF* || Bad file descriptor. ||
+|| *ECHILD* || No child processes. ||
+|| *EAGAIN* || Resource temporarily unavailable. ||
+|| *ENOMEM* || Cannot allocate memory. ||
+|| *EACCES* || Permission denied. ||
+|| *EFAULT* || Bad address. ||
+|| *EBUSY* || Device / Resource busy. ||
+|| *EEXIST* || File exists. ||
+|| *EXDEV* || Cross-device link. ||
+|| *ENODEV* || Operation not supported by device. ||
+|| *ENOTDIR* || Not a directory. ||
+|| *EISDIR* || Is a directory. ||
+|| *EINVAL* || Invalid argument. ||
+|| *ENFILE* || Too many open files in system. ||
+|| *EMFILE* || Too many open files. ||
+|| *ENOTTY* || Inappropriate ioctl for device. ||
+|| *EFBIG* || File too large. ||
+|| *ENOSPC* || No space left on device. ||
+|| *ESPIPE* || Illegal seek. ||
+|| *EROFS* || Read-only file system. ||
+|| *EMLINK* || Too many links. ||
+|| *EPIPE* || Broken pipe. ||
+|| *EDEADLK* || Resource deadlock avoided. ||
+|| *ENAMETOOLONG* || File name too long. ||
+|| *ENOLCK* || No locks available. ||
+|| *ENOSYS* || Function not implemented. ||
+|| *ENOTEMPTY* || Directory not empty. ||
+
+*Socket errors*
+|| *ENETDOWN* || Network is down. ||
+|| *ENETUNREACH* || Network is unreachable. ||
+|| *ENETRESET* || Network dropped connection on reset. ||
+|| *ECONNABORTED* || Software caused connection abort. ||
+|| *ECONNRESET* || Connection reset by peer. ||
+|| *ENOBUFS* || No buffer space available. ||
+|| *EISCONN* || Socket is already connected. ||
+|| *ENOTCONN* || Socket is not connected. ||
+|| *ESHUTDOWN* || Can't send after socket shutdown. ||
+|| *ETOOMANYREFS* || Too many references: can't splice. ||
+|| *ETIMEDOUT* || Operation timed out. ||
+|| *ECONNREFUSED* || Connection refused. ||
 
 *since:* 0.3.0
 

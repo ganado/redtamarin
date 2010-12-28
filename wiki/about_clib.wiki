@@ -10,16 +10,18 @@ Most of those libraries are implemented within a single C++ native class but we 
 
 Here few things to know on how those libs are documented.
 
-Because we are defining libraries for Tamarin we can not really use asdoc to document the source code.
+Because we are defining libraries for Tamarin we can not really<br>
+use asdoc to document the source code (well.. we use it a bit).
 
-So the rule is to document everything in the wiki page.
+So the rule is to document everything in the wiki pages.
 
 *The general rule:*
 
 Everything you see in the wiki pages is considered a native implementations,<br>
 you can access it in AS3 but the code doing the real work is in C/C++.
 
-If you don't see it in the wiki pages, that means either we decided to ignore it and it is unlikely to be implemented.
+If you don't see it in the wiki pages, that means either we decided to ignore it<br>
+and it is unlikely to be implemented.
 
 *Here some special case:*
 

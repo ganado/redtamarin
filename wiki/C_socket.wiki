@@ -40,7 +40,7 @@ Socket constants and function helpers.
 public function gethostbyaddr( addr:String, numeric:Boolean = false ):Array
 }}}
 Network host database function<br>
-which returns a list of hostnames or IP addresses ('numeric=true') by providing an IP address.
+which returns a list of hostnames or IP addresses (`numeric=true`) by providing an IP address.
 
 *example:* basic usage
 {{{
@@ -57,7 +57,7 @@ import C.socket.*;
 public function gethostbyname( hostname:String, numeric:Boolean = false ):Array
 }}}
 Network host database function<br>
-which returns a list of hostnames or IP addresses ('numeric=true') by providing a hostname.
+which returns a list of hostnames or IP addresses (`numeric=true`) by providing a hostname.
 
 *example:* basic usage
 {{{

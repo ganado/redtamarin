@@ -32,7 +32,7 @@ System error numbers.
 || *ERANGE* || Result too large. ||
 
 *since:* 0.3.0
-<BR>
+<br><br>
 
 *POSIX Additional errors*
 || *EPERM* || Operation not permitted. ||
@@ -72,7 +72,7 @@ System error numbers.
 || *ENOTEMPTY* || Directory not empty. ||
 
 *since:* 0.3.0
-<BR>
+<br><br>
 
 
 *Socket errors*
@@ -90,7 +90,7 @@ System error numbers.
 || *ECONNREFUSED* || Connection refused. ||
 
 *since:* 0.3.0
-<BR>
+<br><br>
 
 ----
 = Functions =

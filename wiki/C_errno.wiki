@@ -1,4 +1,4 @@
-#summary errno for AS3.
+#summary errno.h for AS3.
 
 <wiki:comment>
 Because we are defining libraries for Tamarin we can not really use asdoc to document the source code.

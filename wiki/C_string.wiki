@@ -67,6 +67,20 @@ public function strmode( mode:int ):String
 }}}
 Returns a string describing file modes.
 
+Not part of the C standard lib, but part of GNU libc
+and pretty usefull function so we added it.
+
+|| char || meaning ||
+|| - || regular file ||
+|| b || block special file ||
+|| c || character special file ||
+|| d || directory ||
+|| l || symbolic link ||
+|| n || network special file (HP-UX) ||
+|| p || fifo (named pipe) ||
+|| s || socket ||
+|| ? || some other file type ||
+
 *example:* basic usage
 {{{
 import C.string.*;

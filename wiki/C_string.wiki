@@ -7,40 +7,72 @@ Yeah it sucks because we have to sync by hand, we'll try to automate it later.
 
 on the source code file, we use only one comment
 
-/* documentation: http://code.google.com/p/redtamarin/wiki/C_stdlib */
+/* documentation: http://code.google.com/p/redtamarin/wiki/C_string */
 </wiki:comment>
 
 = About =
-Definition.
+String operations.
 
-*package:* {{{C.name.*}}}
+*package:* {{{C.string.*}}}
 
 *product:* redtamarin 0.3
 
 *since:* 0.3.0
 
 *references:*
- * link1
- * link2
-
-----
-= Constants =
-
-|| *CONST_A* || Definition A. ||
-|| *CONST_B* || Definition B. ||
-
-*since:* 0.3.0
+ * http://www.dinkumware.com/manuals/default.aspx?manual=compleat&page=string.html
+ * http://en.wikipedia.org/wiki/String.h
 
 
 ----
 = Functions =
 
-== test ==
+== strerror ==
 {{{
-public function test():void
+public function strerror( errnum:int ):String
 }}}
-Definition test.
+Accepts an error number argument errnum and returns the corresponding message string.
+
+*example:* basic usage
+{{{
+import C.string.*;
+
+trace( "errno=2: " + strerror(2) ); //errno=2: No such file or directory
+}}}
 
 *since:* 0.3.0
 
+
+== strlen ==
+{{{
+public function strlen( str:String ):uint
+}}}
+Find length of string.
+
+*example:* basic usage
+{{{
+import C.string.*;
+
+var word:String = "hello";
+trace( "len: " + strlen(word) ); //len: 5
+}}}
+
+*since:* 0.3.0
+
+
+== strmode ==
+<font color="blue">not native</font><br>
+{{{
+public function strmode( mode:int ):String
+}}}
+Returns a string describing file modes.
+
+*example:* basic usage
+{{{
+import C.string.*;
+
+//TODO
+}}}
+
+*since:* 0.3.0
 ----

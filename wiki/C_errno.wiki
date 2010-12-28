@@ -30,6 +30,7 @@ System error numbers.
 || *EDOM* || Numerical argument out of domain. ||
 || *EILSEQ* || Illegal byte sequence. ||
 || *ERANGE* || Result too large. ||
+
 *since:* 0.3.0
 <BR>
 
@@ -69,6 +70,7 @@ System error numbers.
 || *ENOLCK* || No locks available. ||
 || *ENOSYS* || Function not implemented. ||
 || *ENOTEMPTY* || Directory not empty. ||
+
 *since:* 0.3.0
 <BR>
 
@@ -86,6 +88,7 @@ System error numbers.
 || *ETOOMANYREFS* || Too many references: can't splice. ||
 || *ETIMEDOUT* || Operation timed out. ||
 || *ECONNREFUSED* || Connection refused. ||
+
 *since:* 0.3.0
 <BR>
 

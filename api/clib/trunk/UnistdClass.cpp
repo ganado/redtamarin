@@ -206,6 +206,16 @@ namespace avmshell
         return VMPI_access(pathUTF8.c_str(), mode);
     }
 
+    int UnistdClass::chdir(Stringp path)
+    {
+        if (!path) {
+            toplevel()->throwArgumentError(kNullArgumentError, "path");
+        }
+
+        StUTF8String pathUTF8(path);
+        return VMPI_chdir(pathUTF8.c_str());
+    }
+    
     int UnistdClass::chmod(Stringp path, int mode)
     {
         if (!path) {
@@ -260,6 +270,16 @@ namespace avmshell
     void UnistdClass::sleep(int milliseconds)
     {
         VMPI_sleep(milliseconds);
+    }
+
+    int UnistdClass::unlink(Stringp path)
+    {
+        if (!path) {
+            toplevel()->throwArgumentError(kNullArgumentError, "path");
+        }
+        
+        StUTF8String pathUTF8(path);
+        return VMPI_unlink(pathUTF8.c_str());
     }
 
 }

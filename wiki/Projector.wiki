@@ -44,7 +44,7 @@ Then we could run only `*.abc` files via the shell and that would suck money bal
 So, to avoid that, let's learn how all this is working :).
 
 In the ASC source code<br>
-`/src/macromedia/asc/embedding/Compiler.java`<br>
+[http://opensource.adobe.com/svn/opensource/flex/sdk/trunk/modules/asc/src/java/macromedia/asc/embedding/Compiler.java /src/macromedia/asc/embedding/Compiler.java]<br>
 you have a `createProjector()` function
 {{{
     static void createProjector(String avmplus_exe, String pathspec, String scriptname, ByteList bytes)

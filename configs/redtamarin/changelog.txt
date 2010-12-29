@@ -10,6 +10,18 @@
   SOCKET are casted as int
   small changes
 - added gethostbyaddr() and gethostbyname()
+- forced to use a VMPI_gethostbyaddr() for some small difference between POSIX and WIN32
+- sync with tamarin-redux tip d8b78be5b40f (22/12/2010)
+- better integration of redtamarin features
+   /VMPI/VMPI.h  -> original Tamarin
+   /VMPI/VMPI2.h -> redtamarin extensions
+   /platform/mac/mac-platform.h  -> original Tamarin
+   /platform/mac/mac-platform2.h -> redtamarin extensions
+   /VMPI/PosixPortUtils.cpp  -> original Tamarin
+   /VMPI/PosixPortUtils2.cpp -> redtamarin extensions
+   etc.
+- added chdir() and unlink()
+- re-integrated all of clib, tested only on OSX
 
 * 0.2.9
 - added VMPI_chmod

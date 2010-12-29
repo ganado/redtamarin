@@ -38,6 +38,87 @@ This is cool and all but we end up with some issues
 
 === Details ===
 
+What would happen if Adobe decided to remove projector support ?<br>
+Then we could run only `*.abc` files via the shell and that would suck money balls.
+
+So, to avoid that, let's learn how all this is working :).
+
+In the ASC source code<br>
+`/src/macromedia/asc/embedding/Compiler.java`<br>
+you have a `createProjector()` function
+{{{
+    static void createProjector(String avmplus_exe, String pathspec, String scriptname, ByteList bytes)
+    {
+    	BufferedInputStream exe_in = null;
+    	BufferedOutputStream exe_out = null;
+    	int bytesWritten = 0;
+    	
+    	try
+    	{
+    		exe_in = new BufferedInputStream(new FileInputStream(new File(avmplus_exe)));
+    		
+    		int abc_length = bytes.size();
+    		
+    		int avmplus_exe_length = exe_in.available();
+    		byte avmplus_exe_bytes[] = new byte[avmplus_exe_length];
+    		exe_in.read(avmplus_exe_bytes);
+    		    		
+    		exe_out = new BufferedOutputStream(new FileOutputStream(new File(pathspec, scriptname + ".exe")));
+    		
+    		exe_out.write(avmplus_exe_bytes);
+    		bytesWritten += avmplus_exe_bytes.length;
+    		
+    		exe_out.write(bytes.toByteArray());
+    		bytesWritten += abc_length;
+
+    		byte header[] = new byte[8];
+    		header[0] = 0x56;
+    		header[1] = 0x34;
+    		header[2] = 0x12;
+    		header[3] = (byte) 0xFA;
+    		header[4] = (byte) (abc_length & 0xFF);
+    		header[5] = (byte) ((abc_length>>8) & 0xFF);
+    		header[6] = (byte) ((abc_length>>16) & 0xFF);
+    		header[7] = (byte) ((abc_length>>24) & 0xFF);
+    		exe_out.write(header);
+    		
+    		bytesWritten += 8;
+    		
+    		exe_out.flush();
+    	}
+		catch (IOException ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if (exe_in != null)
+			{
+				try
+				{
+					exe_in.close();
+				}
+				catch (IOException ex)
+				{
+				}
+			}
+			if (exe_out != null)
+			{
+				try
+				{
+					exe_out.close();
+				}
+				catch (IOException ex)
+				{
+				}
+			}
+		}
+	
+		System.err.println(scriptname + ".exe, " + bytesWritten + " bytes written");
+	}
+}}}
+
+
 
 === Misc. ===
 

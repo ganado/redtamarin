@@ -23,10 +23,18 @@ for example
 $ java -jar asc.jar -AS3 -import builtin.abc -import shell_toplevel.abc -exe redshell testcli.as
 }}}
 
+the `-exe` option
+{{{
+-exe <avmplus path> = emit an EXE file (projector)
+}}}
+
 this will create a `testcli.abc` and a `testcli.exe`
 
 the `testcli.exe` merge the `redshell` executable and the `testcli.abc`
 
+This is cool and all but we end up with some issues
+ * ASC can not generate a projector from a `*.swf` file
+ * the default `avmshell` is more a tool to test the AVM<br>and focus less on executing projectors<br>even if there are plenty of support funtions to do that
 
 === Details ===
 

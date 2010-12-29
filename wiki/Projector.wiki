@@ -2,7 +2,40 @@
 
 === Introduction ===
 
+A projector is a command-line executable that embed an `*.abc` file with the avmshell (or redshell in our case).
 
+This the *MOST IMPORTANT* feature for redtamarin as it allows to create a single executable and so distribute easily your programs.
+
+With Flash a projector have the following workflow:
+ * you create a `*.swf` file
+ * you open this `*.swf` with the Standalone Flash Player
+ * from the menu `File/Create Projector ...`
+ * save
+
+this basically merge the Flash Player `*.exe` and the `*.swf` into one executable.
+
+With Tamarin it is basically the same thing but with some subtle differences.
+
+You can only generate a projector with [ASC]
+
+for example
+{{{
+$ java -jar asc.jar -AS3 -import builtin.abc -import shell_toplevel.abc -exe redshell testcli.as
+}}}
+
+this will create a `testcli.abc` and a `testcli.exe`
+
+the `testcli.exe` merge the `redshell` executable and the `testcli.abc`
 
 
 === Details ===
+
+
+=== Misc. ===
+
+Where to find the Flash Player projectors:<br>
+[http://kb2.adobe.com/cps/142/tn_14266.html Archived Flash Player versions]
+
+example:
+ * unzip `flashplayer10r42_34_mac_sa_debug.app.zip`
+ * run `Flash Player.app`

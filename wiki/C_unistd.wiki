@@ -160,7 +160,13 @@ Suspend execution for an interval of time.
 
 
 == unlink ==
-<font color="red">not implemented</font><br>
+<font color="red">not implemented for UNIX/WIN32</font><br>
+{{{
+public function unlink( path:String ):int
+}}}
 Remove a directory entry.
+
+*since:* 0.3.0
+
 
 ----

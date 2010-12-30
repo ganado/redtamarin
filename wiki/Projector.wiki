@@ -251,7 +251,7 @@ and that means we can reuse `*.abc` files as libraries (kind of like a `*.swc`).
 
 TODO (talk about tools here)
 
-createprojector<br>
+*createprojector*<br>
 see [http://code.google.com/p/redtamarin/source/browse/samples/createprojector.as /samples/createprojector.as]
 {{{
 Usage:

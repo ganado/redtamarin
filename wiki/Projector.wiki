@@ -6,7 +6,7 @@ A projector is a command-line executable that embed an `*.abc` file with the avm
 
 This the *MOST IMPORTANT* feature for redtamarin as it allows to create a single executable and so distribute easily your programs.
 
-With Flash a projector have the following workflow:
+With Flash a projector has the following workflow:
  * you create a `*.swf` file
  * you open this `*.swf` with the Standalone Flash Player
  * from the menu `File/Create Projector ...`

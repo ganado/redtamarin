@@ -41,7 +41,7 @@
 
    Usage:
      httpget url
-       url        the URL of the file to get
+     url        the URL of the file to get
 
    By default the received will be saved in the current folder.
 

@@ -118,6 +118,80 @@ you have a `createProjector()` function
 	}
 }}}
 
+in the Tamarin source code<br>
+[http://code.google.com/p/redtamarin/source/browse/tamarin-redux/shell/ShellCore.cpp?r=710 /tamarin-redux/shell/ShellCore.cpp]<br>
+you have `executeProjector()`, `isValidProjectorFile()`
+{{{
+    // Run a known projector file
+    int ShellCore::executeProjector(char *executablePath)
+    {
+        AvmAssert(isValidProjectorFile(executablePath));
+
+        uint8_t header[8];
+
+        FileInputStream file(executablePath);
+
+        file.seek(file.length() - 8);
+        file.read(header, 8);
+
+        int abcLength = (header[4]     |
+                         header[5]<<8  |
+                         header[6]<<16 |
+                         header[7]<<24);
+
+        ScriptBuffer code = newScriptBuffer(abcLength);
+        file.seek(file.length() - 8 - abcLength);
+        file.read(code.getBuffer(), abcLength);
+
+        return handleArbitraryExecutableContent(code, executablePath);
+    }
+
+    /* static */
+    bool ShellCore::isValidProjectorFile(const char* filename)
+    {
+        FileInputStream file(filename);
+        uint8_t header[8];
+
+        if (!file.valid())
+            return false;
+
+        file.seek(file.length() - 8);
+        file.read(header, 8);
+
+        // Check the magic number
+        if (header[0] != 0x56 || header[1] != 0x34 || header[2] != 0x12 || header[3] != 0xFA)
+            return false;
+
+        return true;
+    }
+}}}
+
+here the structure of a projector
+{{{
+    | executable bytes | abc bytes | projector header 8 bytes |
+}}}
+
+the important part is the projector header
+{{{
+    | projector header |
+       |_ magic number = 0x56 0x34 0x12 0xFA
+       |_ abc packed length = LEN | LEN<<8 |  LEN<<16 | LEN<<24
+}}}
+
+how do we know if we are a projector ?
+ * read the last 8 bytes
+ * the first 4 bytes is the magic number `0x56 0x34 0x12 0xFA`
+ * the following 4 bytes is the abc file length
+
+how do we extract an abc file from a projector ?
+ * read the last 8 bytes
+ * the first 4 bytes is the magic number `0x56 0x34 0x12 0xFA`
+ * the following 4 bytes is the abc file length
+ * from the end of the executable minus 8 bytes, read the abc file length
+
+and there is more :)
+ * it is the same principle and signature for a Flash projector<br>(yes you can easily extract a `*.swf` from a projector)
+ * you are not limited to embed `*.abc`, you can also embed a `*.swf` file<br>Tamarin will extract the `*.swf` file the same way it extracts an `*.abc` file<br>and then will parse the `*.swf` file to extract all the contained `*.abc` files
 
 
 === Misc. ===

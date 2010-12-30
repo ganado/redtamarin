@@ -193,9 +193,63 @@ and there is more :)
  * it is the same principle and signature for a Flash projector<br>(yes you can easily extract a `*.swf` from a projector)
  * you are not limited to embed `*.abc`, you can also embed a `*.swf` file<br>Tamarin will extract the `*.swf` file the same way it extracts an `*.abc` file<br>and then will parse the `*.swf` file to extract all the contained `*.abc` files
 
+`ShellCore.cpp` does support `*.abc` files AND `*.swf` files
+{{{
+    int ShellCore::handleArbitraryExecutableContent(ScriptBuffer& code, const char * filename)
+    {
+        setStackLimit();
+
+        TRY(this, kCatchAction_ReportAsError)
+        {
+            if (AbcParser::canParse(code) == 0) {
+                #ifdef VMCFG_VERIFYALL
+                if (config.verbose_vb & VB_verify)
+                    console << "ABC " << filename << "\n";
+                #endif
+
+                uint32_t api = this->getAPI(NULL);
+                handleActionBlock(code, 0, shell_toplevel, NULL, user_codeContext, api);
+            }
+            else if (isSwf(code)) {
+                #ifdef VMCFG_VERIFYALL
+                if (config.verbose_vb & VB_verify)
+                    console << "SWF " << filename << "\n";
+                #endif
+                handleSwf(filename, code, shell_toplevel, user_codeContext);
+            }
+            else {
+                console << "unknown input format in file: " << filename << "\n";
+                return(1);
+            }
+        }
+        CATCH(Exception *exception)
+        {
+            TRY(this, kCatchAction_ReportAsError)
+            {
+                console << string(exception->atom) << "\n";
+            }
+            CATCH(Exception * e2)
+            {
+                (void)e2;
+                console << "Sorry, an exception occurred but could not be reported\n";
+            }
+            END_CATCH
+            END_TRY
+
+            return 1;
+        }
+        END_CATCH
+        END_TRY
+
+        return 0;
+    }
+}}}
+
 From there, not only we will be able to generate a projector from AS3,<br>
 but we will also be able to create a projector from a `*.swf` file<br>
 and that means we can reuse `*.abc` files as libraries (kind of like a `*.swc`).
+
+TODO (talk about tools here)
 
 
 === Misc. ===

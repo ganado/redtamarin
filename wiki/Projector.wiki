@@ -193,6 +193,10 @@ and there is more :)
  * it is the same principle and signature for a Flash projector<br>(yes you can easily extract a `*.swf` from a projector)
  * you are not limited to embed `*.abc`, you can also embed a `*.swf` file<br>Tamarin will extract the `*.swf` file the same way it extracts an `*.abc` file<br>and then will parse the `*.swf` file to extract all the contained `*.abc` files
 
+From there, not only we will be able to generate a projector from AS3,<br>
+but we will also be able to create a projector from a `*.swf` file<br>
+and that means we can reuse `*.abc` files as libraries (kind of like a `*.swc`).
+
 
 === Misc. ===
 

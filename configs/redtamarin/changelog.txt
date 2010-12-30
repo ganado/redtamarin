@@ -25,6 +25,8 @@
 - changed some logic in ShellCore and avmshell
   now when you embed your abc in a projector
   you don't need to use -- before passing your arguments
+- System API now have a programFilename getter that returns argv[0]
+  System.executablePath and VMPI_getExecutablePath removed
 
 * 0.2.9
 - added VMPI_chmod

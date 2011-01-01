@@ -27,8 +27,8 @@ public static const argv:Array
 Contains the arguments passed to the program.
 
 *note:*<br>
-initialised by the private native function `getArgv()`.<br>
-Compared to C++ argv, argv[0] is not included<br>
+Initialised by the private native function `getArgv()`.<br>
+Compared to C++ argv, `argv[0]` is not included<br>
 but saved in `programFilename`.
 
 *usage:*<br>
@@ -56,7 +56,7 @@ public static const startupDirectory:String
 The original directory when the application started.
 
 *note:*<br>
-initialised by the private native function `getStartupDirectory()`
+Initialised by the private native function `getStartupDirectory()`.
 
 *since:* 0.3.0
 

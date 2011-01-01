@@ -26,7 +26,7 @@
        * [System System]
        * [OperatingSystem Operating System]
        * [FileSystem File System]
-       * [Socket Sockets]
+       * [Socket Socket]
   * Documentation
     * [Tamarin Tamarin]
     * [ASC ActionScript Compiler]

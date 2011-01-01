@@ -27,6 +27,9 @@
   you don't need to use -- before passing your arguments
 - System API now have a programFilename getter that returns argv[0]
   System.executablePath and VMPI_getExecutablePath removed
+- re-integrated all of clib for WIN32 and tested
+- fixed VMPI_realpath for WIN32
+- re-integrated all of clib for UNIX and tested
 
 * 0.2.9
 - added VMPI_chmod

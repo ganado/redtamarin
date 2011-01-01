@@ -21,12 +21,12 @@
        * [C_errno errno]
        * [C_stdio stdio]
        * [C_socket socket]
-    * [FlashPlatform Flash Platform]
     * [AVMPlus AVMPlus]
        * [System System]
        * [OperatingSystem Operating System]
        * [FileSystem File System]
        * [Socket Socket]
+    * [FlashPlatform Flash Platform]
   * Documentation
     * [Tamarin Tamarin]
     * [ASC ActionScript Compiler]

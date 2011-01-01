@@ -19,6 +19,18 @@ Represents the currently running application and the avmshell runtime.
 
 = Properties =
 
+== argv ==
+<font color="blue">not native</font><br>
+{{{
+public static const argv:Array
+}}}
+Contains the arguments passed to the program.
+
+*note:*<br>
+initialised by the private function `getArgv()`
+
+*since:* 0.3.0
+
 == startupDirectory ==
 <font color="blue">not native</font><br>
 {{{
@@ -26,16 +38,21 @@ public static const startupDirectory:String
 }}}
 The original directory when the application started.
 
+*note:*<br>
+initialised by the private function `getStartupDirectory()`
+
 *since:* 0.3.0
 
 == workingDirectory ==
-<font color="red">not implemented</font><br>
 <font color="blue">not native</font><br>
 {{{
 public function get workingDirectory():String
 public function set workingDirectory( value:String ):void
 }}}
 Allows to get or set the current working directory of the application.
+
+*note:*<br>
+simply reuse `getcwd()` and `chdir()` from [C_unistd C.unistd].
 
 *since:* 0.3.0
 
@@ -50,6 +67,7 @@ Definition.
 = Methods =
 
 == test ==
+<font color="red">not implemented</font><br>
 {{{
 public function test():void
 }}}

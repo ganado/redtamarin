@@ -1,4 +1,4 @@
-#summary The Operating System API.
+#summary AVMPlus Operating System class.
 
 <wiki:comment>
 Because we are defining libraries for Tamarin we can not really use asdoc to document the source code.

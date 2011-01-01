@@ -1,17 +1,14 @@
 #summary AVMPlus System class.
 
 <wiki:comment>
-Because we are defining libraries for Tamarin we can not really use asdoc to document the source code.
-So the rule is to document everything in the wiki page.
-Yeah it sucks because we have to sync by hand, we'll try to automate it later.
+Here we can use asdoc to document the source code.
+So the rule is to document the side notes in the wiki page.
 
-on the source code file, we use only one comment
-
-/* documentation: http://code.google.com/p/redtamarin/wiki/C_stdlib */
+/* more in depth informations: http://code.google.com/p/redtamarin/wiki/System */
 </wiki:comment>
 
 = About =
-Definition.
+Represents the currently running application.
 
 *package:* {{{avmplus.*}}}
 
@@ -19,11 +16,7 @@ Definition.
 
 *since:* 0.3.0
 
-*references:*
- * link1
- * link2
 
-----
 = Properties =
 
 == name ==
@@ -34,7 +27,7 @@ Definition.
 
 *since:* 0.3.0
 
-----
+
 = Methods =
 
 == test ==

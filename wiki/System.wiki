@@ -10,7 +10,7 @@ So the rule is to document the side notes in the wiki page.
 = About =
 Represents the currently running application.
 
-*package:* {{{avmplus.*}}}
+*package:* {{{avmplus.FileSystem}}}
 
 *product:* redtamarin 0.3
 

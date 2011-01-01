@@ -41,8 +41,7 @@ you need to use `--` followed by the command line arguments.
 {{{
 myprogram.exe -arg1 -arg2 arg3
 }}}
-when you are running an independent executable<br>
-(avmshell embedding an `*.abc` file)<br>
+when you are running an independent executable (avmshell embedding an `*.abc` file)<br>
 you pass directly the command line arguments (like any other exe).
 
 

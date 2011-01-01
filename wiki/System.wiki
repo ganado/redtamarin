@@ -22,7 +22,7 @@ Represents the currently running application and the avmshell runtime.
 == startupDirectory ==
 <font color="blue">not native</font><br>
 {{{
-public function get startupDirectory():String
+public static const startupDirectory:String
 }}}
 The original directory when the application started.
 

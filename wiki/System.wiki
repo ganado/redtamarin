@@ -8,9 +8,9 @@ So the rule is to document the side notes in the wiki page.
 </wiki:comment>
 
 = About =
-Represents the currently running application.
+Represents the currently running application and the avmshell runtime.
 
-*package:* {{{avmplus.FileSystem}}}
+*package:* {{{avmplus.System}}}
 
 *product:* redtamarin 0.3
 
@@ -18,6 +18,25 @@ Represents the currently running application.
 
 
 = Properties =
+
+== startupDirectory ==
+<font color="red">not implemented</font><br>
+{{{
+public function get startupDirectory():String
+}}}
+The original directory when the application started.
+
+*since:* 0.3.0
+
+== workingDirectory ==
+<font color="red">not implemented</font><br>
+{{{
+public function get workingDirectory():String
+public function set workingDirectory( value:String ):void
+}}}
+Allows to get or set the current working directory of the application.
+
+*since:* 0.3.0
 
 == name ==
 {{{
@@ -27,10 +46,10 @@ Definition.
 
 *since:* 0.3.0
 
-
 = Methods =
 
 == test ==
+<font color="blue">not native</font><br>
 {{{
 public function test():void
 }}}

@@ -20,7 +20,7 @@ Represents the currently running application and the avmshell runtime.
 = Properties =
 
 == startupDirectory ==
-<font color="red">not implemented</font><br>
+<font color="blue">not native</font><br>
 {{{
 public function get startupDirectory():String
 }}}
@@ -30,6 +30,7 @@ The original directory when the application started.
 
 == workingDirectory ==
 <font color="red">not implemented</font><br>
+<font color="blue">not native</font><br>
 {{{
 public function get workingDirectory():String
 public function set workingDirectory( value:String ):void
@@ -49,7 +50,6 @@ Definition.
 = Methods =
 
 == test ==
-<font color="blue">not native</font><br>
 {{{
 public function test():void
 }}}

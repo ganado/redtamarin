@@ -52,7 +52,7 @@ public function set workingDirectory( value:String ):void
 Allows to get or set the current working directory of the application.
 
 *note:*<br>
-simply reuse `getcwd()` and `chdir()` from [C_unistd C.unistd].
+reuse `getcwd()` and `chdir()` from [C_unistd C.unistd].
 
 *since:* 0.3.0
 
@@ -68,6 +68,7 @@ Definition.
 
 == test ==
 <font color="red">not implemented</font><br>
+<font color="blue">not native</font><br>
 {{{
 public function test():void
 }}}

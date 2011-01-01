@@ -116,7 +116,7 @@ namespace avmshell
         if (!path) {
             toplevel()->throwArgumentError(kNullArgumentError, "path");
         }
-
+        
         StUTF8String pathUTF8(path);
         return core()->newStringUTF8( VMPI_realpath(pathUTF8.c_str()) );
     }

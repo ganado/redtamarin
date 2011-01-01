@@ -1,4 +1,4 @@
-#summary The Socket API.
+#summary AVMPlus Socket class.
 
 <wiki:comment>
 Because we are defining libraries for Tamarin we can not really use asdoc to document the source code.

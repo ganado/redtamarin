@@ -1,30 +1,73 @@
 #summary AVMPlus Operating System class.
 
 <wiki:comment>
-Because we are defining libraries for Tamarin we can not really use asdoc to document the source code.
-So the rule is to document everything in the wiki page.
-Yeah it sucks because we have to sync by hand, we'll try to automate it later.
+Here we can use asdoc to document the source code.
+So the rule is to document the side notes in the wiki page.
 
-on the source code file, we use only one comment
-
-/* documentation: http://code.google.com/p/redtamarin/wiki/C_stdlib */
+/* more in depth informations: http://code.google.com/p/redtamarin/wiki/OperatingSystem */
 </wiki:comment>
 
 = About =
-Definition.
+Provides informations about the Operating System.
 
-*package:* {{{avmplus.*}}}
+*class:* {{{avmplus::OperatingSystem}}}
 
 *product:* redtamarin 0.3
 
 *since:* 0.3.0
 
-*references:*
- * link1
- * link2
 
-----
 = Properties =
+
+== name ==
+{{{
+public static function get name():String
+}}}
+The OS kernel name.
+
+*note:*<br>
+Returns the `sysname` property from `uname()`.
+
+*since:* 0.3.0
+
+
+== username ==
+{{{
+public static function get username():String
+}}}
+The current user name logged in the OS.
+
+*note:*<br>
+The same as using `getlogin()` from [C_unistd C.unistd].
+
+*since:* 0.3.0
+
+
+== nodename ==
+{{{
+public static function get nodename():String
+}}}
+Name of this node on the network.
+
+*note:*<br>
+Returns the `nodename` property from `uname()`.
+
+*since:* 0.3.0
+
+
+
+== hostname ==
+{{{
+public static function get hostname():String
+}}}
+Definition.
+
+*note:*<br>
+The same as using `gethostname()` from [C_unistd C.unistd].
+
+*since:* 0.3.0
+
+
 
 == name ==
 {{{
@@ -34,7 +77,47 @@ Definition.
 
 *since:* 0.3.0
 
-----
+
+
+== name ==
+{{{
+public function get name():String
+}}}
+Definition.
+
+*since:* 0.3.0
+
+
+
+== name ==
+{{{
+public function get name():String
+}}}
+Definition.
+
+*since:* 0.3.0
+
+
+
+== name ==
+{{{
+public function get name():String
+}}}
+Definition.
+
+*since:* 0.3.0
+
+
+
+== name ==
+{{{
+public function get name():String
+}}}
+Definition.
+
+*since:* 0.3.0
+
+
 = Methods =
 
 == test ==

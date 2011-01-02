@@ -170,7 +170,7 @@ or the empty string if not defined.
 *note:*<br>
 Again each vendors have their own logic so we tried to "standardize" a format<br>
 {{{
-{Vendor} {VendorName} {VendorVersion} ({CodeName} {build})
+{Vendor} {VendorName} {VendorVersion} [desc. or version] ({CodeName} [version] {build})
 }}}
 for Windows you will get something like "Microsoft Windows 7 Home Premium (Vienna 6.1 build 2600)"<br>
 <br>
@@ -181,11 +181,19 @@ for Ubuntu you will get something like "Linux Ubuntu 8.04.4 LTS (hardy)"
 *since:* 0.3.0
 
 
-== name ==
+== codeName ==
 {{{
-public function get name():String
+public static function get codeName():String
 }}}
-Definition.
+Codename of this OS, or "Unknown" if not defined.
+
+*note:*<br>
+for Windows can returns "Detroit", "Chicago", "Memphis", "Whistler", "Memphis NT",<br>
+"Longhorn", "Longhorn Server", "Vienna", etc.<br>
+<br>
+for OS X can returns "Cheetah", "Puma", "Jaguar", "Panther", "Tiger", "Leopard", "Snow Leopard", etc.<br>
+<br>
+for Ubuntu can returns "hardy", etc.
 
 *since:* 0.3.0
 

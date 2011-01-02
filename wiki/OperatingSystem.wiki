@@ -138,11 +138,24 @@ Can returns "Mac OS X", "Ubuntu", "Windows", "Windows 95", "Windows 98",<br>
 *since:* 0.3.0
 
 
-== name ==
+== vendorVersion ==
 {{{
-public function get name():String
+public static function get vendorVersion():String
 }}}
-Definition.
+Version of the OS provided by the vendor/distributor.
+
+*note:*<br>
+Each vendors have their own logic so this version number "format" can vary a lot,<br>
+<br>
+for OS X it can returns "10.1", "10.5.2", "10.6.1", etc.<br>
+<br>
+for Windows it can returns "3.1", "4", "5.0", "5.1", "6.0", etc.<br>
+also for Windows, the bugfix number is the major service pack number, 0 if no service pack<br>
+example:<br>
+Windows XP Professional Service Pack 3<br>
+would return "5.1.3"<br>
+<br>
+for Ubuntu it can returns "8.04", etc.
 
 *since:* 0.3.0
 

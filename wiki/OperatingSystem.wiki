@@ -181,9 +181,9 @@ for Ubuntu you will get something like "Linux Ubuntu 8.04.4 LTS (hardy)"
 *since:* 0.3.0
 
 
-== codeName ==
+== codename ==
 {{{
-public static function get codeName():String
+public static function get codename():String
 }}}
 Codename of this OS, or "Unknown" if not defined.
 

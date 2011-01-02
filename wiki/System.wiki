@@ -87,6 +87,50 @@ you will have to do your own parsing with the value.
 *since:* 0.3.0
 
 
+== swfVersion ==
+{{{
+public native static function get swfVersion():int;
+}}}
+
+*since:* 0.3.0
+
+
+== apiVersion ==
+{{{
+public native static function get apiVersion():int;
+}}}
+Definition.
+
+*since:* 0.3.0
+
+
+== totalMemory ==
+{{{
+public native static function get totalMemory():Number;
+}}}
+Definition.
+
+*since:* 0.3.0
+
+
+== freeMemory ==
+{{{
+public native static function get freeMemory():Number;
+}}}
+Definition.
+
+*since:* 0.3.0
+
+
+== privateMemory ==
+{{{
+public native static function get privateMemory():Number;
+}}}
+Definition.
+
+*since:* 0.3.0
+
+
 == name ==
 {{{
 public function get name():String

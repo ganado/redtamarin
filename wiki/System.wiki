@@ -72,6 +72,21 @@ reuse `getcwd()` and `chdir()` from [C_unistd C.unistd].
 
 *since:* 0.3.0
 
+== programFilename ==
+{{{
+public native static function get programFilename():String;
+}}}
+Returns the program filename.
+
+*note:*<br>
+Contains the value of `argv[0]`, it can be a full path or not.<br>
+Depending on wether you need to retrieve the executable name only<br>
+or the full path of the directory, or both<br>
+you will have to do your own parsing with the value.
+
+*since:* 0.3.0
+
+
 == name ==
 {{{
 public function get name():String

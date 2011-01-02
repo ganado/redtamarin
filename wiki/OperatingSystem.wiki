@@ -60,10 +60,12 @@ Returns the `nodename` property from `uname()`.
 {{{
 public static function get hostname():String
 }}}
-Definition.
+The host name of the local computer.
 
 *note:*<br>
-The same as using `gethostname()` from [C_unistd C.unistd].
+The same as using `gethostname()` from [C_unistd C.unistd].<br>
+The `nodename` and `hostname` are in general the same<br>
+but depending on the OS configuration could be different (hence two different properties).
 
 *since:* 0.3.0
 

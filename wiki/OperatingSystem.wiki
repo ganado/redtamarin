@@ -132,8 +132,8 @@ Name of the OS provided by the vendor/distributor.
 *note:*<br>
 Can returns "Mac OS X", "Ubuntu", "Windows", "Windows 95", "Windows 98",<br>
 "Windows ME", "Windows NT", "Windows XP", "Windows 2000", "Windows Vista",<br>
-"Windows 7", "Windows Server 2003", "Windows Server 2003 R2",<br>
-"Windows Server 2008", "Windows Server 2008 R2", etc.
+"Windows 7", "Windows Server 2003", "Windows Server 2003 !R2",<br>
+"Windows Server 2008", "Windows Server 2008 !R2", etc.
 
 *since:* 0.3.0
 

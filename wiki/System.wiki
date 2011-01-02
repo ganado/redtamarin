@@ -20,7 +20,6 @@ Represents the currently running application and the avmshell runtime.
 = Properties =
 
 == argv ==
-<font color="blue">not native</font><br>
 {{{
 public static const argv:Array
 }}}
@@ -48,7 +47,6 @@ you pass directly the command line arguments (like any other exe).
 *since:* 0.3.0
 
 == startupDirectory ==
-<font color="blue">not native</font><br>
 {{{
 public static const startupDirectory:String
 }}}
@@ -60,7 +58,6 @@ Initialised by the private native function `getStartupDirectory()`.
 *since:* 0.3.0
 
 == workingDirectory ==
-<font color="blue">not native</font><br>
 {{{
 public function get workingDirectory():String
 public function set workingDirectory( value:String ):void
@@ -140,6 +137,19 @@ Definition.
 *since:* 0.3.0
 
 = Methods =
+
+== exit ==
+<font color="red">not implemented</font><br>
+{{{
+public function exit( status:int = -1 ):void
+}}}
+Definition test.
+
+*note:*<br>
+Reuse `exit()` from [C_stdlib C.stdlib].
+
+*since:* 0.3.0
+
 
 == test ==
 <font color="red">not implemented</font><br>

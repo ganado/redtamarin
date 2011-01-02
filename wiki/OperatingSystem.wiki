@@ -160,11 +160,23 @@ for Ubuntu it can returns "8.04", etc.
 *since:* 0.3.0
 
 
-== name ==
+== vendorDescription ==
 {{{
-public function get name():String
+public static function get vendorDescription():String
 }}}
-Definition.
+Description of the OS provided by the vendor/distributor,<br>
+or the empty string if not defined.
+
+*note:*<br>
+Again each vendors have their own logic so we tried to "standardize" a format<br>
+{{{
+{Vendor} {VendorName} {VendorVersion} ({CodeName} {build})
+}}}
+for Windows you will get something like "Microsoft Windows 7 Home Premium (Vienna 6.1 build 2600)"<br>
+<br>
+for OS X you will get something like "Apple Mac OS X 10.5.1 (Leopard build 9B18)"<br>
+<br>
+for Ubuntu you will get something like "Linux Ubuntu 8.04.4 LTS (hardy)"
 
 *since:* 0.3.0
 

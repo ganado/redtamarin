@@ -218,7 +218,29 @@ Definition.
 
 = Methods =
 
+== reboot ==
+<font color="red">not implemented</font><br>
+{{{
+public function reboot():void
+}}}
+Definition test.
+
+*since:* 0.3.0
+
+
+== shutdown ==
+<font color="red">not implemented</font><br>
+{{{
+public function shutdown():void
+}}}
+Definition test.
+
+*since:* 0.3.0
+
+
 == test ==
+<font color="red">not implemented</font><br>
+<font color="blue">not native</font><br>
 {{{
 public function test():void
 }}}

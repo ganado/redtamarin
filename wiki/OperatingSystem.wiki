@@ -71,6 +71,73 @@ but depending on the OS configuration could be different (hence two different pr
 
 
 
+== release ==
+{{{
+public static function get release():String
+}}}
+Current release level of the OS.
+
+*note:*<br>
+Returns the `release` property from `uname()`.
+
+*since:* 0.3.0
+
+
+
+== version ==
+{{{
+public static function get version():String
+}}}
+Current version level of this release of the OS.
+
+*note:*<br>
+Returns the `version` property from `uname()`.
+
+*since:* 0.3.0
+
+
+
+== machine ==
+{{{
+public static function get machine():String
+}}}
+Name of the hardware type the system is running on.
+
+*note:*<br>
+Returns the `machine` property from `uname()`.
+
+*since:* 0.3.0
+
+
+
+== vendor ==
+{{{
+public static function get vendor():String
+}}}
+Name of the vendor (commercial) or distributor (non-commercial) of this OS.
+
+*note:*<br>
+Can returns "Microsoft", "Apple", "Linux", etc.
+
+*since:* 0.3.0
+
+
+
+== vendorName ==
+{{{
+public static function get vendorName():String
+}}}
+Name of the OS provided by the vendor/distributor.
+
+*note:*<br>
+Can returns "Mac OS X", "Ubuntu", "Windows", "Windows 95", "Windows 98",<br>
+"Windows ME", "Windows NT", "Windows XP", "Windows 2000", "Windows Vista",<br>
+"Windows 7", "Windows Server 2003", "Windows Server 2003 R2",<br>
+"Windows Server 2008", "Windows Server 2008 R2", etc.
+
+*since:* 0.3.0
+
+
 == name ==
 {{{
 public function get name():String
@@ -80,6 +147,14 @@ Definition.
 *since:* 0.3.0
 
 
+== name ==
+{{{
+public function get name():String
+}}}
+Definition.
+
+*since:* 0.3.0
+
 
 == name ==
 {{{
@@ -90,7 +165,6 @@ Definition.
 *since:* 0.3.0
 
 
-
 == name ==
 {{{
 public function get name():String
@@ -98,17 +172,6 @@ public function get name():String
 Definition.
 
 *since:* 0.3.0
-
-
-
-== name ==
-{{{
-public function get name():String
-}}}
-Definition.
-
-*since:* 0.3.0
-
 
 
 == name ==

@@ -9,7 +9,11 @@ In short, anything that is considered native goes into the *avmplus* AS3 package
 
 == Implementation ==
 
-Tamarin provide *avmplus.System* and *avmplus.File*, we plan to extend on them.
+Tamarin provide *avmplus.System* and *avmplus.File*.
+
+We updated and changed *avmplus.System*<br>
+and removed *avmplus.File* (replaced by *avmplus.FileSystem*).
+
 
 And we plan to add more, for ex: *avmplus.Process*, *avmplus.Host*, etc.
 

@@ -17,6 +17,8 @@ Provides informations about the Operating System.
 *since:* 0.3.0
 
 
+----
+
 = Properties =
 
 == name ==

@@ -45,13 +45,185 @@ WIN32 use `\`, tolerant of `/`.
 ----
 = Methods =
 
-== test ==
+== exists ==
 {{{
-public function test():void
+public native static function exists( filename:String ):Boolean;
 }}}
-Definition.
+Tests whether a `filename` exists.
+
+*example:* basic usage
+{{{
+import avmplus.FileSystem;
+
+if( !FileSystem.exists( "/some/dummy/file" ) )
+{
+    //do something
+}
+else
+{
+    //do something else
+}
+}}}
 
 *since:* 0.3.0
+
+
+== read ==
+{{{
+public native static function read( filename:String ):String;
+}}}
+Reads the file `filename` into memory and returns it as a String.
+
+*since:* 0.3.0
+
+
+== write ==
+{{{
+public native static function write( filename:String, data:String ):void;
+}}}
+Writes the text `data` to the file `filename`.
+
+*since:* 0.3.0
+
+
+== readByteArray ==
+{{{
+public native static function readByteArray( filename:String ):ByteArray;
+}}}
+Reads the binary file `filename` into memory and returns it as a ByteArray.
+
+*since:* 0.3.0
+
+
+== writeByteArray ==
+{{{
+public native static function writeByteArray( filename:String, bytes:ByteArray ):Boolean;
+}}}
+Writes the binary `bytes` to the file `filename` and returns true on success.
+
+*since:* 0.3.0
+
+
+== getFileMode ==
+{{{
+public native static function getFileMode( filename:String ):int;
+}}}
+Returns the `filename` mode.
+
+*note:*<br>
+Will not work exactly the same between POSIX and WIN32<br>
+<br>
+with POSIX you will want to get the file mode and then apply an additional mode,<br>
+it's more granular as you can choose from `USR`, `GRP` and `OTH`<br>
+{{{
+var mode:int = FileSystem.getFileMode( "myfile.txt" ); // -r--r--r--
+chmod( "myfile.txt", (mode | S_IWUSR ) );              // -rw-r--r--
+}}}
+<br>
+with WIN32, you have only read or write access, and write imply read<br>
+(you can not have a file write-only) and so by default we map<br>
+the `USR` access to `GRP` and `OTH`
+{{{
+var mode:int = FileSystem.getFileMode( "myfile.txt" ); // -r--r--r--
+chmod( "myfile.txt", (mode | S_IWUSR ) );              // -rw-rw-rw-
+}}}
+
+*since:* 0.3.0
+
+
+== canAccess ==
+{{{
+public static function canAccess( filename:String ):Boolean
+}}}
+Verify if we can access the `filename`.
+
+*since:* 0.3.0
+
+
+== canWrite ==
+{{{
+ public static function canWrite( filename:String ):Boolean
+}}}
+Verify if we can write to the `filename`.
+
+*since:* 0.3.0
+
+
+== canRead ==
+{{{
+public static function canRead( filename:String ):Boolean
+}}}
+Verify if we can read the `filename`.
+
+*since:* 0.3.0
+
+
+== isRegularFile ==
+{{{
+public native static function isRegularFile( filename:String ):Boolean;
+}}}
+Test if the `filename` is a regular file.
+
+*since:* 0.3.0
+
+
+== isDirectory ==
+{{{
+public native static function isDirectory( filename:String ):Boolean;
+}}}
+Test if the `filename` is a directory.
+
+*since:* 0.3.0
+
+
+== isSymbolicLink ==
+<font color="red">not implemented</font><br>
+{{{
+public native static function isSymbolicLink( path:String ):Boolean;
+}}}
+Test if the `filename` is a symbolic link.
+
+*since:* 0.3.0
+
+
+== listFiles ==
+{{{
+public native static function listFiles( filename:String, directory:Boolean = false ):Array;
+}}}
+Returns an array of files or directories from `filename`.
+
+*since:* 0.3.0
+
+
+== getFreeDiskSpace ==
+{{{
+public native static function getFreeDiskSpace( filename:String ):Number;
+}}}
+Returns the available disk space in bytes on the volume containing `filename`,<br>
+or `-1` on failure.
+
+*since:* 0.3.0
+
+
+== getTotalDiskSpace ==
+{{{
+public native static function getTotalDiskSpace( filename:String ):Number;
+}}}
+Returns the total disk space in bytes on the volume containing `filename`,<br>
+or `-1` on failure.
+
+*since:* 0.3.0
+
+
+== getUsedDiskSpace ==
+{{{
+public static function getUsedDiskSpace( filename:String ):Number
+}}}
+Returns the used disk space in bytes on the volume containing `filename`,<br>
+or `-1` on failure.
+
+*since:* 0.3.0
+
 
 ----
 

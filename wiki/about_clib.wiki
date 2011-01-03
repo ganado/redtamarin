@@ -26,10 +26,13 @@ and it is unlikely to be implemented.
 *Here some special case:*
 
 <font color="blue">not native</font><br>
-that means this particular code is implemented in AS3
+that means this particular code is implemented in AS3.
 
 <font color="red">not implemented</font><br>
-that means this particular code is planed for implementation but not implemented yet
+that means this particular code is planed for implementation but not implemented yet.
+
+<font color="orange">blocking</font><br>
+that means the function is blocking (eg. block the flow of the program).
 
 
 Off course, if you don't see something that should be implemented or<br>

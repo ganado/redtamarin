@@ -282,6 +282,39 @@ AVMTWEAK_EXACT_TRACING
 
 *since:* 0.3.0
 
+
+== getRunmode ==
+{{{
+public native static function getRunmode():String;
+}}}
+Returns the current runmode.
+
+*note:*<br>
+Can returns "mixed", "jitordie", "jit", "interp", "unknown".
+
+*since:* 0.3.0
+
+
+== getTimer ==
+{{{
+public native static function getTimer():uint;
+}}}
+Returns the number of milliseconds that have elapsed<br>
+since the AMV+ started.
+
+*since:* 0.3.0
+
+
+== readLine ==
+<font color="orange">blocking</font><br>
+{{{
+public native static function readLine():String;
+}}}
+desc.
+
+*since:* 0.3.0
+
+
 == test ==
 <font color="red">not implemented</font><br>
 <font color="blue">not native</font><br>

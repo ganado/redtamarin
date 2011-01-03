@@ -147,6 +147,7 @@ Remove directory.
 
 
 == sleep ==
+<font color="orange">blocking</font><br>
 {{{
 public function sleep( milliseconds:uint ):void
 }}}

@@ -183,6 +183,18 @@ reuse `getcwd()` and `chdir()` from [C_unistd C.unistd].
 
 = Methods =
 
+== exec ==
+{{{
+public function exec( command:String ):int
+}}}
+Executes the specified command line and returns the status code.
+
+*note:*<br>
+Reuse `system()` from [C_stdlib C.stdlib].
+
+*since:* 0.3.0
+
+
 == exit ==
 {{{
 public static function exit( status:int = -1 ):void
@@ -215,17 +227,60 @@ If no arguments are passed will use `EXIT_SUCCESS` by default.
 *since:* 0.3.0
 
 
-== exec ==
+== getAvmplusVersion ==
 {{{
-public function exec( command:String ):int
+public native static function getAvmplusVersion():String;
 }}}
-Executes a system command.
+Returns the current version of AVM+ in the form `"1.0 d100"`.
 
-*note:*<br>
-Reuse `system()` from [C_stdlib C.stdlib].
+*example:* basic usage
+{{{
+import avmplus.System;
+
+trace( "AVMplus version : " + System.getAvmplusVersion() ); //AVMplus version : 1.4 cyclone
+}}}
 
 *since:* 0.3.0
 
+
+== getFeatures ==
+{{{
+public native static function getFeatures():String;
+}}}
+Returns the compiled in features of AVM+.
+
+*example:* basic usage
+{{{
+import avmplus.System;
+
+trace( "AVMplus features :" )
+trace( System.getFeatures().split( ";" ).join( "\n" ) );
+
+/* output:
+
+AVMplus features :
+AVMSYSTEM_32BIT
+AVMSYSTEM_UNALIGNED_INT_ACCESS
+AVMSYSTEM_UNALIGNED_FP_ACCESS
+AVMSYSTEM_LITTLE_ENDIAN
+AVMSYSTEM_IA32
+AVMSYSTEM_MAC
+AVMFEATURE_DEBUGGER
+AVMFEATURE_ALLOCATION_SAMPLER
+AVMFEATURE_JIT
+AVMFEATURE_ABC_INTERP
+AVMFEATURE_EVAL
+AVMFEATURE_PROTECT_JITMEM
+AVMFEATURE_SHARED_GCHEAP
+AVMFEATURE_STATIC_FUNCTION_PTRS
+AVMFEATURE_MEMORY_PROFILER
+AVMFEATURE_CACHE_GQCN
+AVMTWEAK_EXACT_TRACING
+
+*/
+}}}
+
+*since:* 0.3.0
 
 == test ==
 <font color="red">not implemented</font><br>

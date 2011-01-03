@@ -336,8 +336,30 @@ trace( "your name is \"" + input + "\"" );
 }}}
 
 *note:*<br>
+Read *stdin*.<br>
 The function will stop when it encounters `\n` or `EOF`.<br>
 Does not support Unicode characters.
+
+*since:* 0.3.0
+
+
+== trace ==
+{{{
+public native static function trace(a:Array):void;
+}}}
+Outputs arguments to the command line.
+
+*example:* basic usage
+{{{
+import avmplus.System;
+
+System.trace( ["hello world"] ); //hello world
+System.trace( ["トトロ"] ); //トトロ
+}}}
+
+*note:*<br>
+Write to *stdout*.<br>
+Support Unicode.
 
 *since:* 0.3.0
 

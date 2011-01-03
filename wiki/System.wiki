@@ -17,7 +17,7 @@ Represents the currently running application and the avmshell runtime.
 *since:* 0.3.0
 
 
-= Properties =
+= Constants =
 
 == argv ==
 {{{
@@ -43,8 +43,8 @@ myprogram.exe -arg1 -arg2 arg3
 when you are running an independent executable (avmshell embedding an `*.abc` file)<br>
 you pass directly the command line arguments (like any other exe).
 
-
 *since:* 0.3.0
+
 
 == startupDirectory ==
 {{{
@@ -56,6 +56,10 @@ The original directory when the application started.
 Initialised by the private native function `getStartupDirectory()`.
 
 *since:* 0.3.0
+
+
+= Properties =
+
 
 == workingDirectory ==
 {{{

@@ -31,6 +31,7 @@ Provides methods to access and manipulate computer files, directories, paths and
 = Properties =
 
 == drives ==
+<font color="red">not implemented</font><br>
 {{{
 public static function get drives():Array
 }}}
@@ -240,6 +241,7 @@ except `.` (dot) and `..`(dotdot), it returns no entry.
 
 
 == absolutePath ==
+<font color="red">not implemented</font><br>
 {{{
 public static function absolutePath( filename:String ):String
 }}}

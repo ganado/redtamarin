@@ -30,6 +30,22 @@ Provides methods to access and manipulate computer files, directories, paths and
 ----
 = Properties =
 
+== drives ==
+{{{
+public static function get drives():Array
+}}}
+Returns an array of drives.
+
+*note:*<br>
+Will not work exactly the same between POSIX and WIN32<br>
+<br>
+with POSIX it will always returns the `root` drive, eg. `[ "/" ]`<br>
+<br>
+with WIN32 it will returns the `active` drives letter<br>
+eg. `[ "c:\\", "d:\\" ]`
+
+*since:* 0.3.0
+
 == separators ==
 {{{
 public static function get separators():Array
@@ -186,6 +202,40 @@ Test if the `filename` is a symbolic link.
 *since:* 0.3.0
 
 
+== isHidden ==
+<font color="red">not implemented</font><br>
+{{{
+public static function isHidden( filename:String ):Boolean
+}}}
+Test if the `filename` is considered `hidden` by the system.
+
+*note:*<br>
+Will not work exactly the same between POSIX and WIN32<br>
+<br>
+with POSIX a `filename` is considered hidden<br>
+if the name start with a `.` (dot)<br>
+and there is a special case for OSX (TODO)<br>
+<br>
+with WIN32 a filename` is considered hidden<br>
+if there is a `hidden` flag in the file attributes.
+
+*since:* 0.3.0
+
+
+== isEmptyDirectory ==
+<font color="red">not implemented</font><br>
+{{{
+public static function isEmptyDirectory( filename:String ):Boolean
+}}}
+Test if the `filename` is an empty directory.
+
+*note:*<br>
+for both POSIX and WIN32 that means when listing files<br>
+except `.` (dot) and `..`(dotdot), it returns no entry.
+
+*since:* 0.3.0
+
+
 == listFiles ==
 {{{
 public native static function listFiles( filename:String, directory:Boolean = false ):Array;
@@ -227,28 +277,7 @@ or `-1` on failure.
 
 ----
 
-
-*methods*
- * `exists( filename:String ):Boolean`
- * `read( filename:String ):String`
- * `write( filename:String, data:String ):void`
- * `getFileMode( filename:String ):int`
- * `canAccess( filename:String ):Boolean`
- * `canWrite( filename:String ):Boolean`
- * `canRead( filename:String ):Boolean`
- * `isRegularFile( filename:String ):Boolean`
- * `isDirectory( filename:String ):Boolean`
- * `listFiles( filename:String, directory:Boolean = false ):Array`
- * `getFreeDiskSpace( filename:String ):Number`
- * `getTotalDiskSpace( filename:String ):Number`
- * `getUsedDiskSpace( filename:String ):Number`
- * `fileToByteArray( filename:String ):ByteArray`
- * `writeByteArray( filename:String, bytes:ByteArray ):void`
-
 *not implemented*
- * `getDrives():Array`
- * `isHidden( filename:String ):Boolean`
- * `isEmptyDirectory( filename:String ):Boolean`
  * `normalizePath( filename:String ):String`
  * `absolutePath( filename:String ):String`
  * `fileSize( filename:String ):Number`

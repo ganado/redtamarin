@@ -361,7 +361,7 @@ Does not support Unicode characters.
 
 == trace ==
 {{{
-public native static function trace(a:Array):void;
+public native static function trace( a:Array ):void;
 }}}
 Writes arguments to the command line and returns to the line.
 
@@ -382,7 +382,7 @@ Support Unicode characters.
 
 == write ==
 {{{
-public native static function write(s:String):void;
+public native static function write( s:String ):void;
 }}}
 Writes a string to the command line.
 
@@ -423,14 +423,37 @@ Tests if the current program is compiled with debugger flags.
 
 *since:* 0.3.0
 
-== test ==
-<font color="red">not implemented</font><br>
-<font color="blue">not native</font><br>
+
+== forceFullCollection ==
 {{{
-public function test():void
+public native static function forceFullCollection():void;
 }}}
-Definition test.
+Initiate a garbage collection<br>
+(future versions will not return before completed).
 
 *since:* 0.3.0
+
+
+== queueCollection  ==
+{{{
+public native static function queueCollection():void;
+}}}
+Queue a garbage collection request.
+
+*since:* 0.3.0
+
+
+== disposeXML ==
+{{{
+public native static function disposeXML( xml:XML ):void;
+}}}
+Makes the specified XML object immediately available for garbage collection.
+
+*note:*<br>
+This method will remove parent and child connections between<br>
+all the nodes for the specified XML node.
+
+*since:* 0.3.0
+
 
 ----

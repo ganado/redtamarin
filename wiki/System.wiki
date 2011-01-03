@@ -144,7 +144,12 @@ The [#privateMemory System.privateMemory] property reflects all memory used by a
 {{{
 public native static function get freeMemory():Number;
 }}}
-Definition.
+Part of [#totalMemory totalMemory] we aren't using.
+
+*note:*<br>
+The amount of memory (in bytes) that is allocated to `redshell` and that is not in use.<br>
+This unused portion of allocated memory ([#totalMemory System.totalMemory]) fluctuates as garbage collection takes place.<br>
+Use this property to monitor garbage collection.
 
 *since:* 0.3.0
 
@@ -153,7 +158,12 @@ Definition.
 {{{
 public native static function get privateMemory():Number;
 }}}
-Definition.
+Process wide size of resident private memory.
+
+*note:*<br>
+The entire amount of memory (in bytes) used by an application.<br>
+This is the amount of resident private memory for the entire process.<br>
+Developers should use this property to determine the entire memory consumption of an application.
 
 *since:* 0.3.0
 

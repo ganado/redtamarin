@@ -93,18 +93,6 @@ trace( "API alias : " + System.apiAlias ); //API alias : AIR_2_7
 *since:* 0.3.0
 
 
-== workingDirectory ==
-{{{
-public function get workingDirectory():String
-public function set workingDirectory( value:String ):void
-}}}
-Allows to get or set the current working directory of the application.
-
-*note:*<br>
-reuse `getcwd()` and `chdir()` from [C_unistd C.unistd].
-
-*since:* 0.3.0
-
 == programFilename ==
 {{{
 public native static function get programFilename():String;
@@ -124,6 +112,15 @@ you will have to do your own parsing with the value.
 {{{
 public native static function get swfVersion():int;
 }}}
+Returns the value passed to -swfversion at launch<br>
+(or the default value, if -swfversion was not specified).
+
+*example:* basic usage
+{{{
+import avmplus.System;
+
+trace( "SWF version : " + System.swfVersion ); //SWF version : 12
+}}}
 
 *since:* 0.3.0
 
@@ -132,7 +129,13 @@ public native static function get swfVersion():int;
 {{{
 public native static function get totalMemory():Number;
 }}}
-Definition.
+Amount of real memory we've aqcuired from the OS.
+
+*note:*<br>
+The amount of memory (in bytes) currently in use that has been directly allocated by `redshell`.<br>
+This property does not return all memory used by a `redshell` application<br>
+or by the application (such as a projector).<br>
+The [#privateMemory System.privateMemory] property reflects all memory used by an application.
 
 *since:* 0.3.0
 
@@ -155,13 +158,18 @@ Definition.
 *since:* 0.3.0
 
 
-== name ==
+== workingDirectory ==
 {{{
-public function get name():String
+public function get workingDirectory():String
+public function set workingDirectory( value:String ):void
 }}}
-Definition.
+Allows to get or set the current working directory of the application.
+
+*note:*<br>
+reuse `getcwd()` and `chdir()` from [C_unistd C.unistd].
 
 *since:* 0.3.0
+
 
 = Methods =
 

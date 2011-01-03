@@ -17,6 +17,8 @@ Represents the currently running application and the avmshell runtime.
 *since:* 0.3.0
 
 
+----
+
 = Constants =
 
 == argv ==

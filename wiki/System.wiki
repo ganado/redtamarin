@@ -310,7 +310,34 @@ since the AMV+ started.
 {{{
 public native static function readLine():String;
 }}}
-desc.
+Waits and returns all the characters entered by the user.
+
+*example:* basic usage
+{{{
+import avmplus.System;
+
+trace( "what is your name ?" );
+var input:String = System.readLine();
+trace( "your name is \"" + input + "\"" );
+
+/* input1:
+     totoro
+
+     output:
+     your name is "totoro"
+*/
+
+/* input2:
+    トトロ
+
+     output:
+     your name is "ããã"
+*/
+}}}
+
+*note:*<br>
+The function will stop when it encounters `\n` or `EOF`.<br>
+Does not support Unicode characters.
 
 *since:* 0.3.0
 

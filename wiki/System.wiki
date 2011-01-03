@@ -143,14 +143,33 @@ Definition.
 = Methods =
 
 == exit ==
-<font color="red">not implemented</font><br>
 {{{
-public function exit( status:int = -1 ):void
+public static function exit( status:int = -1 ):void
 }}}
-Definition test.
+Terminates the program execution.
+
+*example:* basic usage
+{{{
+import C.stdlib.*;
+import avmplus.System;
+
+var success:Boolean;
+
+//... some logic to define success is true or false
+
+if( success )
+{
+    System.exit( EXIT_SUCCESS );
+}
+else
+{
+    System.exit( EXIT_FAILURE );
+}
+}}}
 
 *note:*<br>
-Reuse `exit()` from [C_stdlib C.stdlib].
+Reuse `exit()` from [C_stdlib C.stdlib].<br>
+If no arguments are passed will use `EXIT_SUCCESS` by default.
 
 *since:* 0.3.0
 

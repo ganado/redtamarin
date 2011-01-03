@@ -247,7 +247,7 @@ trace( "AVMplus version : " + System.getAvmplusVersion() ); //AVMplus version : 
 {{{
 public static function getRedtamarinVersion():String
 }}}
-Returns the current version of the RedTamarin API.
+Returns the current version of the !RedTamarin API.
 
 *example:* basic usage
 {{{

@@ -347,7 +347,7 @@ Does not support Unicode characters.
 {{{
 public native static function trace(a:Array):void;
 }}}
-Writes arguments to the command line and return to the line.
+Writes arguments to the command line and returns to the line.
 
 *example:* basic usage
 {{{
@@ -390,6 +390,22 @@ Support Unicode characters.
 *since:* 0.3.0
 
 
+== debugger ==
+{{{
+public native static function debugger():void;
+}}}
+Enters debugger.
+
+*since:* 0.3.0
+
+
+== isDebugger ==
+{{{
+public native static function isDebugger():Boolean;
+}}}
+Tests if the current program is compiled with debugger flags.
+
+*since:* 0.3.0
 
 == test ==
 <font color="red">not implemented</font><br>

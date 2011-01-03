@@ -347,7 +347,7 @@ Does not support Unicode characters.
 {{{
 public native static function trace(a:Array):void;
 }}}
-Outputs arguments to the command line.
+Writes arguments to the command line and return to the line.
 
 *example:* basic usage
 {{{
@@ -359,9 +359,36 @@ System.trace( ["トトロ"] ); //トトロ
 
 *note:*<br>
 Write to *stdout*.<br>
-Support Unicode.
+Support Unicode characters.
 
 *since:* 0.3.0
+
+
+== write ==
+{{{
+public native static function write(s:String):void;
+}}}
+Writes a string to the command line.
+
+*example:* basic usage
+{{{
+import avmplus.System;
+
+System.write( "hello" );
+System.write( " world" );
+System.write( "\n" ); //hello world
+System.write( "ト" );
+System.write( "ト" );
+System.write( "ロ" );
+System.write( "\n" ); //トトロ
+}}}
+
+*note:*<br>
+Write to *stdout*.<br>
+Support Unicode characters.
+
+*since:* 0.3.0
+
 
 
 == test ==

@@ -60,6 +60,38 @@ Initialised by the private native function `getStartupDirectory()`.
 
 = Properties =
 
+== apiVersion ==
+{{{
+public native static function get apiVersion():int;
+}}}
+Return the value passed to -api at launch<br>
+(or the default value, if -api was not specified).
+
+*example:* basic usage
+{{{
+import avmplus.System;
+
+trace( "API version : " + System.apiVersion ); //API version : 673
+}}}
+
+*since:* 0.3.0
+
+
+== apiAlias ==
+{{{
+public static function get apiAlias():String
+}}}
+Returns the alias name of the api version.
+
+*example:* basic usage
+{{{
+import avmplus.System;
+
+trace( "API alias : " + System.apiAlias ); //API alias : AIR_2_7
+}}}
+
+*since:* 0.3.0
+
 
 == workingDirectory ==
 {{{
@@ -92,15 +124,6 @@ you will have to do your own parsing with the value.
 {{{
 public native static function get swfVersion():int;
 }}}
-
-*since:* 0.3.0
-
-
-== apiVersion ==
-{{{
-public native static function get apiVersion():int;
-}}}
-Definition.
 
 *since:* 0.3.0
 
@@ -170,6 +193,18 @@ else
 *note:*<br>
 Reuse `exit()` from [C_stdlib C.stdlib].<br>
 If no arguments are passed will use `EXIT_SUCCESS` by default.
+
+*since:* 0.3.0
+
+
+== exec ==
+{{{
+public function exec( command:String ):int
+}}}
+Executes a system command.
+
+*note:*<br>
+Reuse `system()` from [C_stdlib C.stdlib].
 
 *since:* 0.3.0
 

@@ -42,9 +42,10 @@ Will not work exactly the same between POSIX and WIN32<br>
 with POSIX it will always returns the `root` drive, eg. `[ "/" ]`<br>
 <br>
 with WIN32 it will returns the `active` drives letter<br>
-eg. `[ "c:\\", "d:\\" ]`
+eg. `[ "c:\", "d:\" ]`
 
 *since:* 0.3.0
+
 
 == separators ==
 {{{
@@ -53,12 +54,14 @@ public static function get separators():Array
 The character separators used by the operating system.
 
 *note:*<br>
-POSIX use `/`.<br>
-WIN32 use `\`, tolerant of `/`.
+POSIX use `"/"`.<br>
+WIN32 use `"\"`, tolerant of `"/"`.
 
 *since:* 0.3.0
 
+
 ----
+
 = Methods =
 
 == exists ==
@@ -236,11 +239,29 @@ except `.` (dot) and `..`(dotdot), it returns no entry.
 *since:* 0.3.0
 
 
+== absolutePath ==
+{{{
+public static function absolutePath( filename:String ):String
+}}}
+TODO
+
+*since:* 0.3.0
+
+
 == listFiles ==
 {{{
 public native static function listFiles( filename:String, directory:Boolean = false ):Array;
 }}}
 Returns an array of files or directories from `filename`.
+
+*since:* 0.3.0
+
+== normalizePath ==
+<font color="red">not implemented</font><br>
+{{{
+public static function normalizePath( filename:String ):String
+}}}
+TODO
 
 *since:* 0.3.0
 
@@ -278,8 +299,6 @@ or `-1` on failure.
 ----
 
 *not implemented*
- * `normalizePath( filename:String ):String`
- * `absolutePath( filename:String ):String`
  * `fileSize( filename:String ):Number`
  * `directorySize( filename:String, recursive:Boolean = false ):Number`
  * `getCreationTime( filename:String ):Date`

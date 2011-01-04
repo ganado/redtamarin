@@ -151,6 +151,15 @@ chmod( "myfile.txt", (mode | S_IWUSR ) );              // -rw-rw-rw-
 *since:* 0.3.0
 
 
+== getFileSize ==
+{{{
+public native static function getFileSize( filename:String ):Number;
+}}}
+Returns the `filename` size in bytes.
+
+*since:* 0.3.0
+
+
 == getLastModifiedTime ==
 {{{
 public native static function getLastModifiedTime( filename:String ):Date;

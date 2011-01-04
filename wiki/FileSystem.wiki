@@ -312,9 +312,6 @@ or `-1` on failure.
 *not implemented*
  * `fileSize( filename:String ):Number`
  * `directorySize( filename:String, recursive:Boolean = false ):Number`
- * `getCreationTime( filename:String ):Date`
- * `getLastModifiedTime( filename:String ):Date`
- * `getLastOpenedTime( filename:String ):Date`
  * `totalSize( filename:String, recursive:Boolean = false ):Number`
  * `copyFile( origin:String, destination:String ):Boolean`
  * `copyDirectory( origin:String, destination:String ):Boolean`

@@ -36,7 +36,7 @@ POSIX
  * *root* : the first component of an absolute `filename`
  * *basename* : last component of a `filename`
  * *dirname* :  directory component of a `filename`
- * *extension* : part of the `basename` (in general starting with a `.`)
+ * *extension* : the suffix part of the `basename` (in general starting with a `"."`)
 
 here the different systems we have to support
 {{{
@@ -59,8 +59,10 @@ UNCW (Long UNC)
 }}}
 
 *references:*
+ * [http://en.wikipedia.org/wiki/File_system wikipedia File System]
  * [http://en.wikipedia.org/wiki/Path_(computing) wikipedia Path]
  * [http://en.wikipedia.org/wiki/Filename wikipedia FileName]
+ * [http://en.wikipedia.org/wiki/Filename_extension wikipedia Filename extension]
 
 ----
 
@@ -269,6 +271,33 @@ this is the only situation in which basename will return an absolute path.
 *since:* 0.3.0
 
 
+== getDirectoryFromPath ==
+{{{
+public static function getDirectoryFromPath( filename:String ):String
+}}}
+Returns the directory component of a `filename`<br>
+without the trailing path separator, or an empty string on error.
+
+*note:*<br>
+The function does not check for the existence of the path,<br>
+so if it is passed a directory without the trailing `"\"`,<br>
+it will interpret the last component of the path as a file and chomp it.<br>
+<br>
+This does not support relative paths.
+
+*since:* 0.3.0
+
+
+== getExtension ==
+{{{
+public static function getExtension( filename:String ):String
+}}}
+Returns the extension of `filename`<br>
+or an empty string if the file has no extension.
+
+*since:* 0.3.0
+
+
 == canAccess ==
 {{{
 public static function canAccess( filename:String ):Boolean
@@ -296,6 +325,15 @@ Verify if we can read the `filename`.
 *since:* 0.3.0
 
 
+== hasDriveLetter ==
+{{{
+public static function hasDriveLetter( filename:String ):Boolean
+}}}
+Tests if the `filename` contains a drive letter.
+
+*since:* 0.3.0
+
+
 == isRegularFile ==
 {{{
 public native static function isRegularFile( filename:String ):Boolean;
@@ -314,22 +352,12 @@ Test if the `filename` is a directory.
 *since:* 0.3.0
 
 
-== isSymbolicLink ==
-<font color="red">not implemented</font><br>
-{{{
-public native static function isSymbolicLink( path:String ):Boolean;
-}}}
-Test if the `filename` is a symbolic link.
-
-*since:* 0.3.0
-
-
 == isHidden ==
-<font color="red">not implemented</font><br>
+<font color="red">not implemented for WIN32 / missing parts for OSX</font><br>
 {{{
 public static function isHidden( filename:String ):Boolean
 }}}
-Test if the `filename` is considered `hidden` by the system.
+Tests if the `filename` is considered `hidden` by the system.
 
 *note:*<br>
 Will not work exactly the same between POSIX and WIN32<br>
@@ -349,11 +377,30 @@ if there is a `hidden` flag in the file attributes.
 {{{
 public static function isEmptyDirectory( filename:String ):Boolean
 }}}
-Test if the `filename` is an empty directory.
+Tests if the `filename` is an empty directory.
 
 *note:*<br>
 for both POSIX and WIN32 that means when listing files<br>
-except `.` (dot) and `..`(dotdot), it returns no entry.
+except `"."` (dot) and `".."`(dotdot), it returns no entry.
+
+*since:* 0.3.0
+
+
+== isSymbolicLink ==
+<font color="red">not implemented</font><br>
+{{{
+public native static function isSymbolicLink( path:String ):Boolean;
+}}}
+Test if the `filename` is a symbolic link.
+
+*since:* 0.3.0
+
+
+== isSeparator ==
+{{{
+public static function isSeparator( c:String ):Boolean
+}}}
+Tests if the character `c` is a separator.
 
 *since:* 0.3.0
 
@@ -375,6 +422,10 @@ public native static function listFiles( filename:String, directory:Boolean = fa
 Returns an array of files or directories from `filename`.
 
 *since:* 0.3.0
+
+
+*TODO*
+
 
 == normalizePath ==
 <font color="red">not implemented</font><br>

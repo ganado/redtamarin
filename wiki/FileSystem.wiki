@@ -27,12 +27,9 @@ Provides methods to access and manipulate computer files, directories, paths and
 {{{
 WIN32
   C:\user\docs\Letter.txt
-  dir: C:\user\docs
-  base: Letter.txt
 
 POSIX
-  /home/user/docs/Letter.txt
- 
+  /home/user/docs/Letter.txt 
 }}}
  * *filename* : uniquely identify an entry (file or directory) stored on the file system<br>(also *path*, *filepath*, etc.)
  * *component* : a part of the `filename`

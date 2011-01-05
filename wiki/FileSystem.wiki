@@ -340,7 +340,7 @@ TODO
 {{{
 public static function stripTrailingSeparators( filename:String ):String
 }}}
-Remove trailing separators from the <code>filename</code>.
+Remove trailing separators from the `filename`.
 
 *note:*<br>
 If the path is absolute, it will never be stripped any more than<br>

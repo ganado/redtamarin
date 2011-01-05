@@ -24,8 +24,46 @@ Provides methods to access and manipulate computer files, directories, paths and
  * no support for symlink, alias, shortcut
 
 *vocabulary:*
- * *filename* : uniquely identify a file or directory stored on the file system
- * *path* : part of a filename
+{{{
+WIN32
+  C:\user\docs\Letter.txt
+  dir: C:\user\docs
+  base: Letter.txt
+
+POSIX
+  /home/user/docs/Letter.txt
+ 
+}}}
+ * *filename* : uniquely identify an entry (file or directory) stored on the file system<br>(also *path*, *filepath*, etc.)
+ * *component* : a part of the `filename`
+ * *root* : the first component of an absolute `filename`
+ * *basename* : last component of a `filename`
+ * *dirname* :  directory component of a `filename`
+ * *extension* : part of the `basename` (in general starting with a `.`)
+
+here the different systems we have to support
+{{{
+WIN32
+  C:\user\docs\Letter.txt
+  C:/user/docs/Letter.txt
+  A:Picture.jpg
+
+POSIX
+  /home/user/docs/Letter.txt
+  hostname:/directorypath/resource
+  smb://hostname/directorypath/resource
+
+UNC
+  \\ComputerName\SharedFolder\Resource
+
+UNCW (Long UNC)
+  \\?\UNC\ComputerName\SharedFolder\Resource
+  \\?\C:\File
+}}}
+
+*references:*
+ * [http://en.wikipedia.org/wiki/Path_(computing) wikipedia Path]
+ * [http://en.wikipedia.org/wiki/Filename wikipedia FileName]
 
 ----
 
@@ -215,6 +253,21 @@ and if `recursive` add the size of any child directory.
 public native static function getLastModifiedTime( filename:String ):Date;
 }}}
 Returns the `filename` last modified time.
+
+*since:* 0.3.0
+
+
+== getBasenameFromPath ==
+{{{
+public static function getBasenameFromPath( filename:String ):String
+}}}
+Returns a filepath corresponding to the last path component of this<br>
+`filename`, either a file or a directory.
+
+*note:*<br>
+If this `filename` already refers to the root directory,<br>
+returns a filepath identifying the root directory;<br>
+this is the only situation in which basename will return an absolute path.
 
 *since:* 0.3.0
 

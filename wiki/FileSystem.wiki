@@ -28,6 +28,36 @@ Provides methods to access and manipulate computer files, directories, paths and
  * *path* : part of a filename
 
 ----
+
+= Constants =
+
+== currentDirectory ==
+{{{
+public static const currentDirectory:String
+}}}
+A special path component meaning "this directory".
+
+*since:* 0.3.0
+
+
+== parentDirectory ==
+{{{
+public static const parentDirectory:String
+}}}
+A special path component meaning "the parent directory".
+
+*since:* 0.3.0
+
+
+== extensionSeparator ==
+{{{
+public static const extensionSeparator:String
+}}}
+The character used to identify a file extension.
+
+*since:* 0.3.0
+
+
 = Properties =
 
 == drives ==
@@ -44,6 +74,15 @@ with POSIX it will always returns the `root` drive, eg. `[ "/" ]`<br>
 <br>
 with WIN32 it will returns the `active` drives letter<br>
 eg. `[ "c:\", "d:\" ]`
+
+*since:* 0.3.0
+
+
+== lineEnding ==
+{{{
+public static function get lineEnding():String
+}}}
+The line-ending character sequence used by the host operating system.
 
 *since:* 0.3.0
 

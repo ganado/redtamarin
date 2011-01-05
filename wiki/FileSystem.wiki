@@ -61,7 +61,7 @@ The character used to identify a file extension.
 = Properties =
 
 == drives ==
-<font color="red">not implemented</font><br>
+<font color="red">not implemented for WIN32</font><br>
 {{{
 public static function get drives():Array
 }}}
@@ -194,7 +194,18 @@ chmod( "myfile.txt", (mode | S_IWUSR ) );              // -rw-rw-rw-
 {{{
 public native static function getFileSize( filename:String ):Number;
 }}}
-Returns the `filename` size in bytes.
+Returns the file `filename` size in bytes.
+
+*since:* 0.3.0
+
+
+== getDirectorySize ==
+<font color="red">not implemented</font><br>
+{{{
+public static function getDirectorySize( filename:String, recursive:Boolean = false ):Number
+}}}
+Returns the directory `filename` size in byte (adding all its files size)<br>
+and if `recursive` add the size of any child directory. 
 
 *since:* 0.3.0
 
@@ -325,6 +336,15 @@ TODO
 *since:* 0.3.0
 
 
+== stripTrailingSeparators ==
+{{{
+public static function stripTrailingSeparators( filename:String ):String
+}}}
+Remove trailing separators from the <code>filename</code>.
+
+*since:* 0.3.0
+
+
 == getFreeDiskSpace ==
 {{{
 public native static function getFreeDiskSpace( filename:String ):Number;
@@ -358,8 +378,6 @@ or `-1` on failure.
 ----
 
 *not implemented*
- * `fileSize( filename:String ):Number`
- * `directorySize( filename:String, recursive:Boolean = false ):Number`
  * `totalSize( filename:String, recursive:Boolean = false ):Number`
  * `copyFile( origin:String, destination:String ):Boolean`
  * `copyDirectory( origin:String, destination:String ):Boolean`

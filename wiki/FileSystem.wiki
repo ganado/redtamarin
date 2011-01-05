@@ -344,7 +344,7 @@ Remove trailing separators from the <code>filename</code>.
 
 *note:*<br>
 If the path is absolute, it will never be stripped any more than<br>
-to refer to the absolute root directory, so "////" will become "/", not "".<br>
+to refer to the absolute root directory, so `"////"` will become `"/"`, not `""`.<br>
 <br>
 A leading pair of a separators is never stripped, to support alternate roots.<br>
 This is used to support UNC paths on Windows.

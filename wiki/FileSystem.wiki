@@ -107,7 +107,7 @@ Returns an array of drives.
 *note:*<br>
 Will not work exactly the same between POSIX and WIN32<br>
 <br>
-with POSIX it will always returns the `root` drive, eg. `[ "/" ]`<br>
+with POSIX it will always returns an empty array, eg. `[  ]`<br>
 <br>
 with WIN32 it will returns the `active` drives letter<br>
 eg. `[ "c:\", "d:\" ]`
@@ -120,6 +120,10 @@ eg. `[ "c:\", "d:\" ]`
 public static function get lineEnding():String
 }}}
 The line-ending character sequence used by the host operating system.
+
+*note:*<br>
+POSIX use `"\n"`.<br>
+WIN32 use `"\r\n"`.
 
 *since:* 0.3.0
 
@@ -405,6 +409,19 @@ Tests if the character `c` is a separator.
 *since:* 0.3.0
 
 
+== isNotDotOrDotdot ==
+{{{
+public static function isNotDotOrDotdot( element:*, index:int, arr:Array ):Boolean
+}}}
+Utility function to filter out current directory "." and parent directory ".." from a file list.
+
+*note:*<br>
+You can not use the function by itself<br>
+you need to pass it as an argument of [#listFilesWithFilter listFilesWithFilter()].
+
+*since:* 0.3.0
+
+
 == absolutePath ==
 <font color="red">not implemented</font><br>
 {{{
@@ -424,7 +441,28 @@ Returns an array of files or directories from `filename`.
 *since:* 0.3.0
 
 
-*TODO*
+== listFilesWithFilter ==
+{{{
+public static function listFilesWithFilter( filename:String, filter:Function, directory:Boolean = false ):Array
+}}}
+Returns an array of files or directories from `filename`<br>
+filtered by a function.
+
+*note:*<br>
+the function should have the same signature as the one used for Array `filter()`, for ex:
+{{{
+public static function isNotDotOrDotdot( element:*, index:int, arr:Array ):Boolean
+{
+    if( (element == currentDirectory) || (element == parentDirectory) )
+    {
+        return false;
+    }
+
+    return true;
+}
+}}}
+
+*since:* 0.3.0
 
 
 == normalizePath ==

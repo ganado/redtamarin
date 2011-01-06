@@ -465,6 +465,27 @@ public static function isNotDotOrDotdot( element:*, index:int, arr:Array ):Boole
 *since:* 0.3.0
 
 
+== listFilesWithRegexp ==
+{{{
+public static function listFilesWithRegexp( filename:String, filter:RegExp, directory:Boolean = false ):Array
+}}}
+Returns an array of files or directories from `filename`<br>
+filtered by a regular expression.
+
+*example:* basic usage
+{{{
+import avmplus.FileSystem;
+
+//list all directories starting with "test"
+trace( FileSystem.listFilesWithRegexp( ".", /test*/, true ).join( "\n" ) );
+
+//list all files ending with extension "*.abc"
+trace( FileSystem.listFilesWithRegexp( ".", /.*\.abc$/, false ).join( "\n" ) );
+}}}
+
+*since:* 0.3.0
+
+
 == normalizePath ==
 <font color="red">not implemented</font><br>
 {{{

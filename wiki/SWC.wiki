@@ -21,6 +21,8 @@ Most of the editors out there
 
 use the content of one or more SWC to allow syntax completion in the IDE.
 
+See also [http://en.wikipedia.org/wiki/Adobe_SWC_file Adobe SWC file on wikipedia].
+
 
 == Details ==
 
@@ -51,6 +53,37 @@ But even with that, let's analyze what is a SWC.
 A SWC is a a ZIP file with the extension `*.swc` which contains 2 files
   * catalog.xml
   * library.swf
+
+a `catalog.xml` file look like that
+{{{
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.2" />
+    <flash version="10.0" build="d566" platform="MAC" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-files />
+  </features>
+  <libraries>
+    <library path="library.swf">
+      <script name="ButtonClickSound" mod="1275949831598" >
+        <def id="ButtonClickSound" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.media:Sound" type="i" /> 
+      </script>
+      <script name="EndGameSound" mod="1275949831598" >
+        <def id="EndGameSound" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.media:Sound" type="i" /> 
+      </script>
+    </library>
+  </libraries>
+  <files>
+  </files>
+</swc>
+}}}
 
 When you look at the Flex SDK source code<br>
 [http://opensource.adobe.com/svn/opensource/flex/sdk/trunk/modules/compiler/src/java/flex2/compiler/swc/catalog/CatalogWriter.java /modules/compiler/src/java/flex2/compiler/swc/catalog/CatalogWriter.java]

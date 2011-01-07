@@ -28,6 +28,64 @@ And we plan to add more, for ex: *avmplus.Process*, *avmplus.Host*, etc.
  * IPC: Inter-Process Communication so we can implement native *LocalConnection*
 
 
+== API ==
+
+here a small map of the AVMPlus API
+{{{
+
+C
+  |_ stdlib
+  |    |_ ...
+  |
+  |_ unistd
+  |    |_ ...
+  |
+  |_ string
+  |    |_ ...
+  |
+  |_ errno
+  |    |_ ...
+  |
+  |_ stdio
+  |    |_ ...
+  |
+  |_ socket
+       |_ ...
+  
+
+avmplus
+  |_ System
+  |_ OperatingSystem
+  |_ FileSystem
+  |_ Socket
+  |_ Domain
+  |_ JObject
+  |
+  |_ debugger()
+
+flash
+  |_ utils
+  |    |_ Dictionary
+  |    |_ Endian
+  |
+  |_ sampler
+  |    |_ StackFrame
+  |    |_ Sample
+  |    |_ NewObjectSample
+  |    |_ DeleteObjectSample
+  |    |_ ...
+  |
+  |_ trace
+  |    |_ Trace
+  |
+  |_ system
+  |    |_ Capabilities
+
+(top level)
+  |_ ...
+
+}}}
+
 
 == Limitation ==
 

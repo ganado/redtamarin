@@ -63,3 +63,19 @@ catalog.xml will always have this header
 <swc xmlns="http://www.adobe.com/flash/swccatalog/9">
 }}}
 
+followed by a version tag
+{{{
+  <versions>
+    <swc version="1.0" />
+    <flex version="2.0" build="0" />
+  </versions>
+}}}
+
+there the versions can change depending on which version of the Flex SDK you are using<br>
+here another one from `playerglobal.swc` for FP10 in the Flex SDK 4
+{{{
+  <versions>
+    <swc version="1.2" />
+    <flex version="4.0.0" build="0" />
+  </versions>
+}}}

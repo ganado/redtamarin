@@ -174,3 +174,25 @@ Now let's see what we got inside a `<script>` tag
     * `<dep type="n">` for namespace
     * `<dep type="s">` for signature
     * `<dep type="e">` for expression
+
+Here the most important tag is the definition `<def>` tag, it tells what is declared/defined<br>
+wether it is a constant, variable, function, namespace, class, interface, etc.
+
+The dependency `<dep>` tag, well I think we can ignore it<br>
+(at the condition that everything is declared in `<def>` somewhere).
+
+
+== How to build a custom builtin.swc ==
+
+We not gonna use COMPC for sure, because most of our `*.as` classes will simply not compile<br>
+for ex: `Date.as`, we want it in the syntax completion, but as it is, it does not compile.
+
+In fact, we want to take directly the `builtin.abc` generate by `builtin.py` and inject it in a `library.swf`<br>
+using something like `swfmake.as` should do the job.
+
+Now, our task is to create a `catalog.xml` that will not faill the verification of COMPC and other different IDE.
+
+Once you have a `library.swf` and `catalog.xml`, really it is just a matter to zip it to `whatever.swc`<br>
+and voila you got  a nice valid SWC :).
+
+TODO

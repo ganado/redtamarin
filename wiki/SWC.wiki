@@ -112,3 +112,65 @@ here another one from `playerglobal.swc` for FP10 in the Flex SDK 4
     <flex version="4.0.0" build="0" />
   </versions>
 }}}
+
+then you have a tag `<features>`
+
+then a tag `<components>`
+
+and here where is the real meat, the tag `<libraries>`
+
+here an example
+{{{
+  <libraries>
+    <library path="library.swf">
+      <script name="builtin" mod="1206411565548" >
+        <def id="parseInt" /> 
+        <def id="NaN" /> 
+        <def id="int" /> 
+        <def id="Number" /> 
+        <def id="encodeURI" /> 
+        <def id="decodeURI" /> 
+        <def id="Function" /> 
+        <def id="Array" /> 
+        <def id="Boolean" /> 
+        <def id="escape" /> 
+        <def id="encodeURIComponent" /> 
+        <def id="isFinite" /> 
+        <def id="undefined" /> 
+        <def id="AS3" /> 
+        <def id="String" /> 
+        <def id="Class" /> 
+        <def id="Infinity" /> 
+        <def id="isNaN" /> 
+        <def id="Namespace" /> 
+        <def id="unescape" /> 
+        <def id="parseFloat" /> 
+        <def id="uint" /> 
+        <def id="Object" /> 
+        <def id="decodeURIComponent" /> 
+        <dep id="TypeError" type="e" /> 
+        <dep id="ReferenceError" type="e" /> 
+        <dep id="RangeError" type="e" /> 
+        <dep id="Error" type="e" /> 
+      </script>
+    </library>
+  </libraries>
+}}}
+
+so it works like that, a `*.swf` can contains any amount of `*.abc` files,<br>
+for each single `*.as` file taken by the compiler, it will generates a `<script>` tag.
+
+The `<script>` tag have few attributes
+  * name : this is in general the name of the doABC2 tag (or the name of the abc if you prefer)
+  * mod : this is the last modified time of the file (we could use `FileSystem.getLastModifiedTime( "file.as" )` )
+  * signatureChecksum : a checksum of the compiled file (didn;t really invested much time in it as it's kind of optional)
+
+So far, so good, `name` and `mod` we can create or find those easily.
+
+Now let's see what we got inside a `<script>` tag
+  * `<def id="">`tag, for a definition
+  * a `<dep id="">` tag for a dependency<br>which can have 4 different types
+    * `<dep type="i">` for inheritance
+    * `<dep type="n">` for namespace
+    * `<dep type="s">` for signature
+    * `<dep type="e">` for expression

@@ -413,7 +413,6 @@ if there is a `hidden` flag in the file attributes.
 
 
 == isEmptyDirectory ==
-<font color="red">not implemented</font><br>
 {{{
 public static function isEmptyDirectory( filename:String ):Boolean
 }}}

@@ -44,6 +44,16 @@ Cause abnormal program termination.
 *since:* 0.3.0
 
 
+== atexit ==
+<font color="red">not implemented</font><br>
+{{{
+public function atexit( fn:Function ):void
+}}}
+Add a function to be executed on exit.
+
+*since:* 0.3.0
+
+
 == exit ==
 {{{
 public function exit( status:int = -1 ):void

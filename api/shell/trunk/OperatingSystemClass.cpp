@@ -60,13 +60,6 @@ namespace avmshell
         return core()->newStringUTF8( name );
     }
 
-    Stringp OperatingSystemClass::getUserName()
-    {
-        char username[256];
-        VMPI_getUserName( username );
-        return core()->newStringUTF8( username );
-    }
-
     Stringp OperatingSystemClass::getNodeName()
     {
         char nodename[256];

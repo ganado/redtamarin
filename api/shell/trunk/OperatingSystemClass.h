@@ -50,7 +50,6 @@ namespace avmshell
         ~OperatingSystemClass();
 
         Stringp getName();
-        Stringp getUserName();
         Stringp getNodeName();
         Stringp getRelease();
         Stringp getVersion();

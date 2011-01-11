@@ -51,8 +51,12 @@ namespace avmshell
 
         bool exists(Stringp filename);
         Stringp read(Stringp filename);
+        ByteArrayObject* readByteArray(Stringp filename);
         void write(Stringp filename, Stringp data);
+        bool writeByteArray(Stringp filename, ByteArrayObject* bytes);
         int  getFileMode(Stringp filename);
+        double getFileSize(Stringp filename);
+        DateObject * getLastModifiedTime(Stringp filename);
         bool isRegularFile(Stringp filename);
         bool isDirectory(Stringp filename);
         ArrayObject * listFiles(Stringp filename, bool directory);

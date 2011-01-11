@@ -65,7 +65,7 @@ namespace avmshell
         }
         
         StUTF8String strUTF8(str);
-        return VMPI_strlen(strUTF8.c_str());
+        return (unsigned int)VMPI_strlen(strUTF8.c_str());
     }
 
 

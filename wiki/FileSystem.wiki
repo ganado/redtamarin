@@ -241,7 +241,6 @@ Returns the file `filename` size in bytes.
 
 
 == getDirectorySize ==
-<font color="red">not implemented</font><br>
 {{{
 public static function getDirectorySize( filename:String, recursive:Boolean = false, includeHidden:Boolean = true ):Number
 }}}
@@ -275,6 +274,15 @@ test3
       |_ flash_player_9_security.pdf
 */
 
+//we don't include hidden entries or sub-directories
+trace( "size = " + FileSystem.getDirectorySize( "test3", false, false ) + " bytes" ); //size = 15737563 bytes
+
+//we count the hidden entries but not the sub-directories
+trace( "size = " + FileSystem.getDirectorySize( "test3", false, true ) + " bytes" ); //size = 15743711 bytes
+
+//we count both the hidden entries and sub-directories
+trace( "size = " + FileSystem.getDirectorySize( "test3", true, true ) + " bytes" ); //size = 19808855 bytes
+//OSX Get Info - Size: 19.8 MB on disk (19,808,855 bytes) for 12 items
 }}}
 
 *since:* 0.3.0

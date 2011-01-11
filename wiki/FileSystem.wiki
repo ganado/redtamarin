@@ -242,16 +242,15 @@ Returns the file `filename` size in bytes.
 
 == getDirectorySize ==
 {{{
-public static function getDirectorySize( filename:String, recursive:Boolean = false, includeHidden:Boolean = true ):Number
+public static function getDirectorySize( filename:String, recursive:Boolean = true, includeHidden:Boolean = true ):Number
 }}}
 Returns the directory `filename` size in byte (adding all its files size)<br>
 and if `recursive` add the size of any child directory. 
 
 *note:*<br>
 By default will count the size of hidden entries (`includeHidden=true`).<br>
-By default will count the size of only the file entries (`recursive=false`),<br>
-to get the behaviour of `right click, get info` like on OSX Finder for example<br>
-you will need to set `recursive=true` to count all file entries for all sub-directories.
+By default will count the size of all sub-directories (`recursive=true`),<br>
+to get the size of the current file entries without the sub-directories you need to set `recursive=false`.
 
 *example:* basic usage
 {{{
@@ -280,7 +279,7 @@ trace( "size = " + FileSystem.getDirectorySize( "test3", false, false ) + " byte
 //we count the hidden entries but not the sub-directories
 trace( "size = " + FileSystem.getDirectorySize( "test3", false, true ) + " bytes" ); //size = 15743711 bytes
 
-//we count both the hidden entries and sub-directories
+//we count both the hidden entries and sub-directories - DEFAULT
 trace( "size = " + FileSystem.getDirectorySize( "test3", true, true ) + " bytes" ); //size = 19808855 bytes
 //OSX Get Info - Size: 19.8 MB on disk (19,808,855 bytes) for 12 items
 }}}

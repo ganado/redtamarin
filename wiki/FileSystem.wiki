@@ -496,6 +496,62 @@ TODO
 *since:* 0.3.0
 
 
+== remove ==
+{{{
+public static function remove( filename:String, recursive:Boolean = false ):void
+}}}
+Removes an entry (file or directory) from the file system.
+
+*note:*<br>
+it seems redundant to have `remove`, `removeFile`, `removeDirectory`<br>
+but not really, think of cases where we want to build a list of files and just go trough<br>
+them deleting wether a file or directory
+{{{
+import avmplus.FileSystem;
+
+//all files in this dir ending with *.abc
+var list1:Array = FileSystem.listFilesWithRegexp( ".", /.*\.abc$/, false );
+//all dir in this dir starting with "test"
+var list2:Array = FileSystem.listFilesWithRegexp( ".", /test*/, true );
+
+var list:Array = list1.concat( list2 );
+
+//we delete all of our entries wether dir or file
+for( var i:uint = 0; i<list.length; i++ )
+{
+    FileSystem.remove(  list[i], true );
+}
+}}}
+
+*since:* 0.3.0
+
+
+== removeFile ==
+{{{
+public static function removeFile( filename:String ):void
+}}}
+Removes a file entry from the file system.
+
+*note:*<br>
+If the entry is not a file will throw an error.
+
+*since:* 0.3.0
+
+
+== removeDirectory ==
+{{{
+public static function removeDirectory( filename:String, recursive:Boolean = false ):void
+}}}
+Removes a directory entry from the file system,<br>
+if `recursive=true` delete all child entries (files and directories) first.
+
+*note:*<br>
+If the entry is not a directory will throw an error.<br>
+By default, if a directory is not empty it can not be deleted.
+
+*since:* 0.3.0
+
+
 == stripTrailingSeparators ==
 {{{
 public static function stripTrailingSeparators( filename:String ):String

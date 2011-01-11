@@ -243,10 +243,39 @@ Returns the file `filename` size in bytes.
 == getDirectorySize ==
 <font color="red">not implemented</font><br>
 {{{
-public static function getDirectorySize( filename:String, recursive:Boolean = false ):Number
+public static function getDirectorySize( filename:String, recursive:Boolean = false, includeHidden:Boolean = true ):Number
 }}}
 Returns the directory `filename` size in byte (adding all its files size)<br>
 and if `recursive` add the size of any child directory. 
+
+*note:*<br>
+By default will count the size of hidden entries (`includeHidden=true`).<br>
+By default will count the size of only the file entries (`recursive=false`),<br>
+to get the behaviour of `right click, get info` like on OSX Finder for example<br>
+you will need to set `recursive=true` to count all file entries for all sub-directories.
+
+*example:* basic usage
+{{{
+//our directory structure
+/*
+test3
+  |_ .DS_Store
+  |_ Indie Game Design Do-s and Don't-s A Manifesto.pdf
+  |_ kamoshida20080315.pdf
+  |_ metaprog-100928014929-phpapp01.pdf
+  |_ nexusone-userguide.pdf
+  |_ NTFS-3G User Guide.pdf
+  |_ Obfuscation of The Standard XOR Encryption Algorithm.pdf
+  |_ others
+      |_ .DS_Store
+      |_ flash_player_10_security.pdf
+      |_ flash_player_6_security.pdf
+      |_ flash_player_7_security.pdf
+      |_ flash_player_8_security.pdf
+      |_ flash_player_9_security.pdf
+*/
+
+}}}
 
 *since:* 0.3.0
 

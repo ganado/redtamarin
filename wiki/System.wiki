@@ -408,14 +408,24 @@ Support Unicode characters.
 *since:* 0.3.0
 
 
+== writeLine ==
+{{{
+public static function writeLine( s:String ):void
+}}}
+Writes a string to the command line and returns to the line.
+
+*since:* 0.3.0
+
+
 == stdinLength ==
+<font color="red">beta, may change in the futur</font><br>
 {{{
 public native static function get stdinLength():Number;
 }}}
 Returns the length of the stdin buffer.
 
 *note:*<br>
-this not the whole length of stdin, only its buffer,<br>
+this is not the whole length of stdin, only its buffer,<br>
 so if you need to get the full size of stdin you will have to loop<br>
 see `stdinRead()`.
 
@@ -423,10 +433,20 @@ see `stdinRead()`.
 
 
 == stdinRead ==
+<font color="orange">blocking</font><br>
+<font color="red">beta, may change in the futur</font><br>
 {{{
 public native static function stdinRead( length:uint ):ByteArray;
 }}}
 Returns the length of `bytes` read from stdin.
+
+*note:*<br>
+If the length is bigger that the data in the actual buffer<br>
+you may end up being "blocked" (eg. wait for more data coming into the buffer).
+<br>
+Also, this function is not completely stable as for big binaries<br>
+the buffer `stdinLength` may returns `0` before the `EOF`<br>
+
 
 *example:* read stdin in an exectuable
 {{{

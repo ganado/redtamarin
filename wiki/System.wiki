@@ -449,7 +449,7 @@ var len:Number = System.stdinLength;
 
 while( len > 0 )
 {
-    part = System.stdinRead( System.stdinLength ); //read stdin buffer
+    part = System.stdinRead( len ); //read stdin buffer
     bytes.writeBytes( part ); //append the bytes
     len = System.stdinLength; //refresh buffer
 }

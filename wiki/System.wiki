@@ -432,6 +432,20 @@ see `stdinRead()`.
 *since:* 0.3.0
 
 
+== isStdinEmpty ==
+<font color="red">beta, may change in the futur</font><br>
+{{{
+public static function isStdinEmpty():Boolean
+}}}
+Indicates if stdin buffer is empty or not.
+
+*note:*<br>
+Small utility but useful as you don't want to try<br>
+to read stdin if there is no data (as it would block).
+
+*since:* 0.3.0
+
+
 == stdinRead ==
 <font color="orange">blocking</font><br>
 <font color="red">beta, may change in the futur</font><br>
@@ -504,6 +518,32 @@ Reads the stdin till EOF is reached.
 
 *note:*<br>
 much more stable than `stdinRead()` for big binaries.
+
+*example:* read stdin in an exectuable
+{{{
+$ cat somefile.bin | ./redshell test.abc
+}}}
+or
+{{{
+$ cat somefile.bin | ./test
+}}}
+the pipe `|` will pass the binary content to the stdin of the shell,<br>
+here how to parse it
+{{{
+import avmplus.System;
+import flash.utils.ByteArray;
+
+var bytes:ByteArray = new ByteArray();
+var part:ByteArray;
+
+if( !System.isStdinEmpty() )
+{
+    part = System.stdinReadAll(); //read stdin buffer till EOF
+    bytes.writeBytes( part ); //append the bytes
+}
+
+trace( "total bytes received = " + bytes.length );
+}}}
 
 *since:* 0.3.0
 

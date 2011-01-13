@@ -459,36 +459,7 @@ If the length is bigger that the data in the actual buffer<br>
 you may end up being "blocked" (eg. wait for more data coming into the buffer).<br>
 <br>
 Also, this function is not completely stable as for big binaries<br>
-the buffer `stdinLength` may returns `0` before the `EOF`.
-
-*example:* read stdin in an exectuable
-{{{
-$ cat somefile.bin | ./redshell test.abc
-}}}
-or
-{{{
-$ cat somefile.bin | ./test
-}}}
-the pipe `|` will pass the binary content to the stdin of the shell,<br>
-here how to parse it
-{{{
-import avmplus.System;
-import flash.utils.ByteArray;
-
-var bytes:ByteArray = new ByteArray();
-var part:ByteArray;
-
-var len:Number = System.stdinLength;
-
-while( len > 0 )
-{
-    part = System.stdinRead( len ); //read stdin buffer
-    bytes.writeBytes( part ); //append the bytes
-    len = System.stdinLength; //refresh buffer
-}
-
-trace( "total bytes received = " + bytes.length );
-}}}
+the buffer `stdinLength` may returns `0` before the `EOF`, use [#stdinReadAll System.stdinReadAll()].
 
 *example:* read post data with CGI
 {{{

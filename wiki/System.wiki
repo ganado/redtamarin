@@ -495,6 +495,19 @@ if( postSize > 0 )
 *since:* 0.3.0
 
 
+== stdinReadAll ==
+<font color="red">beta, may change in the futur</font><br>
+{{{
+public native static function stdinReadAll():ByteArray;
+}}}
+Reads the stdin till EOF is reached.
+
+*note:*<br>
+much more stable than `stdinRead()` for big binaries.
+
+*since:* 0.3.0
+
+
 == stdoutWrite ==
 <font color="red">beta, may change in the futur</font><br>
 {{{

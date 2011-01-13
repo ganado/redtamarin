@@ -533,13 +533,11 @@ here how to parse it
 import avmplus.System;
 import flash.utils.ByteArray;
 
-var bytes:ByteArray = new ByteArray();
-var part:ByteArray;
+var bytes:ByteArray;
 
 if( !System.isStdinEmpty() )
 {
-    part = System.stdinReadAll(); //read stdin buffer till EOF
-    bytes.writeBytes( part ); //append the bytes
+    bytes = System.stdinReadAll(); //read stdin buffer till EOF
 }
 
 trace( "total bytes received = " + bytes.length );

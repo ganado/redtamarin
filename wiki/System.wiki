@@ -438,15 +438,14 @@ see `stdinRead()`.
 {{{
 public native static function stdinRead( length:uint ):ByteArray;
 }}}
-Returns the length of `bytes` read from stdin.
+Reads the length of `bytes` from stdin.
 
 *note:*<br>
 If the length is bigger that the data in the actual buffer<br>
-you may end up being "blocked" (eg. wait for more data coming into the buffer).
+you may end up being "blocked" (eg. wait for more data coming into the buffer).<br>
 <br>
 Also, this function is not completely stable as for big binaries<br>
-the buffer `stdinLength` may returns `0` before the `EOF`<br>
-
+the buffer `stdinLength` may returns `0` before the `EOF`.
 
 *example:* read stdin in an exectuable
 {{{
@@ -493,8 +492,33 @@ if( postSize > 0 )
 //...
 }}}
 
+*since:* 0.3.0
+
+
+== stdoutWrite ==
+<font color="red">beta, may change in the futur</font><br>
+{{{
+public native static function stdoutWrite( bytes:ByteArray ):void;
+}}}
+Writes `bytes` to the stdout.
+
+*note:*<br>
+If you want your exe to output binary, but mainly to test CGI.
+
+*example:* display an image under CGI
+{{{
+import avmplus.System;
+import avmplus.FileSystem;
+import flash.utils.ByteArray;
+
+var img:ByteArray = FileSystem.readByteArray( "image.png" );
+System.stdoutWrite( img ); 
+//TODO
+System.exit(0);
+}}}
 
 *since:* 0.3.0
+
 
 == debugger ==
 {{{

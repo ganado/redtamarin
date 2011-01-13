@@ -427,7 +427,7 @@ Returns the length of the stdin buffer.
 *note:*<br>
 this is not the whole length of stdin, only its buffer,<br>
 so if you need to get the full size of stdin you will have to loop<br>
-see `stdinRead()`.
+see [#stdinRead System.stdinRead()] or event better [#stdinReadAll System.stdinReadAll()].
 
 *since:* 0.3.0
 
@@ -481,6 +481,7 @@ if( postSize > 0 )
 
 
 == stdinReadAll ==
+<font color="orange">blocking</font><br>
 <font color="red">beta, may change in the futur</font><br>
 {{{
 public native static function stdinReadAll():ByteArray;

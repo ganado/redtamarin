@@ -408,6 +408,74 @@ Support Unicode characters.
 *since:* 0.3.0
 
 
+== stdinLength ==
+{{{
+public native static function get stdinLength():Number;
+}}}
+Returns the length of the stdin buffer.
+
+*note:*<br>
+this not the whole length of stdin, only its buffer,<br>
+so if you need to get the full size of stdin you will have to loop<br>
+see `stdinRead()`.
+
+*since:* 0.3.0
+
+
+== stdinRead ==
+{{{
+public native static function stdinRead( length:uint ):ByteArray;
+}}}
+Returns the length of `bytes` read from stdin.
+
+*example:* read stdin in an exectuable
+{{{
+$ cat somefile.bin | ./redshell test.abc
+}}}
+or
+{{{
+$ cat somefile.bin | ./test
+}}}
+the pipe `|` will pass the binary content to the stdin of the shell,<br>
+here how to parse it
+{{{
+import avmplus.System;
+import flash.utils.ByteArray;
+
+var bytes:ByteArray = new ByteArray();
+var part:ByteArray;
+
+var len:Number = System.stdinLength;
+
+while( len > 0 )
+{
+    part = System.stdinRead( System.stdinLength ); //read stdin buffer
+    bytes.writeBytes( part ); //append the bytes
+    len = System.stdinLength; //refresh buffer
+}
+
+trace( "total bytes received = " + bytes.length );
+}}}
+
+*example:* read post data with CGI
+{{{
+import avmplus.System;
+import flash.utils.ByteArray;
+import C.stdlib.*;
+
+var postSize:int = int( getenv("CONTENT_LENGTH") );
+
+if( postSize > 0 )
+{
+    var postData:ByteArray = System.stdinRead( postSize );
+    //...
+}
+//...
+}}}
+
+
+*since:* 0.3.0
+
 == debugger ==
 {{{
 public native static function debugger():void;

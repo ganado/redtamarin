@@ -473,7 +473,7 @@ public static function absolutePath( filename:String ):String
 Returns the absolute path of `filename`.
 
 *note:*<br>
-Reuse `realpath()` from [C_stdlib#realpath C.stdlib].
+Reuse `realpath()` from [C_stdlib C.stdlib].
 
 *since:* 0.3.0
 

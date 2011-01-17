@@ -561,6 +561,23 @@ result
 *since:* 0.3.0
 
 
+== createDirectory ==
+{{{
+public static function createDirectory( filename:String ):Boolean
+}}}
+Creates the directory path from `filename`,<br>
+iterates trough the path components and create the missing directories if needed.
+
+*note:*<br>
+Returns true on success, but what does it mean if it returns false ?<br>
+In short, it means that `mkdir` failed, but it might have failed with `EEXIST`,<br>
+or some other error due to the the directory appearing out of thin air.<br>
+This can occur if two processes are trying to create the same file system tree<br>
+at the same time.
+
+*since:* 0.3.0
+
+
 == listFiles ==
 {{{
 public native static function listFiles( filename:String, directory:Boolean = false ):Array;
@@ -622,8 +639,8 @@ public static function normalizePath( filename:String ):String
 Normalizes the separators of the `filename`.
 
 *note:*<br>
-For POSIX, all `\` are replaced by `/`.<br>
-for WIN32, all `/` re replaced by `\`.
+For POSIX, all `"\"` are replaced by `"/"`.<br>
+for WIN32, all `"/"` are replaced by `"\"`.
 
 *since:* 0.3.0
 

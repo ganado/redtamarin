@@ -478,6 +478,89 @@ Reuse `realpath()` from [C_stdlib C.stdlib].
 *since:* 0.3.0
 
 
+== containsPath ==
+{{{
+public static function containsPath( parent:String, child:String ):Boolean
+}}}
+Returns true if `parent` contains `child`.<br>
+Both paths are converted to absolute paths before doing the comparison.
+
+*since:* 0.3.0
+
+
+== copy ==
+<font color="red">not implemented</font><br>
+{{{
+public static function copy( origin:String, destination:String, overwrite:Boolean = false ):Boolean
+}}}
+TODO
+
+*since:* 0.3.0
+
+
+== copyFile ==
+{{{
+public static function copyFile( origin:String, destination:String, overwrite:Boolean = false, copyMode:Boolean = false ):Boolean
+}}}
+Copy an `origin` file to a `destination` file and returns true on success.
+
+*note:*<br>
+By default, does not `overwrite` the destination if it already exists.<br>
+By default, does not copy the file mode (`copyMode=false`).<br>
+<br>
+Will throw errors if
+  * if the `origin` does not exists
+  * if the `destination` already exists and `overwrite=false`
+  * if the `origin` is a directory
+  * if the `destination` exists and is a directory
+
+*since:* 0.3.0
+
+
+== copyFiles ==
+{{{
+public static function copyFiles( origin:String, filter:RegExp, destination:String, overwrite:Boolean = false, copyMode:Boolean = false ):Boolean
+}}}
+Copy all files matching the `filter` from directory `origin`<br>
+to `destination` directory and returns true on success.
+
+*note:*<br>
+By default, does not `overwrite` the destination if it already exists.<br>
+By default, does not copy the file mode (`copyMode=false`).<br>
+<br>
+Will throw errors if
+  * if the `origin` does not exists
+  * if the `destination` does not exists
+  * if the `origin` is not a directory
+  * if the `destination` is not a directory
+
+*example:* copy files using wildcards
+{{{
+import avmplus.FileSystem;
+
+//will copy all the files ending by .abc in the current directory to the 'test5' directory
+trace( "copied = " + FileSystem.copyFiles( ".", /.*\.abc$/, "test5", true, true ) ); //copied = true
+}}}
+result
+{{{
+//current directory
+-rw-r--r--   48036  8 Jan 20:04 builtin.abc
+-rw-r--r--   29259 17 Jan 11:30 shell_toplevel.abc
+-rw-r--r--   3543 11 Jan 06:49 test.abc
+-rw-r--r--   226 17 Jan 11:31 test_fs.abc
+-rw-r--r--   481 13 Jan 12:31 test_io.abc
+
+//test5 directory
+-rw-r--r--   48036 17 Jan 11:31 builtin.abc
+-rw-r--r--   29259 17 Jan 11:31 shell_toplevel.abc
+-rw-r--r--   3543 17 Jan 11:31 test.abc
+-rw-r--r--   226 17 Jan 11:31 test_fs.abc
+-rw-r--r--   481 17 Jan 11:31 test_io.abc
+}}}
+
+*since:* 0.3.0
+
+
 == listFiles ==
 {{{
 public native static function listFiles( filename:String, directory:Boolean = false ):Array;
@@ -533,11 +616,14 @@ trace( FileSystem.listFilesWithRegexp( ".", /.*\.abc$/, false ).join( "\n" ) );
 
 
 == normalizePath ==
-<font color="red">not implemented</font><br>
 {{{
 public static function normalizePath( filename:String ):String
 }}}
-TODO
+Normalizes the separators of the `filename`.
+
+*note:*<br>
+For POSIX, all `\` are replaced by `/`.<br>
+for WIN32, all `/` re replaced by `\`.
 
 *since:* 0.3.0
 

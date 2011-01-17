@@ -110,7 +110,7 @@ Will not work exactly the same between POSIX and WIN32<br>
 with POSIX it will always returns an empty array, eg. `[  ]`<br>
 <br>
 with WIN32 it will returns the `active` drives letter<br>
-eg. `[ "c:\", "d:\" ]`
+eg. `[ "c:", "d:" ]`
 
 *since:* 0.3.0
 
@@ -444,6 +444,15 @@ Tests if the character `c` is a separator.
 *since:* 0.3.0
 
 
+== isAbsolutePath ==
+{{{
+public static function isAbsolutePath( filename:String ):Boolean
+}}}
+Tests if `filename` is an absolute path.
+
+*since:* 0.3.0
+
+
 == isNotDotOrDotdot ==
 {{{
 public static function isNotDotOrDotdot( element:*, index:int, arr:Array ):Boolean
@@ -458,11 +467,13 @@ you need to pass it as an argument of [#listFilesWithFilter listFilesWithFilter(
 
 
 == absolutePath ==
-<font color="red">not implemented</font><br>
 {{{
 public static function absolutePath( filename:String ):String
 }}}
-TODO
+Returns the absolute path of `filename`.
+
+*note:*<br>
+Reuse `realpath()` from [C_stdlib#realpath C.stdlib].
 
 *since:* 0.3.0
 

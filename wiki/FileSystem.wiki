@@ -549,13 +549,13 @@ Will throw errors if
 
 == copyFiles ==
 {{{
-public static function copyFiles( origin:String, destination:String, filter:RegExp = /.*/, overwrite:Boolean = false, includeHidden:Boolean = true, copyMode:Boolean = false ):Boolean
+public static function copyFiles( origin:String, destination:String, filter:RegExp = null, overwrite:Boolean = false, includeHidden:Boolean = true, copyMode:Boolean = false ):Boolean
 }}}
 Copy all files matching the `filter` from directory `origin`<br>
 to `destination` directory and returns true on success.
 
 *note:*<br>
-By default, the regexp filter is `/.*/` (eg. all files).<br>
+By default, the regexp filter is `/.*/` (`filter=null` eg. all files).<br>
 By default, does not `overwrite` the destination if it already exists.<br>
 By default, does copy the hidden files (`includeHidden=true`).<br>
 By default, does not copy the file mode (`copyMode=false`).<br>

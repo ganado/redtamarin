@@ -499,6 +499,33 @@ TODO
 *since:* 0.3.0
 
 
+== copyDirectory ==
+{{{
+public static function copyDirectory( origin:String, destination:String, overwrite:Boolean = false, includeHidden:Boolean = true, copyMode:Boolean = false ):Boolean
+}}}
+Recursively copy the content of an `origin` directory to a `destination` directory<br>
+and returns true on success.
+
+*note:*
+By default, does not `overwrite` the destination if it already exists.<br>
+By default, does copy the hidden directories and files (`includeHidden=true`).<br>
+By default, does not copy the directories and files mode (`copyMode=false`).<br>
+<br>
+If the `destination` does not exists it will be created.
+<br>
+If you need to copy only the files from a directory without recursively<br>
+copying the sub-directories use [#copyFiles copyFiles()].
+<br>
+Will throw errors if
+  * if the `origin` does not exists
+  * if the `destination` already exists and `overwrite=false`
+  * if the `origin` is not a directory
+  * if the `destination` already exists and is not a directory
+  * if the `destination` is contained by the `origin`
+
+*since:* 0.3.0
+
+
 == copyFile ==
 {{{
 public static function copyFile( origin:String, destination:String, overwrite:Boolean = false, copyMode:Boolean = false ):Boolean
@@ -508,6 +535,8 @@ Copy an `origin` file to a `destination` file and returns true on success.
 *note:*<br>
 By default, does not `overwrite` the destination if it already exists.<br>
 By default, does not copy the file mode (`copyMode=false`).<br>
+<br>
+This method does not distinguish between hidden and regular file.
 <br>
 Will throw errors if
   * if the `origin` does not exists
@@ -520,13 +549,15 @@ Will throw errors if
 
 == copyFiles ==
 {{{
-public static function copyFiles( origin:String, filter:RegExp, destination:String, overwrite:Boolean = false, copyMode:Boolean = false ):Boolean
+public static function copyFiles( origin:String, destination:String, filter:RegExp = /.*/, overwrite:Boolean = false, includeHidden:Boolean = true, copyMode:Boolean = false ):Boolean
 }}}
 Copy all files matching the `filter` from directory `origin`<br>
 to `destination` directory and returns true on success.
 
 *note:*<br>
+By default, the regexp filter is `/.*/` (eg. all files).<br>
 By default, does not `overwrite` the destination if it already exists.<br>
+By default, does copy the hidden files (`includeHidden=true`).<br>
 By default, does not copy the file mode (`copyMode=false`).<br>
 <br>
 Will throw errors if
@@ -540,7 +571,7 @@ Will throw errors if
 import avmplus.FileSystem;
 
 //will copy all the files ending by .abc in the current directory to the 'test5' directory
-trace( "copied = " + FileSystem.copyFiles( ".", /.*\.abc$/, "test5", true, true ) ); //copied = true
+trace( "copied = " + FileSystem.copyFiles( ".", "test5", /.*\.abc$/, true, true, true ) ); //copied = true
 }}}
 result
 {{{
@@ -617,7 +648,7 @@ public static function isNotDotOrDotdot( element:*, index:int, arr:Array ):Boole
 public static function listFilesWithRegexp( filename:String, filter:RegExp, directory:Boolean = false ):Array
 }}}
 Returns an array of files or directories from `filename`<br>
-filtered by a regular expression.
+that matches the `filter` regular expression.
 
 *example:* basic usage
 {{{

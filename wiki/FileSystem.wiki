@@ -514,7 +514,7 @@ By default, does not copy the directories and files mode (`copyMode=false`).<br>
 If the `destination` does not exists it will be created (reuse [#createDirectory createDirectory()].<br>
 <br>
 If you need to copy only the files from a directory without recursively<br>
-copying the sub-directories use [#copyFiles copyFiles()].
+copying the sub-directories use [#copyFiles copyFiles()].<br>
 <br>
 Will throw errors if
   * if the `origin` does not exists

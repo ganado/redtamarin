@@ -506,12 +506,12 @@ public static function copyDirectory( origin:String, destination:String, overwri
 Recursively copy the content of an `origin` directory to a `destination` directory<br>
 and returns true on success.
 
-*note:*
+*note:*<br>
 By default, does not `overwrite` the destination if it already exists.<br>
 By default, does copy the hidden directories and files (`includeHidden=true`).<br>
 By default, does not copy the directories and files mode (`copyMode=false`).<br>
 <br>
-If the `destination` does not exists it will be created.
+If the `destination` does not exists it will be created (reuse [#createDirectory createDirectory()].<br>
 <br>
 If you need to copy only the files from a directory without recursively<br>
 copying the sub-directories use [#copyFiles copyFiles()].

@@ -489,16 +489,6 @@ Both paths are converted to absolute paths before doing the comparison.
 *since:* 0.3.0
 
 
-== copy ==
-<font color="red">not implemented</font><br>
-{{{
-public static function copy( origin:String, destination:String, overwrite:Boolean = false ):Boolean
-}}}
-TODO
-
-*since:* 0.3.0
-
-
 == copyDirectory ==
 {{{
 public static function copyDirectory( origin:String, destination:String, overwrite:Boolean = false, includeHidden:Boolean = true, copyMode:Boolean = false ):Boolean
@@ -782,8 +772,5 @@ or `-1` on failure.
 ----
 
 *not implemented*
- * `copyFile( origin:String, destination:String ):Boolean`
- * `copyDirectory( origin:String, destination:String ):Boolean`
  * `rename( filename:String, newname:String ):Boolean`
  * `move( filename:String, target:String ):Boolean`
- * `createDirectory( filename:String, recursive:Boolean = false ):Boolean`

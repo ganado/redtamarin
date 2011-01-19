@@ -654,6 +654,30 @@ trace( FileSystem.listFilesWithRegexp( ".", /.*\.abc$/, false ).join( "\n" ) );
 *since:* 0.3.0
 
 
+== move ==
+{{{
+public static function move( origin:String, destination:String, overwrite:Boolean = false ):Boolean
+}}}
+Moves an `origin` entry (file or directory) to a `destination` entry<br>
+and returns true on success.
+
+*note:*<br>
+A move is the same as a rename, it reuses `rename()` from [C_stdio C.stdio].<br>
+By default, does not `overwrite` the destination if it already exists.<br>
+<br>
+You can only moves `file to file` or `directory to directory`,<br>
+in case of mismatch it will returns `false`.<br>
+<br>
+If a low-level `rename()` does not work and if the entry is a directory<br>
+the method will try to do a `copyDirectory()` followed by a `removeDirectory()`.<br>
+<br>
+Will throw errors if
+  * if the `origin` does not exists
+  * if the `destination` already exists and `overwrite=false`
+
+*since:* 0.3.0
+
+
 == normalizePath ==
 {{{
 public static function normalizePath( filename:String ):String
@@ -770,7 +794,3 @@ or `-1` on failure.
 
 
 ----
-
-*not implemented*
- * `rename( filename:String, newname:String ):Boolean`
- * `move( filename:String, target:String ):Boolean`

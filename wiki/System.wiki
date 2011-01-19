@@ -95,6 +95,22 @@ trace( "API alias : " + System.apiAlias ); //API alias : AIR_2_7
 *since:* 0.3.0
 
 
+== pid  ==
+{{{
+public static function get pid():int
+}}}
+Returns the current process id.
+
+*example:* basic usage
+{{{
+import avmplus.System;
+
+trace( "pid = " + System.pid ); //pid = 75665
+}}}
+
+*since:* 0.3.0
+
+
 == programFilename ==
 {{{
 public native static function get programFilename():String;

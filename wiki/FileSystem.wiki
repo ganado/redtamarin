@@ -600,6 +600,24 @@ at the same time.
 *since:* 0.3.0
 
 
+== endsWithSeparator ==
+{{{
+public static function endsWithSeparator( filename:String ):Boolean
+}}}
+Tests if `filename` ends with a separator.
+
+*since:* 0.3.0
+
+
+== ensureEndsWithSeparator ==
+{{{
+public static function ensureEndsWithSeparator( filename:String ):String
+}}}
+Returns `filename` ending with a separator.
+
+*since:* 0.3.0
+
+
 == listFiles ==
 {{{
 public native static function listFiles( filename:String, directory:Boolean = false ):Array;

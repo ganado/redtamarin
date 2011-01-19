@@ -200,20 +200,38 @@ for Ubuntu can returns "hardy", etc.
 *since:* 0.3.0
 
 
-== name ==
+== language ==
 {{{
-public function get name():String
+public static function get language():String
 }}}
-Definition.
+The OS language.
 
 *since:* 0.3.0
 
 
-== name ==
+== country ==
 {{{
-public function get name():String
+public static function get country():String
 }}}
-Definition.
+The OS country.
+
+*since:* 0.3.0
+
+
+== locale ==
+{{{
+public static function get locale():String
+}}}
+The OS locale as `language[_country]`.
+
+*since:* 0.3.0
+
+
+== codepage ==
+{{{
+public static function get codepage():String
+}}}
+The OS code page.
 
 *since:* 0.3.0
 
@@ -239,15 +257,5 @@ Definition test.
 
 *since:* 0.3.0
 
-
-== test ==
-<font color="red">not implemented</font><br>
-<font color="blue">not native</font><br>
-{{{
-public function test():void
-}}}
-Definition test.
-
-*since:* 0.3.0
 
 ----

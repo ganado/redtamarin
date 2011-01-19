@@ -206,6 +206,13 @@ public static function get language():String
 }}}
 The OS language.
 
+*example:* basic usage
+{{{
+import avmplus.OperatingSystem;
+
+trace( "language = " + OperatingSystem.language ); //language = en
+}}}
+
 *since:* 0.3.0
 
 
@@ -214,6 +221,13 @@ The OS language.
 public static function get country():String
 }}}
 The OS country.
+
+*example:* basic usage
+{{{
+import avmplus.OperatingSystem;
+
+trace( "country = " + OperatingSystem.country ); //country = GB
+}}}
 
 *since:* 0.3.0
 
@@ -224,6 +238,13 @@ public static function get locale():String
 }}}
 The OS locale as `language[_country]`.
 
+*example:* basic usage
+{{{
+import avmplus.OperatingSystem;
+
+trace( "locale = " + OperatingSystem.locale ); //locale = en_GB
+}}}
+
 *since:* 0.3.0
 
 
@@ -232,6 +253,13 @@ The OS locale as `language[_country]`.
 public static function get codepage():String
 }}}
 The OS code page.
+
+*example:* basic usage
+{{{
+import avmplus.OperatingSystem;
+
+trace( "codepage = " + OperatingSystem.codepage ); //codepage = UTF-8
+}}}
 
 *since:* 0.3.0
 

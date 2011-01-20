@@ -111,12 +111,16 @@ Gives different results depending on the OS.<br>
 || Windows Vista/7 || `<root>\Users\<username>` ||
 || Mac OS X || `/Users/<username>` ||
 || Linux || `/home/<username>` ||
-|| Unix-like ||  ||
-||  || `/var/users/<username>` ||
-||  || `/u01/<username>` ||
-||  || `/usr/<username>` ||
-||  || `/user/<username>` ||
-||  || `/users/<username>` ||
+|| Unix-like || `/var/users/<username>` ||
+|| Unix-like || `/u01/<username>` ||
+|| Unix-like || `/usr/<username>` ||
+|| Unix-like || `/user/<username>` ||
+|| Unix-like || `/users/<username>` ||
+
+For Windows, we will look for `%USERPROFILE%` as a standard.<br>
+for OSX and Linux, we will look for `$HOME` as a standard,<br>
+and if not found, then we will iterate for `/var/users/<username>` etc.<br>
+and return the first existing directory or empty string of nothing else found.
 
 
 *since:* 0.3.0

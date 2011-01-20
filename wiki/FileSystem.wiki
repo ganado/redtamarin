@@ -105,20 +105,18 @@ The user's directory.
 
 *note:*<br>
 Gives different results depending on the OS.<br>
-For Windows<br>
-  Windows NT `<root>\WINNT\Profiles\<username>`<br>
-  Windows 2000/XP/2003 `<root>\Documents and Settings\<username>`<br>
-  Windows Vista/7 `<root>\Users\<username>`<br>
-For Mac OS X<br>
-  `/Users/<username>`<br>
-for Linux<br>
-  `/home/<username>`<br>
-for Unix-like<br>
-  `/var/users/<username>`<br>
-  `/u01/<username>`<br>
-  `/usr/<username>`<br>
-  `/user/<username>`<br>
-  `/users/<username>`<br>
+|| OS || Path ||
+|| Windows NT || `<root>\WINNT\Profiles\<username>` ||
+|| Windows 2000/XP/2003 || `<root>\Documents and Settings\<username>` ||
+|| Windows Vista/7 || `<root>\Users\<username>` ||
+|| Mac OS X || `/Users/<username>` ||
+|| Linux || `/home/<username>` ||
+|| Unix-like ||  ||
+||  || `/var/users/<username>` ||
+||  || `/u01/<username>` ||
+||  || `/usr/<username>` ||
+||  || `/user/<username>` ||
+||  || `/users/<username>` ||
 
 
 *since:* 0.3.0

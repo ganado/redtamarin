@@ -97,6 +97,14 @@ The character used to identify a file extension.
 
 = Properties =
 
+== homeDirectory ==
+{{{
+public static function get homeDirectory():String
+}}}
+The user's directory.
+
+*since:* 0.3.0
+
 == drives ==
 <font color="red">not implemented for WIN32</font><br>
 {{{

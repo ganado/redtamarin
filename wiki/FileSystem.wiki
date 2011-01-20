@@ -154,7 +154,7 @@ Will not work exactly the same between POSIX and WIN32<br>
 with POSIX it will always returns an empty array, eg. `[  ]`<br>
 <br>
 with WIN32 it will returns the `active` drives letter<br>
-eg. `[ "c:", "d:" ]`
+eg. `[ "C:", "D:" ]`
 
 *since:* 0.3.0
 
@@ -166,8 +166,9 @@ public static function get lineEnding():String
 The line-ending character sequence used by the host operating system.
 
 *note:*<br>
-POSIX use `"\n"`.<br>
-WIN32 use `"\r\n"`.
+WIN32 use `"\r\n"`.<br>
+POSIX use `"\n"`.
+
 
 *since:* 0.3.0
 
@@ -179,8 +180,9 @@ public static function get separators():Array
 The character separators used by the operating system.
 
 *note:*<br>
-POSIX use `"/"`.<br>
-WIN32 use `"\"`, tolerant of `"/"`.
+WIN32 use `"\"`, tolerant of `"/"`.<br>
+POSIX use `"/"`.
+
 
 *since:* 0.3.0
 

@@ -103,6 +103,22 @@ public static function get homeDirectory():String
 }}}
 The user's directory.
 
+*note:*<br>
+Gives different results depending on the OS.<br>
+For Windows
+  * Windows NT `<root>\WINNT\Profiles\<username>`
+  * Windows 2000/XP/2003 `<root>\Documents and Settings\<username>`
+  * Windows Vista/7 `<root>\Users\<username>`
+For Mac OS X `/Users/<username>`
+for Linux `/home/<username>`
+for Unix-like
+  * `/var/users/<username>`
+  * `/u01/<username>`
+  * `/usr/<username>`
+  * `/user/<username>`
+  * `/users/<username>`
+
+
 *since:* 0.3.0
 
 == drives ==

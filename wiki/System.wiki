@@ -126,6 +126,20 @@ you will have to do your own parsing with the value.
 *since:* 0.3.0
 
 
+== shell ==
+{{{
+public static function get shell():String
+}}}
+Returns system default shell.
+
+*note:*<br>
+For WIN32 will returns the value of `%COMSPEC%`, eg. `C:\Windows\System32\cmd.exe`.<br>
+<br>
+for POSIX, will returns the  value of `$SHELL`, eg. `/bin/bash`.
+
+*since:* 0.3.0
+
+
 == swfVersion ==
 {{{
 public native static function get swfVersion():int;

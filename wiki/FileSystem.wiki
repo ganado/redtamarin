@@ -122,8 +122,24 @@ for OSX and Linux, we will look for `$HOME` as a standard,<br>
 and if not found, then we will iterate for `/var/users/<username>` etc.<br>
 and return the first existing directory or an empty string if nothing else found.
 
+*since:* 0.3.0
+
+
+== rootDirectory ==
+{{{
+public static function get rootDirectory():String
+}}}
+The system root directory.
+
+*note:*<br>
+Gives different results depending on the OS.<br>
+<br>
+For WIN32, will returns the drive where the system is installed (usually `"C:\\"`).<br>
+<br>
+For POSIX, will always returns `"/"`.
 
 *since:* 0.3.0
+
 
 == drives ==
 <font color="red">not implemented for WIN32</font><br>

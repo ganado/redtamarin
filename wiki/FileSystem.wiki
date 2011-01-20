@@ -120,7 +120,7 @@ Gives different results depending on the OS.<br>
 For Windows, we will look for `%USERPROFILE%` as a standard.<br>
 for OSX and Linux, we will look for `$HOME` as a standard,<br>
 and if not found, then we will iterate for `/var/users/<username>` etc.<br>
-and return the first existing directory or empty string of nothing else found.
+and return the first existing directory or an empty string if nothing else found.
 
 
 *since:* 0.3.0

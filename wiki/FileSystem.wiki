@@ -109,8 +109,8 @@ For Windows
   * Windows NT `<root>\WINNT\Profiles\<username>`
   * Windows 2000/XP/2003 `<root>\Documents and Settings\<username>`
   * Windows Vista/7 `<root>\Users\<username>`
-For Mac OS X `/Users/<username>`
-for Linux `/home/<username>`
+For Mac OS X `/Users/<username>`<br>
+for Linux `/home/<username>`<br>
 for Unix-like
   * `/var/users/<username>`
   * `/u01/<username>`

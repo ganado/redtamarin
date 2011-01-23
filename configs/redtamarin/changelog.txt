@@ -30,6 +30,27 @@
 - re-integrated all of clib for WIN32 and tested
 - fixed VMPI_realpath for WIN32
 - re-integrated all of clib for UNIX and tested
+- re-integrated all OperatingSystem
+- re-integrated all FileSystem
+- changed and moved System, now it's more redtamarin centric
+  eg. we add what we need for our API
+- a lot of work on FileSystem added: currentDirectory, parentDirectory,
+  extensionSeparator, drives, lineEnding, separators, getFileSize(),
+  getLastModifiedTime(), getBasenameFromPath(), getDirectoryFromPath(),
+  getExtension(), hasDriveLetter(), isEmptyDirectory(), isSeparator(),
+  isNotDotOrDotdot(), listFilesWithFilter(), listFilesWithRegexp(),
+  remove(), removeFile(), removeDirectory(), stripTrailingSeparators()
+- added beta features to read/write binary to stdin/stdout
+  stdinLength, isStdinEmpty(), stdinRead(), stdinReadAll(), stdoutWrite()
+- added more functions to FileSystem: isAbsolutePath(), absolutePath(),
+  containsPath(), copyFile(), copyFiles(), createDirectory(),
+  endsWithSeparator(), ensureEndsWithSeparator(), normalizePath(), etc.
+- added system locale detection
+  OperatingSystem.language, OperatingSystem.country,
+  OperatingSystem.locale, OperatingSystem.codePage
+- added C.unistd getpid() and System.pid
+- added FileSystem.homeDirectory and FileSystem.rootDirectory
+- added System.shell and System.popen()
 
 * 0.2.9
 - added VMPI_chmod

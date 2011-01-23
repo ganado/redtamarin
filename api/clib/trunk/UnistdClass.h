@@ -89,6 +89,7 @@ namespace avmshell
         Stringp getcwd();
         Stringp gethostname();
         Stringp getlogin();
+        int getpid();
         int mkdir(Stringp path);
         int rmdir(Stringp path);
         void sleep(int milliseconds);

@@ -247,6 +247,11 @@ namespace avmshell
         return core()->newStringUTF8( username );
     }
 
+    int UnistdClass::getpid()
+    {
+        return VMPI_getpid();
+    }
+
     int UnistdClass::mkdir(Stringp path)
     {
         if (!path) {

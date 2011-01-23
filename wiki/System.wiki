@@ -216,6 +216,7 @@ reuse `getcwd()` and `chdir()` from [C_unistd C.unistd].
 = Methods =
 
 == exec ==
+<font color="orange">blocking</font><br>
 {{{
 public function exec( command:String ):int
 }}}
@@ -258,6 +259,38 @@ If no arguments are passed will use `EXIT_SUCCESS` by default.
 
 *since:* 0.3.0
 
+
+== popen ==
+<font color="orange">blocking</font><br>
+{{{
+public static function popen( command:String ):String
+}}}
+Executes the specified command line and returns the output.
+
+*example:* basic usage
+{{{
+import avmplus.System;
+
+trace( System.popen( "ping -c 3 www.google.com" ) );
+
+//output
+/*
+PING www.l.google.com (74.125.230.81): 56 data bytes
+64 bytes from 74.125.230.81: icmp_seq=0 ttl=57 time=13.421 ms
+64 bytes from 74.125.230.81: icmp_seq=1 ttl=57 time=13.054 ms
+64 bytes from 74.125.230.81: icmp_seq=2 ttl=57 time=12.545 ms
+
+--- www.l.google.com ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 12.545/13.007/13.421/0.359 ms
+
+*/
+}}}
+
+*note:*<br>
+If the command fails to execute for some reason returns `null`.
+
+*since:* 0.3.0
 
 == getAvmplusVersion ==
 {{{

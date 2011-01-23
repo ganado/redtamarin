@@ -104,5 +104,10 @@ namespace avmshell
         return version;
     }
     
+    Stringp OperatingSystemClass::getSystemLocale()
+    {
+        return core()->newStringUTF8( VMPI_getLocale() );
+    }
+    
 
 }

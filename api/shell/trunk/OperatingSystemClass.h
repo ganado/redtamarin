@@ -55,6 +55,7 @@ namespace avmshell
         Stringp getVersion();
         Stringp getMachine();
         Stringp getVendorVersion();
+        Stringp getSystemLocale();
 
         DECLARE_SLOTS_OperatingSystemClass;
     };

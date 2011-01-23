@@ -141,6 +141,7 @@ And with that, you can setup your native class with different constructors and/o
 
 == Creating a !ByteArray on the C++ side  ==
 
+obsolete
 {{{
 ByteArrayObject* bytes;
 
@@ -157,10 +158,18 @@ bytes = (ByteArrayObject*)AvmCore::atomToScriptObject(ba->construct(0, args));
 bytes->setLength(0);
 }}}
 
+now you can do that (much much simpler)
+{{{
+ByteArrayObject* bytes = toplevel->byteArrayClass()->constructByteArray();
+//always reset it to zero
+bytes->set_length(0);
+}}}
+
 the AS3 equivalent is
 {{{
 var bytes:ByteArray = new ByteArray();
 }}}
+
 
 
 == Quickly get the size of a native object ==

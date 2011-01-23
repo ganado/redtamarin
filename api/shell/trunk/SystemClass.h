@@ -109,6 +109,12 @@ namespace avmshell
         void trace(ArrayObject* a);
         void write(Stringp s);
 
+        double get_stdinLength();
+        ByteArrayObject* stdinRead(uint32_t length);
+        ByteArrayObject* stdinReadAll();
+        void stdoutWrite(ByteArrayObject* bytes);
+        
+        Stringp popenRead(Stringp command);
 
         /**
          * @name Debugging Extensions

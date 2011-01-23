@@ -156,6 +156,100 @@ namespace avmshell
         console << '\n';
     }
 
+    double SystemClass::get_stdinLength()
+    {
+        return VMPI_getStdinFileLength();
+    }
+
+    ByteArrayObject* SystemClass::stdinRead(uint32_t length)
+    {
+		Toplevel* toplevel = this->toplevel();
+        
+		unsigned char *c = mmfx_new_array( unsigned char, length+1);
+        
+        ByteArrayObject* b = toplevel->byteArrayClass()->constructByteArray();
+		b->set_length(0);
+		
+		while (length > 0) {
+			uint32_t actual = (uint32_t) fread(c, 1, length, stdin);
+			if (actual > 0) {
+				b->GetByteArray().Write(c, actual);
+				length -= actual;
+			}
+			else {
+				break;
+			}
+		}
+		b->set_position(0);
+
+		mmfx_delete_array( c );
+		return b;
+    }
+
+    ByteArrayObject* SystemClass::stdinReadAll()
+    {
+        Toplevel* toplevel = this->toplevel();
+        int buffer = 4096;
+        unsigned char *c = mmfx_new_array( unsigned char, buffer+1);
+
+        ByteArrayObject* b = toplevel->byteArrayClass()->constructByteArray();
+		b->set_length(0);
+
+		while (!feof(stdin)) {
+			uint32_t actual = (uint32_t) fread(c, 1, buffer, stdin);
+			if (actual > 0) {
+				b->GetByteArray().Write(c, actual);
+			}
+			else {
+				break;
+			}
+		}
+		b->set_position(0);
+        
+		mmfx_delete_array( c );
+		return b;
+    }
+    
+    void SystemClass::stdoutWrite(ByteArrayObject* bytes)
+    {
+        int32_t len = bytes->get_length();
+        fwrite(&(bytes->GetByteArray())[0], len, 1, stdout);
+    }
+
+    Stringp SystemClass::popenRead(Stringp command)
+    {
+        if (!command) {
+            toplevel()->throwArgumentError(kNullArgumentError, "command");
+        }
+
+        StUTF8String commandUTF8(command);
+        FILE *read_fp;
+        char buffer[BUFSIZ + 1];
+        int chars_read;
+
+        VMPI_memset(buffer, '\0', sizeof(buffer));
+        read_fp = VMPI_popen(commandUTF8.c_str(), "r");
+        Stringp output = core()->newStringUTF8( "" );
+        
+        if (read_fp != NULL) {
+            chars_read = fread(buffer, sizeof(char), BUFSIZ, read_fp);
+            output = output->append( core()->newStringUTF8(buffer, chars_read) );
+            
+            while(chars_read > 0) {
+                buffer[chars_read - 1] = '\0';
+                chars_read = fread(buffer, sizeof(char), BUFSIZ, read_fp);
+                output = output->append( core()->newStringUTF8(buffer, chars_read) );
+            }
+            
+            VMPI_pclose(read_fp);
+            return output;
+        }
+        
+        return NULL;
+    }
+
+
+    
     void SystemClass::debugger()
     {
         #ifdef DEBUGGER
@@ -188,7 +282,7 @@ namespace avmshell
     int SystemClass::user_argc;
     char **SystemClass::user_argv;
     char *SystemClass::exec_name;
-
+    
     Stringp SystemClass::get_programFilename()
     {
         return core()->newStringUTF8( exec_name );

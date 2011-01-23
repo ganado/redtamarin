@@ -54,11 +54,13 @@ namespace avmshell
         ByteArrayObject* readByteArray(Stringp filename);
         void write(Stringp filename, Stringp data);
         bool writeByteArray(Stringp filename, ByteArrayObject* bytes);
+        int _getLogicalDrives();
         int  getFileMode(Stringp filename);
         double getFileSize(Stringp filename);
         DateObject * getLastModifiedTime(Stringp filename);
         bool isRegularFile(Stringp filename);
         bool isDirectory(Stringp filename);
+        bool _isAttributeHidden(Stringp filename);
         ArrayObject * listFiles(Stringp filename, bool directory);
         double getFreeDiskSpace(Stringp filename);
         double getTotalDiskSpace(Stringp filename);

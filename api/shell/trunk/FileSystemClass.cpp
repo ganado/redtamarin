@@ -53,6 +53,11 @@ namespace avmshell
         
     }
 
+    int FileSystemClass::_getLogicalDrives()
+    {
+        return VMPI_getLogicalDrives();
+    }
+
     bool FileSystemClass::exists(Stringp filename)
     {
         if (!filename) {
@@ -341,7 +346,17 @@ namespace avmshell
         StUTF8String filenameUTF8(filename);
         return VMPI_isDirectory(filenameUTF8.c_str());
     }
+    
+    bool FileSystemClass::_isAttributeHidden(Stringp filename)
+    {
+        if (!filename) {
+            toplevel()->throwArgumentError(kNullArgumentError, "filename");
+        }
 
+        StUTF8String filenameUTF8(filename);
+        return VMPI_isAttributeHidden(filenameUTF8.c_str());
+    }
+    
     ArrayObject * FileSystemClass::listFiles(Stringp filename, bool directory)
     {
         Toplevel* toplevel = this->toplevel();

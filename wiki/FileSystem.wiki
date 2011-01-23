@@ -142,7 +142,6 @@ For POSIX, will always returns `"/"`.
 
 
 == drives ==
-<font color="red">not implemented for WIN32</font><br>
 {{{
 public static function get drives():Array
 }}}
@@ -153,8 +152,10 @@ Will not work exactly the same between POSIX and WIN32<br>
 <br>
 with POSIX it will always returns an empty array, eg. `[  ]`<br>
 <br>
-with WIN32 it will returns the `active` drives letter<br>
-eg. `[ "C:", "D:" ]`
+with WIN32 it will returns the `available` drives letter<br>
+eg. `[ "C:", "D:" ]`<br>
+`available` does not necessary means `active`, you still need to test with `canAccess()`<br>
+to see if you can read a particular drive.
 
 *since:* 0.3.0
 
@@ -439,18 +440,20 @@ Test if the `filename` is a directory.
 
 
 == isHidden ==
-<font color="red">not implemented for WIN32 / missing parts for OSX</font><br>
 {{{
 public static function isHidden( filename:String ):Boolean
 }}}
 Tests if the `filename` is considered `hidden` by the system.
 
 *note:*<br>
-Will not work exactly the same between POSIX and WIN32<br>
+Will not work exactly the same between POSIX, OSX and WIN32<br>
 <br>
 with POSIX a `filename` is considered hidden<br>
 if the name start with a `.` (dot)<br>
-and there is a special case for OSX (TODO)<br>
+<br>
+with OSX a `filename` is considered hidden<br>
+either if the name start with a `.` (dot)<br>
+or the file attribute has the `hidden` flag.
 <br>
 with WIN32 a filename` is considered hidden<br>
 if there is a `hidden` flag in the file attributes.

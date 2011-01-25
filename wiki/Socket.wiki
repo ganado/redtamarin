@@ -1,47 +1,229 @@
 #summary AVMPlus Socket class.
 
 <wiki:comment>
-Because we are defining libraries for Tamarin we can not really use asdoc to document the source code.
-So the rule is to document everything in the wiki page.
-Yeah it sucks because we have to sync by hand, we'll try to automate it later.
+Here we can use asdoc to document the source code.
+So the rule is to document the side notes in the wiki page.
 
-on the source code file, we use only one comment
-
-/* documentation: http://code.google.com/p/redtamarin/wiki/C_stdlib */
+/* more in depth informations: http://code.google.com/p/redtamarin/wiki/Socket */
 </wiki:comment>
 
 = About =
-Definition.
+Provides methods to create client and server sockets.
 
-*package:* {{{avmplus.*}}}
+*class:* {{{avmplus::Socket}}}
 
 *product:* redtamarin 0.3
 
 *since:* 0.3.0
 
+*note:*
+ * everything is blocking and synchronous
+ * support Stream (TCP) and Datagram (UDP) sockets
+ * no support for IP v6
+ * no support for events
+
 *references:*
- * link1
- * link2
+ * [http://en.wikipedia.org/wiki/Berkeley_sockets wikipedia Berkeley sockets]
+ * [http://en.wikipedia.org/wiki/Internet_socket wikipedia Internet socket]
+ * [http://en.wikipedia.org/wiki/File_descriptor wikipedia File descriptor]
 
 ----
 = Properties =
 
-== name ==
+== descriptor ==
 {{{
-public function get name():String
+public native function get descriptor():int;
 }}}
-Definition.
+The socket descriptor.
+
+*note:*<br>
+With POSIX a socket descriptor is of the type `int`<br>
+and with WIN32 a socket descriptor is of the type `HANDLE`<br>
+here we took the approach to use `int` everywhere.<br>
+<br>
+You can not create a `[Socket object]` out of an `int`<br>
+consider here the descriptor as a "unique identifier".<br>
 
 *since:* 0.3.0
+
+
+== valid ==
+{{{
+public function get valid():Boolean
+}}}
+Indicates if the socket is valid.
+
+*note:*<br>
+A `valid` socket is a socket with a positive descriptor,<br>
+all `invalid` sockets have a descriptor of `-1`.<br>
+<br>
+How do you get an invalid socket ?<br>
+either when you close the socket, the underlying handle is destroyed<br>
+and so its descriptor is set to `-1`<br>
+or something wrong happened during the socket instantiation<br>
+which will results also in a descriptor set to `-1`.<br>
+
+*since:* 0.3.0
+
+
+== connected ==
+{{{
+public function get connected():Boolean
+}}}
+Indicates if the socket is connected.
+
+*note:*<br>
+By default a socket instance have no states,<br>
+from there you can call methods to make this socket<br>
+either a client or a server.<br>
+<br>
+Calling [#connect connect()] will make the socket a client<br>
+and will change the connected state to `true`.<br>
+<br>
+Calling [#bind bind()] then [#listen listen()] will make the socket a server<br>
+but will not change the connected state.<br>
+
+*since:* 0.3.0
+
+
+== bound ==
+{{{
+public function get bound():Boolean
+}}}
+Indicates if the socket is bound.
+
+*note:*<br>
+Calling [#bind bind()] will change the bound state to `true`.
+
+*since:* 0.3.0
+
+
+== listening ==
+{{{
+public function get listening():Boolean
+}}}
+Indicates if the socket is listening.
+
+*note:*<br>
+Calling [#listen listen()] will change the listening state to `true`.
+
+*since:* 0.3.0
+
+
+== type ==
+{{{
+public function get type():String
+}}}
+Returns the type of the socket.
+
+*note:*<br>
+The type can be one of those values: "raw", "stream" or "datagram".<br>
+<br>
+see [#Socket Socket()] constructor for more details.
+
+*since:* 0.3.0
+
+== reuseAddress ==
+{{{
+public native function get reuseAddress():Boolean;
+public native function set reuseAddress( value:Boolean ):void;
+}}}
+Indicates if the socket address can be reused.
+
+*note:*<br>
+By default, `reuseAddress` is set to `false`.<br>
+<br>
+When you use [#bind bind()] to create a server<br>
+sometimes you can encounter the error "Address already in use".<br>
+This can happen because a previously bound socket is still hanging<br>
+around in the kernel and is hogging the port.<br>
+<br>
+You can either wait for it to clear (about a minute),<br>
+or set `reuseAddress` to `true`.
+
+*since:* 0.3.0
+
+
+== broadcast ==
+{{{
+public native function get broadcast():Boolean;
+public native function set broadcast( value:Boolean ):void;
+}}}
+Indicates if the socket can broadcast.
+
+*note:*<br>
+By default, `broadcast` is set to `false`.<br>
+<br>
+This option set to `true` will enable an UDP socket client<br>
+(only UDP, not TCP, and only IP v4)<br>
+to send data to multiple hosts at the same time.<br>
+<br>
+For more details see [http://beej.us/guide/bgnet/output/html/singlepage/bgnet.html#broadcast Beej's Guide to Network Programming - 7.6. Broadcast Packets].
+
+*since:* 0.3.0
+
+
+== local ==
+{{{
+public function get local():String
+}}}
+Local socket address and port.
+
+*note:*<br>
+Returns a string formated as "address:port".
+
+*since:* 0.3.0
+
+
+== peer ==
+{{{
+public function get peer():String
+}}}
+Peer socket address and port.
+
+*note:*<br>
+Returns a string formated as "address:port".<br>
+<br>
+The "peer" is the remote connection point oft his socket.
+
+*since:* 0.3.0
+
 
 ----
 = Methods =
 
-== test ==
+== isClient ==
 {{{
-public function test():void
+public function isClient():Boolean
 }}}
-Definition test.
+Indicates if the socket is a client.
+
+*since:* 0.3.0
+
+
+== isServer ==
+{{{
+public function isServer():Boolean
+}}}
+Indicates if the socket is a server.
+
+*since:* 0.3.0
+
+
+== Socket ==
+{{{
+public function Socket( family:int = -1, socktype:int = -1, protocol:int = -1 )
+}}}
+The Socket constructor.
+
+*note:*<br>
+
+*since:* 0.3.0
+
+== connect ==
+{{{
+public function connect( host:String, port:int ):void
+}}}
 
 *since:* 0.3.0
 

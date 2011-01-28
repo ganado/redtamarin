@@ -27,6 +27,39 @@ Provides methods to create client and server sockets.
  * [http://en.wikipedia.org/wiki/Internet_socket wikipedia Internet socket]
  * [http://en.wikipedia.org/wiki/File_descriptor wikipedia File descriptor]
 
+
+----
+= Statics =
+
+== lastError ==
+{{{
+public native static function get lastError():int;
+}}}
+The last socket error.
+
+*since:* 0.3.0
+
+
+== localAddresses ==
+{{{
+public static function get localAddresses():Array
+}}}
+The list of local IP addresses.
+
+*note:*<br>
+Most of the time you will have at least two addresses:<br>
+one for the loopback interface (127.0.0.1)<br>
+and at least one for an external network interface.<br>
+<br>
+It is not at all uncommon for a single machine to have multiple network interfaces:<br>
+modem, ethernet, wifi, firewire, etc.<br>
+<br>
+The loopback interface lets two programs running on a single machine<br>
+talk to each other without involving hardware drivers.<br>
+
+*since:* 0.3.0
+
+
 ----
 = Properties =
 
@@ -217,6 +250,17 @@ public function Socket( family:int = -1, socktype:int = -1, protocol:int = -1 )
 The Socket constructor.
 
 *note:*<br>
+Without arguments will create a Stream (TCP) socket by default.<br>
+<br>
+To create another type of socket, reuse the constants defined in [C_socket C.socket]<br>
+here how to create a Datagram (UDP) socket
+{{{
+import avmplus.Socket;
+import C.socket.*;
+
+var udp:Socket = new Socket( AF_INET, SOCK_DGRAM, IPPROTO_UDP );
+}}}
+
 
 *since:* 0.3.0
 

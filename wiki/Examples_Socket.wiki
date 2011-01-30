@@ -9,5 +9,34 @@ Here two very good ressources we used for this guide
   * [http://tangentsoft.net/wskfaq/ Winsock Programmer’s FAQ]
 
 
+== Events and Logs ==
+
+The [Socket] class is dynamic and define "logging" functions on its prototype.
+
+This allow you to override any of those functions depending on your needs.
+
+It's working like that
+  * for each action method, you have an event function defined on the prototype
+  * all of these event functions call the `record()` function
+  * the `record()` function dispatch a message to other functions like `log()`, `output()`
+
+here the different record mode you can define
+  * `recordLogOnly()` (the default)<br>save the messages to an array
+  * `recordOutputOnly()`<br>trace the messages to the output
+  * `recordAll()`<br>save the messages and trace them to the output
+
+here how you can change how the `record()` function works
+{{{
+Socket.prototype.record = Socket.prototype.recordAll;
+var sock:Socket = new Socket();
+}}}
+
+to disable completely the `record()` function just bind to an anonymous function
+{{{
+Socket.prototype.record = function() {};
+var sock:Socket = new Socket();
+}}}
+
+
 
 == Other stuff ==

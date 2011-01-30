@@ -16,7 +16,7 @@ The [Socket] class is dynamic and define "logging" functions on its prototype.
 This allow you to override any of those functions depending on your needs.
 
 It's working like that
-  * for each action method, you have an event function defined on the prototype
+  * for each action method, you have an event function defined on the prototype<br>for ex: `accept()` will call `onAccept()`
   * all of these event functions call the `record()` function
   * the `record()` function dispatch a message to other functions like `log()`, `output()`
 

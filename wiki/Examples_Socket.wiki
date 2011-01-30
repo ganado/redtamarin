@@ -37,6 +37,33 @@ Socket.prototype.record = function() {};
 var sock:Socket = new Socket();
 }}}
 
+to have a custom record function, define your own and override
+{{{
+import avmplus.FileSystem;
+import avmplus.Socket;
+
+Socket.prototype.recordCustom = function( message:String ):void
+{
+    message = "Socket (" + this.descriptor + "): " + message;
+    this.log( message );
+    this.output( message );
+
+    //custom
+    var file:String = "socketlogs.txt";
+    var data:String = "";
+    if( FileSystem.exists( file ) )
+    {
+        data = FileSystem.read( file );
+    }
+    data += message + "\n";
+    FileSystem.write( file, data );
+}
+
+Socket.prototype.record = Socket.prototype.recordCustom;
+
+var client:Socket = new Socket();
+}}}
+
 
 
 == Other stuff ==

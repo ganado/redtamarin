@@ -1,0 +1,13 @@
+#summary socket programming.
+
+== Introduction ==
+
+Since redtamarin v0.3 we added a [Socket] class, and because programming socket can be complex, here a little guide with examples and howtos to get you started.
+
+Here two very good ressources we used for this guide
+  * [http://beej.us/guide/bgnet/ Beej's Guide to Network Programming]
+  * [http://tangentsoft.net/wskfaq/ Winsock Programmer’s FAQ]
+
+
+
+== Other stuff ==

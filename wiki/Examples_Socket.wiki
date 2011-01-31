@@ -6,9 +6,10 @@ Since redtamarin v0.3 we added a [Socket] class,<br>
 and because programming socket can be complex,<br>
 here a little guide with examples and howtos to get you started.
 
-Here two very good ressources we used for this guide
+Here some very good ressources we used for this guide
   * [http://beej.us/guide/bgnet/ Beej's Guide to Network Programming]
   * [http://tangentsoft.net/wskfaq/ Winsock Programmer’s FAQ]
+  * [http://www.faqs.org/faqs/unix-faq/programmer/faq/ Unix Programming FAQ]
 
 
 == Events and Logs ==
@@ -74,7 +75,7 @@ On most machine you will see at least two addresses
 
 But you can have more: modem, ethernet, wifi, firewire, etc.
 
-We don;t provide access to network interfaces, subnet mask, MAC addresses, etc.<br>
+We don't provide access to network interfaces, subnet mask, MAC addresses, etc.<br>
 but the Socket class provide the static property `Socket.localAddresses`<br>
 which will list those addresses.
 

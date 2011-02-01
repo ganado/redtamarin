@@ -600,6 +600,7 @@ prototype.log = function( message:String ):void
     this._logs.push( message );
 }
 }}}
+Save a log message.
 
 *since:* 0.3.0
 
@@ -611,6 +612,7 @@ prototype.output = function( message:String ):void
     trace( message );
 }
 }}}
+Display a message.
 
 *since:* 0.3.0
 
@@ -623,6 +625,7 @@ prototype.recordLogOnly = function( message:String ):void
     this.log( message );
 }
 }}}
+Record only a to the logs.
 
 *since:* 0.3.0
 
@@ -635,6 +638,7 @@ prototype.recordOutputOnly = function( message:String ):void
     this.output( message );
 }
 }}}
+Record only to the output.
 
 *since:* 0.3.0
 
@@ -648,6 +652,7 @@ prototype.recordAll = function( message:String ):void
     this.output( message );
 }
 }}}
+Record both to the logs and to the output.
 
 *since:* 0.3.0
 
@@ -656,6 +661,10 @@ prototype.recordAll = function( message:String ):void
 {{{
 prototype.record = prototype.recordAll;
 }}}
+Default function to *record* a message.
+
+*note:*<br>
+see [Examples_Socket#Events_and_Logs socket programming guide - Events and Logs]
 
 *since:* 0.3.0
 
@@ -667,6 +676,7 @@ prototype.onConstruct = function():void
     this.record( this.type + " socket created." );
 }
 }}}
+When a socket instance is created..
 
 *since:* 0.3.0
 
@@ -678,6 +688,7 @@ prototype.onDestruct = function():void
     this.record( this.type + " socket destroyed." );
 }
 }}}
+When the socket instance is destroyed.
 
 *since:* 0.3.0
 
@@ -689,6 +700,7 @@ prototype.onConnect = function():void
     this.record( "[" + this.local + "] connected to [" + this.peer + "]." );
 }
 }}}
+When the socket connect to a peer.
 
 *since:* 0.3.0
 
@@ -708,6 +720,12 @@ prototype.onDisconnect = function( message:String = "" ):void
     }
 }
 }}}
+When the socket disconnect from the peer.
+
+*note:*<br>
+The disconnection can be one of two things
+  * the remote client disconnected
+  * the local socket closed
 
 *since:* 0.3.0
 
@@ -719,6 +737,7 @@ prototype.onSend = function( data:Number ):void
     this.record( "Sent " + data + " bytes." );
 }
 }}}
+When the socket send all the data.
 
 *since:* 0.3.0
 
@@ -730,6 +749,7 @@ prototype.onReceive = function( data:Number ):void
     this.record( "Received " + data + " bytes." );
 }
 }}}
+When the socket receive data fragments.
 
 *since:* 0.3.0
 
@@ -741,7 +761,7 @@ prototype.onReceiveAll = function( data:Number ):void
     this.record( "Received all " + data + " bytes." );
 }
 }}}
-
+When the socket receive all the data.
 *since:* 0.3.0
 
 
@@ -756,6 +776,7 @@ prototype.onBind = function( port:uint ):void
     this.record( "Bound to [" + info + "]." );
 }
 }}}
+When the socket bind to an interface.
 
 *since:* 0.3.0
 
@@ -767,14 +788,21 @@ prototype.onListen = function( backlog:uint ):void
     this.record( "[" + this.local + "] listening (backlog=" + backlog + ")." );
 }
 }}}
+When the socket listen (and so become a server).
 
 *since:* 0.3.0
 
 
-==  ==
+== onAccept ==
 {{{
 prototype.onAccept = function( id:int ):void
-
+{
+    this.record( "[" + this.local + "] accept connection from [" + id + "]." );
+}
 }}}
+When the socket accept another socket connection.
+
+*since:* 0.3.0
+
 
 ----

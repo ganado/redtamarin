@@ -343,7 +343,7 @@ public function Socket( family:int = -1, socktype:int = -1, protocol:int = -1 )
 The Socket constructor.
 
 *note:*<br>
-Calls the `onConstruct()` function (see [#Callbacks]).<br>
+Calls the `onConstruct()` function (see [#Callbacks Callbacks] section).<br>
 <br>
 Without arguments will create a Stream (TCP) socket by default.<br>
 <br>

@@ -527,6 +527,20 @@ Receive as much data as the `buffer` allows.
 *since:* 0.3.0
 
 
+== bind ==
+{{{
+public function bind( port:uint, host:String = "" ):Boolean
+}}}
+Bind a name to a socket.
+
+*note:*<br>
+By default, if you don't provide a `host` parameter,<br>
+it will try to bind to the loopback address (`127.0.0.1`).<br>
+<br>
+You can only `bind()`to a local adress, see [#localAddresses localAddresses].
+
+*since:* 0.3.0
+
 ----
 = Callbacks =
 

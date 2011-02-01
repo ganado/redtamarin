@@ -55,6 +55,17 @@ Socket constants and function helpers.
 || *MSG_PEEK* || Leave received data in queue. ||
 || *MSG_TRUNC* || Normal data truncated. ||
 || *MSG_WAITALL* || Attempt to fill the read buffer. ||
+|| *MSG_DONTWAIT* || Enables non-blocking operation; if the operation would block, EAGAIN is returned. ||
+|| *MSG_NOSIGNAL* || Requests not to send the SIGPIPE signal if an attempt to send is made on a stream-oriented socket that is no longer connected. ||
+
+*note:*<br>
+About `MSG_DONTWAIT`<br>
+if `send()` would block because outbound traffic is clogged, have it return `EAGAIN`.<br>
+This is like a "enable non-blocking just for this send."<br>
+<br>
+About `MSG_NOSIGNAL`<br>
+If you `send()` to a remote host which is no longer `recv()`ing, you'll typically get the signal `SIGPIPE`.<br>
+Adding this flag prevents that signal from being raised.<br>
 
 *since:* 0.3.0
 
@@ -84,8 +95,8 @@ Socket constants and function helpers.
 
 == Misc. ==
 || *SOMAXCONN* || The maximum backlog queue length. ||
-|| *INADDR_ANY* || IPv4 local host address. ||
-|| *INADDR_BROADCAST* || IPv4 broadcast address. ||
+|| ** || IPv4 local host address. ||
+|| ** || IPv4 broadcast address. ||
 
 *since:* 0.3.0
 

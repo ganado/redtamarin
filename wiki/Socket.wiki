@@ -100,7 +100,10 @@ From my personal tests
   * under Ubuntu 8.04 desktop, `FD_SETSIZE = ??` (TODO)
 
 To overcome this limitation, we redefined the macro to `FD_SETSIZE = 4096` for all systems,<br>
-see [http://tangentsoft.net/wskfaq/advanced.html#64sockets Winsock Programmer’s FAQ 4.9 - What are the “64 sockets” limitations?].
+see [http://tangentsoft.net/wskfaq/advanced.html#64sockets Winsock Programmer’s FAQ 4.9 - What are the “64 sockets” limitations?].<br>
+<br>
+So, yes in theory and depending of your server hardware (RAM), you could create a socket server
+with up to 4096 simultaneous connections, but we didn't do any real tests about it.
 
 *since:* 0.3.0
 
@@ -140,6 +143,31 @@ either when you close the socket, the underlying handle is destroyed<br>
 and so its descriptor is set to `-1`<br>
 or something wrong happened during the socket instantiation<br>
 which will results also in a descriptor set to `-1`.<br>
+
+*since:* 0.3.0
+
+== readable ==
+{{{
+public function get readable():Boolean
+}}}
+Indicates if the socket is ready for reading.
+
+*note:*<br>
+this property call under the hood the `select()` function with a timeout of `0 seconds`,<br>
+that means that this is *non-blocking*.
+
+*since:* 0.3.0
+
+
+== writable ==
+{{{
+public function get writable():Boolean
+}}}
+Indicates if the socket is ready for writing.
+
+*note:*<br>
+this property call under the hood the `select()` function with a timeout of `0 seconds`,<br>
+that means that this is *non-blocking*.
 
 *since:* 0.3.0
 
@@ -195,11 +223,14 @@ public function get type():String
 Returns the type of the socket.
 
 *note:*<br>
-The type can be one of those values: "raw", "stream" or "datagram".<br>
+The type can be one of those values: "raw", "stream", "datagram" or "invalid".<br>
+When the type is "invalid" that means either the socket could not construct<br>
+or that the socket has been destroyed.<br>
 <br>
 see [#Socket Socket()] constructor for more details.
 
 *since:* 0.3.0
+
 
 == reuseAddress ==
 {{{
@@ -241,6 +272,15 @@ For more details see [http://beej.us/guide/bgnet/output/html/singlepage/bgnet.ht
 *since:* 0.3.0
 
 
+== logs ==
+{{{
+public function get logs():Array
+}}}
+Returns the session logs for this socket.
+
+*since:* 0.3.0
+
+
 == local ==
 {{{
 public function get local():String
@@ -274,7 +314,11 @@ The "peer" is the remote connection point oft his socket.
 {{{
 public function isClient():Boolean
 }}}
-Indicates if the socket is a client.
+Indicates if the socket is a TCP client.
+
+*note:*<br>
+To be a "client" the socket need to be of the Stream type<br>
+and of the `connected` state.
 
 *since:* 0.3.0
 
@@ -283,7 +327,11 @@ Indicates if the socket is a client.
 {{{
 public function isServer():Boolean
 }}}
-Indicates if the socket is a server.
+Indicates if the socket is a TCP server.
+
+*note:*<br>
+To be a "client" the socket need to be of the Stream type<br>
+and of the `bound` and `listening` state.
 
 *since:* 0.3.0
 
@@ -295,6 +343,8 @@ public function Socket( family:int = -1, socktype:int = -1, protocol:int = -1 )
 The Socket constructor.
 
 *note:*<br>
+Calls the `onConstruct()` function (see [#Callbacks]).<br>
+<br>
 Without arguments will create a Stream (TCP) socket by default.<br>
 <br>
 To create another type of socket, reuse the constants defined in [C_socket C.socket]<br>
@@ -309,11 +359,23 @@ var udp:Socket = new Socket( AF_INET, SOCK_DGRAM, IPPROTO_UDP );
 
 *since:* 0.3.0
 
+
 == connect ==
 {{{
 public function connect( host:String, port:int ):void
 }}}
 
 *since:* 0.3.0
+
+----
+= Callbacks =
+
+== onConstruct ==
+{{{
+prototype.onConstruct = function():void
+{
+    this.record( this.type + " socket created." );
+}
+}}}
 
 ----

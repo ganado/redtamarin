@@ -18,6 +18,7 @@ Provides methods to create client and server sockets.
 
 *note:*
  * everything is blocking and synchronous
+ * `SIGPIPE` is disabled by default, and `EPIPE` error is thrown instead
  * support Stream (TCP) and Datagram (UDP) sockets
  * no support for IP v6
  * no support for events
@@ -56,6 +57,50 @@ modem, ethernet, wifi, firewire, etc.<br>
 <br>
 The loopback interface lets two programs running on a single machine<br>
 talk to each other without involving hardware drivers.<br>
+
+*since:* 0.3.0
+
+
+== maxConnectionQueue ==
+{{{
+public static function get maxConnectionQueue():uint
+}}}
+The maximum backlog queue length supported by the OS for each socket.
+
+*note:*<br>
+Reuse `SOMAXCONN` from [C_socket C.socket].<br>
+<br>
+Usually the value is between `0` and `255`, and depending on the system can be quite hard to change,<br>
+see [http://antohe.tripod.com/apache_surv/asg12.htm#E70E140 Apache Server Survival Guide - Listen Backlog (SOMAXCONN)]<br>
+<br>
+From my personal tests
+  * under OS X 10.6, `SOMAXCONN = 128`
+  * under Windows XP SP3, `SOMAXCONN = ??` (TODO)
+  * under Ubuntu 8.04 desktop, `SOMAXCONN = ??` (TODO)
+
+*since:* 0.3.0
+
+
+== maxConcurrentConnection ==
+{{{
+public native static function get maxConcurrentConnection():int;
+}}}
+The maximum concurrent connections supported by the OS.
+
+*note:*<br>
+To create a server with concurrent connections we use the properties<br>
+`readable` and `writable`, which under the hood use the `select()` function.<br>
+<br>
+The maximum number of socket descriptors that the `select()` function can use<br>
+is determined by the `FD_SETSIZE` macro.<br>
+<br>
+From my personal tests
+  * under OS X 10.6, `FD_SETSIZE = 1024`
+  * under Windows XP SP3, `FD_SETSIZE = 64?` (TODO)
+  * under Ubuntu 8.04 desktop, `FD_SETSIZE = ??` (TODO)
+
+To overcome this limitation, we redefined the macro to `FD_SETSIZE = 4096` for all systems,<br>
+see [http://tangentsoft.net/wskfaq/advanced.html#64sockets Winsock Programmer’s FAQ 4.9 - What are the “64 sockets” limitations?].
 
 *since:* 0.3.0
 

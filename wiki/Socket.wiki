@@ -593,6 +593,9 @@ See the examples in the [Examples_Socket socket programming guide].
 ----
 = Callbacks =
 
+You can customize (overwrite,add more, remove, etc.) any callbacks<br>
+see [http://code.google.com/p/redtamarin/wiki/Examples_Socket#Events_and_Logs socket programming guide - Events and Logs].<br>
+
 == log ==
 {{{
 prototype.log = function( message:String ):void
@@ -662,9 +665,6 @@ Record both to the logs and to the output.
 prototype.record = prototype.recordAll;
 }}}
 Default function to *record* a message.
-
-*note:*<br>
-see [Examples_Socket#Events_and_Logs socket programming guide - Events and Logs]
 
 *since:* 0.3.0
 

@@ -388,6 +388,7 @@ Calls the `onDisconnect()` function (see [#Callbacks Callbacks] section).<br>
 
 
 == send ==
+<font color="orange">blocking</font><br>
 {{{
 public function send( data:String, flags:int = 0 ):void
 }}}
@@ -402,6 +403,7 @@ Internally we loop trough the `data.length` to be sure the full data is sent, li
 
 
 == sendBinary ==
+<font color="orange">blocking</font><br>
 {{{
 public function sendBinary( data:ByteArray, flags:int = 0 ):void
 }}}
@@ -416,6 +418,7 @@ Internally we loop trough the `data.length` to be sure the full data is sent, li
 
 
 == sendTo ==
+<font color="orange">blocking</font><br>
 {{{
 public function sendTo( host:String, port:int, data:String, flags:int = 0 ):void
 }}}
@@ -430,6 +433,7 @@ The full data is sent in one packet, nothing guarantee that all the data is tran
 
 
 == sendBinaryTo ==
+<font color="orange">blocking</font><br>
 {{{
 public function sendBinaryTo( host:String, port:int, data:ByteArray, flags:int = 0 ):void
 }}}
@@ -444,6 +448,7 @@ The full data is sent in one packet, nothing guarantee that all the data is tran
 
 
 == receive ==
+<font color="orange">blocking</font><br>
 {{{
 public function receive( buffer:uint = 1024, flags:int = 0 ):String
 }}}
@@ -458,6 +463,7 @@ The data is received fragmented by the size of the `buffer`.
 
 
 == receiveAll ==
+<font color="orange">blocking</font><br>
 {{{
 public function receiveAll( buffer:uint = 1024, flags:int = 0 ):String
 }}}
@@ -472,6 +478,7 @@ The method loop till all the fragments are received.
 
 
 == receiveBinary ==
+<font color="orange">blocking</font><br>
 {{{
 public function receiveBinary( buffer:uint = 1024, flags:int = 0 ):ByteArray
 }}}
@@ -486,6 +493,7 @@ The data is received fragmented by the size of the `buffer`.
 
 
 == receiveBinaryAll ==
+<font color="orange">blocking</font><br>
 {{{
 public function receiveBinaryAll( buffer:uint = 1024, flags:int = 0 ):ByteArray
 }}}
@@ -500,6 +508,7 @@ The method loop till all the fragments are received.
 
 
 == receiveFrom ==
+<font color="orange">blocking</font><br>
 {{{
 public function receiveFrom( buffer:uint = 512, flags:int = 0 ):String
 }}}
@@ -514,6 +523,7 @@ Receive as much data as the `buffer` allows.
 
 
 == receiveBinaryFrom ==
+<font color="orange">blocking</font><br>
 {{{
 public function receiveBinaryFrom( buffer:uint = 512, flags:int = 0 ):ByteArray
 }}}
@@ -534,6 +544,8 @@ public function bind( port:uint, host:String = "" ):Boolean
 Bind a name to a socket.
 
 *note:*<br>
+Calls the `onBind()` function (see [#Callbacks Callbacks] section).<br>
+<br>
 By default, if you don't provide a `host` parameter,<br>
 it will try to bind to the loopback address (`127.0.0.1`).<br>
 <br>
@@ -541,8 +553,112 @@ You can only `bind()`to a local adress, see [#localAddresses localAddresses].
 
 *since:* 0.3.0
 
+
+== listen ==
+{{{
+public function listen( backlog:uint = 0 ):Boolean
+}}}
+Listen for socket connections and limit the queue of incoming connections.
+
+*note:*<br>
+Calls the `onListen()` function (see [#Callbacks Callbacks] section).<br>
+<br>
+By default, if you don't provide a `backlog` parameter,<br>
+the server will discard queued incoming connections (eg. `backlog=0`).<br>
+<br>
+The maximum `backlog` queue you can use can be found in [maxConnectionQueue #maxConnectionQueue].
+
+*since:* 0.3.0
+
+
+== accept ==
+<font color="orange">blocking</font><br>
+{{{
+public function accept():Socket
+}}}
+Accept a new connection on a socket.
+
+*note:*<br>
+Calls the `onAccept()` function (see [#Callbacks Callbacks] section).<br>
+<br>
+If you need to be able to accept simultaneous connections,<br>
+you will have to create a loop and test the [#readable readable]/[#writable writable]<br>
+properties of the sockets.<br>
+<br>
+See the examples in the [Examples_Socket socket programming guide].
+
+*since:* 0.3.0
+
+
 ----
 = Callbacks =
+
+== log ==
+{{{
+prototype.log = function( message:String ):void
+{
+    this._logs.push( message );
+}
+}}}
+
+*since:* 0.3.0
+
+
+== output ==
+{{{
+prototype.output = function( message:String ):void
+{
+    trace( message );
+}
+}}}
+
+*since:* 0.3.0
+
+
+== recordLogOnly ==
+{{{
+prototype.recordLogOnly = function( message:String ):void
+{
+    message = "Socket (" + this.descriptor + "): " + message;
+    this.log( message );
+}
+}}}
+
+*since:* 0.3.0
+
+
+== recordOutputOnly ==
+{{{
+prototype.recordOutputOnly = function( message:String ):void
+{
+    message = "Socket (" + this.descriptor + "): " + message;
+    this.output( message );
+}
+}}}
+
+*since:* 0.3.0
+
+
+== recordAll ==
+{{{
+prototype.recordAll = function( message:String ):void
+{
+    message = "Socket (" + this.descriptor + "): " + message;
+    this.log( message );
+    this.output( message );
+}
+}}}
+
+*since:* 0.3.0
+
+
+== record ==
+{{{
+prototype.record = prototype.recordAll;
+}}}
+
+*since:* 0.3.0
+
 
 == onConstruct ==
 {{{
@@ -550,6 +666,115 @@ prototype.onConstruct = function():void
 {
     this.record( this.type + " socket created." );
 }
+}}}
+
+*since:* 0.3.0
+
+
+== onDestruct ==
+{{{
+prototype.onDestruct = function():void
+{
+    this.record( this.type + " socket destroyed." );
+}
+}}}
+
+*since:* 0.3.0
+
+
+== onConnect ==
+{{{
+prototype.onConnect = function():void
+{
+    this.record( "[" + this.local + "] connected to [" + this.peer + "]." );
+}
+}}}
+
+*since:* 0.3.0
+
+
+== onDisconnect ==
+{{{
+prototype.onDisconnect = function( message:String = "" ):void
+{
+    if( message != "" ) { this.record( message ); }
+    if( this.isClient() )
+    {
+        this.record( "Disconnected from [" + this.peer + "]." );
+    }
+    else if( this.isServer() )
+    {
+        this.record( "[" + this.local + "] stop listening, unbound and disconnected." );
+    }
+}
+}}}
+
+*since:* 0.3.0
+
+
+== onSend ==
+{{{
+prototype.onSend = function( data:Number ):void
+{
+    this.record( "Sent " + data + " bytes." );
+}
+}}}
+
+*since:* 0.3.0
+
+
+== onReceive ==
+{{{
+prototype.onReceive = function( data:Number ):void
+{
+    this.record( "Received " + data + " bytes." );
+}
+}}}
+
+*since:* 0.3.0
+
+
+== onReceiveAll ==
+{{{
+prototype.onReceiveAll = function( data:Number ):void
+{
+    this.record( "Received all " + data + " bytes." );
+}
+}}}
+
+*since:* 0.3.0
+
+
+== onBind ==
+{{{
+prototype.onBind = function( port:uint ):void
+{
+    var info:String = String(port);
+
+    if( this.local != "" ) { info = this.local; }
+
+    this.record( "Bound to [" + info + "]." );
+}
+}}}
+
+*since:* 0.3.0
+
+
+== onListen ==
+{{{
+prototype.onListen = function( backlog:uint ):void
+{
+    this.record( "[" + this.local + "] listening (backlog=" + backlog + ")." );
+}
+}}}
+
+*since:* 0.3.0
+
+
+==  ==
+{{{
+prototype.onAccept = function( id:int ):void
+
 }}}
 
 ----

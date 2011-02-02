@@ -132,6 +132,9 @@
     <target name="after">
         <copy file="src/tamarin/core/builtin.abc" todir="bin-release"/>
         <copy file="src/tamarin/shell/shell_toplevel.abc" tofile="bin-release/toplevel.abc"/>
+        <copy file="license.txt" todir="bin-release"/>
+        <copy file="changelog.txt" todir="bin-release"/>
+        <copy file="readme.txt" todir="bin-release"/>
 
         <property name="RELEASE_ZIP" value="${RELEASE_NAME}_${projects.redtamarin.version}_${OS}.zip"/>
 

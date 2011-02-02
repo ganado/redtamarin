@@ -78,7 +78,7 @@
   FD_SETSIZE is limited to 1024 under OS X (maybe the same for Ubuntu?)
   and limited to 64 under Windows
 - removed INADDR_ANY and INADDR_BROADCAST in C.socket.*
-- added MSG_DONTWAIT and MSG_NOSIGNAL in C.socket.*
+- added MSG_DONTWAIT in C.socket.*
 - added SetNoSigPipe() to socket.h
   now by default we desactivate SIGPIPE
 

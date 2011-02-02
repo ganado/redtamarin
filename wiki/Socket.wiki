@@ -405,9 +405,9 @@ Internally we loop trough the `data.length` to be sure the full data is sent, li
 
 *supported flags:* (send/sendBinary/sendTo/sendBinaryTo)
 || *Flags* || *Description* || *POSIX* || *WIN32* ||
-|| MSG_DONTROUTE || [C_socket#Socket_messages C.socket.MSG_DONTROUTE] || yes || yes ||
-|| MSG_DONTWAIT || [/C_socket#Socket_messages C.socket.MSG_DONTWAIT] || yes || <font color="red">no</font><br> ||
-|| MSG_OOB || [/C_socket#Socket_messages C.socket.MSG_OOB] || yes || yes ||
+|| MSG_DONTROUTE || [http://code.google.com/p/redtamarin/wiki/C_socket#Socket_messages C.socket.MSG_DONTROUTE] || yes || yes ||
+|| MSG_DONTWAIT || [http://code.google.com/p/redtamarin/wiki/C_socket#Socket_messages C.socket.MSG_DONTWAIT] || yes || <font color="red">no</font><br> ||
+|| MSG_OOB || [http://code.google.com/p/redtamarin/wiki/C_socket#Socket_messages C.socket.MSG_OOB] || yes || yes ||
 
 *since:* 0.3.0
 

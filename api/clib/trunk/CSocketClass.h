@@ -65,14 +65,13 @@ namespace avmshell
         int get_SO_SNDTIMEO();
         int get_SO_TYPE();
 
-        int get_SOMAXCONN();
-
         int get_MSG_CTRUNC();
         int get_MSG_DONTROUTE();
         int get_MSG_OOB();
         int get_MSG_PEEK();
         int get_MSG_TRUNC();
         int get_MSG_WAITALL();
+        int get_MSG_DONTWAIT();
 
         int get_AF_INET();
         int get_AF_INET6();
@@ -89,12 +88,13 @@ namespace avmshell
         int get_IPPROTO_TCP();
         int get_IPPROTO_UDP();
 
-        int get_INADDR_ANY();
-        int get_INADDR_BROADCAST();
+        int get_SOMAXCONN();
 
         ArrayObject * __gethostbyaddr(Stringp addr, bool numeric);
         ArrayObject * __gethostbyname(Stringp hostname, bool numeric);
-
+        Stringp __getpeername(int descriptor);
+        Stringp __getsockname(int descriptor);
+        
         DECLARE_SLOTS_CSocketClass;
     };
 

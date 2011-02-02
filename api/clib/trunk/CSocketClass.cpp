@@ -124,13 +124,7 @@ namespace avmshell
         return SO_TYPE;
     }
     
-
-    int CSocketClass::get_SOMAXCONN()
-    {
-        return SOMAXCONN;
-    }
     
-
     int CSocketClass::get_MSG_CTRUNC()
     {
         return MSG_CTRUNC;
@@ -159,6 +153,11 @@ namespace avmshell
     int CSocketClass::get_MSG_WAITALL()
     {
         return MSG_WAITALL;
+    }
+
+    int CSocketClass::get_MSG_DONTWAIT()
+    {
+        return MSG_DONTWAIT;
     }
     
 
@@ -225,14 +224,9 @@ namespace avmshell
     }
 
 
-    int CSocketClass::get_INADDR_ANY()
+    int CSocketClass::get_SOMAXCONN()
     {
-        return INADDR_ANY;
-    }
-    
-    int CSocketClass::get_INADDR_BROADCAST()
-    {
-        return INADDR_BROADCAST;
+        return SOMAXCONN;
     }
 
     ArrayObject * CSocketClass::__gethostbyaddr(Stringp addr, bool numeric)
@@ -313,6 +307,58 @@ namespace avmshell
         }
         
         return list;
+    }
+
+    Stringp CSocketClass::__getpeername(int descriptor)
+    {
+        socklen_t len;
+        struct sockaddr_storage addr;
+        char ipstr[INET6_ADDRSTRLEN];
+        int port;
+
+        len = sizeof addr;
+        getpeername(descriptor, (struct sockaddr*)&addr, &len);
+
+        // deal only with IPv4
+        struct sockaddr_in *s = (struct sockaddr_in *)&addr;
+        port = ntohs(s->sin_port);
+        inet_ntop(AF_INET, &s->sin_addr, ipstr, sizeof ipstr);
+        
+        //printf("Peer IP address: %s\n", ipstr);
+        //printf("Peer port      : %d\n", port);
+
+        Stringp peer = core()->newStringUTF8( "" );
+                peer = peer->appendLatin1( ipstr );
+                peer = peer->appendLatin1( ":" );
+                peer = peer->appendLatin1( VMPI_int2char(port) );
+        
+        return peer;
+    }
+
+    Stringp CSocketClass::__getsockname(int descriptor)
+    {
+        socklen_t len;
+        struct sockaddr_storage addr;
+        char ipstr[INET6_ADDRSTRLEN];
+        int port;
+
+        len = sizeof addr;
+        getsockname(descriptor, (struct sockaddr*)&addr, &len);
+
+        // deal only with IPv4
+        struct sockaddr_in *s = (struct sockaddr_in *)&addr;
+        port = ntohs(s->sin_port);
+        inet_ntop(AF_INET, &s->sin_addr, ipstr, sizeof ipstr);
+        
+        //printf("Local IP address: %s\n", ipstr);
+        //printf("Local port      : %d\n", port);
+
+        Stringp local = core()->newStringUTF8( "" );
+                local = local->appendLatin1( ipstr );
+                local = local->appendLatin1( ":" );
+                local = local->appendLatin1( VMPI_int2char(port) );
+        
+        return local;
     }
 
 }

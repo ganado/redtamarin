@@ -101,6 +101,7 @@ From my personal tests
 
 To overcome this limitation, we redefined the macro to `FD_SETSIZE = 4096` for all systems,<br>
 see [http://tangentsoft.net/wskfaq/advanced.html#64sockets Winsock Programmer’s FAQ 4.9 - What are the “64 sockets” limitations?].<br>
+see also [http://support.microsoft.com/kb/111855 Maximum Number of Sockets an Application Can Use].<br>
 <br>
 So, yes in theory and depending of your server hardware (RAM), you could create a socket server
 with up to 4096 simultaneous connections, but we didn't do any real tests about it.

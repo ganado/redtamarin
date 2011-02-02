@@ -76,7 +76,7 @@ see [http://antohe.tripod.com/apache_surv/asg12.htm#E70E140 Apache Server Surviv
 From my personal tests
   * under OS X 10.6, `SOMAXCONN = 128`
   * under Windows XP SP3, `SOMAXCONN = 5` (winsock.h) and  `SOMAXCONN = 2147483647` (eg. `0x7fffffff` winsock2.h)
-  * under Ubuntu 8.04 desktop, `SOMAXCONN = ??` (TODO)
+  * under Ubuntu 8.04 desktop, `SOMAXCONN = 128`
 
 We advise to use *128* if the OS support it.
 
@@ -99,7 +99,7 @@ is determined by the `FD_SETSIZE` macro.<br>
 From my personal tests
   * under OS X 10.6, `FD_SETSIZE = 1024`
   * under Windows XP SP3, `FD_SETSIZE = 64` (both winsock.h and winsock2.h)
-  * under Ubuntu 8.04 desktop, `FD_SETSIZE = ??` (TODO)
+  * under Ubuntu 8.04 desktop, `FD_SETSIZE = 1024`
 
 To overcome this limitation, we redefined the macro to `FD_SETSIZE = 4096` for all systems,<br>
 see [http://tangentsoft.net/wskfaq/advanced.html#64sockets Winsock Programmer’s FAQ 4.9 - What are the “64 sockets” limitations?].<br>
@@ -408,6 +408,7 @@ Internally we loop trough the `data.length` to be sure the full data is sent, li
 || MSG_DONTROUTE || Send without using routing tables || yes || yes ||
 || MSG_DONTWAIT || Enables non-blocking operation || yes || <font color="red">no</font><br> ||
 || MSG_OOB || Out-of-band data || yes || yes ||
+<br>
 see [http://code.google.com/p/redtamarin/wiki/C_socket#Socket_messages Socket messages] in C.socket
 
 *since:* 0.3.0
@@ -477,6 +478,7 @@ The data is received fragmented by the size of the `buffer`.<br>
 || MSG_OOB || Out-of-band data || yes || yes ||
 || MSG_PEEK || Leave received data in queue || yes || yes ||
 || MSG_WAITALL || Attempt to fill the read buffer || yes || <font color="red">no</font> ||
+<br>
 see [http://code.google.com/p/redtamarin/wiki/C_socket#Socket_messages Socket messages] in C.socket
 
 *since:* 0.3.0

@@ -213,7 +213,8 @@ namespace avmshell
     int SocketObject::_receive(int buffer, int flags)
     {
         int result = 0;
-        char data[buffer];
+        //char data[buffer];
+        char *data = new char[buffer];
 
         _buffer->clear(); //reset the buffer before reading
         
@@ -230,7 +231,8 @@ namespace avmshell
     int SocketObject::_receiveFrom(int buffer, int flags)
     {
         int result = 0;
-        char data[buffer];
+        //char data[buffer];
+        char *data = new char[buffer];
 
         _buffer->clear(); //reset the buffer before reading
         

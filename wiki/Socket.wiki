@@ -75,7 +75,7 @@ see [http://antohe.tripod.com/apache_surv/asg12.htm#E70E140 Apache Server Surviv
 <br>
 From my personal tests
   * under OS X 10.6, `SOMAXCONN = 128`
-  * under Windows XP SP3, `SOMAXCONN = 5` (winsock.h) and  `SOMAXCONN = 2147483647` (winsock2.h)
+  * under Windows XP SP3, `SOMAXCONN = 5` (winsock.h) and  `SOMAXCONN = 2147483647` (eg. `0x7fffffff` winsock2.h)
   * under Ubuntu 8.04 desktop, `SOMAXCONN = ??` (TODO)
 
 We advise to use *128* if the OS support it.

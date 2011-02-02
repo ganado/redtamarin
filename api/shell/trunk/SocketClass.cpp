@@ -42,88 +42,101 @@
 namespace avmshell
 {
 
-    SocketObject::SocketObject(VTable *vtable, ScriptObject *delegate, int sockd)
+    //
+    // SocketObject
+    //
+
+    SocketObject::SocketObject(VTable* vtable, ScriptObject* delegate, int sockd)
         : ScriptObject(vtable, delegate)
     {
         if( sockd == -1 )
         {
-            socket = Platform::GetInstance()->createSocket();
+            //printf( "SocketObject ctor, default=%i\n", sockd );
+            _socket = Platform::GetInstance()->createSocket();
         }
         else
         {
-            socket = Platform::GetInstance()->createSocketFrom( sockd );
+            //printf( "SocketObject ctor, custom=%i\n", sockd );
+            _socket = Platform::GetInstance()->createSocketFrom( sockd );
         }
         
-        lastDataSent = 0;
-        VMPI_memset(&received_buffer, 0, sizeof(received_buffer));
-
-        ByteArrayClass *ba = (ByteArrayClass*)toplevel()->getBuiltinExtensionClass(NativeID::abcclass_flash_utils_ByteArray);
-        Atom args[1] = {nullObjectAtom};
-        received_binary = (ByteArrayObject*)AvmCore::atomToScriptObject(ba->construct(0, args));
-        received_binary->setLength(0);
+        _buffer = toplevel()->byteArrayClass()->constructByteArray();
+        _buffer->set_length(0);
     }
 
     SocketObject::~SocketObject()
     {
-        Platform::GetInstance()->destroySocket(socket);
-        socket = NULL;
-        lastDataSent = 0;
-        VMPI_memset(&received_buffer, 0, sizeof(received_buffer));
-        received_binary = NULL;
+        Platform::GetInstance()->destroySocket(_socket);
+        _socket = NULL;
+        _buffer->clear();
+        _buffer = NULL;
     }
 
-    int SocketObject::get_lastDataSent()
+    int SocketObject::get_descriptor()
     {
-        return lastDataSent;
-    }
-
-    Stringp SocketObject::get_receivedBuffer()
-    {
-        return core()->newStringUTF8( received_buffer );
-    }
-
-    ByteArrayObject *SocketObject::get_receivedBinary()
-    {
-        return received_binary;
+        return _socket->GetDescriptor();
     }
 
     int SocketObject::get__type()
     {
-        return socket->GetType();
+        return _socket->GetType();
     }
 
     bool SocketObject::get_reuseAddress()
     {
-        return socket->GetReuseAddress();
+        return _socket->GetReuseAddress();
     }
 
     void SocketObject::set_reuseAddress(bool value)
     {
-        socket->SetReuseAddress(value);
+        _socket->SetReuseAddress(value);
     }
 
     bool SocketObject::get_broadcast()
     {
-        return socket->GetBroadcast();
+        return _socket->GetBroadcast();
     }
 
     void SocketObject::set_broadcast(bool value)
     {
-        socket->SetBroadcast(value);
+        _socket->SetBroadcast(value);
     }
     
 
-
-    bool SocketObject::isValid()
+    ByteArrayObject *SocketObject::_getBuffer()
     {
-        return socket->IsValid();
+        return _buffer;
     }
 
+    void SocketObject::_setNoSigPipe()
+    {
+        _socket->SetNoSigPipe();
+    }
 
+    bool SocketObject::_isValid()
+    {
+        return _socket->IsValid();
+    }
+
+    int SocketObject::_isReadable()
+    {
+        return _socket->isReadable();
+    }
+    
+    int SocketObject::_isWritable()
+    {
+        return _socket->isWritable();
+    }
+    
+    int SocketObject::_isExceptional()
+    {
+        return _socket->isExceptional();
+    }
+    
     void SocketObject::_customSocket(int family, int socktype, int protocol)
     {
-        Platform::GetInstance()->destroySocket(socket);
-        socket = Platform::GetInstance()->createCustomSocket(family, socktype, protocol);
+        Platform::GetInstance()->destroySocket(_socket);
+        _socket = Platform::GetInstance()->createCustomSocket(family, socktype, protocol);
     }
     
     bool SocketObject::_connect(Stringp host, Stringp port)
@@ -138,55 +151,28 @@ namespace avmshell
         
         StUTF8String hostUTF8(host);
         StUTF8String portUTF8(port);
-        return socket->Connect(hostUTF8.c_str(), portUTF8.c_str());
+        return _socket->Connect(hostUTF8.c_str(), portUTF8.c_str());
     }
 
     bool SocketObject::_close()
     {
-        return socket->Shutdown();
+        return _socket->Shutdown();
     }
 
-    int SocketObject::_send(Stringp data, int flags)
+    int SocketObject::_send(ByteArrayObject *data, int flags)
     {
         if(!data) {
             toplevel()->throwArgumentError(kNullArgumentError, "data");
         }
 
-        StUTF8String dataUTF8(data);
-        
-        int totalSent = 0;
-        int bytesleft = VMPI_strlen(dataUTF8.c_str());
-        int sent      = 0;
-        
-        while( totalSent < bytesleft ) {
-            sent = socket->Send( dataUTF8.c_str()+totalSent, bytesleft, flags);
-            if(sent == -1) {
-                lastDataSent = totalSent;
-                break;
-            }
-            totalSent += sent;
-            bytesleft -= sent;
-        }
-        
-        return sent;
-    }
-
-    int SocketObject::_sendBinary(ByteArrayObject *data, int flags)
-    {
-        if(!data) {
-            toplevel()->throwArgumentError(kNullArgumentError, "data");
-        }
-        
         const void *bytes = &(data->GetByteArray())[0];
+        int sent      = 0;
         int totalSent = 0;
         int bytesleft = data->get_length();
-        int sent      = 0;
-        printf( "bytesleft = %i", bytesleft );
         
         while( totalSent < bytesleft ) {
-            sent = socket->Send( (const char *)bytes+totalSent, bytesleft, flags);
+            sent = _socket->Send( (const char *)bytes+totalSent, bytesleft, flags);
             if(sent == -1) {
-                lastDataSent = totalSent;
                 break;
             }
             totalSent += sent;
@@ -196,96 +182,132 @@ namespace avmshell
         return sent;
     }
 
+    int SocketObject::_sendTo(Stringp host, Stringp port, ByteArrayObject *data, int flags)
+    {
+        if(!host) {
+            toplevel()->throwArgumentError(kNullArgumentError, "host");
+        }
 
-    int SocketObject::_receive(int flags)
+        if(!port) {
+            toplevel()->throwArgumentError(kNullArgumentError, "port");
+        }
+
+        if(!data) {
+            toplevel()->throwArgumentError(kNullArgumentError, "data");
+        }
+
+        StUTF8String hostUTF8(host);
+        StUTF8String portUTF8(port);
+        
+        const void *bytes = &(data->GetByteArray())[0];
+        int sent  = 0;
+        int total = data->get_length();
+
+        sent = _socket->SendTo( hostUTF8.c_str(), portUTF8.c_str(), (const char *)bytes, total, flags);
+        //printf( "sendto data is %i bytes\n", total );
+        //printf( "sendto sent %i bytes\n", sent );
+        
+        return sent;
+    }
+    
+    int SocketObject::_receive(int buffer, int flags)
     {
         int result = 0;
-        char buffer[1024];
-        int len = 1024-1;
+        char data[buffer];
 
-        VMPI_memset(&received_buffer, 0, sizeof(received_buffer)); //reset the received buffer
+        _buffer->clear(); //reset the buffer before reading
         
-        result = socket->Receive(buffer, len, flags);
+        result = _socket->Receive(data, buffer, flags);
         
         if(result > 0) {
-            //printf("recv - Bytes received: %d\n", result);
-            VMPI_memcpy( received_buffer, buffer, result );
+            //printf("recv - Bytes received: %i\n", result);
+            _buffer->GetByteArray().Write( data, result );
         }
         
         return result;
     }
-
-    int SocketObject::_receiveBinary(int flags)
+    
+    int SocketObject::_receiveFrom(int buffer, int flags)
     {
         int result = 0;
-        char buffer[1024];
-        int len = 1024-1;
+        char data[buffer];
 
-        received_binary->setLength(0); //reset the received buffer
+        _buffer->clear(); //reset the buffer before reading
         
-        result = socket->Receive(buffer, len, flags);
-
+        result = _socket->ReceiveFrom(data, buffer, flags);
+        
         if(result > 0) {
-            //printf("recv - Bytes received: %d\n", result);
-            received_binary->fill( buffer, result );
+            //printf("recvfrom - Bytes received: %d\n", result);
+            _buffer->GetByteArray().Write( data, result );
         }
-
+        
         return result;
     }
-
-    bool SocketObject::_bind(const int port)
+    
+    bool SocketObject::_bind(Stringp host, const int port)
     {
-        return socket->Bind( port );
+        if(!host) {
+            toplevel()->throwArgumentError(kNullArgumentError, "host");
+        }
+
+        StUTF8String hostUTF8(host);
+        
+        return _socket->Bind( hostUTF8.c_str(), port );
     }
 
     bool SocketObject::_listen(int backlog)
     {
-        return socket->Listen( backlog );
+        return _socket->Listen( backlog );
     }
 
 
     SocketObject* SocketObject::_accept()
     {
-        int sd = socket->Accept();
+        int sd = _socket->Accept();
+        //printf( "socket->Accept sd=%i\n", sd );
         
         SocketClass* sckc  = (SocketClass*)toplevel()->getBuiltinExtensionClass(NativeID::abcclass_avmplus_Socket);
-        SocketObject *scko = sckc->newSocket(sd);
+        SocketObject* scko = sckc->constructSocket(sd);
         
         return scko;
     }
 
 
+    //
+    // SocketClass
+    //
 
-    SocketClass::SocketClass(VTable *cvtable)
-        : ClassClosure(cvtable)
+    SocketClass::SocketClass(VTable *vtable)
+        : ClassClosure(vtable)
     {
         createVanillaPrototype();
     }
-
-    ScriptObject* SocketClass::createInstance(VTable *ivtable, ScriptObject *prototype)
+    
+    ScriptObject* SocketClass::createInstance(VTable* ivtable, ScriptObject* prototype)
     {
-        return new (core()->GetGC(), ivtable->getExtraSize()) SocketObject(ivtable, prototype, -1);
+        return SocketObject::create(ivtable->gc(), ivtable, prototype, -1);
     }
 
-    SocketObject* SocketClass::newSocket()
+    SocketObject* SocketClass::constructSocket()
     {
         VTable* ivtable = this->ivtable();
-        SocketObject *so = new (core()->GetGC(), ivtable->getExtraSize())
-            SocketObject(ivtable, prototypePtr(), -1);
-        return so;
+        return (SocketObject*)SocketObject::create(ivtable->gc(), ivtable, prototypePtr(), -1);
     }
 
-    SocketObject* SocketClass::newSocket(int sd)
+    SocketObject* SocketClass::constructSocket(int sd)
     {
         VTable* ivtable = this->ivtable();
-        SocketObject *so = new (core()->GetGC(), ivtable->getExtraSize())
-            SocketObject(ivtable, prototypePtr(), sd);
-        return so;
+        return (SocketObject*)SocketObject::create(ivtable->gc(), ivtable, prototypePtr(), sd);
     }
 
     int SocketClass::get_lastError()
     {
-        return Platform::GetInstance()->lastSocketError();
+        return Platform::GetInstance()->getLastSocketError();
+    }
+
+    int SocketClass::get_maxConcurrentConnection()
+    {
+        return Platform::GetInstance()->getMaxSelectDescriptor();
     }
 
 }

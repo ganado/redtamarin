@@ -42,57 +42,63 @@
 
 namespace avmshell
 {
-
+    
     class SocketObject : public ScriptObject
     {
-
     public:
-        SocketObject(VTable *vtable, ScriptObject *delegate, int sockd);
-        ~SocketObject();
-        
-        int get_lastDataSent();
-        Stringp get_receivedBuffer();
-        ByteArrayObject *get_receivedBinary();
+        SocketObject(VTable* vtable, ScriptObject* delegate, int sockd);
 
+        REALLY_INLINE static SocketObject* create(MMgc::GC* gc, VTable* ivtable, ScriptObject* delegate, int sockd)
+        {
+            return new (gc, ivtable->getExtraSize()) SocketObject(ivtable, delegate, sockd);
+        }
+
+        ~SocketObject();
+
+        int get_descriptor();
         int get__type();
         bool get_reuseAddress();
         void set_reuseAddress(bool value);
         bool get_broadcast();
         void set_broadcast(bool value);
 
-        bool isValid();
-
+        ByteArrayObject *_getBuffer();
+        void _setNoSigPipe();
+        bool _isValid();
+        int _isReadable();
+        int _isWritable();
+        int _isExceptional();
         void _customSocket(int family, int socktype, int protocol);
         bool _connect(Stringp host, Stringp port);
         bool _close();
-        int _send(Stringp data, int flags);
-        int _sendBinary(ByteArrayObject *data, int flags);
-        int _receive(int flags);
-        int _receiveBinary(int flags);
-        bool _bind(const int port);
+        int _send(ByteArrayObject *data, int flags);
+        int _sendTo(Stringp host, Stringp port, ByteArrayObject *data, int flags);
+        int _receive(int buffer, int flags);
+        int _receiveFrom(int buffer, int flags);
+        bool _bind(Stringp host, const int port);
         bool _listen(int backlog);
         SocketObject* _accept();
 
     private:
-        Socket* socket;
-        int lastDataSent;
-        char received_buffer[1024];
-        ByteArrayObject* received_binary;
+        Socket* _socket;
+        DRCWB(ByteArrayObject*) _buffer;
         
         DECLARE_SLOTS_SocketObject;
     };
-
+    
     class SocketClass : public ClassClosure
-    {   
+    {
     public:
-        SocketClass(VTable* cvtable);
+        SocketClass(VTable *vtable);
+        ~SocketClass() { }
 
-        SocketObject* newSocket();
-        SocketObject* newSocket(int sd);
-
-        ScriptObject *createInstance(VTable *ivtable, ScriptObject *delegate);
-
+        SocketObject* constructSocket();
+        SocketObject* constructSocket(int sd);
+        
+        ScriptObject* createInstance(VTable* ivtable, ScriptObject* delegate);
+        
         int get_lastError();
+        int get_maxConcurrentConnection();
 
         DECLARE_SLOTS_SocketClass;
     };

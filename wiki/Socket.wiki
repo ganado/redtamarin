@@ -402,10 +402,11 @@ Calls the `onSend()` function (see [#Callbacks Callbacks] section).<br>
 <br>
 Internally we loop trough the `data.length` to be sure the full data is sent, like a `sendAll()`.<br>
 <br>
-send/sendBinary/sendTo/sendBinaryTo supported flags
+
+*supported flags:* (send/sendBinary/sendTo/sendBinaryTo)
 || *Flags* || *Description* || *POSIX* || *WIN32* ||
-|| MSG_DONTROUTE || [/C_socket#Socket_messages C.socket.MSG_DONTROUTE] || yes || yes ||
-|| MSG_DONTWAIT || [/C_socket#Socket_messages C.socket.MSG_DONTWAIT] || yes || no ||
+|| MSG_DONTROUTE || [C_socket#Socket_messages C.socket.MSG_DONTROUTE] || yes || yes ||
+|| MSG_DONTWAIT || [/C_socket#Socket_messages C.socket.MSG_DONTWAIT] || yes || <font color="red">no</font><br> ||
 || MSG_OOB || [/C_socket#Socket_messages C.socket.MSG_OOB] || yes || yes ||
 
 *since:* 0.3.0

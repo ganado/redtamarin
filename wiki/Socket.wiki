@@ -75,8 +75,10 @@ see [http://antohe.tripod.com/apache_surv/asg12.htm#E70E140 Apache Server Surviv
 <br>
 From my personal tests
   * under OS X 10.6, `SOMAXCONN = 128`
-  * under Windows XP SP3, `SOMAXCONN = ??` (TODO)
+  * under Windows XP SP3, `SOMAXCONN = 5` (winsock.h) and  `SOMAXCONN = 2147483647` (winsock2.h)
   * under Ubuntu 8.04 desktop, `SOMAXCONN = ??` (TODO)
+
+We advise to use *128* if the OS support it.
 
 *since:* 0.3.0
 
@@ -96,7 +98,7 @@ is determined by the `FD_SETSIZE` macro.<br>
 <br>
 From my personal tests
   * under OS X 10.6, `FD_SETSIZE = 1024`
-  * under Windows XP SP3, `FD_SETSIZE = 64?` (TODO)
+  * under Windows XP SP3, `FD_SETSIZE = 64` (both winsock.h and winsock2.h)
   * under Ubuntu 8.04 desktop, `FD_SETSIZE = ??` (TODO)
 
 To overcome this limitation, we redefined the macro to `FD_SETSIZE = 4096` for all systems,<br>

@@ -322,7 +322,7 @@ namespace avmshell
         // deal only with IPv4
         struct sockaddr_in *s = (struct sockaddr_in *)&addr;
         port = ntohs(s->sin_port);
-        inet_ntop(AF_INET, &s->sin_addr, ipstr, sizeof ipstr);
+        VMPI_inet_ntop(AF_INET, &s->sin_addr, ipstr, sizeof ipstr);
         
         //printf("Peer IP address: %s\n", ipstr);
         //printf("Peer port      : %d\n", port);
@@ -348,7 +348,7 @@ namespace avmshell
         // deal only with IPv4
         struct sockaddr_in *s = (struct sockaddr_in *)&addr;
         port = ntohs(s->sin_port);
-        inet_ntop(AF_INET, &s->sin_addr, ipstr, sizeof ipstr);
+        VMPI_inet_ntop(AF_INET, &s->sin_addr, ipstr, sizeof ipstr);
         
         //printf("Local IP address: %s\n", ipstr);
         //printf("Local port      : %d\n", port);

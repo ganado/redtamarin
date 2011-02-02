@@ -400,7 +400,13 @@ Send a string message on a connected socket.
 *note:*<br>
 Calls the `onSend()` function (see [#Callbacks Callbacks] section).<br>
 <br>
-Internally we loop trough the `data.length` to be sure the full data is sent, like a `sendAll()`.
+Internally we loop trough the `data.length` to be sure the full data is sent, like a `sendAll()`.<br>
+<br>
+send/sendBinary/sendTo/sendBinaryTo supported flags
+|| *Flags* || *Description* || *POSIX* || *WIN32* ||
+|| MSG_DONTROUTE || [/C_socket#Socket_messages C.socket.MSG_DONTROUTE] || yes || yes ||
+|| MSG_DONTWAIT || [/C_socket#Socket_messages C.socket.MSG_DONTWAIT] || yes || no ||
+|| MSG_OOB || [/C_socket#Socket_messages C.socket.MSG_OOB] || yes || yes ||
 
 *since:* 0.3.0
 

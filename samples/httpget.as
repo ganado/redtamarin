@@ -47,6 +47,7 @@
 
    Example:
      httpget http://www.test.com/path/file.pdf
+     httpget http://beej.us/guide/bgnet/output/print/bgnet_A4.pdf
 
    Note:
      https:// url will not work
@@ -58,6 +59,7 @@ package samples
 {
 
     import avmplus.System;
+    import avmplus.FileSystem;
     import avmplus.Socket;
     import flash.utils.ByteArray;
     import C.string.*;
@@ -73,9 +75,11 @@ package samples
         }
 
 
-        public static function GET( url:String ):ByteArray
+        public static function fetchData( url:String ):ByteArray
         {
+            trace( "before sock ctor" );
             var sock = new Socket();
+            trace( "after sock ctor" );
             var data:ByteArray = new ByteArray();
             var part:ByteArray;
 
@@ -179,8 +183,6 @@ package samples
                 fragment = r[9];
             }
 
-            var run:Boolean = true;
-
             var remote_port:uint = 80;
 
             if( port != "" )
@@ -188,8 +190,9 @@ package samples
                 remote_port = parseInt( port );
             }
 
-
+            trace( "before sock connect" );
             sock.connect( host, remote_port );
+            trace( "after sock connect" );
 
             //build request
             var get_request:String = "";
@@ -209,16 +212,20 @@ package samples
 
             filepath = filetosave( path );
 
-            if( sock.connected )
+            if( sock.valid && sock.connected )
             {
                 if( verbose ) { trace( get_request.split( "\r\n" ).join( "\n" ) ); }
                 sock.send( get_request );
                 trace( "Downloading ..." );
                 
+                data = sock.receiveBinaryAll( 2048 );
+                
+                /*
+                var run:Boolean = true;
                 while( run )
                 {
 
-                    part = sock.receiveBinary( 1024 ); //receive data by packet of 1024bytes
+                    part = sock.receiveBinary();
                     
                     if( part && (part.length > 0) )
                     {
@@ -232,6 +239,7 @@ package samples
                     }
                 
                 }
+                */
                 
             }
             else
@@ -314,7 +322,7 @@ package samples
         public static var body:ByteArray;
 
         public static var mode:String = "1.1";
-        public static var verbose:Boolean = false;
+        public static var verbose:Boolean = true;
         public static var filepath:String;
 
 
@@ -322,13 +330,14 @@ package samples
         public static function main( args:Array ):void
         {
             var bytes:ByteArray;
+            trace( "args = " + args );
             
             if( args.length > 0 )
             {
                 url = args[0];
-                bytes = GET( url );
+                bytes = fetchData( url );
 
-                trace( "received " + bytes.length + " bytes" );
+                trace( "received " + bytes.length + " bytes (header + file)" );
 
                 parseMessage( bytes );
 
@@ -358,12 +367,20 @@ package samples
                 {
                     trace( header.split( "\r\n" ).join( "\n" ) );
                 }
-                
+
+                trace( "header is " + header.length + " bytes" );
                 trace( "saving \"" + filepath + "\" ("+body.length+" bytes) to disk." );
 
-                body.writeFile( filepath );
-                
-                System.exit(0);
+                trace( "verifiy - header + file == raw size : " + ((header.length+body.length)==bytes.length) );
+
+                if( FileSystem.writeByteArray( filepath, body ) )
+                {
+                    trace( "file created" );
+                    System.exit(0);    
+                }
+
+                trace( "could not create \"" + filepath + "\"" );
+                System.exit(1);
 
                 
             }
@@ -379,6 +396,7 @@ package samples
 /* Main Entry Point */
 import avmplus.System;
 import samples.httpget;
+trace( "argv = " + System.argv );
 httpget.main( System.argv );
 
 

@@ -51,6 +51,37 @@
 - added C.unistd getpid() and System.pid
 - added FileSystem.homeDirectory and FileSystem.rootDirectory
 - added System.shell and System.popen()
+- added Socket.localAddresses
+- added getpeername(), getsockname() in C.socket.*
+- added socket instance "local" and "peer" property
+  to get the "address:port" on connected sockets
+- refactored receiveFrom and sendTo with real implementation of recvfrom() and sento()
+- refactored Socket, now everything use ByteArray on the C++ side
+  methods using String on the AS3 side use readUTFBytes()
+- Socket.binnd() can define the interface where to bind
+  (before was hard coded "127.0.0.1")
+- now receive functions can define a custom buffer
+  receive() default buffer is 1024
+  receiveFrom() default buffer is 512
+- added utility methods receiveAll() etc.
+- the AS3 Socket class is now dynamic
+  and have callback functions for all methods
+  eg. connect() -> onConnect(), bind() -> onBind()
+  those callbacks can be overrided by the user
+  eg. mysock.onBind = function() { //do whatever }
+- added readable/writable properties to Socket
+  they reuse a non-blocking select() in the background
+- added Socket.maxConnectionQueue and Socket.maxConcurrentConnection
+- fixed a memory bug with Socket where the buffer was GC'ed and crashed (added a write barrier)
+- fixed a bug with send() etc., needed to null terminate the ByteArray data
+- "hacked" FD_SETSIZE to change the limit of concurrent connections to 4096 :p
+  FD_SETSIZE is limited to 1024 under OS X (maybe the same for Ubuntu?)
+  and limited to 64 under Windows
+- removed INADDR_ANY and INADDR_BROADCAST in C.socket.*
+- added MSG_DONTWAIT and MSG_NOSIGNAL in C.socket.*
+- added SetNoSigPipe() to socket.h
+  now by default we desactivate SIGPIPE
+
 
 * 0.2.9
 - added VMPI_chmod

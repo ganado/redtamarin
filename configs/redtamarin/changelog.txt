@@ -81,6 +81,7 @@
 - added MSG_DONTWAIT in C.socket.*
 - added SetNoSigPipe() to socket.h
   now by default we desactivate SIGPIPE
+- fixed bugs in receiveAll() and receiveBinaryAll()
 
 
 * 0.2.9

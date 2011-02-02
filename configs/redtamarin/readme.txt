@@ -66,7 +66,7 @@ trace( "           OperatingSystem.vendor = " + OperatingSystem.vendor );
 trace( "       OperatingSystem.vendorName = " + OperatingSystem.vendorName );
 trace( "    OperatingSystem.vendorVersion = " + OperatingSystem.vendorVersion );
 trace( "OperatingSystem.vendorDescription = " + OperatingSystem.vendorDescription );
-trace( "         OperatingSystem.codeName = " + OperatingSystem.codeName );
+trace( "         OperatingSystem.codename = " + OperatingSystem.codename );
 ----
 
 compile the *.abc
@@ -105,7 +105,18 @@ http://code.google.com/p/redtamarin/wiki/Coders
 http://code.google.com/p/redtamarin/wiki/Code101
 http://code.google.com/p/redtamarin/wiki/Build
 
-more to come
+API reference
+http://code.google.com/p/redtamarin/wiki/API
+
+C libraries documentation
+http://code.google.com/p/redtamarin/wiki/StandardC
+
+AVMPlus API documentation
+http://code.google.com/p/redtamarin/wiki/AVMPlus
+
+
+more documentations to come in
+http://code.google.com/p/redtamarin/wiki/Examples
 
 --------------------------------------------------------------------------------
 

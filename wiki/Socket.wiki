@@ -402,6 +402,8 @@ Calls the `onSend()` function (see [#Callbacks Callbacks] section).<br>
 <br>
 Internally we loop trough the `data.length` to be sure the full data is sent, like a `sendAll()`.<br>
 <br>
+For more details see [http://beej.us/guide/bgnet/output/html/singlepage/bgnet.html#sendall Beej's Guide to Network Programming - 7.3. Handling Partial send()s]<br>
+<br>
 
 *supported flags:*
 || *Flags* || *Description* || *POSIX* || *WIN32* ||
@@ -424,6 +426,8 @@ Send a binary message on a connected socket.
 Calls the `onSend()` function (see [#Callbacks Callbacks] section).<br>
 <br>
 Internally we loop trough the `data.length` to be sure the full data is sent, like a `sendAll()`.<br>
+<br>
+For more details see [http://beej.us/guide/bgnet/output/html/singlepage/bgnet.html#sendall Beej's Guide to Network Programming - 7.3. Handling Partial send()s]<br>
 <br>
 
 *supported flags:*

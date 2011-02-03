@@ -403,7 +403,7 @@ Calls the `onSend()` function (see [#Callbacks Callbacks] section).<br>
 Internally we loop trough the `data.length` to be sure the full data is sent, like a `sendAll()`.<br>
 <br>
 
-*supported flags:* (send/sendBinary/sendTo/sendBinaryTo)
+*supported flags:*
 || *Flags* || *Description* || *POSIX* || *WIN32* ||
 || MSG_DONTROUTE || Send without using routing tables || yes || yes ||
 || MSG_DONTWAIT || Enables non-blocking operation || yes || <font color="red">no</font><br> ||
@@ -423,7 +423,15 @@ Send a binary message on a connected socket.
 *note:*<br>
 Calls the `onSend()` function (see [#Callbacks Callbacks] section).<br>
 <br>
-Internally we loop trough the `data.length` to be sure the full data is sent, like a `sendAll()`.
+Internally we loop trough the `data.length` to be sure the full data is sent, like a `sendAll()`.<br>
+<br>
+
+*supported flags:*
+|| *Flags* || *Description* || *POSIX* || *WIN32* ||
+|| MSG_DONTROUTE || Send without using routing tables || yes || yes ||
+|| MSG_DONTWAIT || Enables non-blocking operation || yes || <font color="red">no</font><br> ||
+|| MSG_OOB || Out-of-band data || yes || yes ||
+see [http://code.google.com/p/redtamarin/wiki/C_socket#Socket_messages Socket messages] in C.socket
 
 *since:* 0.3.0
 
@@ -438,7 +446,15 @@ Send a string message on a socket.
 *note:*<br>
 Calls the `onSend()` function (see [#Callbacks Callbacks] section).<br>
 <br>
-The full data is sent in one packet, nothing guarantee that all the data is transfered.
+The full data is sent in one packet, nothing guarantee that all the data is transfered.<br>
+<br>
+
+*supported flags:*
+|| *Flags* || *Description* || *POSIX* || *WIN32* ||
+|| MSG_DONTROUTE || Send without using routing tables || yes || yes ||
+|| MSG_DONTWAIT || Enables non-blocking operation || yes || <font color="red">no</font><br> ||
+|| MSG_OOB || Out-of-band data || yes || yes ||
+see [http://code.google.com/p/redtamarin/wiki/C_socket#Socket_messages Socket messages] in C.socket
 
 *since:* 0.3.0
 
@@ -453,7 +469,15 @@ Send a binary message on a socket.
 *note:*<br>
 Calls the `onSend()` function (see [#Callbacks Callbacks] section).<br>
 <br>
-The full data is sent in one packet, nothing guarantee that all the data is transfered.
+The full data is sent in one packet, nothing guarantee that all the data is transfered.<br>
+<br>
+
+*supported flags:*
+|| *Flags* || *Description* || *POSIX* || *WIN32* ||
+|| MSG_DONTROUTE || Send without using routing tables || yes || yes ||
+|| MSG_DONTWAIT || Enables non-blocking operation || yes || <font color="red">no</font><br> ||
+|| MSG_OOB || Out-of-band data || yes || yes ||
+see [http://code.google.com/p/redtamarin/wiki/C_socket#Socket_messages Socket messages] in C.socket
 
 *since:* 0.3.0
 
@@ -471,7 +495,7 @@ Calls the `onReceive()` function (see [#Callbacks Callbacks] section).<br>
 The data is received fragmented by the size of the `buffer`.<br>
 <br>
 
-*supported flags:* (receive/receiveAll/receiveBinary/receiveBinaryAll/receiveFrom/receiveBinaryFrom)
+*supported flags:*
 || *Flags* || *Description* || *POSIX* || *WIN32* ||
 || MSG_DONTWAIT || Enables non-blocking operation || yes || <font color="red">no</font> ||
 || MSG_OOB || Out-of-band data || yes || yes ||
@@ -492,7 +516,16 @@ Receive all of a string message from a connected socket.
 *note:*<br>
 Calls the `onReceiveAll()` function (see [#Callbacks Callbacks] section).<br>
 <br>
-The method loop till all the fragments are received.
+The method loop till all the fragments are received.<br>
+<br>
+
+*supported flags:*
+|| *Flags* || *Description* || *POSIX* || *WIN32* ||
+|| MSG_DONTWAIT || Enables non-blocking operation || yes || <font color="red">no</font> ||
+|| MSG_OOB || Out-of-band data || yes || yes ||
+|| MSG_PEEK || Leave received data in queue || yes || yes ||
+|| MSG_WAITALL || Attempt to fill the read buffer || yes || <font color="red">no</font> ||
+see [http://code.google.com/p/redtamarin/wiki/C_socket#Socket_messages Socket messages] in C.socket
 
 *since:* 0.3.0
 
@@ -507,7 +540,16 @@ Receive part of a binary message from a connected socket.
 *note:*<br>
 Calls the `onReceive()` function (see [#Callbacks Callbacks] section).<br>
 <br>
-The data is received fragmented by the size of the `buffer`.
+The data is received fragmented by the size of the `buffer`.<br>
+<br>
+
+*supported flags:*
+|| *Flags* || *Description* || *POSIX* || *WIN32* ||
+|| MSG_DONTWAIT || Enables non-blocking operation || yes || <font color="red">no</font> ||
+|| MSG_OOB || Out-of-band data || yes || yes ||
+|| MSG_PEEK || Leave received data in queue || yes || yes ||
+|| MSG_WAITALL || Attempt to fill the read buffer || yes || <font color="red">no</font> ||
+see [http://code.google.com/p/redtamarin/wiki/C_socket#Socket_messages Socket messages] in C.socket
 
 *since:* 0.3.0
 
@@ -522,7 +564,16 @@ Receive all of a binary message from a connected socket.
 *note:*<br>
 Calls the `onReceiveAll()` function (see [#Callbacks Callbacks] section).<br>
 <br>
-The method loop till all the fragments are received.
+The method loop till all the fragments are received.<br>
+<br>
+
+*supported flags:*
+|| *Flags* || *Description* || *POSIX* || *WIN32* ||
+|| MSG_DONTWAIT || Enables non-blocking operation || yes || <font color="red">no</font> ||
+|| MSG_OOB || Out-of-band data || yes || yes ||
+|| MSG_PEEK || Leave received data in queue || yes || yes ||
+|| MSG_WAITALL || Attempt to fill the read buffer || yes || <font color="red">no</font> ||
+see [http://code.google.com/p/redtamarin/wiki/C_socket#Socket_messages Socket messages] in C.socket
 
 *since:* 0.3.0
 
@@ -537,7 +588,16 @@ Receive a string message from a socket.
 *note:*<br>
 Calls the `onReceive()` function (see [#Callbacks Callbacks] section).<br>
 <br>
-Receive as much data as the `buffer` allows.
+Receive as much data as the `buffer` allows.<br>
+<br>
+
+*supported flags:*
+|| *Flags* || *Description* || *POSIX* || *WIN32* ||
+|| MSG_DONTWAIT || Enables non-blocking operation || yes || <font color="red">no</font> ||
+|| MSG_OOB || Out-of-band data || yes || yes ||
+|| MSG_PEEK || Leave received data in queue || yes || yes ||
+|| MSG_WAITALL || Attempt to fill the read buffer || yes || <font color="red">no</font> ||
+see [http://code.google.com/p/redtamarin/wiki/C_socket#Socket_messages Socket messages] in C.socket
 
 *since:* 0.3.0
 
@@ -552,7 +612,16 @@ Receive a binary message from a socket.
 *note:*<br>
 Calls the `onReceive()` function (see [#Callbacks Callbacks] section).<br>
 <br>
-Receive as much data as the `buffer` allows.
+Receive as much data as the `buffer` allows.<br>
+<br>
+
+*supported flags:*
+|| *Flags* || *Description* || *POSIX* || *WIN32* ||
+|| MSG_DONTWAIT || Enables non-blocking operation || yes || <font color="red">no</font> ||
+|| MSG_OOB || Out-of-band data || yes || yes ||
+|| MSG_PEEK || Leave received data in queue || yes || yes ||
+|| MSG_WAITALL || Attempt to fill the read buffer || yes || <font color="red">no</font> ||
+see [http://code.google.com/p/redtamarin/wiki/C_socket#Socket_messages Socket messages] in C.socket
 
 *since:* 0.3.0
 
@@ -586,7 +655,7 @@ Calls the `onListen()` function (see [#Callbacks Callbacks] section).<br>
 By default, if you don't provide a `backlog` parameter,<br>
 the server will discard queued incoming connections (eg. `backlog=0`).<br>
 <br>
-The maximum `backlog` queue you can use can be found in [maxConnectionQueue #maxConnectionQueue].
+The maximum `backlog` queue you can use can be found in [#maxConnectionQueue maxConnectionQueue].
 
 *since:* 0.3.0
 

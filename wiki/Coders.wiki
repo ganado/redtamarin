@@ -9,8 +9,12 @@ Here some additions for compiling C/C++
 
 === Windows ===
 
-You need to install *Microsoft Visual C++ 2008 Express Edition* (or later version)<br>
-[ http://www.microsoft.com/express/download/default.aspx]
+You need to install *Microsoft Visual C++ 2008 Express Edition*<br>
+[http://www.microsoft.com/express/download/default.aspx]
+
+It will also compile with *Microsoft Visual C++ 2010 Express Edition*<br>
+but the Tamarin team support only issues with the 2008 version.
+
 
 note:<br>
 have a hotmail/msn account ready<br>

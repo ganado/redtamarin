@@ -1,5 +1,7 @@
 #summary HOWTO Setup your IDE.
 
+|| *important:* this project is under heavy changes, consider this wiki page obsolete ||
+
 === Introduction ===
 
 Yes you can code completion for your command-line projects :).

@@ -53,3 +53,11 @@ $ sudo apt-get install build-essential
 (strangely this basic thing can be a stopper for more than one)
 
 after that all should go smooth.
+
+If `build.xml` or `release.xml` encounter a "Script not found" with Ant,<br>
+get your Ant version, then [http://ant.apache.org/bindownload.cgi download] the same version,<br>
+an copy all the jars from `/lib` to `/usr/share/ant/lib`.
+
+For ex, with Ubuntu 8.04, I had by default Ant 1.7.0,<br>
+from the [http://archive.apache.org/dist/ant/binaries/ old Ant releases] I downloaded `apache-ant-1.7.0-bin.zip`<br>
+and then (after extraction) `$sudo cp apache-ant-1.7.0-bin/lib/*.jar /usr/share/lib/`.

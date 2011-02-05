@@ -1,1 +1,9 @@
 #summary Getting Started in More Details and Shiny Color.
+
+Here a small tutorial from start to finnish to get you started writing code for redtamarin in Flex Builder 3.0
+
+It should work the same for Flash Builder 4.0, but I didn't tested yet.
+
+
+
+== Define a workspace ==

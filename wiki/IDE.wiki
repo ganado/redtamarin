@@ -32,6 +32,8 @@ and that is exactly what we are not using :p.
 
 === using Flex Builder 3 ===
 
+*You only need to do this for trhe old version of redtamarin 0.2.5*
+
 first create a workspace dedicated to this kind of project
 
 {{{

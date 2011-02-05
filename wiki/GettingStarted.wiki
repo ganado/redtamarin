@@ -93,7 +93,7 @@ this should generate all the tools and dependencies in the /bin directory
 }}}
 
 
-In an already existing or new Flex Builder workspace, run EclipseExternalTools
+In an already existing or new Flex Builder workspace, run !EclipseExternalTools
 {{{
 $ ./EclipseExternalTools /path/to/the/workspace
 }}}
@@ -101,7 +101,7 @@ restart Flex Builder.
 
 Copy the `/bin` directory to your project, created in this workspace.
 
-Create a new ActionScript project in Flex Builder, and you;re good to go.
+Create a new !ActionScript project in Flex Builder, and you're good to go.
 
 
 Now, for more details and shiny screenshots you can follow [GettingStartedInShinyColor Getting Started in Shiny Color].

@@ -12,7 +12,7 @@ download one of the zip for your system (see [http://code.google.com/p/redtamari
       |_ changelog.txt
       |_ license.txt
       |_ readme.txt
-      |_ redshell                            <- release version
+      |_ redshell                          <- release version
       |_ redshell_d                        <- debugger version
       |_ toplevel.abc
 

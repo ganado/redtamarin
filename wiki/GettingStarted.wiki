@@ -4,8 +4,17 @@ Will work with redtamarin v0.3.0+
 
 == Download the shell ==
 
-download one of the zip for your system (see [http://code.google.com/p/redtamarin/downloads/list downloads] tab), and unzip it, you should get
+download one of the zip for your system (see [http://code.google.com/p/redtamarin/downloads/list downloads] tab)
 
+{{{
+redtamarin_{version}_OSX.zip
+or
+redtamarin_{version}_NIX.zip
+or
+redtamarin_{version}_WIN.zip
+}}
+
+unzip it, and you should get
 {{{
 ..
  |_ redtamarin_0.3.0.940_OSX  <- for OS X
@@ -20,11 +29,23 @@ download one of the zip for your system (see [http://code.google.com/p/redtamari
 
 }}}
 
+== Download the component ==
+
+download the zip (see [http://code.google.com/p/redtamarin/downloads/list downloads] tab)
+{{{
+redtamarin_{version}_SWC.zip
+}}
+
+In Flex Builder, copy `redtamarin.swc` somewhere (for ex: `/lib-swc/redtamarin.swc`, `/lib/redtamarin.swc`, etc.)
+
+then in the project properties add the SWC in the library path,<br>
+and voila you should get syntax completion.
+
 == Build the tools ==
 
 Now checkout the redtamarin-tools
 {{{
-TODO
+$ svn co TODO
 }}}
 
 you will obtain this structure
@@ -54,7 +75,6 @@ $ ./ant
 }}}
 
 this should generate all the tools and dependencies in the /bin directory
-
 {{{
 ..
  |_ bin
@@ -70,3 +90,17 @@ this should generate all the tools and dependencies in the /bin directory
      |_ toplevel.abc
      
 }}}
+
+
+In an already existing or new Flex Builder workspace, run EclipseExternalTools
+{{{
+$ ./EclipseExternalTools /path/to/the/workspace
+}}}
+restart Flex Builder.
+
+Copy the `/bin` directory to your project, created in this workspace.
+
+Create a new ActionScript project in Flex Builder, and you;re good to go.
+
+
+Now, for more details and shiny screenshots you can follow [GettingStartedInShinyColor Getting Started in Shiny Color].

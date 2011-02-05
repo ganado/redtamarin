@@ -48,7 +48,7 @@ Here some different articles and blog post mentioning redtamarin:
  * [http://stackoverflow.com/questions/717329/server-side-action-script-3-0 Server side Action Script 3.0] (stackoverflow)
  * [http://memmie.lenglet.name/flash/actionscript/font-streaming Font streaming]
  * [http://labs.influxis.com/?p=598 Project Variant and a question to the community.]
- * [http://blog.48bits.com/2010/02/15/debuggeando-codigo-jiteado-de-actionscript/ Debuggeando código JITeado de ActionScript] (Debugging ActionScript JITed code)
+ * [http://blog.48bits.com/2010/02/15/debuggeando-codigo-jiteado-de-actionscript/ Debuggeando código JITeado de ActionScript] (Debugging !ActionScript JITed code)
  * [http://www.la-digitale.com/index/redtamarin Cibler Redtamarin avec Flashdevelop] (fr)
  * [http://blog.eversonalves.com.br/2011/02/05/command-line-scripts-in-actionscript-with-classes-using-redtamarin/ Command line scripts in actionscript with classes using redtamarin]
 

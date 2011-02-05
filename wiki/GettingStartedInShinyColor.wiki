@@ -87,7 +87,7 @@ by default you will get this error<br>
 
 that's normal, under redtamarin there is no Sprite class (well.. not yet, another tutorial for that).
 
-So, to deactivate this error, and a bunch of other errors, you need to edit your project properties
+So, to deactivate this error, and a bunch of other errors, you need to edit your project properties<br>
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/edit_project_properties.png]
 
 in the Builders section on the left, deselect "Flex", and confirm by clicking "OK"<br>
@@ -112,7 +112,7 @@ And in Library path add the *lib-swc* folder<br>
 In details that gives<br>
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/swc_folder_details.png]
 
-Now, clean up the default code that Flex Builder created in `test.as` to start from fresh
+Now, clean up the default code that Flex Builder created in `test.as` to start from fresh<br>
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/start_from_fresh.png]
 
 I know, it sucks to do all those settings by hand, I'll try to come up with a way to automate that.

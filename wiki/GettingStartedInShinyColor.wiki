@@ -23,7 +23,7 @@ I would advise you to create an Eclipse workspace dedicated to redtamarin develo
 Each Eclipse workspace have a `.metadata` folder containing various settings,<br>
 here with one of the tools we have built, we gonna inject a bunch of external tools into this folder.
 
-Here what we have by default
+Here what we have by default<br>
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/tools_default.png]
 
 run !EclipseExternalTools 
@@ -70,4 +70,3 @@ Here a summary of those tools
 == Our first test project ==
 
 Create an !ActionScript project named "test"
-

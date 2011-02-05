@@ -7,9 +7,9 @@ It should work the same for Flash Builder 4.0, but I didn't tested yet.
 
 == Introduction ==
 
-You still need to do the default Getting Started
+You still need to do the default [GettingStarted Getting Started] tasks
   * [GettingStarted#Download_the_shell Download the shell]
-  * a
+  * [GettingStarted#Download_the_component Download the component]
   * b
 
 

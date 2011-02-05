@@ -49,6 +49,7 @@ Here some different articles and blog post mentioning redtamarin:
  * [http://memmie.lenglet.name/flash/actionscript/font-streaming Font streaming]
  * [http://labs.influxis.com/?p=598 Project Variant and a question to the community.]
  * [http://blog.48bits.com/2010/02/15/debuggeando-codigo-jiteado-de-actionscript/ Debuggeando código JITeado de ActionScript] (Debugging ActionScript JITed code)
- * [http://www.la-digitale.com/index/redtamarin Cibler Redtamarin avec Flashdevelop]
+ * [http://www.la-digitale.com/index/redtamarin Cibler Redtamarin avec Flashdevelop] (fr)
+ * [http://blog.eversonalves.com.br/2011/02/05/command-line-scripts-in-actionscript-with-classes-using-redtamarin/ Command line scripts in actionscript with classes using redtamarin]
 
 Note that I'm always very interested to read or know about user stories or usage of redtamarin os if you have some not listed here you can send me an email (my username (at) gmail (dot) com).

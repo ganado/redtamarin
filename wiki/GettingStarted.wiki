@@ -1,6 +1,29 @@
 #summary Getting Started.
 
-|| *important:* this project is under heavy changes, consider this wiki page obsolete ||
+== redtamarin v0.3.0 ==
+
+download one of the zip for your system (see [http://code.google.com/p/redtamarin/downloads/list downloads] tab), and unzip it, you should get
+
+{{{
+..
+ |_ redtamarin_0.3.0.940_OSX  <- for OS X
+      |_ asc.jar
+      |_ builtin.abc
+      |_ changelog.txt
+      |_ license.txt
+      |_ readme.txt
+      |_ redshell                            <- release version
+      |_ redshell_d                        <- debugger version
+      |_ toplevel.abc
+
+}}}
+
+
+
+
+
+
+== redtamarin v0.2.5 ==
 
 download this zip (see [http://code.google.com/p/redtamarin/downloads/list downloads] tab), and unzip it, you should get
 

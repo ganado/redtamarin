@@ -12,7 +12,7 @@ or
 redtamarin_{version}_NIX.zip
 or
 redtamarin_{version}_WIN.zip
-}}
+}}}
 
 unzip it, and you should get
 {{{

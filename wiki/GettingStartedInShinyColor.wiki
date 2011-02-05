@@ -12,7 +12,8 @@ You still need to do the default [GettingStarted Getting Started] tasks
   * [GettingStarted#Download_the_component Download the component]
   * [GettingStarted#Build_the_tools Build the tools]
 
-
+<br>
+<br>
 == Define a workspace ==
 
 Because redtamarin is not your default Flex Builder project,<br>
@@ -38,12 +39,14 @@ you will see that list of scripts we just added<br>
 
 Now, close Flex Builder and restart it.
 
+<br>
+<br>
 == Edit our tools first ==
 
 Let's open the external tools<br>
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/open_external_tools.png]
 
-On the top left, you should see our list of tools
+On the top left, you should see our list of tools<br>
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/List_of_external_tools.png]
 
 Now, open the external tools favorite<br>
@@ -57,16 +60,17 @@ And now, let's see our tools<br>
 
 Here a summary of those tools
 || *tool*  || *description* || *alternative to* ||
-|| ASC_compile || compile an *.as file with ASC || Flex Builder MXMLC compiler ||
-|| redshell_debug || run an .abc file with redshell_d || Debug button ||
-|| redshell_run || run an .abc file with redshell || Run button ||
-|| make_projector || take an *.abc file and create an executable || n/a ||
-|| dump_api || take an *.abc or *.swf file and dump the API || n/a ||
-|| dump_infos || take an *.abc or *.swf file and dump the infos || n/a ||
-|| extract_abc || take a *.swf file and dump all the *.abc files || n/a ||
+|| ASC_compile || compile an `*.as` file with ASC || Flex Builder MXMLC compiler ||
+|| redshell_debug || run an `*.abc` file with redshell_d || Debug button ||
+|| redshell_run || run an `*.abc` file with redshell || Run button ||
+|| make_projector || take an `*.abc` file and create an executable || n/a ||
+|| dump_api || take an `*.abc` or `*.swf` file and dump the API || n/a ||
+|| dump_infos || take an `*.abc` or `*.swf` file and dump the infos || n/a ||
+|| extract_abc || take a `*.swf` file and dump all the `*.abc` files || n/a ||
 
 
-
+<br>
+<br>
 == Our first test project ==
 
 Create an !ActionScript project named "test"

@@ -63,7 +63,7 @@ Here a summary of those tools
 || ASC_compile || compile an `*.as` file with ASC || Flex Builder MXMLC compiler ||
 || redshell_debug || run an `*.abc` file with redshell_d || Debug button ||
 || redshell_run || run an `*.abc` file with redshell || Run button ||
-|| make_projector || take an `*.abc` file and create an executable || n/a ||
+|| make_projector || take an `*.abc` or `*.swf` file and create an executable || n/a ||
 || dump_api || take an `*.abc` or `*.swf` file and dump the API || n/a ||
 || dump_infos || take an `*.abc` or `*.swf` file and dump the infos || n/a ||
 || extract_abc || take a `*.swf` file and dump all the `*.abc` files || n/a ||
@@ -71,6 +71,58 @@ Here a summary of those tools
 
 <br>
 <br>
-== Our first test project ==
+== Our first project ==
 
-Create an !ActionScript project named "test"
+Create an !ActionScript project<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/create_actionscript.png]
+
+and name it "test"<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/create_test_project.png]
+
+edit the Library path and remove any default SWC reference<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/clean_library_path.png]
+
+by default you will get this error<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/default_Sprite_error.png]
+
+that's normal, under redtamarin there is no Sprite class (well.. not yet, another tutorial for that).
+
+So, to deactivate this error, and a bunch of other errors, you need to edit your project properties
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/edit_project_properties.png]
+
+in the Builders section on the left, deselect "Flex", and confirm by clicking "OK"<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/remove_flex_builder.png]
+
+
+As it is, you disabled some Flex Builder options and settings, but nothing can work yet.
+
+You need to create two directories in your project
+  * *bin*, where you gonna drag n drop the results of [GettingStarted#Build_the_tools Build the tools]
+  * *lib-swc* (or any other name), where you gonna drop the `redtamarin.swc` (from [GettingStarted#Download_the_component Download the component])
+
+You should obtain this directory structure<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/project_directory_structure.png]
+
+Edit again your project properties<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/edit_project_properties.png]
+
+And in Library path add the *lib-swc* folder<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/add_swc_folder.png]
+
+In details that gives<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/swc_folder_details.png]
+
+Now, clean up the default code that Flex Builder created in `test.as` to start from fresh
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/start_from_fresh.png]
+
+I know, it sucks to do all those settings by hand, I'll try to come up with a way to automate that.
+
+Voila, you're ready to write your first redtamarin program :).
+
+<br>
+<br>
+== Our first program ==
+
+
+
+ 

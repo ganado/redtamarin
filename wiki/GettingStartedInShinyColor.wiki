@@ -23,17 +23,51 @@ I would advise you to create an Eclipse workspace dedicated to redtamarin develo
 Each Eclipse workspace have a `.metadata` folder containing various settings,<br>
 here with one of the tools we have built, we gonna inject a bunch of external tools into this folder.
 
+Here what we have by default
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/tools_default.png]
+
 run !EclipseExternalTools 
 {{{
 $ ./EclipseExternalTools /work/Demos/redtamarin
 }}}
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/running_EclipseExternalTools.png]
 
-if you go into the folder `.metadata/.plugins/org.eclipse.debug.core/.launches/` you will see that list of scripts we just added
+if you go into the folder `.metadata/.plugins/org.eclipse.debug.core/.launches/`<br>
+you will see that list of scripts we just added
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/eclipse_list_launches.png]
 
 Now, close Flex Builder and restart it.
 
+== Edit our tools first ==
+
+Let's open the external tools
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/open_external_tools.png]
+
+On the top left, you should see our list of tools
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/List_of_external_tools.png]
+
+Now, open the external tools favorite<br>
+and add all the tools (eg. click "Organize favorites...")
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/add_external_tools_to_favorites.png]
+
+Select the order that you prefer with "move up", "move down", etc.
+
+And now, let's see our tools
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/List_of_tools.png]
+
+Here a summary of those tools
+|| *tool*  || *description* || *alternative to* ||
+|| ASC_compile || compile an *.as file with ASC || Flex Builder MXMLC compiler ||
+|| redshell_debug || run an .abc file with redshell_d || Debug button ||
+|| redshell_run || run an .abc file with redshell || Run button ||
+|| make_projector || take an *.abc file and create an executable || n/a ||
+|| dump_api || take an *.abc or *.swf file and dump the API || n/a ||
+|| dump_infos || take an *.abc or *.swf file and dump the infos || n/a ||
+|| extract_abc || take a *.swf file and dump all the *.abc files || n/a ||
+
+
 
 == Our first test project ==
+
+Create an !ActionScript project named "test"
 

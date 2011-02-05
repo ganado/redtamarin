@@ -10,12 +10,20 @@ It should work the same for Flash Builder 4.0, but I didn't tested yet.
 You still need to do the default [GettingStarted Getting Started] tasks
   * [GettingStarted#Download_the_shell Download the shell]
   * [GettingStarted#Download_the_component Download the component]
-  * b
+  * [GettingStarted#Build_the_tools Build the tools]
 
 
 == Define a workspace ==
 
 Because redtamarin is not your default Flex Builder project, I would advise you to create an Eclipse workspace dedicated to redtamarin development.
 
-
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/redtamarin_workspace.png]
+
+Each Eclipse workspace have a `.metadata` folder containing various settings,<br>
+here with one of the tools we have built, we gonna inject a bunch of external tools into this folder.
+
+run EclipseExternalTools 
+{{{
+$ ./EclipseExternalTools /work/Demos/redtamarin
+}}}
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/running_EclipseExternalTools.png]

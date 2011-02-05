@@ -155,7 +155,7 @@ then click on the *redshell_run* tool<br>
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/tool_redshell_run.png]
 
 and see the console output in all its glory<br>
-[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/output_simple_test .png]
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/output_simple_test.png]
 
 the username result should off course reflect the username defined on your system =).
 
@@ -248,4 +248,3 @@ the program `createprojector` altered the name to `test2`.
 
 And voila, a standalone executable containing both `redshell` and `test.abc` is generated<br>
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/standalone_executable.png]
-

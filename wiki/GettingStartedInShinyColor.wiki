@@ -15,15 +15,25 @@ You still need to do the default [GettingStarted Getting Started] tasks
 
 == Define a workspace ==
 
-Because redtamarin is not your default Flex Builder project, I would advise you to create an Eclipse workspace dedicated to redtamarin development.
+Because redtamarin is not your default Flex Builder project,<br>
+I would advise you to create an Eclipse workspace dedicated to redtamarin development.
 
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/redtamarin_workspace.png]
 
 Each Eclipse workspace have a `.metadata` folder containing various settings,<br>
 here with one of the tools we have built, we gonna inject a bunch of external tools into this folder.
 
-run EclipseExternalTools 
+run !EclipseExternalTools 
 {{{
 $ ./EclipseExternalTools /work/Demos/redtamarin
 }}}
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/running_EclipseExternalTools.png]
+
+if you go into the folder `.metadata/.plugins/org.eclipse.debug.core/.launches/` you will see that list of scripts we just added
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/eclipse_list_launches.png]
+
+Now, close Flex Builder and restart it.
+
+
+== Our first test project ==
+

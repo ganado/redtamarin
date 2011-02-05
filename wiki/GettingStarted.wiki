@@ -34,7 +34,7 @@ unzip it, and you should get
 download the zip (see [http://code.google.com/p/redtamarin/downloads/list downloads] tab)
 {{{
 redtamarin_{version}_SWC.zip
-}}
+}}}
 
 In Flex Builder, copy `redtamarin.swc` somewhere (for ex: `/lib-swc/redtamarin.swc`, `/lib/redtamarin.swc`, etc.)
 

@@ -7,3 +7,5 @@ It should work the same for Flash Builder 4.0, but I didn't tested yet.
 
 
 == Define a workspace ==
+
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/ASC_compile_result.png]

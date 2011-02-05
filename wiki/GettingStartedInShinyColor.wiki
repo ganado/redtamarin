@@ -123,6 +123,129 @@ Voila, you're ready to write your first redtamarin program :).
 <br>
 == Our first program ==
 
+Because our tools run on the command line, it is also a good idea to display the console window<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/display_console.png]
+
+Let's write some code!<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/redtamarin_syntax_completion_1.png]
+
+yes, you're not dreaming<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/redtamarin_syntax_completion_2.png]
+
+there is full syntax completion support<br>
+like a normal Flash/Flex project<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/redtamarin_syntax_completion_3.png]
+
+Now, let's compile the program!<br>
+be sure to have `test.as` selected<br>
+then click on the *ASC_compile* tool<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/tool_ASC_compile.png]
+
+and here the result<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/ASC_compile_result.png]
+
+the console tell us that we create a 116 bytes file,<br>
+and you can see also on the left panel a new file: `test.abc`.
+
+Now, let's run the code!<br>
+be sure to select `test.abc` on the left panel<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/select_test_abc.png]
+
+then click on the *redshell_run* tool<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/tool_redshell_run.png]
+
+and see the console output in all its glory<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/output_simple_test .png]
+
+the username result should off course reflect the username defined on your system =).
+
+That is very basic and I hope simple, but that's how you work with redtamarin:<br>
+  * you compile one or more `*.as` file(s) to an `*.abc` file
+  * you run one or more `*.abc` file(s) with the `redshell`
+
+== More stuff you should know ==
+
+Let's edit our code in a way that it will generate a runtime error<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/edit_the_code_to_create_an_error.png]
+
+Run the abc file with *redshell_run*<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/tool_redshell_run.png]
+
+here the result<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/error_with_redshell_run.png]
+
+`Error #1500` as it is not very helpful ...
+
+Let's run the abc file with *redshell_debug*<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/tool_redshell_debug.png]
+
+here the result<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/error_with_redshell_debug.png]
+
+{{{
+Error: Error #1500: Error occurred opening file hello.txt
+        at avmplus:;FileSystem$/read()
+        at global$init()
+}}}
+
+much more useful, and that's why there is also a debug release of redshell as *redshell_d*<br>
+that's the only version that give you error details.
 
 
- 
+Now, let's be crazy and write a class.
+
+And let's make an obvious syntax error and see what happen<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/syntax_error_at_compilation.png]
+
+yes, the compiler will tell you something is wrong and in red so you really can not miss it.
+
+
+So we spent few minutes writing a class, let's see a big screenshot<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/main_program_containing_class_and_main_entry_point.png]
+
+the same stuff as writing code for Flash
+  * you get the layout of the class on the left panel
+  * you get syntax colorisation
+  * you get syntax completion
+
+the different stuff
+  * you can declare more than one definition per file<br>if you wanted you could declare 3/4 classes or more in the same file
+  * your file name does not have to be same name as the class
+  * your main class will not automatically run by itself, you have to explicitly run it<br>see under `//main entry point`
+  * `trace()` will output wether you use the release or debug version of redshell
+
+Now for a special thing related to Eclipse and command line,<br>
+Eclipse console seems to not support an interactive mode,<br>
+so if you use a *blocking* function the console will get stuck.<br>
+<br>
+For those case, you will have to run your program in a "real" console or terminal<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/use_external_console_for_interactive_program.png]
+
+
+But, depending on your coding style or what you program, putting it all in one file may not work for you,<br>
+so let's see another way, we keep the main entry point in `test.as` but externalise the class Robot to its own `Robot.as` file<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/main_program_with_includes.png]
+
+Like good old AS1 you use includes, and usually include everything from your main file.
+
+But let's see what happen when we compile<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/main_program_with_includes_missing_import.png]
+
+ Yes, including a file does not necessary import it, you have to use `import`<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/main_program_with_includes_and_import.png]
+
+
+Now, let's turn this simple program in an executable,<br>
+select the abc file and click *make_projector*<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/tool_make_projector.png]
+
+here the result<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/make_projector_result.png]
+
+It created a `test2` executable, yes it should be named `test`,<br>
+but because we already have a directory named `test`<br>
+the program `createprojector` altered the name to `test2`.
+
+And voila, a standalone executable containing both `redshell` and `test.abc` is generated<br>
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/standalone_executable.png]
+

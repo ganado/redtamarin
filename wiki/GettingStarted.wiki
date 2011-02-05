@@ -45,7 +45,7 @@ and voila you should get syntax completion.
 
 Now checkout the redtamarin-tools
 {{{
-$ svn co TODO
+$ svn co http://redtamarin.googlecode.com/svn/tools/trunk redtamarin-tools
 }}}
 
 you will obtain this structure

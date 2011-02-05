@@ -1,11 +1,18 @@
 #summary Getting Started in More Details and Shiny Color.
 
-Here a small tutorial from start to finnish to get you started writing code for redtamarin in Flex Builder 3.0
-
+Here a small tutorial from start to finnish<br>
+to get you started writing code for redtamarin in Flex Builder 3.0<br>
+<br>
 It should work the same for Flash Builder 4.0, but I didn't tested yet.
 
+== Introduction ==
+
+You still need to do the default Getting Started to get the default tools.
 
 
 == Define a workspace ==
 
-[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/ASC_compile_result.png]
+Because redtamarin is not your default Flex Builder project, I would advise you to create an Eclipse workspace dedicated to redtamarin development.
+
+
+[http://redtamarin.googlecode.com/svn/gfx/gettingstarted/redtamarin_workspace.png]

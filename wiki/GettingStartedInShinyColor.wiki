@@ -33,26 +33,26 @@ $ ./EclipseExternalTools /work/Demos/redtamarin
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/running_EclipseExternalTools.png]
 
 if you go into the folder `.metadata/.plugins/org.eclipse.debug.core/.launches/`<br>
-you will see that list of scripts we just added
+you will see that list of scripts we just added<br>
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/eclipse_list_launches.png]
 
 Now, close Flex Builder and restart it.
 
 == Edit our tools first ==
 
-Let's open the external tools
+Let's open the external tools<br>
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/open_external_tools.png]
 
 On the top left, you should see our list of tools
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/List_of_external_tools.png]
 
 Now, open the external tools favorite<br>
-and add all the tools (eg. click "Organize favorites...")
+and add all the tools (eg. click "Organize favorites...")<br>
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/add_external_tools_to_favorites.png]
 
 Select the order that you prefer with "move up", "move down", etc.
 
-And now, let's see our tools
+And now, let's see our tools<br>
 [http://redtamarin.googlecode.com/svn/gfx/gettingstarted/List_of_tools.png]
 
 Here a summary of those tools

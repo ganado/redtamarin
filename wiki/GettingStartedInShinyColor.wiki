@@ -1,4 +1,5 @@
 #summary Getting Started in More Details and Shiny Color.
+#labels Featured
 
 Here a small tutorial from start to finnish<br>
 to get you started writing code for redtamarin in Flex Builder 3.0<br>

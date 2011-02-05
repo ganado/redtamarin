@@ -1,6 +1,8 @@
 #summary Getting Started.
 
-== redtamarin v0.3.0 ==
+Will work with redtamarin v0.3.0+
+
+== Download the shell ==
 
 download one of the zip for your system (see [http://code.google.com/p/redtamarin/downloads/list downloads] tab), and unzip it, you should get
 
@@ -16,4 +18,55 @@ download one of the zip for your system (see [http://code.google.com/p/redtamari
       |_ redshell_d                        <- debugger version
       |_ toplevel.abc
 
+}}}
+
+== Build the tools ==
+
+Now checkout the redtamarin-tools
+{{{
+TODO
+}}}
+
+you will obtain this structure
+{{{
+redtamarin-tools
+  |_ build
+  |    |_ ant
+  |    |_ red
+  |        |_ nix
+  |        |_ osx
+  |        |_ win
+  |
+  |_ src
+      |_ ...
+
+}}}
+
+extract the zip content to the respective directory
+
+  * for redtamarin_0.3.0.940_WIN.zip extract it to */build/red/win/*
+  * for redtamarin_0.3.0.940_NIX.zip extract it to */build/red/nix/*
+  * for redtamarin_0.3.0.940_OSX.zip extract it to */build/red/osx/*
+
+Go to the root of the project and run the ant build
+{{{
+$ ./ant
+}}}
+
+this should generate all the tools and dependencies in the /bin directory
+
+{{{
+..
+ |_ bin
+     |_ abcdump               <- Displays the contents of abc or swf files
+     |_ asc                   <- Executable wrapper for asc.jar
+     |_ asc.ajr
+     |_ builtin.abc
+     |_ createprojector       <- Utility to create a projector
+     |_ EclipseExternalTools  <- Utility to create Eclipse External Tools for redtmarin
+     |_ redshell              <- redshell release
+     |_ redshell_d            <- redshell debug
+     |_ swfmake               <- Utility to stitch ABC files together into a single swf
+     |_ toplevel.abc
+     
 }}}

@@ -2,7 +2,7 @@
 
 == Videos for v0.3 ==
 
-<wiki:video url="http://www.youtube.com/watch?v=0Nk8XmQZEtY"/>
+<wiki:video url="http://www.youtube.com/watch?v=0Nk8XmQZEtY" width="640" height="390"/>
 
 
 == Videos for v0.2.5 ==

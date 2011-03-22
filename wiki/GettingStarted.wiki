@@ -101,7 +101,7 @@ restart Flex Builder.
 
 Copy the `/bin` directory to your project, created in this workspace.
 
-Create a new !ActionScript project in Flex Builder, and you're good to go.
+Create a new !ActionScript project in Flex Builder 3 or Flash Builder 4, and you're good to go.
 
 
 Now, for more details and shiny screenshots you can follow [GettingStartedInShinyColor Getting Started in Shiny Color].

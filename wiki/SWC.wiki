@@ -184,6 +184,8 @@ The dependency `<dep>` tag, well I think we can ignore it<br>
 
 == How to build a custom builtin.swc ==
 
+ALl the following is dead WRONG
+{{{
 We not gonna use COMPC for sure, because most of our `*.as` classes will simply not compile<br>
 for ex: `Date.as`, we want it in the syntax completion, but as it is, it does not compile.
 
@@ -194,5 +196,60 @@ Now, our task is to create a `catalog.xml` that will not faill the verification 
 
 Once you have a `library.swf` and `catalog.xml`, really it is just a matter to zip it to `whatever.swc`<br>
 and voila you got  a nice valid SWC :).
+}}}
 
-TODO
+COMPC can generate very low-level SWC, in fact it's so stupid it's even [http://livedocs.adobe.com/flex/3/html/help.html?content=anttasks_4.html documented here]
+
+look at the part
+{{{
+<include-sources dir="player/avmplus/core" includes="builtin.as, Date.as, Error.as, Math.as, RegExp.as, XML.as"/>
+}}}
+
+So here the recipe to generate SWC for our stuff (no dependencies on playerglobal.swc and non-standard classes layout)
+
+first, you need to override the flex config
+
+*flex-config.xml*
+{{{
+<?xml version="1.0"?>
+<flex-config>
+   <compiler>
+      <as3>true</as3>
+      <es>false</es>
+   </compiler>
+</flex-config>
+}}}
+just keep the basis, remove anything else.
+<br>
+
+second, include only the stuff you need<br>
+for ex: `builtin.py` that generate `builtin.abc`
+{{{
+os.system(asc+" -builtin "+configs+" -apiversioning -out builtin builtin.as Math.as Error.as Date.as RegExp.as XML.as IDataInput.as IDataOutput.as ByteArray.as ")
+}}}
+
+duplicate this for compc
+{{{
+<include-sources dir="src/tamarin/core" includes="builtin.as, Math.as, Error.as, Date.as, RegExp.as, XML.as, IDataInput.as, IDataOutput.as, ByteArray.as" />
+}}}
+
+here an example of the ant task (note I use the Flex SDK 3.2.0, others SDK bigger than v4 seems to not work)
+{{{
+    <target name="build-builtin-component">
+        <compc
+            output="bin/builtin.swc"
+            target-player="9.0"
+        >
+            <load-config>flex-config.xml</load-config>
+            <define name="CONFIG::BYTEARRAY_API_FLASH"  value="true" />
+            <define name="CONFIG::BYTEARRAY_API_AIR" value="false" />
+            <strict>false</strict>
+            <optimize>true</optimize>
+            <warnings>false</warnings>
+            <verbose-stacktraces>true</verbose-stacktraces>
+            <compute-digest>false</compute-digest>
+            <include-sources dir="src/tamarin/core" includes="builtin.as, Math.as, Error.as, Date.as, RegExp.as, XML.as, IDataInput.as, IDataOutput.as, ByteArray.as" />
+        </compc>
+    </target>
+}}}
+and voila, you obtain a clean `builtin.swc` without any dependencies on `playerglobal.swc`.

@@ -258,3 +258,14 @@ here an example of the ant task (note I use the Flex SDK 3.2.0, others SDK bigge
     </target>
 }}}
 and voila, you obtain a clean `builtin.swc` without any dependencies on `playerglobal.swc`.
+
+<br>
+
+*Flex SDK compatibility list*
+  * v3.1.0 fail
+  * v3.2.0 pass
+  * v3.3.0 pass
+  * v3.4.0 pass
+  * v4.0.0 pass
+  * v4.1.0.16076 fail eg "The definition of base class Sprite was not found."
+  * v4.5.0.19786 fail eg "The definition of base class Sprite was not found."

@@ -184,7 +184,7 @@ The dependency `<dep>` tag, well I think we can ignore it<br>
 
 == How to build a custom builtin.swc ==
 
-ALl the following is dead WRONG
+All the following is dead WRONG
 {{{
 We not gonna use COMPC for sure, because most of our `*.as` classes will simply not compile<br>
 for ex: `Date.as`, we want it in the syntax completion, but as it is, it does not compile.
@@ -197,6 +197,11 @@ Now, our task is to create a `catalog.xml` that will not faill the verification 
 Once you have a `library.swf` and `catalog.xml`, really it is just a matter to zip it to `whatever.swc`<br>
 and voila you got  a nice valid SWC :).
 }}}
+<br>
+<br>
+
+The following will work in a snap.
+<br>
 
 COMPC can generate very low-level SWC, in fact it's so stupid it's even [http://livedocs.adobe.com/flex/3/html/help.html?content=anttasks_4.html documented here]
 

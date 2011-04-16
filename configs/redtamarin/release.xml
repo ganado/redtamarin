@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="redtamarin" default="main" basedir=".">
+<project name="redtamarin-release" default="main" basedir=".">
 
     <target name="flag">
     <echo>                                                           

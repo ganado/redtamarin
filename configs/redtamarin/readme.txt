@@ -118,5 +118,24 @@ http://code.google.com/p/redtamarin/wiki/AVMPlus
 more documentations to come in
 http://code.google.com/p/redtamarin/wiki/Examples
 
+
+Components
+----------
+
+You can find SWC components that will provide syntax completion for
+  * Flex Builder 3.0+
+  * Flash BUilder 4.0+
+  * Flash Develop 3.0+
+
+builtin.swc map exactly with builtin.abc
+clib.swc map with the C.* package (depends on builtin.swc)
+
+those two SWC are here for people who want to build their own libraries
+on top of redtamarin (eg. if you implement your own toplevel.abc)
+and want to generate their own SWC.
+
+For everyone else use:
+redtamarin.swc as it contains everything
+
 --------------------------------------------------------------------------------
 

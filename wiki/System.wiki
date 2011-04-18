@@ -111,6 +111,37 @@ trace( "pid = " + System.pid ); //pid = 75665
 *since:* 0.3.0
 
 
+== profile ==
+{{{
+public static function get profile():Profile
+public static function set profile( value:Profile ):void
+}}}
+Returns or Defines the current profile.
+
+*note:*<br>
+Initialised by toplevel to `System.profile = new RedTamarinProfile();`.<br>
+Any classes extending `Profile` downcast to the `Profile` type.
+
+*example:* change the default profile
+{{{
+import avmplus.System;
+import avmplus.profiles.FlashPlayerProfile;
+
+System.profile = new FlashPlayerProfile();
+}}}
+
+*example:* change some properties of the profile (to run some unit tests for ex)
+{{{
+import avmplus.System;
+
+System.profile.language = "fr";
+System.profile.touchscreenType = "finger";
+System.profile.supportsAccelerometer = true;
+}}}
+
+
+*since:* 0.3.1
+
 == programFilename ==
 {{{
 public native static function get programFilename():String;

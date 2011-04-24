@@ -58,6 +58,7 @@ namespace avmshell
         return VMPI_getLogicalDrives();
     }
 
+    /*
     bool FileSystemClass::exists(Stringp filename)
     {
         if (!filename) {
@@ -78,6 +79,7 @@ namespace avmshell
         }
         return result;
     }
+    */
 
     Stringp FileSystemClass::read(Stringp filename)
     {

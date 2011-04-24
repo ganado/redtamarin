@@ -49,7 +49,7 @@ namespace avmshell
         FileSystemClass(VTable* cvtable);
         ~FileSystemClass();
 
-        bool exists(Stringp filename);
+        //bool exists(Stringp filename);
         Stringp read(Stringp filename);
         ByteArrayObject* readByteArray(Stringp filename);
         void write(Stringp filename, Stringp data);

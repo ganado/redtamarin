@@ -224,7 +224,8 @@ namespace avmshell
             //printf("recv - Bytes received: %i\n", result);
             _buffer->GetByteArray().Write( data, result );
         }
-        
+
+        delete [] data;
         return result;
     }
     
@@ -242,7 +243,8 @@ namespace avmshell
             //printf("recvfrom - Bytes received: %d\n", result);
             _buffer->GetByteArray().Write( data, result );
         }
-        
+
+        delete [] data;
         return result;
     }
     

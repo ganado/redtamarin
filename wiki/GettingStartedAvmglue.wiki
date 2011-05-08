@@ -2,8 +2,87 @@
 
 == Introduction ==
 
+Avmglue is about being able to reuse AS3 code written for the Flash Player and AIR<br>
+on the redshell command line.
+
+See more informations:
+  * [http://code.google.com/p/redtamarin/wiki/API#Layer_1_:_Flash_Platform API Layer 1 : Flash Platform]
+  * [http://code.google.com/p/maashaack/wiki/avmglue the avmglue project page]
+  * [http://code.google.com/p/redtamarin/wiki/FlashPlatform Flash Platform API]
 
 
 you can [http://code.google.com/p/maashaack/downloads/list download avmglue here]
 
 == Details ==
+
+After following the [GettingStarted getting started] instructions
+
+you will need to add *avmglue.swc* next to *redtamarin.swc*
+
+for ex:
+{{{
+..
+  |_ bin
+  |    |_ ...
+  |
+  |_ src
+  |   |_ ...
+  |
+  |_ lib-swc
+      |_ redtamarin.swc
+      |_ avmglue.swc
+}}}
+
+you will need to update your *bin* folder with *avmglue.abc*
+
+{{{
+..
+ |_ bin
+     |_ abcdump
+     |_ asc
+     |_ asc.ajr
+     |_ avmglue.abc     <- here
+     |_ builtin.abc
+     |_ createprojector
+     |_ EclipseExternalTools
+     |_ redshell
+     |_ redshell_d
+     |_ swfmake
+     |_ toplevel.abc
+}}}
+
+
+and finally you will need to update your tools
+
+copy *ASC_compile* to *ASC_compile_avmglue*
+
+update the task from
+{{{
+Location: ${project_loc}/bin/asc
+Working Directory: ${project_loc}/bin/
+Arguments: -AS3 -strict -import builtin.abc -import toplevel.abc ${resource_loc}
+}}}
+
+to
+{{{
+Location: ${project_loc}/bin/asc
+Working Directory: ${project_loc}/bin/
+Arguments: -AS3 -strict -import builtin.abc -import toplevel.abc -import avmglue.abc ${resource_loc}
+}}}
+
+
+copy *redshell_debug* to *redshell_debug_avmglue*
+
+update the task from
+{{{
+Location: ${project_loc}/bin/redshell_d
+Working Directory: ${project_loc}/src/
+Arguments: ${resource_loc}
+}}}
+
+to
+{{{
+Location: ${project_loc}/bin/redshell_d
+Working Directory: ${project_loc}/src/
+Arguments: ../bin/avmglue.abc ${resource_loc}
+}}}

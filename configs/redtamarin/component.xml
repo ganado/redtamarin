@@ -158,6 +158,9 @@
 
             <include-sources dir="src/tamarin/extensions"
              includes="Dictionary.as, Sampler.as, Trace.as" />
+
+            <include-sources dir="src/tamarin/as3/shell/avmplus/profiles"
+             includes="Profile.as, TamarinProfile.as, RedTamarinProfile.as, FlashPlayerProfile.as, AIRProfile.as, DesktopProfile.as, ExtendedDesktopProfile.as, MobileDeviceProfile.as, TVProfile.as, ExtendedTVProfile.as" />
             
             <include-sources dir="src/tamarin/as3/shell/avmplus"
              includes="System.as, OperatingSystem.as, FileSystem.as, Socket.as" />

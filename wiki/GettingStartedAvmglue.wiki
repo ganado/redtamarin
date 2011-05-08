@@ -5,6 +5,8 @@
 Avmglue is about being able to reuse AS3 code written for the Flash Player and AIR<br>
 on the redshell command line.
 
+The goal of `avmglue.abc` is to replicate `playerglobal.swc` and `airglobal.swc`.
+
 See more informations:
   * [http://code.google.com/p/redtamarin/wiki/API#Layer_1_:_Flash_Platform API Layer 1 : Flash Platform]
   * [http://code.google.com/p/maashaack/wiki/avmglue the avmglue project page]

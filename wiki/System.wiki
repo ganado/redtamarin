@@ -280,7 +280,7 @@ import avmplus.System;
 var src:String = <![CDATA[
 var sys:Class  = getClassByName( "avmplus.System" );
 
-trace( "avmplus version = " + sys..getAvmplusVersion() );
+trace( "avmplus version = " + sys.getAvmplusVersion() );
 ]]>;
 System.eval( src );
 }}}
@@ -295,7 +295,7 @@ var src:String = <![CDATA[
 var sys:Class  = getClassByName( "avmplus.System" );
 var fcap:Class = getClassByName( "flash.system.Capabilities" );
 
-trace( "avmplus version = " + sys..getAvmplusVersion() );
+trace( "avmplus version = " + sys.getAvmplusVersion() );
 trace( "os: " + fcap.os ); //will work
 ]]>;
 System.eval( src );

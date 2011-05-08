@@ -246,6 +246,91 @@ reuse `getcwd()` and `chdir()` from [C_unistd C.unistd].
 
 = Methods =
 
+== eval ==
+{{{
+public native static function eval( source:String ):void;
+}}}
+Evaluates AS3 source code at runtime.
+
+*example:* basic usage
+{{{
+import avmplus.System;
+import avmplus.FileSystem;
+
+var src:String = FileSystem.read( "test.as" );
+System.eval( src );
+}}}
+
+*note:*<br>
+`eval()` have some limitations
+  * the execution scope is not shared
+{{{
+import avmplus.System;
+
+var hello:String = "world"
+System.eval( "trace( hello );" ); //var hello is undefined in the scope of eval
+
+System.eval( "var test:uint = 123;" );
+trace( this["test"] ); //var test is undefined in the scope of the main script
+}}}
+  * you can not use the `import` statement
+{{{
+import avmplus.System;
+
+var src:String = <![CDATA[
+var sys:Class  = getClassByName( "avmplus.System" );
+
+trace( "avmplus version = " + sys..getAvmplusVersion() );
+]]>;
+System.eval( src );
+}}}
+<br>
+But `eval()` got some features too
+  * the `Domain` is shared, that means any definitions<br>or abc you load before calling `eval()`<br>will be known to `eval()`
+{{{
+//if you compile your main script with avmglue.abc
+import avmplus.System;
+
+var src:String = <![CDATA[
+var sys:Class  = getClassByName( "avmplus.System" );
+var fcap:Class = getClassByName( "flash.system.Capabilities" );
+
+trace( "avmplus version = " + sys..getAvmplusVersion() );
+trace( "os: " + fcap.os ); //will work
+]]>;
+System.eval( src );
+}}}
+  * the scope of packages and classes is shared,<br>eg. if you modify a class property in `eval()`<br>your main script will have access to the changes.
+{{{
+package test
+{
+	public class Something
+	{
+		public static var word:String = "hello world";
+	}
+}
+}}}
+{{{
+import avmplus.System;
+
+include "test/Something.as";
+import test.Something;
+
+var src:String = <![CDATA[
+var smthing:Class = getClassByName( "test.Something" );
+    smthing.word = "bonjour le monde";
+]]>;
+
+trace( "Something.word = " + Something.word ); //hello world
+
+System.eval( src );
+
+trace( "Something.word = " + Something.word ); //bonjour le monde
+}}}
+
+*since:* 0.3.1
+
+
 == exec ==
 <font color="orange">blocking</font><br>
 {{{

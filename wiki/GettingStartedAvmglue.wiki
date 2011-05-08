@@ -17,7 +17,7 @@ you can [http://code.google.com/p/maashaack/downloads/list download avmglue here
 
 After following the [GettingStarted getting started] instructions
 
-you will need to add *avmglue.swc* next to *redtamarin.swc*
+1. you will need to add *avmglue.swc* next to *redtamarin.swc*
 
 for ex:
 {{{
@@ -32,8 +32,10 @@ for ex:
       |_ redtamarin.swc
       |_ avmglue.swc
 }}}
+<br>
+<br>
 
-you will need to update your *bin* folder with *avmglue.abc*
+2. you will need to update your *bin* folder with *avmglue.abc*
 
 {{{
 ..
@@ -50,9 +52,10 @@ you will need to update your *bin* folder with *avmglue.abc*
      |_ swfmake
      |_ toplevel.abc
 }}}
+<br>
+<br>
 
-
-and finally you will need to update your tools
+3. and finally you will need to update your tools
 
 copy *ASC_compile* to *ASC_compile_avmglue*
 
@@ -69,7 +72,7 @@ Location: ${project_loc}/bin/asc
 Working Directory: ${project_loc}/bin/
 Arguments: -AS3 -strict -import builtin.abc -import toplevel.abc -import avmglue.abc ${resource_loc}
 }}}
-
+<br>
 
 copy *redshell_debug* to *redshell_debug_avmglue*
 

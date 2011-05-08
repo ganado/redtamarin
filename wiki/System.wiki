@@ -273,12 +273,12 @@ System.eval( "trace( hello );" ); //var hello is undefined in the scope of eval
 System.eval( "var test:uint = 123;" );
 trace( this["test"] ); //var test is undefined in the scope of the main script
 }}}
-  * you can not use the `import` statement
+  * you can not use the `import` statement for fully qualified names
 {{{
 import avmplus.System;
 
 var src:String = <![CDATA[
-var sys:Class  = getClassByName( "avmplus.System" );
+var sys:Class  = getClassByName( "avmplus.System" ); //workaround
 
 trace( "avmplus version = " + sys.getAvmplusVersion() );
 ]]>;
@@ -288,6 +288,16 @@ System.eval( src );
   * you can not declare a Class/Interface/namespace definitions in an eval script
 <br>
 But `eval()` got some features too
+  * you can use `import` for unqualified directives
+{{{
+import avmplus.System;
+
+var src:String = <![CDATA[
+import avmplus.*;
+trace( "avmplus version = " + System.getAvmplusVersion() );
+]]>;
+System.eval( src );
+}}}
   * the `Domain` is shared, that means any definitions<br>or abc you load before calling `eval()`<br>will be known to `eval()`
 {{{
 //if you compile your main script with avmglue.abc

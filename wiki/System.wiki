@@ -312,7 +312,6 @@ trace( "os: " + fcap.os ); //will work
 ]]>;
 System.eval( src );
 }}}
-or
 {{{
 //if you compile your main script with avmglue.abc
 import avmplus.System;

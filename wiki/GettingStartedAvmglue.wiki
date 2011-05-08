@@ -89,3 +89,56 @@ Location: ${project_loc}/bin/redshell_d
 Working Directory: ${project_loc}/src/
 Arguments: ../bin/avmglue.abc ${resource_loc}
 }}}
+
+
+== Compiling ==
+
+If you're dealing only with `*.abc` files, with `builtin.abc` and `toplevel.abc`<br>
+because those libs are already embedded in the redshell executable<br>
+you don't need to embed those `*.abc` in your `program.abc`.
+
+With `avmglue.abc`it is different, there you HAVE TO embed it yourself,<br>
+or your final `program.abc` will miss a library.
+
+The shells can run different `*.abc` files at the same time:
+{{{
+$ ./redshell avmglue.abc program.abc
+}}}
+
+Doing like that is fine to run some tests when you're constantly compiling `program.abc`,<br>
+but when you want to distribute your program it is less than ideal.
+
+
+You can compile a single `*.abc` if you build everything from sources<br>
+(eg. your program but also avmglue), and then use ASC with the option `-exe` to emit an executable.
+
+The problem with that is that it defeat the purpose of distributing `avmglue.abc` as a library.
+
+
+What you want is
+  * compile your `program.abc`
+  * reuse `avmglue.abc` as it is
+  * embed everything in one executable
+
+Here how to do that: use `swfmake` and `createprojector`
+  * `swfmake` will allow you to stick different `*.abc` files in a `*.swf` file
+  * `createprojector` will allow you to build an exe by merging one of the shells with that `*.swf`
+
+{{{
+$ ./swfmake -o program.swf -c avmglue.abc program.abc
+$ ./createprojector -exe redshell -o program program.swf
+}}}
+
+Also wether you are on OS X / Linux / Windows you will be able to create an executable for all the other systems
+
+by default I work under OS X, and so I run that to build an OS X executable
+{{{
+$ ./swfmake -o program.swf -c avmglue.abc program.abc
+$ ./createprojector -exe redshell -o program program.swf
+}}}
+
+but from OS X, if I wanted to build a Windows exe, I could simply do that
+{{{
+$ ./swfmake -o program.swf -c avmglue.abc program.abc
+$ ./createprojector -exe redshell.exe -o program.exe program.swf
+}}}

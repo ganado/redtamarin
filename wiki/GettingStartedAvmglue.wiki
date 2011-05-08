@@ -38,8 +38,6 @@ or by providing a mock
 {{{
 package flash.utils
 {
-    import avmplus.System;
-    
     public var getTimer:Function = function():int
     {
         return 0;

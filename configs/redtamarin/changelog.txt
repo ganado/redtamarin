@@ -1,3 +1,21 @@
+* 0.3.1
+- added build for OS X 10.5 Leopard
+- added build for components: builtin.swc, clib.swc and redtamarin.swc
+- removed debugger() from avmplus.* package
+- removed Capabilities class from flash.system.* package (will be re-added in avmglue)
+- removed getTimer() from toplevel (will be re-added in avmglue)
+- fixed System.exec() - issue 30
+  was not declared as static
+- added avmplus.profiles.* with Profile, TamarinProfile, RedTamarinProfile, etc.
+- added System.profile
+- fixed FileSystem.exists - issue 28
+  no we use access( filename, F_OK ) == 0
+  instead of a native impl.
+- fixed small memory leak in sockets - issue 29
+  every 'new' need a 'delete' even on the heap
+- avmglue v1 is available on its own repo
+- added System.eval()
+
 * 0.3.0
 - created C.socket AS3 for C socket const (POSIX only, eg. AF_INET, SOCK_STREAM, etc.)
 - added error const for sockets in C.errno.* AS3 (POSIX only eg. ENOTCONN, ECONNREFUSED etc.)
@@ -82,7 +100,6 @@
 - added SetNoSigPipe() to socket.h
   now by default we desactivate SIGPIPE
 - fixed bugs in receiveAll() and receiveBinaryAll()
-
 
 * 0.2.9
 - added VMPI_chmod

@@ -298,7 +298,7 @@ trace( "avmplus version = " + System.getAvmplusVersion() );
 ]]>;
 System.eval( src );
 }}}
-  * the `Domain` is shared, that means any definitions<br>or abc you load before calling `eval()`<br>will be known to `eval()`
+  * the `Domain` is shared, that means any definitions<br>or abc you load before calling `eval()` will be known to `eval()`
 {{{
 //if you compile your main script with avmglue.abc
 import avmplus.System;
@@ -309,6 +309,19 @@ var fcap:Class = getClassByName( "flash.system.Capabilities" );
 
 trace( "avmplus version = " + sys.getAvmplusVersion() );
 trace( "os: " + fcap.os ); //will work
+]]>;
+System.eval( src );
+}}}
+or
+{{{
+//if you compile your main script with avmglue.abc
+import avmplus.System;
+
+var src:String = <![CDATA[
+//import avmplus.*; //attention here avmplus::System and flash.system::System will cause ambiguity
+import flash.system.*;
+
+trace( "os: " + Capabilities.os ); //will work
 ]]>;
 System.eval( src );
 }}}

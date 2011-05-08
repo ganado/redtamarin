@@ -87,6 +87,18 @@ namespace avmshell
         #endif
     }*/
 
+    void SystemClass::eval(Stringp source)
+    {
+        if (!source) {
+            toplevel()->throwArgumentError(kNullArgumentError, "source");
+        }
+        
+        #ifdef VMCFG_EVAL
+        ShellCore* core = (ShellCore*)this->core();
+        core->evaluateString( source, false );
+        #endif // VMCFG_EVAL
+    }
+
     Stringp SystemClass::getAvmplusVersion()
     {
         return core()->newConstantStringLatin1(AVMPLUS_VERSION_USER " " AVMPLUS_BUILD_CODE);

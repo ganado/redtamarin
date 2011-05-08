@@ -73,6 +73,13 @@ namespace avmshell
          * Exits the VM with OS exit code specified by  status.
          */
         //void exit(int status);
+
+        /**
+         * Implementation of System.eval
+         * AS usage: System.eval(source_code);
+         * Evaluates AS3 source code at runtime.
+         */
+        void eval(Stringp source);
         
         Stringp get_programFilename();
 

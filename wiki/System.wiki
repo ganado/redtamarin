@@ -284,6 +284,8 @@ trace( "avmplus version = " + sys.getAvmplusVersion() );
 ]]>;
 System.eval( src );
 }}}
+  * you can not use the `include` directive in an eval script
+  * you can not declare a Class/Interface/namespace definitions in an eval script
 <br>
 But `eval()` got some features too
   * the `Domain` is shared, that means any definitions<br>or abc you load before calling `eval()`<br>will be known to `eval()`
@@ -326,6 +328,58 @@ trace( "Something.word = " + Something.word ); //hello world
 System.eval( src );
 
 trace( "Something.word = " + Something.word ); //bonjour le monde
+}}}
+  * you can share the global `this`
+{{{
+_global.panda = "hello panda";
+trace( "eval koala = " + _global["koala"] );
+trace( "eval panda = " + _global["panda"] );
+}}}
+{{{
+package
+{
+	public var _global:*;
+}
+
+_global = this;
+
+import avmplus.FileSystem;
+import avmplus.System;
+
+_global.koala = "hello koala";
+
+var source:String = FileSystem.read( "test2.as" );
+avmplus.System.eval( source );
+
+trace( "main panda = " + _global["panda"] );
+trace( "main koala = " + _global["koala"] );
+}}}
+
+  * another use of the global `this`
+{{{
+_global.test456 = function():String
+{
+	return "456";
+}
+
+trace( "eval scope = " + _global.test456() );
+}}}
+{{{
+package
+{
+	public var _global:*;
+}
+
+_global = this;
+
+import avmplus.FileSystem;
+import avmplus.System;
+
+var source:String = FileSystem.read( "test3.as" );
+avmplus.System.eval( source );
+
+trace( "main scope = " + this["test456"]() );
+trace( "main scope = " + _global["test456"]() );
 }}}
 
 *since:* 0.3.1

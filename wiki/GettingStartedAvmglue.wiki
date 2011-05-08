@@ -13,6 +13,48 @@ See more informations:
 
 you can [http://code.google.com/p/maashaack/downloads/list download avmglue here]
 
+Quickly put, redtamarin does not have the same native implementations as Flash or AIR,<br>
+but we can emulate them.
+
+For ex, redtamarin define `getTimer()` in the `avmplus.System` class,<br>
+and Flash/AIR define `getTimer()` in the `flash.utils` package.
+
+The role of *avmglue* is to make the redtamarin APi compatible with Flash/AIR,<br>
+by providing an implementation
+{{{
+package flash.utils
+{
+    import avmplus.System;
+    
+    public var getTimer:Function = function():int
+    {
+        return System.getTimer();
+    }
+}
+}}}
+same signature and behaviour as the FPAPI.
+
+or by providing a mock
+{{{
+package flash.utils
+{
+    import avmplus.System;
+    
+    public var getTimer:Function = function():int
+    {
+        return 0;
+    }
+}
+}}}
+same signature as the FPAPI but no real code.
+
+That way if you already spent hours writing AS3 code to make it run in Flash or AIR<br>
+by using *avmglue.abc* you should be able to compile your code directly for redtamarin,<br>
+or at least have a very minimal code effort to port your already existing library for the command line.
+
+|| *Mind that avmglue is far from complete and the ideal situation described above is not there yet.* ||
+
+
 == Details ==
 
 After following the [GettingStarted getting started] instructions

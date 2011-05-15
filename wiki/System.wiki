@@ -47,7 +47,7 @@ you pass directly the command line arguments (like any other exe).
 
 *since:* 0.3.0
 <br>
-
+<br>
 == startupDirectory ==
 {{{
 public static const startupDirectory:String
@@ -59,7 +59,7 @@ Initialised by the private native function `getStartupDirectory()`.
 
 *since:* 0.3.0
 <br>
-
+<br>
 = Properties =
 
 == apiVersion ==
@@ -78,7 +78,7 @@ trace( "API version : " + System.apiVersion ); //API version : 673
 
 *since:* 0.3.0
 <br>
-
+<br>
 == apiAlias ==
 {{{
 public static function get apiAlias():String
@@ -94,7 +94,7 @@ trace( "API alias : " + System.apiAlias ); //API alias : AIR_2_7
 
 *since:* 0.3.0
 <br>
-
+<br>
 == pid  ==
 {{{
 public static function get pid():int
@@ -110,7 +110,7 @@ trace( "pid = " + System.pid ); //pid = 75665
 
 *since:* 0.3.0
 <br>
-
+<br>
 == profile ==
 {{{
 public static function get profile():Profile
@@ -142,7 +142,7 @@ System.profile.supportsAccelerometer = true;
 
 *since:* 0.3.1
 <br>
-
+<br>
 == programFilename ==
 {{{
 public native static function get programFilename():String;

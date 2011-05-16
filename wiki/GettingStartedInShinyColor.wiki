@@ -2,7 +2,10 @@
 #labels Featured
 
 Here a small tutorial from start to finnish<br>
-to get you started writing code for redtamarin in Flex Builder 3.0 or Flash Builder 4.0
+to get you started writing code for redtamarin in
+  * Flex Builder 3.0
+  * Flash Builder 4.0
+  * Flash Builder 4.5
 
 
 == Introduction ==

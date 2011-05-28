@@ -139,7 +139,7 @@ If you're dealing only with `*.abc` files, with `builtin.abc` and `toplevel.abc`
 because those libs are already embedded in the redshell executable<br>
 you don't need to embed those `*.abc` in your `program.abc`.
 
-With `avmglue.abc`it is different, there you HAVE TO embed it yourself,<br>
+With `avmglue.abc` it is different, there you HAVE TO embed it yourself,<br>
 or your final `program.abc` will miss a library.
 
 The shells can run different `*.abc` files at the same time:

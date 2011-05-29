@@ -931,3 +931,45 @@ And remember that the order of definitions is important, it should look like tha
 {{{
 $ ./asc -AS3 -strict -import builtin.abc -import toplevel.abc -import avmglue.abc -import box2d.abc program.as
 }}}
+
+<br>
+
+Agreed, is not as easy as using Flash but it's close 
+
+*redtamarin workflow*
+  * I create project in the IDE
+  * I need to reuse an AS3 library
+    * I create a build to generate a SWC
+    * I extract the ABC from the SWC
+    * I reuse this ABC file instead of a SWC
+
+At the end the major problem will be with `avmglue.abc`,<br>
+if an AS3 library use a lot of the Flash Player API (or AIR API)<br>
+and *avmglue* does not support them yet, you will have to recreate<br>
+those defintions.
+
+Here for a `Sprite` class, if we look how box2d use the class
+{{{
+$ cd Source
+$ grep -R "Sprite" *
+
+Box2D/Dynamics/b2DebugDraw.as:import flash.display.Sprite;
+Box2D/Dynamics/b2DebugDraw.as:	public function SetSprite(sprite:Sprite) : void {
+Box2D/Dynamics/b2DebugDraw.as:	public function GetSprite() : Sprite {
+Box2D/Dynamics/b2DebugDraw.as:	b2internal var m_sprite:Sprite;
+}}}
+
+we can simply create a simple mock class
+{{{
+package flash.display
+{
+    public class Sprite
+    {
+    }
+}
+}}}
+and it will solve the problem
+  * be sure to compile it in its own `glue.abc` and import it before you import `box2d.abc`
+  * yes no need to implement a real Sprite class, her it is used only as a reference (no need to declare methods etc.)
+  * another solution would be to edit the box2d `b2DebugDraw` class and remove the `Sprite` reference
+  * ideally `avmglue.abc` should already provide this kind of simple mock class

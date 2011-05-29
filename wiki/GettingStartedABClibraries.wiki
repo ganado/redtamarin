@@ -507,7 +507,7 @@ we obtain
 here what happened
   * for each classes COMPC generated a `<script>` tag
   * for each `<script>` tag the SWF file create a `DoABC2` tag
-  * for each `DoABC2`we get an `*.abc` file
+  * for each `DoABC2` we get an `*.abc` file
 
 Ok, the cool thing is we did not have to generate all the includes by hand<br>
 but the extremely bad thing is now if we want to reuse that to compile with ASC<br>
@@ -518,7 +518,7 @@ $ ./asc -AS3 -strict -import builtin.abc -import toplevel.abc -import library.ab
 
 Ok, great so instead of `include Source/Box2D/SomeClass.as`<br>
 we moved the problem to `-import libraryXYZ.abc`, and it get worst<br>
-as we have no idea in whci orders the abc need to be declared and we probably<br>
+as we have no idea in which orders the abc need to be declared and we probably<br>
 gonna end up with some forward reference errors.
 
 Here the first advice

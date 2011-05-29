@@ -1,0 +1,933 @@
+#summary HOWTO create your own ABC libraries.
+
+== Introduction ==
+
+In the Flash Community out there you have tons of AS3 libraries,<br>
+and yeah *redtamarin* can use them, but you could face some bump on the road<br>
+so here some infos and advices.
+
+
+== Details ==
+
+When you're working with the Flash IDE or Flash Builder (Flex Builder or Eclipse + FDT or Flash Develop, etc.<br>
+things are easy as those IDE do a lot of work for you, and some you probably don't know (or don't want to know).
+
+When you're working with redtamarin, you do need to know the in-depth working of the compilers,<br>
+the SWF format, the SWC format, etc.
+
+It's not that hard but you need to be aware of a couple of things.
+
+*Flash/AIR workflow*
+  * I create project in the IDE
+  * I need to reuse an AS3 library
+    * I drop a SWC and link it to the compiler
+    * or I add the sources and add them to the compiler
+
+*redtamarin* as it is can not use a SWC library,<br>
+even worst, you can not add a source directory like that<br>
+you have to include every single `*.as` files.
+
+So here we have two choices
+  * deal only with `*.as` source code and include everything by hand
+  * find a way to generate an `*.abc` library that we can reuse
+
+== Example with Box2D ==
+
+Recently I got someone asking me about reusing [http://box2dflash.sourceforge.net/ Box2D] inside redtamarin<br>
+which at first seems straightforward but in fact require a bit of cooking.
+
+The *use case* is to be able to calculate with box2d on the server instead of the client,<br>
+and yes *redtamarin* is perfect for that, but you will need to a `box2d.abc` library.
+
+
+For those tests I used [http://sourceforge.net/projects/box2dflash/files/box2dflash/Box2DFlashAS3_2.1a/Box2DFlashAS3%202.1a.zip/download Box2DFlashAS3 2.1a].
+
+so here what we got in the zip file
+{{{
+..
+  |_ Build
+    |_ FlashDevelop
+  |_ Docs
+  |_ Examples
+  |_ README.txt
+  |_ Source
+    |_ Box2D
+      |_ Collision
+      |_ Common
+      |_ Dynamics
+}}}
+
+The project provide the source code but no build or SWC.
+
+On the good side, the source code use only AS3 builtin classes and no Flash Player API classes<br>
+(also why I took this project as a first example ;)).
+
+
+Let's start with a basic Ant build
+{{{
+..
+  |_ Build
+    |_ FlashDevelop
+  |_ build.xml     <-- here
+  |_ Docs
+  |_ Examples
+  |_ README.txt
+  |_ Source
+    |_ Box2D
+      |_ Collision
+      |_ Common
+      |_ Dynamics
+}}}
+
+*build.xml* test1
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="foobar" default="main" basedir=".">
+
+    <target name="clean">
+        <delete dir="bin-component"/>
+    </target>
+
+    <target name="define-constants">
+        <property name="FLEX_HOME" value="/OpenSource/Flex/sdks/3.4.0" />
+    </target>
+
+    <target name="before" depends="define-constants,define-tasks">
+        <mkdir dir="bin-component"/>
+    </target>
+
+
+
+    <target name="define-tasks">
+        <taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
+    </target>
+
+    <target name="main" depends="clean,before,build,after">
+    </target>
+
+
+    <target name="after">
+    </target>
+
+    <target name="build" depends="build-box2d-swc">
+    </target>
+
+    <target name="build-box2d-swc">
+
+        <compc
+            output="bin-component/test.swc"
+            target-player="10.0"
+        >
+            <strict>true</strict>
+            <optimize>true</optimize>
+            <warnings>true</warnings>
+            <verbose-stacktraces>true</verbose-stacktraces>
+            <compute-digest>false</compute-digest>
+
+            <source-path path-element="${basedir}/Source" />
+            <include-sources dir="${basedir}/Source" includes="**/*.as" />
+        </compc>
+
+    </target>
+</project>
+}}}
+
+here I keep things very simple
+  * I take into account only my OS (OS X)
+  * use a quite old version of the Flex SDK (which I do know will work with redtamarin)
+  * no special properties or automation or any sorts
+
+the important part is
+{{{
+<source-path path-element="${basedir}/Source" />
+<include-sources dir="${basedir}/Source" includes="**/*.as" />
+}}} 
+
+we basically tell COMPC to look in the `Source` folder, grab everything and generate a SWC.
+
+Once we obtain the `test.swc` we can then analyze it.
+
+A SWC is just a ZIP file with a different extension, under OS X I just rename the file and unzip
+{{{
+..
+  |_ test
+    |_ catalog.xml
+    |_ library.swf
+}}}
+
+let's look into the `catalog.xml`
+{{{
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.2" />
+    <flex version="3.4.0" build="5348" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-files />
+  </features>
+  <libraries>
+    <library path="library.swf">
+      <script name="Box2D/Dynamics/b2ContactManager" mod="1268167612000" signatureChecksum="1844657015" >
+        <def id="Box2D.Dynamics:b2ContactManager" /> 
+        <dep id="Box2D.Dynamics.Contacts:b2Contact" type="e" /> 
+        <dep id="Box2D.Dynamics.Contacts:b2ContactFactory" type="e" /> 
+        <dep id="Box2D.Dynamics:b2ContactListener" type="e" /> 
+        <dep id="Box2D.Dynamics:b2ContactFilter" type="e" /> 
+        <dep id="Box2D.Collision:b2ContactPoint" type="e" /> 
+        <dep id="Box2D.Dynamics:b2Fixture" type="e" /> 
+        <dep id="Box2D.Collision:b2DynamicTreeBroadPhase" type="e" /> 
+        <dep id="Box2D.Dynamics.Contacts:b2Contact" type="s" /> 
+        <dep id="Box2D.Dynamics.Contacts:b2ContactFactory" type="s" /> 
+        <dep id="Box2D.Dynamics.Contacts:b2ContactEdge" type="s" /> 
+        <dep id="Box2D.Dynamics:b2ContactListener" type="s" /> 
+        <dep id="Box2D.Dynamics:b2ContactFilter" type="s" /> 
+        <dep id="Box2D.Collision:b2ContactPoint" type="s" /> 
+        <dep id="Box2D.Dynamics:b2Fixture" type="s" /> 
+        <dep id="Box2D.Collision:IBroadPhase" type="s" /> 
+        <dep id="Box2D.Dynamics:b2Body" type="s" /> 
+        <dep id="Box2D.Dynamics:b2World" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Box2D.Common:b2internal" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="Box2D/Collision/b2WorldManifold" mod="1263060828000" signatureChecksum="980784030" >
+        <def id="Box2D.Collision:b2WorldManifold" /> 
+        <dep id="Box2D.Common:b2Settings" type="e" /> 
+        <dep id="Box2D.Collision:b2Manifold" type="e" /> 
+        <dep id="__AS3__.vec:Vector" type="e" /> 
+        <dep id="Box2D.Common.Math:b2Vec2" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="Box2D.Collision:b2Manifold" type="s" /> 
+        <dep id="__AS3__.vec:Vector" type="s" /> 
+        <dep id="Box2D.Common.Math:b2Vec2" type="s" /> 
+        <dep id="Box2D.Common.Math:b2Transform" type="s" /> 
+        <dep id="Box2D.Common.Math:b2Mat22" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Box2D.Common:b2internal" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="Box2D/Dynamics/Contacts/b2ContactSolver" mod="1263242118000" signatureChecksum="3428585686" >
+        <def id="Box2D.Dynamics.Contacts:b2ContactSolver" /> 
+        <dep id="Box2D.Common:b2Settings" type="e" /> 
+        <dep id="Box2D.Common.Math:b2Math" type="e" /> 
+        <dep id="Box2D.Collision:b2WorldManifold" type="e" /> 
+        <dep id="__AS3__.vec:Vector" type="e" /> 
+        <dep id="Box2D.Dynamics.Contacts:b2ContactConstraint" type="e" /> 
+        <dep id="Box2D.Dynamics.Contacts:b2PositionSolverManifold" type="e" /> 
+        <dep id="Box2D.Dynamics:b2TimeStep" type="e" /> 
+        <dep id="Box2D.Collision:b2WorldManifold" type="s" /> 
+        <dep id="Box2D.Collision:b2Manifold" type="s" /> 
+        <dep id="Box2D.Collision:b2ManifoldPoint" type="s" /> 
+        <dep id="Box2D.Dynamics.Contacts:b2ContactConstraint" type="s" /> 
+        <dep id="Box2D.Dynamics.Contacts:b2ContactConstraintPoint" type="s" /> 
+        <dep id="Box2D.Dynamics:b2TimeStep" type="s" /> 
+        <dep id="Box2D.Dynamics.Contacts:b2Contact" type="s" /> 
+        <dep id="Box2D.Collision.Shapes:b2Shape" type="s" /> 
+        <dep id="__AS3__.vec:Vector" type="s" /> 
+        <dep id="Box2D.Common.Math:b2Vec2" type="s" /> 
+        <dep id="Box2D.Common.Math:b2Mat22" type="s" /> 
+        <dep id="Box2D.Dynamics:b2Fixture" type="s" /> 
+        <dep id="Box2D.Dynamics:b2Body" type="s" /> 
+        <dep id="Box2D.Dynamics.Contacts:b2PositionSolverManifold" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Box2D.Common:b2internal" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="Box2D/Dynamics/Contacts/b2Contact" mod="1263419864000" signatureChecksum="2002497" >
+        <def id="Box2D.Dynamics.Contacts:b2Contact" /> 
+        <dep id="Box2D.Common:b2Settings" type="e" /> 
+        <dep id="Box2D.Collision:b2TimeOfImpact" type="e" /> 
+        <dep id="Box2D.Collision:b2TOIInput" type="e" /> 
+        <dep id="Box2D.Collision.Shapes:b2Shape" type="e" /> 
+        <dep id="Box2D.Dynamics.Contacts:b2ContactEdge" type="e" /> 
+        <dep id="Box2D.Collision:b2Manifold" type="e" /> 
+        <dep id="Box2D.Dynamics:b2Body" type="e" /> 
+        <dep id="Box2D.Common.Math:b2Sweep" type="s" /> 
+        <dep id="Box2D.Collision:b2TOIInput" type="s" /> 
+        <dep id="Box2D.Dynamics.Contacts:b2ContactEdge" type="s" /> 
+        <dep id="Box2D.Collision.Shapes:b2Shape" type="s" /> 
+        <dep id="Box2D.Collision:b2WorldManifold" type="s" /> 
+        <dep id="Box2D.Collision:b2ManifoldPoint" type="s" /> 
+        <dep id="Box2D.Collision:b2Manifold" type="s" /> 
+        <dep id="Box2D.Dynamics:b2ContactListener" type="s" /> 
+        <dep id="Box2D.Common.Math:b2Transform" type="s" /> 
+        <dep id="Box2D.Dynamics:b2Fixture" type="s" /> 
+        <dep id="Box2D.Dynamics:b2Body" type="s" /> 
+        <dep id="Box2D.Collision:b2ContactID" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Box2D.Common:b2internal" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="Box2D/Dynamics/Contacts/b2PolygonContact" mod="1263244042000" signatureChecksum="980008010" >
+        <def id="Box2D.Dynamics.Contacts:b2PolygonContact" /> 
+        <dep id="Box2D.Collision.Shapes:b2PolygonShape" type="e" /> 
+        <dep id="Box2D.Collision:b2Collision" type="e" /> 
+        <dep id="Box2D.Dynamics:b2Fixture" type="s" /> 
+        <dep id="Box2D.Dynamics:b2Body" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Box2D.Common:b2internal" type="n" /> 
+        <dep id="Box2D.Dynamics.Contacts:b2Contact" type="i" /> 
+      </script>
+      <script name="Box2D/Dynamics/Joints/b2Joint" mod="1263057934000" signatureChecksum="1121016882" >
+        <def id="Box2D.Dynamics.Joints:b2Joint" /> 
+        <dep id="Box2D.Dynamics.Joints:b2PulleyJointDef" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2RevoluteJointDef" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2FrictionJointDef" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2PulleyJoint" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2DistanceJointDef" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2FrictionJoint" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2JointEdge" type="e" /> 
+        <dep id="Box2D.Common:b2Settings" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2PrismaticJointDef" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2MouseJoint" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2LineJointDef" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2RevoluteJoint" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2PrismaticJoint" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2MouseJointDef" type="e" /> 
+        <dep id="Box2D.Common.Math:b2Vec2" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2WeldJoint" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2GearJoint" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2WeldJointDef" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2GearJointDef" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2LineJoint" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2DistanceJoint" type="e" /> 
+        <dep id="Box2D.Common.Math:b2Vec2" type="s" /> 
+        <dep id="Box2D.Dynamics.Joints:b2JointDef" type="s" /> 
+        <dep id="Box2D.Dynamics:b2Body" type="s" /> 
+        <dep id="Box2D.Dynamics:b2TimeStep" type="s" /> 
+        <dep id="Box2D.Dynamics.Joints:b2JointEdge" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Box2D.Common:b2internal" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="Box2D/Dynamics/Joints/b2GearJoint" mod="1263054058000" signatureChecksum="2379098960" >
+        <def id="Box2D.Dynamics.Joints:b2GearJoint" /> 
+        <dep id="Box2D.Common:b2Settings" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2RevoluteJoint" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2PrismaticJoint" type="e" /> 
+        <dep id="Box2D.Common.Math:b2Vec2" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2Jacobian" type="e" /> 
+        <dep id="Box2D.Dynamics.Joints:b2RevoluteJoint" type="s" /> 
+        <dep id="Box2D.Dynamics.Joints:b2PrismaticJoint" type="s" /> 
+        <dep id="Box2D.Common.Math:b2Vec2" type="s" /> 
+        <dep id="Box2D.Common.Math:b2Mat22" type="s" /> 
+        <dep id="Box2D.Dynamics.Joints:b2Jacobian" type="s" /> 
+        <dep id="Box2D.Dynamics.Joints:b2GearJointDef" type="s" /> 
+        <dep id="Box2D.Dynamics:b2Body" type="s" /> 
+        <dep id="Box2D.Dynamics:b2TimeStep" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Box2D.Common:b2internal" type="n" /> 
+        <dep id="Box2D.Dynamics.Joints:b2Joint" type="i" /> 
+      </script>
+      ...
+    </library>
+  </libraries>
+  <files>
+  </files>
+</swc>
+}}}
+
+Here the behaviour of COMPC is to generate a `<script>` tag for each classes,<br>
+humm this could be annoying.
+
+Let's extract the `*.abc` file from `library.swf`
+{{{
+$ ./abcdump -a library.swf
+}}}
+
+and here we obtain
+{{{
+library.abc
+library1.abc
+library2.abc
+library3.abc
+library4.abc
+...
+library108.abc
+}}}
+
+WTF ? 109 `*.abc` files ???
+
+humm, let's inspect the SWF file
+{{{
+$ ./swfinfo -p library.swf
+}}}
+
+we obtain
+{{{
+[ SWC10 rect=(x=0, y=0, w=500, h=375), fps=24, frames=1, size=145.73 KB (unzipped=322.35 KB)
+  tag 0x45: FileAttributes | size: 4 B | ratio: 0.001%
+      |__   Use Direct Blit: false
+            Use GPU: false
+            Has Metadata: true
+            ActionScript 3: true
+            Use Network: true
+  tag 0x4d: Metadata | size: 459 B | ratio: 0.139%
+      |__   <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+            <rdf:Description rdf:about='' xmlns:dc='http://purl.org/dc/elements/1.1'>
+            <dc:format>application/x-shockwave-flash</dc:format>
+            <dc:title>Adobe Flex 3 Application</dc:title>
+            <dc:description>http://www.adobe.com/products/flex</dc:description>
+            <dc:publisher>unknown</dc:publisher>
+            <dc:creator>unknown</dc:creator>
+            <dc:language>EN</dc:language>
+            <dc:date>May 29, 2011</dc:date>
+            </rdf:Description>
+            </rdf:RDF>
+  tag 0x40: EnableDebugger2 | size: 31 B | ratio: 0.009%
+  tag 0x3f: DebugID | size: 16 B | ratio: 0.005%
+  tag 0x41: ScriptLimits | size: 4 B | ratio: 0.001%
+      |__   max recursion: 1000
+            script timeout: 60
+  tag 0x09: SetBackgroundColor | size: 3 B | ratio: 0.001%
+      |__   hex: 0x869ca7
+            r=134, g=156, b=167
+  tag 0x29: ProductInfo | size: 26 B | ratio: 0.008%
+      |__   productId: 3 (Adobe Flex)
+            edition: 6 (None)
+            version: Flex SDK v3.4.0.5348
+            compile Date: Sun May 29 09:26:55 GMT+0100 2011
+  tag 0x52: DoABC2 | size: 3.32 KB | ratio: 1.031%
+  tag 0x52: DoABC2 | size: 2.86 KB | ratio: 0.888%
+  tag 0x52: DoABC2 | size: 10.34 KB | ratio: 3.207%
+  tag 0x52: DoABC2 | size: 5.32 KB | ratio: 1.651%
+  tag 0x52: DoABC2 | size: 1.37 KB | ratio: 0.424%
+  tag 0x52: DoABC2 | size: 4.75 KB | ratio: 1.472%
+  tag 0x52: DoABC2 | size: 5.25 KB | ratio: 1.628%
+  tag 0x52: DoABC2 | size: 2.60 KB | ratio: 0.805%
+  tag 0x52: DoABC2 | size: 11.70 KB | ratio: 3.630%
+  tag 0x52: DoABC2 | size: 807 B | ratio: 0.244%
+  tag 0x52: DoABC2 | size: 793 B | ratio: 0.240%
+  tag 0x52: DoABC2 | size: 850 B | ratio: 0.258%
+  tag 0x52: DoABC2 | size: 3.08 KB | ratio: 0.955%
+  tag 0x52: DoABC2 | size: 678 B | ratio: 0.205%
+  tag 0x52: DoABC2 | size: 1.11 KB | ratio: 0.344%
+  tag 0x52: DoABC2 | size: 2.10 KB | ratio: 0.651%
+  tag 0x52: DoABC2 | size: 1.75 KB | ratio: 0.543%
+  tag 0x52: DoABC2 | size: 8.87 KB | ratio: 2.752%
+  tag 0x52: DoABC2 | size: 695 B | ratio: 0.211%
+  tag 0x52: DoABC2 | size: 1.79 KB | ratio: 0.556%
+  tag 0x52: DoABC2 | size: 3.92 KB | ratio: 1.216%
+  tag 0x52: DoABC2 | size: 1.46 KB | ratio: 0.453%
+  tag 0x52: DoABC2 | size: 2.66 KB | ratio: 0.825%
+  tag 0x52: DoABC2 | size: 2.98 KB | ratio: 0.924%
+  tag 0x52: DoABC2 | size: 1.54 KB | ratio: 0.478%
+  tag 0x52: DoABC2 | size: 749 B | ratio: 0.227%
+  tag 0x52: DoABC2 | size: 648 B | ratio: 0.196%
+  tag 0x52: DoABC2 | size: 11.51 KB | ratio: 3.572%
+  tag 0x52: DoABC2 | size: 888 B | ratio: 0.269%
+  tag 0x52: DoABC2 | size: 1004 B | ratio: 0.304%
+  tag 0x52: DoABC2 | size: 1.14 KB | ratio: 0.353%
+  tag 0x52: DoABC2 | size: 945 B | ratio: 0.286%
+  tag 0x52: DoABC2 | size: 583 B | ratio: 0.177%
+  tag 0x52: DoABC2 | size: 2.21 KB | ratio: 0.687%
+  tag 0x52: DoABC2 | size: 4.88 KB | ratio: 1.515%
+  tag 0x52: DoABC2 | size: 6.15 KB | ratio: 1.908%
+  tag 0x52: DoABC2 | size: 1.22 KB | ratio: 0.378%
+  tag 0x52: DoABC2 | size: 1.69 KB | ratio: 0.526%
+  tag 0x52: DoABC2 | size: 742 B | ratio: 0.225%
+  tag 0x52: DoABC2 | size: 1.56 KB | ratio: 0.483%
+  tag 0x52: DoABC2 | size: 602 B | ratio: 0.182%
+  tag 0x52: DoABC2 | size: 20.45 KB | ratio: 6.344%
+  tag 0x52: DoABC2 | size: 712 B | ratio: 0.216%
+  tag 0x52: DoABC2 | size: 1.54 KB | ratio: 0.478%
+  tag 0x52: DoABC2 | size: 3.10 KB | ratio: 0.963%
+  tag 0x52: DoABC2 | size: 1.07 KB | ratio: 0.331%
+  tag 0x52: DoABC2 | size: 3.65 KB | ratio: 1.132%
+  tag 0x52: DoABC2 | size: 858 B | ratio: 0.260%
+  tag 0x52: DoABC2 | size: 10.68 KB | ratio: 3.314%
+  tag 0x52: DoABC2 | size: 5.15 KB | ratio: 1.598%
+  tag 0x52: DoABC2 | size: 1.35 KB | ratio: 0.420%
+  tag 0x52: DoABC2 | size: 836 B | ratio: 0.253%
+  tag 0x52: DoABC2 | size: 10.90 KB | ratio: 3.381%
+  tag 0x52: DoABC2 | size: 1.65 KB | ratio: 0.513%
+  tag 0x52: DoABC2 | size: 1.59 KB | ratio: 0.493%
+  tag 0x52: DoABC2 | size: 13.08 KB | ratio: 4.058%
+  tag 0x52: DoABC2 | size: 702 B | ratio: 0.213%
+  tag 0x52: DoABC2 | size: 5.72 KB | ratio: 1.774%
+  tag 0x52: DoABC2 | size: 644 B | ratio: 0.195%
+  tag 0x52: DoABC2 | size: 1.37 KB | ratio: 0.425%
+  tag 0x52: DoABC2 | size: 2.17 KB | ratio: 0.674%
+  tag 0x52: DoABC2 | size: 4.89 KB | ratio: 1.517%
+  tag 0x52: DoABC2 | size: 2.40 KB | ratio: 0.744%
+  tag 0x52: DoABC2 | size: 702 B | ratio: 0.213%
+  tag 0x52: DoABC2 | size: 1.11 KB | ratio: 0.344%
+  tag 0x52: DoABC2 | size: 679 B | ratio: 0.206%
+  tag 0x52: DoABC2 | size: 213 B | ratio: 0.065%
+  tag 0x52: DoABC2 | size: 2.42 KB | ratio: 0.750%
+  tag 0x52: DoABC2 | size: 727 B | ratio: 0.220%
+  tag 0x52: DoABC2 | size: 1.44 KB | ratio: 0.448%
+  tag 0x52: DoABC2 | size: 4.96 KB | ratio: 1.538%
+  tag 0x52: DoABC2 | size: 1.34 KB | ratio: 0.417%
+  tag 0x52: DoABC2 | size: 794 B | ratio: 0.241%
+  tag 0x52: DoABC2 | size: 711 B | ratio: 0.215%
+  tag 0x52: DoABC2 | size: 1008 B | ratio: 0.305%
+  tag 0x52: DoABC2 | size: 1.17 KB | ratio: 0.363%
+  tag 0x52: DoABC2 | size: 4.80 KB | ratio: 1.489%
+  tag 0x52: DoABC2 | size: 887 B | ratio: 0.269%
+  tag 0x52: DoABC2 | size: 1.09 KB | ratio: 0.340%
+  tag 0x52: DoABC2 | size: 765 B | ratio: 0.232%
+  tag 0x52: DoABC2 | size: 4.79 KB | ratio: 1.485%
+  tag 0x52: DoABC2 | size: 960 B | ratio: 0.291%
+  tag 0x52: DoABC2 | size: 5.06 KB | ratio: 1.569%
+  tag 0x52: DoABC2 | size: 883 B | ratio: 0.268%
+  tag 0x52: DoABC2 | size: 2.81 KB | ratio: 0.870%
+  tag 0x52: DoABC2 | size: 2.07 KB | ratio: 0.643%
+  tag 0x52: DoABC2 | size: 5.26 KB | ratio: 1.632%
+  tag 0x52: DoABC2 | size: 781 B | ratio: 0.237%
+  tag 0x52: DoABC2 | size: 764 B | ratio: 0.231%
+  tag 0x52: DoABC2 | size: 1.08 KB | ratio: 0.334%
+  tag 0x52: DoABC2 | size: 1.12 KB | ratio: 0.346%
+  tag 0x52: DoABC2 | size: 775 B | ratio: 0.235%
+  tag 0x52: DoABC2 | size: 2.57 KB | ratio: 0.797%
+  tag 0x52: DoABC2 | size: 570 B | ratio: 0.173%
+  tag 0x52: DoABC2 | size: 4.72 KB | ratio: 1.465%
+  tag 0x52: DoABC2 | size: 9.97 KB | ratio: 3.094%
+  tag 0x52: DoABC2 | size: 1.55 KB | ratio: 0.480%
+  tag 0x52: DoABC2 | size: 1.77 KB | ratio: 0.548%
+  tag 0x52: DoABC2 | size: 742 B | ratio: 0.225%
+  tag 0x52: DoABC2 | size: 2.64 KB | ratio: 0.818%
+  tag 0x52: DoABC2 | size: 667 B | ratio: 0.202%
+  tag 0x52: DoABC2 | size: 1.08 KB | ratio: 0.334%
+  tag 0x52: DoABC2 | size: 1.27 KB | ratio: 0.394%
+  tag 0x52: DoABC2 | size: 1.12 KB | ratio: 0.347%
+  tag 0x52: DoABC2 | size: 2.74 KB | ratio: 0.851%
+  tag 0x52: DoABC2 | size: 1.66 KB | ratio: 0.514%
+  tag 0x52: DoABC2 | size: 6.26 KB | ratio: 1.942%
+  tag 0x52: DoABC2 | size: 1.58 KB | ratio: 0.490%
+  tag 0x52: DoABC2 | size: 16.06 KB | ratio: 4.984%
+  tag 0x01: ShowFrame | size: 0 B | ratio: 0.000%
+  tag 0x00: End | size: 0 B | ratio: 0.000%
+ ]
+}}}
+
+here what happened
+  * for each classes COMPC generated a `<script>` tag
+  * for each `<script>` tag the SWF file create a `DoABC2` tag
+  * for each `DoABC2`we get an `*.abc` file
+
+Ok, the cool thing is we did not have to generate all the includes by hand<br>
+but the extremely bad thing is now if we want to reuse that to compile with ASC<br>
+our command line will look like that
+{{{
+$ ./asc -AS3 -strict -import builtin.abc -import toplevel.abc -import library.abc -import library1.abc -import library2.abc ... program.as
+}}}
+
+Ok, great so instead of `include Source/Box2D/SomeClass.as`<br>
+we moved the problem to `-import libraryXYZ.abc`, and it get worst<br>
+as we have no idea in whci orders the abc need to be declared and we probably<br>
+gonna end up with some forward reference errors.
+
+Here the first advice
+|| *You want to create your includes by hand* ||
+
+wether you are dealing with a program<br>
+for ex: [http://code.google.com/p/maashaack/source/browse/tools/swfinfo/trunk/src/swfinfo.as swfinfo]
+
+or a library
+
+you want an `*.as` file that is here only to deal with the includes of other `*.as` files
+
+*WHY ?*
+  * that's the only way to tell COMPC or other compilers to put everything in 1 abc file (or 1 `<script>` tag)
+  * that's the only way to organize the order of those includes to avoid forward reference errors
+
+<br>
+<br>
+
+Let's try another build to see if we can achieve that
+
+but first we want to generate those includes automatically<br>
+(yeah because doing that by hand for 100s of classes is painfull)
+
+*generate.xml*
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="foobar" default="main" basedir=".">
+
+    <target name="main">
+        <fileset id="files" dir="Source" includes="**/*.as" />
+        <pathconvert property="includes" pathsep='";${line.separator}include "' refid="files">
+            <chainedmapper>
+                <globmapper from="${basedir}/Source/*" to="Source/*"/>
+            </chainedmapper>
+        </pathconvert>
+        
+        <concat destfile="includes.as">include "${includes}";${line.separator}</concat>
+    </target>
+
+</project>
+}}}
+
+see why I like Ant  :) ?
+
+just run
+{{{
+$ ant -f generate.xml
+}}}
+
+and it will generate this file
+*includes.as*
+{{{
+include "Source/Box2D/Collision/ClipVertex.as";
+include "Source/Box2D/Collision/Features.as";
+include "Source/Box2D/Collision/IBroadPhase.as";
+include "Source/Box2D/Collision/Shapes/b2CircleShape.as";
+include "Source/Box2D/Collision/Shapes/b2EdgeChainDef.as";
+include "Source/Box2D/Collision/Shapes/b2EdgeShape.as";
+include "Source/Box2D/Collision/Shapes/b2MassData.as";
+include "Source/Box2D/Collision/Shapes/b2PolygonShape.as";
+include "Source/Box2D/Collision/Shapes/b2Shape.as";
+include "Source/Box2D/Collision/b2AABB.as";
+include "Source/Box2D/Collision/b2Bound.as";
+include "Source/Box2D/Collision/b2BoundValues.as";
+include "Source/Box2D/Collision/b2BroadPhase.as";
+include "Source/Box2D/Collision/b2Collision.as";
+...
+}}}
+
+let slightly modify the build now
+
+*build.xml* test2
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="foobar" default="main" basedir=".">
+
+    <target name="clean">
+        <delete dir="bin-component"/>
+    </target>
+
+    <target name="define-constants">
+        <property name="FLEX_HOME" value="/OpenSource/Flex/sdks/3.4.0" />
+    </target>
+
+    <target name="before" depends="define-constants,define-tasks">
+        <mkdir dir="bin-component"/>
+    </target>
+
+    <target name="define-tasks">
+        <taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
+    </target>
+
+    <target name="main" depends="clean,before,build,after">
+    </target>
+
+    <target name="after">
+    </target>
+
+    <target name="build" depends="build-box2d-swc">
+    </target>
+
+    <target name="build-box2d-swc">
+
+        <compc
+            output="bin-component/test.swc"
+            target-player="10.0"
+        >
+            <strict>true</strict>
+            <optimize>true</optimize>
+            <warnings>true</warnings>
+            <verbose-stacktraces>true</verbose-stacktraces>
+            <compute-digest>false</compute-digest>
+
+            <source-path path-element="${basedir}/Source" />
+            <include-sources dir="${basedir}" includes="includes.as" />
+        </compc>
+        
+    </target>
+</project>
+}}}
+
+the difference is small but important
+{{{
+<include-sources dir="${basedir}" includes="includes.as" />
+}}}
+
+We tell COMPC to include only 1 file
+
+ok let's run it
+{{{
+$ ant
+}}}
+
+and we obtain errors
+{{{
+Buildfile: /Box2DFlashAS3 2.1a/build.xml
+
+clean:
+   [delete] Deleting directory /Box2DFlashAS3 2.1a/bin-component
+
+define-constants:
+
+define-tasks:
+
+before:
+    [mkdir] Created dir: /Box2DFlashAS3 2.1a/bin-component
+
+build-box2d-swc:
+    [compc] Loading configuration file /OpenSource/Flex/sdks/3.4.0/frameworks/flex-config.xml
+    [compc] /Box2DFlashAS3 2.1a/Source/Box2D/Dynamics/Joints/b2DistanceJoint.as(49): col: 38 Error: Forward reference to base class b2Joint.
+    [compc] 
+    [compc] public class b2DistanceJoint extends b2Joint
+    [compc]                                      ^
+    [compc] 
+    [compc] /Box2DFlashAS3 2.1a/Source/Box2D/Dynamics/Joints/b2FrictionJoint.as(45): col: 38 Error: Forward reference to base class b2Joint.
+    [compc] 
+    [compc] public class b2FrictionJoint extends b2Joint
+    [compc]                                      ^
+    [compc] 
+    [compc] /Box2DFlashAS3 2.1a/Source/Box2D/Dynamics/Joints/b2GearJoint.as(46): col: 34 Error: Forward reference to base class b2Joint.
+    [compc] 
+    [compc] public class b2GearJoint extends b2Joint
+    [compc]                                  ^
+    [compc] 
+
+BUILD FAILED
+/Box2DFlashAS3 2.1a/build.xml:48: compc task failed
+
+Total time: 6 seconds
+}}}
+
+By default you'll have much much more errors (here that was one of the last edit before everything was fixed)<br>
+so what to do when you face a `Error: Forward reference to` ?<br>
+go edit your `includes.as` file and just change the order of the include
+
+from
+{{{
+...
+include "Source/Box2D/Dynamics/Joints/b2DistanceJoint.as";  <-- forward reference to 'b2Joint' class
+include "Source/Box2D/Dynamics/Joints/b2DistanceJointDef.as";
+include "Source/Box2D/Dynamics/Joints/b2FrictionJoint.as";
+include "Source/Box2D/Dynamics/Joints/b2FrictionJointDef.as";
+include "Source/Box2D/Dynamics/Joints/b2GearJoint.as";
+include "Source/Box2D/Dynamics/Joints/b2GearJointDef.as";
+include "Source/Box2D/Dynamics/Joints/b2Jacobian.as";
+include "Source/Box2D/Dynamics/Joints/b2Joint.as";  <-- problem
+...
+}}}
+
+to
+{{{
+...
+include "Source/Box2D/Dynamics/Joints/b2Joint.as";  <--- moved 
+include "Source/Box2D/Dynamics/Joints/b2DistanceJoint.as"; <--- no more problem
+include "Source/Box2D/Dynamics/Joints/b2DistanceJointDef.as";
+include "Source/Box2D/Dynamics/Joints/b2FrictionJoint.as";
+include "Source/Box2D/Dynamics/Joints/b2FrictionJointDef.as";
+include "Source/Box2D/Dynamics/Joints/b2GearJoint.as";
+include "Source/Box2D/Dynamics/Joints/b2GearJointDef.as";
+include "Source/Box2D/Dynamics/Joints/b2Jacobian.as";
+...
+}}}
+
+It will take few tests, but at the end everything will compile fine
+{{{
+Buildfile: /Box2DFlashAS3 2.1a/build.xml
+
+clean:
+   [delete] Deleting directory /Box2DFlashAS3 2.1a/bin-component
+
+define-constants:
+
+define-tasks:
+
+before:
+    [mkdir] Created dir: /Box2DFlashAS3 2.1a/bin-component
+
+build-box2d-swc:
+    [compc] Loading configuration file /OpenSource/Flex/sdks/3.4.0/frameworks/flex-config.xml
+    [compc] /Box2DFlashAS3 2.1a/bin-component/test.swc (114137 bytes)
+
+build:
+
+after:
+
+main:
+
+BUILD SUCCESSFUL
+Total time: 5 seconds
+}}}
+
+let's look into the `catalog.xml` again
+{{{
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.2" />
+    <flex version="3.4.0" build="5348" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-files />
+  </features>
+  <libraries>
+    <library path="library.swf">
+      <script name="Box2D/Collision/ClipVertex" mod="1306659030000" signatureChecksum="267677397" >
+        <def id="Box2D.Collision:ClipVertex" /> 
+        <def id="Box2D.Collision:Features" /> 
+        <def id="Box2D.Collision:IBroadPhase" /> 
+        <def id="Box2D.Collision:b2AABB" /> 
+        <def id="Box2D.Collision:b2Bound" /> 
+        <def id="Box2D.Collision:b2BoundValues" /> 
+        <def id="Box2D.Collision:b2BroadPhase" /> 
+        <def id="Box2D.Collision:b2Collision" /> 
+        <def id="Box2D.Collision:b2ContactID" /> 
+        <def id="Box2D.Collision:b2ContactPoint" /> 
+        <def id="Box2D.Collision:b2Distance" /> 
+        <def id="Box2D.Collision:b2DistanceInput" /> 
+        <def id="Box2D.Collision:b2DistanceOutput" /> 
+        <def id="Box2D.Collision:b2DistanceProxy" /> 
+        <def id="Box2D.Collision:b2DynamicTree" /> 
+        <def id="Box2D.Collision:b2DynamicTreeBroadPhase" /> 
+        <def id="Box2D.Collision:b2DynamicTreeNode" /> 
+        <def id="Box2D.Collision:b2DynamicTreePair" /> 
+        <def id="Box2D.Collision:b2Manifold" /> 
+        <def id="Box2D.Collision:b2ManifoldPoint" /> 
+        <def id="Box2D.Collision:b2OBB" /> 
+        <def id="Box2D.Collision:b2Pair" /> 
+        <def id="Box2D.Collision:b2PairManager" /> 
+        <def id="Box2D.Collision:b2Point" /> 
+        <def id="Box2D.Collision:b2Proxy" /> 
+        <def id="Box2D.Collision:b2RayCastInput" /> 
+        <def id="Box2D.Collision:b2RayCastOutput" /> 
+        <def id="Box2D.Collision:b2Segment" /> 
+        <def id="Box2D.Collision:b2SeparationFunction" /> 
+        <def id="Box2D.Collision:b2Simplex" /> 
+        <def id="Box2D.Collision:b2SimplexCache" /> 
+        <def id="Box2D.Collision:b2SimplexVertex" /> 
+        <def id="Box2D.Collision:b2TOIInput" /> 
+        <def id="Box2D.Collision:b2TimeOfImpact" /> 
+        <def id="Box2D.Collision:b2WorldManifold" /> 
+        <def id="Box2D.Collision.Shapes:b2Shape" /> 
+        <def id="Box2D.Collision.Shapes:b2CircleShape" /> 
+        <def id="Box2D.Collision.Shapes:b2EdgeChainDef" /> 
+        <def id="Box2D.Collision.Shapes:b2EdgeShape" /> 
+        <def id="Box2D.Collision.Shapes:b2MassData" /> 
+        <def id="Box2D.Collision.Shapes:b2PolygonShape" /> 
+        <def id="Box2D.Common:b2Color" /> 
+        <def id="Box2D.Common:b2Settings" /> 
+        <def id="Box2D.Common:b2internal" /> 
+        <def id="Box2D.Common.Math:b2Mat22" /> 
+        <def id="Box2D.Common.Math:b2Mat33" /> 
+        <def id="Box2D.Common.Math:b2Math" /> 
+        <def id="Box2D.Common.Math:b2Sweep" /> 
+        <def id="Box2D.Common.Math:b2Transform" /> 
+        <def id="Box2D.Common.Math:b2Vec2" /> 
+        <def id="Box2D.Common.Math:b2Vec3" /> 
+        ...
+        <dep id="Math" type="e" /> 
+        <dep id="flash.utils:Dictionary" type="e" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="flash.utils:Dictionary" type="s" /> 
+        <dep id="flash.display:Sprite" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Box2D.Common:b2internal" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+    </library>
+  </libraries>
+  <files>
+  </files>
+</swc>
+}}}
+
+That's look good as now we have only one `<script>` tag that contains numerous `<dep>` tags.
+
+let's inspect the SWF file again
+{{{
+[ SWC10 rect=(x=0, y=0, w=500, h=375), fps=24, frames=1, size=110.52 KB (unzipped=255.45 KB)
+  tag 0x45: FileAttributes | size: 4 B | ratio: 0.002%
+      |__   Use Direct Blit: false
+            Use GPU: false
+            Has Metadata: true
+            ActionScript 3: true
+            Use Network: true
+  tag 0x4d: Metadata | size: 459 B | ratio: 0.175%
+      |__   <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+            <rdf:Description rdf:about='' xmlns:dc='http://purl.org/dc/elements/1.1'>
+            <dc:format>application/x-shockwave-flash</dc:format>
+            <dc:title>Adobe Flex 3 Application</dc:title>
+            <dc:description>http://www.adobe.com/products/flex</dc:description>
+            <dc:publisher>unknown</dc:publisher>
+            <dc:creator>unknown</dc:creator>
+            <dc:language>EN</dc:language>
+            <dc:date>May 29, 2011</dc:date>
+            </rdf:Description>
+            </rdf:RDF>
+  tag 0x40: EnableDebugger2 | size: 31 B | ratio: 0.012%
+  tag 0x3f: DebugID | size: 16 B | ratio: 0.006%
+  tag 0x41: ScriptLimits | size: 4 B | ratio: 0.002%
+      |__   max recursion: 1000
+            script timeout: 60
+  tag 0x09: SetBackgroundColor | size: 3 B | ratio: 0.001%
+      |__   hex: 0x869ca7
+            r=134, g=156, b=167
+  tag 0x29: ProductInfo | size: 26 B | ratio: 0.010%
+      |__   productId: 3 (Adobe Flex)
+            edition: 6 (None)
+            version: Flex SDK v3.4.0.5348
+            compile Date: Sun May 29 09:50:41 GMT+0100 2011
+  tag 0x52: DoABC2 | size: 254.87 KB | ratio: 99.777%
+  tag 0x01: ShowFrame | size: 0 B | ratio: 0.000%
+  tag 0x00: End | size: 0 B | ratio: 0.000%
+ ]
+}}}
+
+That's perfect, we see we have only one `DoABC2` tag
+
+so now if we try to extract the `*.abc` files
+{{{
+$ ./abcdump -a library.swf
+}}}
+
+we obtain
+{{{
+library.abc
+}}}
+
+one big juicui ABC file that contain all the classes,<br>
+we just need to rename it to the name of the lib and we have `box2d.abc`
+
+That now we can simply reuse like that
+{{{
+$ ./asc -AS3 -strict -import builtin.abc -import toplevel.abc -import box2d.abc program.as
+}}}
+
+It should work right ?
+
+well... not necessary
+
+now ASC will complain about the Sprite class it can not find<br>
+and it's where [GettingStartedAvmglue avmglue] come to the rescue.
+
+If you look again at the `catalog.xml` file, see those references at the end
+{{{
+...
+        <dep id="Math" type="e" /> 
+        <dep id="flash.utils:Dictionary" type="e" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="flash.utils:Dictionary" type="s" /> 
+        <dep id="flash.display:Sprite" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Box2D.Common:b2internal" type="n" /> 
+        <dep id="Object" type="i" /> 
+...
+}}}
+
+the *Math* class is part of the builtins so no problem here<br>
+Tamarin already define *flash.utils:Dictionary* so again no problem<br>
+but nobody define *flash.display:Sprite* and there you got an error.
+
+You have 2 ways of solving that
+  * either you define your own Sprite class (as a mock)
+  * or you reuse `avmglue.abc` (which should define a Sprite class)
+
+And remember that the order of definitions is important, it should look like that
+{{{
+$ ./asc -AS3 -strict -import builtin.abc -import toplevel.abc -import avmglue.abc -import box2d.abc program.as
+}}}

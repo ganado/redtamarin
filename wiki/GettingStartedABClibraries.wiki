@@ -970,6 +970,6 @@ package flash.display
 }}}
 and it will solve the problem
   * be sure to compile it in its own `glue.abc` and import it before you import `box2d.abc`
-  * yes no need to implement a real Sprite class, her it is used only as a reference (no need to declare methods etc.)
+  * yes no need to implement a real Sprite class, here it is used only as a reference (no need to declare methods etc.)
   * another solution would be to edit the box2d `b2DebugDraw` class and remove the `Sprite` reference
   * ideally `avmglue.abc` should already provide this kind of simple mock class

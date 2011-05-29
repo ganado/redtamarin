@@ -890,7 +890,7 @@ we obtain
 library.abc
 }}}
 
-one big juicui ABC file that contain all the classes,<br>
+one big juicy ABC file that contain all the classes,<br>
 we just need to rename it to the name of the lib and we have `box2d.abc`
 
 That now we can simply reuse like that
@@ -902,10 +902,10 @@ It should work right ?
 
 well... not necessary
 
-now ASC will complain about the Sprite class it can not find<br>
+now ASC will complain about the `Sprite` class it can not find<br>
 and it's where [GettingStartedAvmglue avmglue] come to the rescue.
 
-If you look again at the `catalog.xml` file, see those references at the end
+If you look again at the `catalog.xml` file, see those references at the end (look at the [SWC] format)
 {{{
 ...
         <dep id="Math" type="e" /> 

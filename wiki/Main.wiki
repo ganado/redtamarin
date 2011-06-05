@@ -13,7 +13,7 @@ redtamarin add numerous native functionalities, so you can test if your program
 run under Windows or Linux, or read/write files, or send data with sockets, etc.
 
 Put another way, if Adobe AIR allow you to build desktop executable with a GUI,
-redtamarin allow you to build desktop executable with a CLI.
+redtamarin allow you to build desktop/server executable with a CLI.
 
 === Mission Statement ===
 

@@ -151,11 +151,10 @@ $ ./hello.as3
 == Misc. ==
 
 As it is, the *redshell* can execute plain text files or binary files
-  * plain text files:<br>any "source code" file encoded as UTF-8
+  * plain text files: any "source code" file encoded as UTF-8
     * `*.as`, `*.as3`, etc.
-    * you pass arguments like that `$ ./hello.as3 -- arg1 arg2 arg3`
-  * binary files:<br> any compiled file
+    * you pass arguments like that<br>`$ ./hello.as3 -- arg1 arg2 arg3`
+  * binary files: any compiled file
     * `*.abc` file
     * `*.swf` file (containing a group of `*.abc` files)
-    * you pass arguments like that `$ ./hello.abc arg1 arg2 arg3`
-
+    * you pass arguments like that<br>`$ ./hello.abc arg1 arg2 arg3`

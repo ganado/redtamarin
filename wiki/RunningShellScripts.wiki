@@ -123,3 +123,25 @@ if you obtain a "Permission Denied", see [http://unix.stackexchange.com/question
 {{{
 $ echo ':AS3:E::as3::/usr/share/redtamarin/redshell_d:' | sudo tee /proc/sys/fs/binfmt_misc/register
 }}}
+
+*note:*<br>
+we register the `*.as3` extension, you could register any `*.as`, or other extension you want<br>
+here we felt that when you have a lot of code with the extension `*.as`, it feels better/safer to separate shell scripts as `*.as3`.
+
+
+now let's make a test<br>
+*hello.as3*
+{{{
+trace( "hello world" );
+}}}
+
+make the script executable
+{{{
+$ chmod +x hello.as3
+}}}
+
+and then execute it
+{{{
+$ ./hello.as3
+}}}
+

@@ -49,3 +49,24 @@ $ ./hello
 }}}
 when "hello" run, the shell will replace `$@` with any arguments you provided.
 
+
+
+== Registering an extension as non-native binaries (Linux only) ==
+
+Because this is a Linux-specific feature, we do not recommend that developers deploy this solution,<br>
+as it would limit the portability of their scripts.<br>
+(but yeah under a Linux distro this is so f*cking cool)
+
+In short, this make use of *binfmt_misc*, here the introduction from [http://www.kernel.org/doc/Documentation/binfmt_misc.txt the documentation]
+<pre>
+This Kernel feature allows you to invoke almost (for restrictions see below)
+every program by simply typing its name in the shell.
+This includes for example compiled Java(TM), Python or Emacs programs.
+
+To achieve this you must tell binfmt_misc which interpreter has to be invoked
+with which binary. Binfmt_misc recognises the binary-type by matching some bytes
+at the beginning of the file with a magic byte sequence (masking out specified
+bits) you have supplied. Binfmt_misc can also recognise a filename extension
+aka '.com' or '.exe'.
+</pre>
+

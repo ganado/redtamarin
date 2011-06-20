@@ -154,7 +154,9 @@ As it is, the *redshell* can execute plain text files or binary files
   * plain text files: any "source code" file encoded as UTF-8
     * `*.as`, `*.as3`, etc.
     * you pass arguments like that<br>`$ ./hello.as3 -- arg1 arg2 arg3`
+    * you can only use unqualified import<br>eg. `import avmplus.*`
   * binary files: any compiled file
     * `*.abc` file
     * `*.swf` file (containing a group of `*.abc` files)
     * you pass arguments like that<br>`$ ./hello.abc arg1 arg2 arg3`
+    * you can use both qualified and unqualified import

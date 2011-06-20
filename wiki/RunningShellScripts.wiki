@@ -2,11 +2,21 @@
 
 == Introduction ==
 
+What is a [http://en.wikipedia.org/wiki/Shell_script Shell Script] ?
 <pre>
 A shell script is a script written for the shell, or command line interpreter, of an operating system.
 It is often considered a simple domain-specific programming language.
 Typical operations performed by shell scripts include file manipulation, program execution, and printing text.
 </pre>
+
+In the Linux world most of shell scripts will use a [http://en.wikipedia.org/wiki/Shebang_(Unix) shebang]<br>
+for ex:
+{{{
+#!/bin/sh
+ 
+clear
+ls -l -a
+}}}
 
 
 

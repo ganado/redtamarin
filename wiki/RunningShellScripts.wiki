@@ -18,7 +18,8 @@ clear
 ls -l -a
 }}}
 
-
+<br>
+<br>
 
 == Making a wrapper shell script ==
 
@@ -49,6 +50,8 @@ $ ./hello
 }}}
 when "hello" run, the shell will replace `$@` with any arguments you provided.
 
+<br>
+<br>
 
 
 == Registering an extension as non-native binaries (Linux only) ==
@@ -69,4 +72,3 @@ at the beginning of the file with a magic byte sequence (masking out specified
 bits) you have supplied. Binfmt_misc can also recognise a filename extension
 aka '.com' or '.exe'.
 </pre>
-

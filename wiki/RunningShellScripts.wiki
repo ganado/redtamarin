@@ -20,4 +20,32 @@ ls -l -a
 
 
 
-== Details ==
+== Making a wrapper shell script ==
+
+let's say you have your script<br>
+*hello.as*
+{{{
+trace( "hello world" );
+}}}
+
+that you would want to run directly as a shell script
+
+you could simply do that<br>
+*hello*
+{{{
+#! /bin/sh
+
+/usr/share/redtamarin/redshell hello.as -- $@
+}}}
+
+don't forget to make the shell script executable
+{{{
+$ sudo chmod +x hello
+}}}
+
+and then run it
+{{{
+$ ./hello
+}}}
+when "hello" run, the shell will replace `$@` with any arguments you provided.
+

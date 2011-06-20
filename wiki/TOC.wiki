@@ -5,6 +5,8 @@
       * [GettingStartedAvmglue use avmglue]
       * [GettingStartedABClibraries create your own abc libraries]
       * [GettingStartedProject a project based on redtamarin]
+    * [RunningApplications Running Applications]
+      * [RunningShellScripts Shell Scripts]
     * old stuff
       * [GettingStarted_0_2_5 Getting Started 0.2.5]
       * [IDE HOWTO Setup your IDE]

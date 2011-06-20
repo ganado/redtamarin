@@ -1,0 +1,11 @@
+#summary running AS3 or ABC as shell scripts.
+
+== Introduction ==
+
+<pre>
+A shell script is a script written for the shell, or command line interpreter, of an operating system. It is often considered a simple domain-specific programming language. Typical operations performed by shell scripts include file manipulation, program execution, and printing text.
+</pre>
+
+
+
+== Details ==

@@ -21,7 +21,7 @@ Base profile shared by all the different profiles.
 
 = Details =
 
-test
+TODO (describe what a host profile is etc.)
 
 
 <br>

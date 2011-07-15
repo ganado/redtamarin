@@ -50,3 +50,5 @@ public function set isEmbeddedInAcrobat( value:Boolean ):void
 indicates if the current profile is embedded in Acrobat.
 
 *since:* 0.3.1
+
+----

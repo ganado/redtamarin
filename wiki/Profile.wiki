@@ -1,0 +1,52 @@
+#summary AVMPlus Profile class.
+
+<wiki:comment>
+Here we can use asdoc to document the source code.
+So the rule is to document the side notes in the wiki page.
+
+/* more in depth informations: http://code.google.com/p/redtamarin/wiki/Profile */
+</wiki:comment>
+
+= About =
+Base profile shared by all the different profiles.
+
+*class:* {{{avmplus.profiles::Profile}}}
+
+*product:* redtamarin 0.3
+
+*since:* 0.3.1
+
+----
+
+= Properties =
+
+== supportsAccelerometer ==
+{{{
+public var supportsAccelerometer:Boolean = false;
+}}}
+indicates if the current profile supports accelerometer.
+
+*since:* 0.3.1
+
+
+== supportsAccessibility ==
+{{{
+public var supportsAccessibility:Boolean = false;
+}}}
+indicates if the current profile supports accessibility.
+
+*since:* 0.3.1
+
+<br>
+<br>
+
+= Methods =
+
+== isEmbeddedInAcrobat ==
+{{{
+public function get isEmbeddedInAcrobat():Boolean
+public function set isEmbeddedInAcrobat( value:Boolean ):void
+}}}
+indicates if the current profile is embedded in Acrobat.
+
+*since:* 0.3.1

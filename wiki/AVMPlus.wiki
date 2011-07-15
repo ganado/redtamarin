@@ -62,6 +62,9 @@ avmplus
   |_ JObject
   |
   |_ debugger()
+  |
+  |_ profiles
+      |_ Profile
 
 flash
   |_ utils

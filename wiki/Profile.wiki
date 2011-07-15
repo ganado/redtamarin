@@ -37,11 +37,6 @@ indicates if the current profile supports accessibility.
 
 *since:* 0.3.1
 
-<br>
-<br>
-
-= Methods =
-
 == isEmbeddedInAcrobat ==
 {{{
 public function get isEmbeddedInAcrobat():Boolean
@@ -50,5 +45,12 @@ public function set isEmbeddedInAcrobat( value:Boolean ):void
 indicates if the current profile is embedded in Acrobat.
 
 *since:* 0.3.1
+
+<br>
+<br>
+
+= Methods =
+
+n/a
 
 ----

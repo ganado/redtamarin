@@ -172,6 +172,21 @@ for POSIX, will returns the  value of `$SHELL`, eg. `/bin/bash`.
 *since:* 0.3.0
 
 
+== stdinLength ==
+<font color="red">beta, may change in the futur</font><br>
+{{{
+public native static function get stdinLength():Number;
+}}}
+Returns the length of the stdin buffer.
+
+*note:*<br>
+this is not the whole length of stdin, only its buffer,<br>
+so if you need to get the full size of stdin you will have to loop<br>
+see [#stdinRead System.stdinRead()] or event better [#stdinReadAll System.stdinReadAll()].
+
+*since:* 0.3.0
+
+
 == swfVersion ==
 {{{
 public native static function get swfVersion():int;
@@ -669,21 +684,6 @@ Support Unicode characters.
 public static function writeLine( s:String ):void
 }}}
 Writes a string to the command line and returns to the line.
-
-*since:* 0.3.0
-
-
-== stdinLength ==
-<font color="red">beta, may change in the futur</font><br>
-{{{
-public native static function get stdinLength():Number;
-}}}
-Returns the length of the stdin buffer.
-
-*note:*<br>
-this is not the whole length of stdin, only its buffer,<br>
-so if you need to get the full size of stdin you will have to loop<br>
-see [#stdinRead System.stdinRead()] or event better [#stdinReadAll System.stdinReadAll()].
 
 *since:* 0.3.0
 

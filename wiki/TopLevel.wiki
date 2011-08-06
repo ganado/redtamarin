@@ -1,0 +1,64 @@
+#summary Top level definitions.
+
+= About =
+
+Represents the top level definitions (that you can use without using an *import*).
+
+*package:* (anonymous package)
+
+*product:* redtamarin 0.3
+
+*since:* 0.3.0
+
+
+----
+
+= Methods =
+
+== getClassByName ==
+{{{
+public function getClassByName( name:String ):Class
+}}}
+Returns the class reference from a string class name.
+
+*note:*<br>
+this function is essential for when we run code with
+  * running scripts<br>`./redshell file.as`
+  * read-eval-print mode<br>`./redshell -repl`
+  * eval() call from within the API<br>`System.eval( source )`
+
+*since:* 0.3.0
+
+
+== print ==
+{{{
+public function print( ...s )
+}}}
+Writes arguments to the command line and returns to the line.
+
+*note:*<br>
+nonstandard extensions to ECMAScript.
+
+*since:* 0.3.0
+
+
+== trace ==
+{{{
+public function trace( ...s )
+}}}
+Writes arguments to the command line and returns to the line.
+
+*note:*<br>
+nonstandard Flash Player extensions.
+
+*since:* 0.3.0
+
+
+== readLine ==
+<font color="orange">blocking</font><br>
+{{{
+public function readLine():String
+}}}
+Waits and returns all the characters entered by the user.
+
+*since:* 0.3.0

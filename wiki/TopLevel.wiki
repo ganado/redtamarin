@@ -27,6 +27,30 @@ this function is essential for when we run code with
   * read-eval-print mode<br>`./redshell -repl`
   * eval() call from within the API<br>`System.eval( source )`
 
+in all those cases you can not use the `import` statement for fully qualified name
+`import avmplus.System; //will not work`
+
+but you can use the `import` statement for non qualified name
+`import avmplus.*; //will work`
+
+also you can call functions declared at the anonymous package level<br>
+(that's why you can call `getClassByName()` without the need of an import).
+
+To invoke classes defined in `builtin.abc` and `toplevel.abc`<br>
+or any other `*.abc` loaded in memory for that matter<br>
+in the shell you can use this workaround
+{{{
+var sys:* = getClassByName( "avmplus.System" );
+trace( sys.argv ); //for System.argv
+}}}
+
+this workaround will also work for when you have an ambiguity in the class name<br>
+(eg. 2 classes with the same name in a different package that you want to import)
+{{{
+var sys:*  = getClassByName( "avmplus.System" );
+var fsys:* = getClassByName( "flash.system.System" );
+}}}
+
 *since:* 0.3.0
 
 

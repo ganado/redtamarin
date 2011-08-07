@@ -17,7 +17,7 @@ Represents the top level definitions (that you can use without using an *import*
 
 == getClassByName ==
 {{{
-public function getClassByName( name:String ):Class
+public function getClassByName( name:String, domain:Domain = null ):Class
 }}}
 Returns the class reference from a string class name.
 
@@ -53,6 +53,16 @@ var fsys:* = getClassByName( "flash.system.System" );
 
 *since:* 0.3.0
 
+
+== loadLibrary ==
+{{{
+public function loadLibrary( name:String, domain:Domain = null  ):void
+}}}
+Load an external library into memory.
+
+TODO (more documentation).
+
+*since:* 0.3.2
 
 == print ==
 {{{

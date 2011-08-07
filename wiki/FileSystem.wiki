@@ -188,6 +188,20 @@ POSIX use `"/"`.
 *since:* 0.3.0
 
 
+== pathSeparator ==
+{{{
+public static function get pathSeparator():String
+}}}
+The path separator used by the operating system.
+
+*note:*<br>
+WIN32 use `";"`.<br>
+POSIX use `":"`.
+
+
+*since:* 0.3.2
+
+
 ----
 
 = Methods =

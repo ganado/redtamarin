@@ -124,4 +124,31 @@ for each `errno` you catch you will have to reset it<br>
 
 *since:* 0.3.0
 
+
+== getErrno ==
+{{{
+public function get errno():int
+}}}
+Function to get the Error value.
+
+*note:*<br>
+In some strange case `errno` as a getter/setter does not work<br>
+so this function can be used as an alternative.
+
+*since:* 0.3.2
+
+
+== setErrno ==
+{{{
+public function setErrno( value:int ):void
+}}}
+Function to set the Error value.
+
+*note:*<br>
+In some strange case `errno` as a getter/setter does not work<br>
+so this function can be used as an alternative.
+
+*since:* 0.3.2
+
+
 ----

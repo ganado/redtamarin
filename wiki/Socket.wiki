@@ -162,6 +162,20 @@ that means that this is *non-blocking*.
 *since:* 0.3.0
 
 
+== readableTimeout ==
+{{{
+public var readableTimeout:uint = 0;
+}}}
+Defines the timeout (in seconds) for the readable test.
+
+*note:*<br>
+By default, `readableTimeout` is set to `0`.<br>
+<br>
+This will change the timeout of the `select()` function.
+
+*since:* 0.3.2
+
+
 == writable ==
 {{{
 public function get writable():Boolean
@@ -173,6 +187,20 @@ this property call under the hood the `select()` function with a timeout of `0 s
 that means that this is *non-blocking*.
 
 *since:* 0.3.0
+
+
+== writableTimeout ==
+{{{
+public var writableTimeout:uint = 0;
+}}}
+Defines the timeout (in seconds) for the writable test.
+
+*note:*<br>
+By default, `writableTimeout` is set to `0`.<br>
+<br>
+This will change the timeout of the `select()` function.
+
+*since:* 0.3.2
 
 
 == connected ==
@@ -274,6 +302,35 @@ For more details see [http://beej.us/guide/bgnet/output/html/singlepage/bgnet.ht
 
 *since:* 0.3.0
 
+
+== receiveTimeout ==
+{{{
+public native function get receiveTimeout():int;
+public native function set receiveTimeout( value:int ):void;
+}}}
+Defines the timeout (in seconds) for the receive functions.
+
+*note:*<br>
+By default, `receiveTimeout` is set to `0`.<br>
+<br>
+This set the `SO_RCVTIMEO` socket option.
+
+*since:* 0.3.2
+
+
+== sendTimeout ==
+{{{
+public native function get sendTimeout():int;
+public native function set sendTimeout( value:int ):void;
+}}}
+Defines the timeout (in seconds) for the send functions.
+
+*note:*<br>
+By default, `sendTimeout` is set to `0`.<br>
+<br>
+This set the `SO_SNDTIMEO` socket option.
+
+*since:* 0.3.2
 
 == logs ==
 {{{

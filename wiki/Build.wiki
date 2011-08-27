@@ -3,7 +3,7 @@
 === Introduction ===
 
 Basically we follow the same process than Tamarin<br>
-see [http://developer.mozilla.org/En/Tamarin_Build_Documentation Tamarin Build Documentation].
+see [https://developer.mozilla.org/En/Tamarin/Tamarin_Build_Documentation Tamarin Build Documentation].
 
 But we got all that wrapped up in a nice Ant build to automate a couple of things.
 

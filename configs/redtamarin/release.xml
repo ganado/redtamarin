@@ -148,11 +148,22 @@
     <target name="build-asc">
 
         <!-- Patch api versioning first -->
-        <copy file="src/tamarin/core/api-versions.java" tofile="src/asc/src/java/macromedia/asc/util/APIVersions.java"/>
-        
+        <!-- <copy file="src/tamarin/core/api-versions.java" tofile="src/asc/src/java/macromedia/asc/util/APIVersions.java"/> -->
+
+        <!-- 
         <ant antfile="src/asc/build/java/build.xml" target="main" inheritAll="false" />
         <copy file="src/asc/lib/asc.jar" todir="src/tamarin/utils"/>
         <copy file="src/asc/lib/asc.jar" todir="bin-release"/>
+         -->
+
+        <!--
+        For now we can not compile ASC from sources
+        as we are not in sync with the latest version of tamarin-redux
+        so we need to hardocpy an asc.jar that we know is owrking with the current
+        redtamarin sources
+        -->
+        <copy file="src/asc-bin/asc.jar" todir="src/tamarin/utils"/>
+        <copy file="src/asc-bin/asc.jar" todir="bin-debug"/>
     
     </target>
 

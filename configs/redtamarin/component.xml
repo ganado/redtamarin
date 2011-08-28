@@ -164,6 +164,9 @@
             
             <include-sources dir="src/tamarin/as3/shell/avmplus"
              includes="System.as, OperatingSystem.as, FileSystem.as, Socket.as" />
+
+            <include-sources dir="src/tamarin/as3/avmglue/flash/utils"
+             includes="flash_proxy.as, IExternalizable.as, CompressionAlgorithm.as, describeType.as, getDefinitionByName.as, getQualifiedClassName.as, getQualifiedSuperclassName.as, getTimer.as" />
             
             <metadata date="${TODAY}" title="redtamarin">
                 <publisher name="${project.publisher}" />

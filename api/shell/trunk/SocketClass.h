@@ -57,17 +57,23 @@ namespace avmshell
 
         int get_descriptor();
         int get__type();
+        bool get_blocking();
+        void set_blocking(bool value);
         bool get_reuseAddress();
         void set_reuseAddress(bool value);
         bool get_broadcast();
         void set_broadcast(bool value);
+        int get_receiveTimeout();
+        void set_receiveTimeout(int value);
+        int get_sendTimeout();
+        void set_sendTimeout(int value);
 
         ByteArrayObject *_getBuffer();
         void _setNoSigPipe();
         bool _isValid();
-        int _isReadable();
-        int _isWritable();
-        int _isExceptional();
+        int _isReadable(int timeout);
+        int _isWritable(int timeout);
+        int _isExceptional(int timeout);
         void _customSocket(int family, int socktype, int protocol);
         bool _connect(Stringp host, Stringp port);
         bool _close();

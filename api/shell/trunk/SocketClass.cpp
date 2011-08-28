@@ -82,6 +82,16 @@ namespace avmshell
         return _socket->GetType();
     }
 
+    bool SocketObject::get_blocking()
+    {
+        return _socket->GetBlocking();
+    }
+    
+    void SocketObject::set_blocking(bool value)
+    {
+        _socket->SetBlocking(value);
+    }
+
     bool SocketObject::get_reuseAddress()
     {
         return _socket->GetReuseAddress();
@@ -102,6 +112,26 @@ namespace avmshell
         _socket->SetBroadcast(value);
     }
     
+    int SocketObject::get_receiveTimeout()
+    {
+        return _socket->GetReceiveTimeout();
+    }
+    
+    void SocketObject::set_receiveTimeout(int value)
+    {
+        _socket->SetReceiveTimeout(value);
+    }
+
+    int SocketObject::get_sendTimeout()
+    {
+        return _socket->GetSendTimeout();
+    }
+
+    void SocketObject::set_sendTimeout(int value)
+    {
+        _socket->SetSendTimeout(value);
+    }
+
 
     ByteArrayObject *SocketObject::_getBuffer()
     {
@@ -118,19 +148,19 @@ namespace avmshell
         return _socket->IsValid();
     }
 
-    int SocketObject::_isReadable()
+    int SocketObject::_isReadable(int timeout)
     {
-        return _socket->isReadable();
+        return _socket->isReadable(timeout);
     }
     
-    int SocketObject::_isWritable()
+    int SocketObject::_isWritable(int timeout)
     {
-        return _socket->isWritable();
+        return _socket->isWritable(timeout);
     }
     
-    int SocketObject::_isExceptional()
+    int SocketObject::_isExceptional(int timeout)
     {
-        return _socket->isExceptional();
+        return _socket->isExceptional(timeout);
     }
     
     void SocketObject::_customSocket(int family, int socktype, int protocol)

@@ -306,12 +306,12 @@ namespace avmshell
     
 
 
-    int CErrnoClass::get_errno()
+    int CErrnoClass::GetErrno()
     {
         return errno;
     }
     
-    void CErrnoClass::set_errno(int value)
+    void CErrnoClass::SetErrno(int value)
     {
         errno = value;
     }

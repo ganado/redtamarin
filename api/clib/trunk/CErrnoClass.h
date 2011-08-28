@@ -102,8 +102,8 @@ namespace avmshell
         int get_ETIMEDOUT();
         int get_ECONNREFUSED();
         
-        int get_errno();
-        void set_errno(int value);
+        int GetErrno();
+        void SetErrno(int value);
 
         DECLARE_SLOTS_CErrnoClass;
     };

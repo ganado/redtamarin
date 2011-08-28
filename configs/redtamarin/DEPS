@@ -7,6 +7,7 @@ vars = {
 deps = {
          Var("root") + "/samples"                    : Var("repo") + "/samples",
          Var("root") + "/src/asc"                    : "http://opensource.adobe.com/svn/opensource/flex/sdk/trunk/modules/asc",
+         Var("root") + "/src/asc-bin"                : Var("repo") + "/trunk/bin",
          Var("root") + "/src/tamarin"                : Var("repo") + "/redtamarin-root",
          Var("root") + "/src/tamarin/as3/avmglue"    : Var("platform") + "/avmglue/trunk/src",
          Var("root") + "/src/tamarin/as3/clib"       : Var("platform") + "/clib/trunk/src",

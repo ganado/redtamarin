@@ -84,6 +84,7 @@ System error numbers.
 || *ENOPROTOOPT* || Network is down. ||
 || *EADDRINUSE* || Network is down. ||
 || *EADDRNOTAVAIL* || Network is down. ||
+
 *since:* 0.3.2
 
 || *ENETDOWN* || Network is down. ||
@@ -104,6 +105,7 @@ System error numbers.
 || *ELOOP* || Network is down. ||
 || *EHOSTDOWN* || Network is down. ||
 || *EHOSTUNREACH* || Network is down. ||
+
 *since:* 0.3.2
 
 

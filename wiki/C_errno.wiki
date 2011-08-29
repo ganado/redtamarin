@@ -74,6 +74,18 @@ System error numbers.
 *since:* 0.3.0
 
 == Socket errors ==
+
+|| *EWOULDBLOCK* || Network is down. ||
+|| *EINPROGRESS* || Network is down. ||
+|| *EALREADY* || Network is down. ||
+|| *EDESTADDRREQ* || Network is down. ||
+|| *EMSGSIZE* || Network is down. ||
+|| *EPROTOTYPE* || Network is down. ||
+|| *ENOPROTOOPT* || Network is down. ||
+|| *EADDRINUSE* || Network is down. ||
+|| *EADDRNOTAVAIL* || Network is down. ||
+*since:* 0.3.2
+
 || *ENETDOWN* || Network is down. ||
 || *ENETUNREACH* || Network is unreachable. ||
 || *ENETRESET* || Network dropped connection on reset. ||
@@ -88,6 +100,11 @@ System error numbers.
 || *ECONNREFUSED* || Connection refused. ||
 
 *since:* 0.3.0
+
+|| *ELOOP* || Network is down. ||
+|| *EHOSTDOWN* || Network is down. ||
+|| *EHOSTUNREACH* || Network is down. ||
+*since:* 0.3.2
 
 
 ----

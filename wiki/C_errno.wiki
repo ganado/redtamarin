@@ -75,15 +75,15 @@ System error numbers.
 
 == Socket errors ==
 
-|| *EWOULDBLOCK* || Network is down. ||
-|| *EINPROGRESS* || Network is down. ||
-|| *EALREADY* || Network is down. ||
-|| *EDESTADDRREQ* || Network is down. ||
-|| *EMSGSIZE* || Network is down. ||
-|| *EPROTOTYPE* || Network is down. ||
-|| *ENOPROTOOPT* || Network is down. ||
-|| *EADDRINUSE* || Network is down. ||
-|| *EADDRNOTAVAIL* || Network is down. ||
+|| *EWOULDBLOCK* || Operation would block. ||
+|| *EINPROGRESS* || Operation now in progress. ||
+|| *EALREADY* || Operation already in progress. ||
+|| *EDESTADDRREQ* || Destination address required. ||
+|| *EMSGSIZE* || Message too long. ||
+|| *EPROTOTYPE* || Protocol wrong type for socket. ||
+|| *ENOPROTOOPT* || Bad protocol option. ||
+|| *EADDRINUSE* || Address already in use. ||
+|| *EADDRNOTAVAIL* || Can't assign requested address. ||
 
 *since:* 0.3.2
 
@@ -102,9 +102,9 @@ System error numbers.
 
 *since:* 0.3.0
 
-|| *ELOOP* || Network is down. ||
-|| *EHOSTDOWN* || Network is down. ||
-|| *EHOSTUNREACH* || Network is down. ||
+|| *ELOOP* || Too many levels of symbolic links. ||
+|| *EHOSTDOWN* || Host is down. ||
+|| *EHOSTUNREACH* || No Route to Host. ||
 
 *since:* 0.3.2
 

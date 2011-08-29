@@ -244,6 +244,51 @@ namespace avmshell
     }
 
 
+    int CErrnoClass::get_EWOULDBLOCK()
+    {
+        return EWOULDBLOCK;
+    }
+    
+    int CErrnoClass::get_EINPROGRESS()
+    {
+        return EINPROGRESS;
+    }
+    
+    int CErrnoClass::get_EALREADY()
+    {
+        return EALREADY;
+    }
+    
+    int CErrnoClass::get_EDESTADDRREQ()
+    {
+        return EDESTADDRREQ;
+    }
+    
+    int CErrnoClass::get_EMSGSIZE()
+    {
+        return EMSGSIZE;
+    }
+    
+    int CErrnoClass::get_EPROTOTYPE()
+    {
+        return EPROTOTYPE;
+    }
+    
+    int CErrnoClass::get_ENOPROTOOPT()
+    {
+        return ENOPROTOOPT;
+    }
+    
+    int CErrnoClass::get_EADDRINUSE()
+    {
+        return EADDRINUSE;
+    }
+    
+    int CErrnoClass::get_EADDRNOTAVAIL()
+    {
+        return EADDRNOTAVAIL;
+    }
+    
     int CErrnoClass::get_ENETDOWN()
     {
         return ENETDOWN;
@@ -304,6 +349,22 @@ namespace avmshell
         return ECONNREFUSED;
     }
     
+    int CErrnoClass::get_ELOOP()
+    {
+        return ELOOP;
+    }
+    
+    int CErrnoClass::get_EHOSTDOWN()
+    {
+        return EHOSTDOWN;
+    }
+    
+    int CErrnoClass::get_EHOSTUNREACH()
+    {
+        return EHOSTUNREACH;
+    }
+    
+
 
 
     int CErrnoClass::GetErrno()

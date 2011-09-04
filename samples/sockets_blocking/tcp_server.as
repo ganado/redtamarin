@@ -30,13 +30,8 @@ if( !sock.listening )
     System.exit( EXIT_FAILURE );
 }
 
-var tmpsock:Socket;
-while( !tmpsock && !tmpsock.valid )
-{
-    trace( "Waiting for incoming connections..." );
-    tmpsock = sock.accept();
-}
-var sock2:Socket = tmpsock;
+trace( "Waiting for incoming connections..." );
+var sock2:Socket = sock.accept();
 trace( "Client connected!" );
 
 var message:String = "Welcome to the server!";

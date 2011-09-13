@@ -300,6 +300,21 @@ see [#Socket Socket()] constructor for more details.
 *since:* 0.3.0
 
 
+== blocking ==
+{{{
+public native function get blocking():Boolean;
+public native function set blocking( value:Boolean ):void;
+}}}
+Indicates if the socket is blocking or non-blocking.
+
+*note:*<br>
+By default, `blocking` is set to `true`.<br>
+<br>
+TODO (explain how much different blockign and non-blocking sockets are)
+
+*since:* 0.3.2
+
+
 == reuseAddress ==
 {{{
 public native function get reuseAddress():Boolean;

@@ -32,6 +32,43 @@ Provides methods to create client and server sockets.
 ----
 = Statics =
 
+== isSupported ==
+{{{
+public native static function isSupported():Boolean;
+}}}
+Indicates if sockets are supported by the system.
+
+*since:* 0.3.2
+
+
+== getErrorMessage ==
+{{{
+public static function getErrorMessage( e:int ):String
+}}}
+Returns the error message string from a socket error number.
+
+*note:*<br>
+there are slight difference between POSIX and WIN32<br>
+and this method allow to compensate for that.
+
+*since:* 0.3.2
+
+
+== version ==
+{{{
+public native static function get version():String;
+}}}
+The socket version.
+
+*note:*<br>
+Under POSIX will returns "Berkeley sockets"<br>
+and under WIN32 will returns "Winsock 2.2"<br>
+or "Winsock 2.1" or "Winsock 2.0" or ""Winsock 1.1"<br>
+or "Winsock 1.0" or just "Winsock"
+
+*since:* 0.3.2
+
+
 == lastError ==
 {{{
 public native static function get lastError():int;

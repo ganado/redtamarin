@@ -102,7 +102,9 @@ namespace avmshell
         SocketObject* constructSocket(int sd);
         
         ScriptObject* createInstance(VTable* ivtable, ScriptObject* delegate);
-        
+
+        bool isSupported();
+        Stringp get_version();
         int get_lastError();
         int get_maxConcurrentConnection();
 

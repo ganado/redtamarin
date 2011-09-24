@@ -334,6 +334,16 @@ namespace avmshell
         return (SocketObject*)SocketObject::create(ivtable->gc(), ivtable, prototypePtr(), sd);
     }
 
+    bool SocketClass::isSupported()
+    {
+        return Platform::GetInstance()->isSocketSupported();
+    }
+
+    Stringp SocketClass::get_version()
+    {
+        return core()->newStringUTF8( Platform::GetInstance()->getSocketVersion() );
+    }
+
     int SocketClass::get_lastError()
     {
         return Platform::GetInstance()->getLastSocketError();

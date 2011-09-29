@@ -1,3 +1,53 @@
+* 0.3.2
+- in toplevel modified the getClassByName() signature to
+  public function getClassByName( name:String, domain:Domain = null ):Class
+- moved most of flash.utils.* from avmglue into toplevel.abc
+- removed System.profile initialization in anonymous package
+- System.profile is lazy inited now
+- System.OperatingSystem, now _parseLinuxReleaseFile has a try/catch
+  fix issue 44 and 46
+- added pathSeparator in FileSystem
+- now the Domain class use avmplus.FileSystem
+  fix issue 38
+- added getErrno()/setErrno() functions in C.errno.*
+- added getter/setter receiveTimeout in avmplus.Socket
+  see issue 47
+- added getter/setter sendTimeout in avmplus.Socket
+  see issue 47
+- added property readableTimeout in avmplus.Socket
+  see issue 47
+- added property writableTimeout in avmplus.Socket
+  see issue 47
+- added blocking getter/setter in avmplus.Socket
+- added constants to C.errno
+  EWOULDBLOCK, EINPROGRESS, EALREADY, EDESTADDRREQ, EMSGSIZE, EPROTOTYPE,
+  ENOPROTOOPT, EADDRINUSE, EADDRNOTAVAIL, ELOOP, EHOSTDOWN, EHOSTUNREACH
+- now we send the correct socket error message under WIN32
+- added static version property in Socket
+  under WIN32 returns "Winsock 2.2" or "Winsock 2.1", etc.
+  under OSX/Linux returns "Berkeley sockets"
+- added a static isSupported() method in Socket
+  return flase in very special cases
+  (eg. a very old version of Windows who could not initialize winsock for ex)
+- added static method getErrorMessage() to Socket
+  to returns the correct message string from a socket error
+- now use a pre-compiled asc.jar for the time being
+  later when we will be able to sync with tamarin-redux
+  then we should be able to build ASC from sources again
+- added the interface StandardStream in avmplus
+- added the hack_sys namespace
+- added stderrWrite( bytes:ByteArray ):void in System
+- moved getStdinLength(), stdinRead(), stdinReadAll(), stdoutWrite(), stderrWrite()
+  under the namespace hack_sys
+- added implementation of StandardStreamOut, StandardStreamErr and StandardStreamIn
+- added stdout, stderr, stdin properties in avmplus.System
+- added NONBLOCKING_ENABLE, NONBLOCKING_DISABLE in C.stdio
+- added O_TEXT, O_BINARY in C.stdio
+- added kbhit() in C.stdio to know when keyboard hit
+- added con_stream_mode() in C.stdio to change console to non-blocking or blocking mode
+- added con_trans_mode() in C.stdio to change console to binary or text mode
+- updated getRedtamarinVersion() in avmplus.System to "0.3.2"
+
 * 0.3.1
 - added build for OS X 10.5 Leopard
 - added build for components: builtin.swc, clib.swc and redtamarin.swc

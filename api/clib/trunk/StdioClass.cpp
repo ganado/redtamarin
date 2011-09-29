@@ -63,6 +63,28 @@ namespace avmshell
         return PATH_MAX;
     }
 
+    int StdioClass::get_NONBLOCKING_DISABLE()
+    {
+        return NONBLOCKING_DISABLE;
+    }
+
+    int StdioClass::get_NONBLOCKING_ENABLE()
+    {
+        return NONBLOCKING_ENABLE;
+    }
+
+    int StdioClass::get_O_TEXT()
+    {
+        return O_TEXT;
+    }
+    
+    int StdioClass::get_O_BINARY()
+    {
+        return O_BINARY;
+    }
+
+    
+
 
     int StdioClass::remove(Stringp filename)
     {
@@ -89,6 +111,21 @@ namespace avmshell
         StUTF8String oldnameUTF8(oldname);
         StUTF8String newnameUTF8(newname);
         return VMPI_rename(oldnameUTF8.c_str(), newnameUTF8.c_str());
+    }
+
+    void StdioClass::con_stream_mode(int state)
+    {
+        VMPI_con_stream_mode( state );
+    }
+
+    void StdioClass::con_trans_mode(int state)
+    {
+        VMPI_con_trans_mode( state );
+    }
+
+    int StdioClass::kbhit()
+    {
+        return VMPI_kbhit();
     }
 
 }

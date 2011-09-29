@@ -51,9 +51,16 @@ namespace avmshell
 
         int get_FILENAME_MAX();
         int get_PATH_MAX();
+        int get_NONBLOCKING_DISABLE();
+        int get_NONBLOCKING_ENABLE();
+        int get_O_TEXT();
+        int get_O_BINARY();
 
         int remove(Stringp filename);
         int rename(Stringp oldname, Stringp newname);
+        void con_stream_mode(int state);
+        void con_trans_mode(int state);
+        int kbhit();
 
 
         DECLARE_SLOTS_StdioClass;

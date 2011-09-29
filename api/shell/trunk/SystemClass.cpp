@@ -168,12 +168,12 @@ namespace avmshell
         console << '\n';
     }
 
-    double SystemClass::get_stdinLength()
+    double SystemClass::hack_sys_getStdinLength()
     {
         return VMPI_getStdinFileLength();
     }
 
-    ByteArrayObject* SystemClass::stdinRead(uint32_t length)
+    ByteArrayObject* SystemClass::hack_sys_stdinRead(uint32_t length)
     {
 		Toplevel* toplevel = this->toplevel();
         
@@ -198,7 +198,7 @@ namespace avmshell
 		return b;
     }
 
-    ByteArrayObject* SystemClass::stdinReadAll()
+    ByteArrayObject* SystemClass::hack_sys_stdinReadAll()
     {
         Toplevel* toplevel = this->toplevel();
         int buffer = 4096;
@@ -222,10 +222,16 @@ namespace avmshell
 		return b;
     }
     
-    void SystemClass::stdoutWrite(ByteArrayObject* bytes)
+    void SystemClass::hack_sys_stdoutWrite(ByteArrayObject* bytes)
     {
         int32_t len = bytes->get_length();
         fwrite(&(bytes->GetByteArray())[0], len, 1, stdout);
+    }
+
+    void SystemClass::hack_sys_stderrWrite(ByteArrayObject* bytes)
+    {
+        int32_t len = bytes->get_length();
+        fwrite(&(bytes->GetByteArray())[0], len, 1, stderr);
     }
 
     Stringp SystemClass::popenRead(Stringp command)

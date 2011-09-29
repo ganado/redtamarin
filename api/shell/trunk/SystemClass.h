@@ -116,10 +116,11 @@ namespace avmshell
         void trace(ArrayObject* a);
         void write(Stringp s);
 
-        double get_stdinLength();
-        ByteArrayObject* stdinRead(uint32_t length);
-        ByteArrayObject* stdinReadAll();
-        void stdoutWrite(ByteArrayObject* bytes);
+        double hack_sys_getStdinLength();
+        ByteArrayObject* hack_sys_stdinRead(uint32_t length);
+        ByteArrayObject* hack_sys_stdinReadAll();
+        void hack_sys_stdoutWrite(ByteArrayObject* bytes);
+        void hack_sys_stderrWrite(ByteArrayObject* bytes);
         
         Stringp popenRead(Stringp command);
 

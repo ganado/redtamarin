@@ -3,10 +3,10 @@
 
    1) with ABC
    $ ./make.sh
-   $ ./redshell stream.abc >> test.jpeg
+   $ ./redshell stream.abc >> test.png
 
    2) with AS
-   $ ./redshell stream.as >> test.jpeg
+   $ ./redshell stream.as >> test.png
 
 */
 

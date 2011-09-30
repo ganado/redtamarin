@@ -2,7 +2,8 @@
 import avmplus.System;
 import avmplus.Socket;
 import C.stdlib.*;
-import C.socket.*;
+import C.unistd.*;
+import C.errno.*;
 
 var sock:Socket = new Socket();
 //var sock:Socket = new Socket( AF_INET, SOCK_STREAM, IPPROTO_TCP );
@@ -34,6 +35,7 @@ trace( "Waiting for incoming connections..." );
 var sock2:Socket = sock.accept();
 trace( "Client connected!" );
 
+// we go in non-blocking mode
 sock.blocking = false;
 
 //loop
@@ -44,7 +46,7 @@ for(;;)
     sock2.send( message );
 
     err = Socket.lastError;
-    if( (err != WOULDBLOCK) && (err != 0) )
+    if( (err != EWOULDBLOCK) && (err != 0) )
     {
         trace( "error " + err );
         trace( "Client disconnected!" );

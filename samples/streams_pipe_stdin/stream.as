@@ -22,6 +22,6 @@ var bytes = System.stdin.readBinary();
 trace( "total bytes received = " + bytes.length );
 
 //save a copy of the stream to the current directory
-FileSystem.writeByteArray( "sad_panda.jpeg", bytes );
+FileSystem.writeByteArray( "sad_panda.png", bytes );
 
 

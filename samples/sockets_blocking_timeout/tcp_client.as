@@ -17,6 +17,11 @@
    try these:
    - comment out "sleep( 10 * 1000 );" on the server
    - on the client change the timeout to sock.receiveTimeout = 15;
+
+   Now what about testing sock.sendTimeout ?
+   this one is much harder to test and I didn't a simple find a way to test it yet
+   the functionality is implemented you can use it
+   but it just much harder to trigger a timeout on "send" that's all
 */
 
 import avmplus.System;

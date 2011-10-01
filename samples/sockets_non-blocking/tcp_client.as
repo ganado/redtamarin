@@ -9,15 +9,31 @@
    
    misc about WIN32:
    - the client always start by detecting a
-     "SocketError: Operation would block",
+     "SocketError: Operation would block" (EWOULDBLOCK),
      this is because of the non-blocking socket
    - 
+
+   misc about POSIX
+   - the client always start by detecting a
+     "SocketError: Resource temporarily unavailable" (EAGAIN),
+     this is because of the non-blocking socket
    
    1) CTRL+C in the client window
+
+      WIN32:
       the server will detect a "SocketError: Connection reset by peer"
+
+      POSIX:
+      the server will detect a "SocketError: Broken pipe"
    
    2) CTRL+C in the server window
+
+      WIN32:
       the client will detect a "SocketError: Connection reset by peer"
+
+      POSIX:
+      the client will detect a "Connection closed by remote peer"
+      
 */
 
 import avmplus.System;
@@ -44,6 +60,7 @@ if( !sock.connected )
 
 // we go in non-blocking mode
 sock.blocking = false;
+sock.receiveTimeout = 5;
 
 //loop
 var message:String;
@@ -62,7 +79,7 @@ for(;;)
         
         if( err != 0 ) { trace( e ); }
         
-        if( (err != EWOULDBLOCK) && (err != 0) )
+        if( (err != EWOULDBLOCK) && (err != EAGAIN) && (err != 0) )
         {
             trace( e );
             trace( "Server disconnected!" );
@@ -76,7 +93,13 @@ for(;;)
             sock.close();
             break;
         }
-        
+    }
+
+    if( !sock.valid || !sock.connected )
+    {
+        trace( "Server disconnected!" );
+        sock.close();
+        break;
     }
 
     sleep( 1000 );

@@ -4,6 +4,7 @@ import avmplus.Socket;
 import C.stdlib.*;
 import C.unistd.*;
 import C.errno.*;
+import C.string.*;
 
 var sock:Socket = new Socket();
 //var sock:Socket = new Socket( AF_INET, SOCK_STREAM, IPPROTO_TCP );
@@ -46,9 +47,9 @@ for(;;)
     sock2.send( message );
 
     err = Socket.lastError;
-    if( (err != EWOULDBLOCK) && (err != 0) )
+    if( (err != EWOULDBLOCK) && (err != ETIMEDOUT) && (err != 0) )
     {
-        trace( "error " + err );
+        trace( "error " + err + " : " + strerror(err) );
         trace( "Client disconnected!" );
         sock2.close();
         sock.close();

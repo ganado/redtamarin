@@ -12,7 +12,7 @@
    Scenario 1:
    on the client we set the receive timeout to 5 seconds
    on the server, once we are connected we force a timeout of 10 seconds
-   on the client we catch the error and look for ETIMEDOUT
+   on the client we catch the error and look for ETIMEDOUT (WIN32) or EAGAIN (POSIX)
    
    try these:
    - comment out "sleep( 10 * 1000 );" on the server
@@ -53,7 +53,7 @@ try
 catch( e:Error )
 {
     trace( e );
-    if( e.errorID == ETIMEDOUT )
+    if( (e.errorID == ETIMEDOUT) || (e.errorID == EAGAIN) )
     {
         trace( "receive() timed out" );
         sock.close();

@@ -17,6 +17,8 @@ Defines a Standard Stream (either stdout, stderr or stdin).
 *since:* 0.3.2
 
 
+see: http://en.wikipedia.org/wiki/Standard_streams
+
 ----
 = Methods =
 
@@ -65,3 +67,21 @@ function toString():String;
 Returns the stream type.
 
 *since:* 0.3.2
+
+
+----
+
+= Implementations =
+
+We have 3 classes implementing the 3 standard streams<br>
+`StandardStreamOut` implements *stdout*<br>
+`StandardStreamErr` implements *stderr*<br>
+`StandardStreamIn` implements *stdin*
+
+You don't need to instantiate those classes yourself as there are accessible as properties
+form the `System` class.
+
+
+`StandardStreamOut` and `StandardStreamErr` will throw errors with the methods `read()` and `readBinary()`.
+
+`StandardStreamIn` will throw errors with the methods `write()` and `writeBinary()`.

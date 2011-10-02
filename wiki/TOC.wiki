@@ -35,6 +35,7 @@
        * [OperatingSystem Operating System]
        * [FileSystem File System]
        * [Socket Socket]
+       * [StandardStream Standard Stream]
        * profiles
          * [Profile Profile]
     * [FlashPlatform Flash Platform]

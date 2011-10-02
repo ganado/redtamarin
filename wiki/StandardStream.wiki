@@ -18,3 +18,50 @@ Defines a Standard Stream (either stdout, stderr or stdin).
 
 
 ----
+= Methods =
+
+== read ==
+{{{
+function read( length:uint = 0 ):String;
+}}}
+Reads the amount of `length` (or all) from the stream in text mode.
+
+*since:* 0.3.2
+
+
+== readBinary ==
+{{{
+function readBinary( length:uint = 0 ):ByteArray;
+}}}
+Reads the amount of `length` (or all) from the stream in binary mode.
+
+*since:* 0.3.2
+
+
+== write ==
+{{{
+function write( data:String ):void;
+}}}
+Writes string data to the stream in text mode.
+
+*since:* 0.3.2
+
+
+
+== writeBinary ==
+{{{
+function writeBinary( bytes:ByteArray ):void;
+}}}
+Writes binary data to the stream in binary mode.
+
+*since:* 0.3.2
+
+
+
+== toString ==
+{{{
+function toString():String;
+}}}
+Returns the stream type.
+
+*since:* 0.3.2

@@ -143,6 +143,86 @@ System.profile.supportsAccelerometer = true;
 *since:* 0.3.1
 <br>
 <br>
+== stdout ==
+{{{
+public static var stdout:StandardStream = new StandardStreamOut();
+}}}
+Standard Output.
+
+*example:* display an image under CGI
+{{{
+import avmplus.System;
+import avmplus.FileSystem;
+import flash.utils.ByteArray;
+
+var img:ByteArray = FileSystem.readByteArray( "image.png" );
+System.stdout.writeBinary( img ); 
+//TODO
+System.exit(0);
+}}}
+
+*since:* 0.3.2
+<br>
+<br>
+== stderr ==
+{{{
+public static var stderr:StandardStream = new StandardStreamErr();
+}}}
+Standard Error.
+
+*since:* 0.3.2
+<br>
+<br>
+== stdin ==
+{{{
+public static var stdin:StandardStream = new StandardStreamIn();
+}}}
+Standard Input.
+
+*example:* read post data with CGI
+{{{
+import avmplus.System;
+import flash.utils.ByteArray;
+import C.stdlib.*;
+
+var postSize:int = int( getenv("CONTENT_LENGTH") );
+
+if( postSize > 0 )
+{
+    var postData:ByteArray = System.stdin.read( postSize );
+    //...
+}
+//...
+}}}
+
+*example:* read stdin piped into an exectuable
+{{{
+$ cat somefile.bin | ./redshell test.abc
+}}}
+or
+{{{
+$ cat somefile.bin | ./test
+}}}
+the pipe `|` will pass the binary content to the stdin of the shell,<br>
+here how to parse it
+{{{
+import avmplus.System;
+import flash.utils.ByteArray;
+import C.stdio.*;
+
+//change the console stream mode to binary
+con_trans_mode(O_BINARY); //does nothing under POSIX, only needed with WIN32
+
+//read stdin buffer till EOF
+var bytes:ByteArray = System.stdin.readBinaryl(); 
+
+trace( "total bytes received = " + bytes.length );
+}}}
+
+*since:* 0.3.2
+<br>
+<br>
+
 == programFilename ==
 {{{
 public native static function get programFilename():String;
@@ -688,115 +768,73 @@ Writes a string to the command line and returns to the line.
 *since:* 0.3.0
 
 
-== isStdinEmpty ==
-<font color="red">beta, may change in the futur</font><br>
+== getStdinLength ==
 {{{
-public static function isStdinEmpty():Boolean
+hack_sys native static function getStdinLength():Number;
 }}}
-Indicates if stdin buffer is empty or not.
+Returns the length of the stdin buffer.
 
 *note:*<br>
-Small utility but useful as you don't want to try<br>
-to read stdin if there is no data (as it would block).
+not meant to be used directly.
 
-*since:* 0.3.0
+*since:* 0.3.2
 
 
 == stdinRead ==
 <font color="orange">blocking</font><br>
-<font color="red">beta, may change in the futur</font><br>
 {{{
-public native static function stdinRead( length:uint ):ByteArray;
+hack_sys native static function stdinRead( length:uint ):ByteArray;
 }}}
 Reads the length of `bytes` from stdin.
 
 *note:*<br>
+not meant to be used directly.<br>
 If the length is bigger that the data in the actual buffer<br>
 you may end up being "blocked" (eg. wait for more data coming into the buffer).<br>
 <br>
-Also, this function is not completely stable as for big binaries<br>
-the buffer `stdinLength` may returns `0` before the `EOF`, use [#stdinReadAll System.stdinReadAll()].
-
-*example:* read post data with CGI
-{{{
-import avmplus.System;
-import flash.utils.ByteArray;
-import C.stdlib.*;
-
-var postSize:int = int( getenv("CONTENT_LENGTH") );
-
-if( postSize > 0 )
-{
-    var postData:ByteArray = System.stdinRead( postSize );
-    //...
-}
-//...
-}}}
+You should use`System.stdin.read()` or`System.stdin.readBinary()`.
 
 *since:* 0.3.0
 
 
 == stdinReadAll ==
 <font color="orange">blocking</font><br>
-<font color="red">beta, may change in the futur</font><br>
 {{{
-public native static function stdinReadAll():ByteArray;
+hack_sys native static function stdinReadAll():ByteArray;
 }}}
 Reads the stdin till EOF is reached.
 
 *note:*<br>
-much more stable than `stdinRead()` for big binaries.
-
-*example:* read stdin in an exectuable
-{{{
-$ cat somefile.bin | ./redshell test.abc
-}}}
-or
-{{{
-$ cat somefile.bin | ./test
-}}}
-the pipe `|` will pass the binary content to the stdin of the shell,<br>
-here how to parse it
-{{{
-import avmplus.System;
-import flash.utils.ByteArray;
-
-var bytes:ByteArray;
-
-if( !System.isStdinEmpty() )
-{
-    bytes = System.stdinReadAll(); //read stdin buffer till EOF
-}
-
-trace( "total bytes received = " + bytes.length );
-}}}
+not meant to be used directly.<br>
+You should use`System.stdin.read()` or`System.stdin.readBinary()`.
 
 *since:* 0.3.0
 
 
 == stdoutWrite ==
-<font color="red">beta, may change in the futur</font><br>
 {{{
-public native static function stdoutWrite( bytes:ByteArray ):void;
+hack_sys native static function stdoutWrite( bytes:ByteArray ):void;
 }}}
 Writes `bytes` to the stdout.
 
 *note:*<br>
-If you want your exe to output binary, but mainly to test CGI.
-
-*example:* display an image under CGI
-{{{
-import avmplus.System;
-import avmplus.FileSystem;
-import flash.utils.ByteArray;
-
-var img:ByteArray = FileSystem.readByteArray( "image.png" );
-System.stdoutWrite( img ); 
-//TODO
-System.exit(0);
-}}}
+not meant to be used directly.<br>
+You should use`System.stdout.write()` or`System.stdout.writeBinary()`.
 
 *since:* 0.3.0
+
+
+== stderrWrite ==
+{{{
+hack_sys native static function stderrWrite( bytes:ByteArray ):void;
+}}}
+Writes `bytes` to the stderr.
+
+*note:*<br>
+not meant to be used directly.<br>
+You should use`System.stderr.write()` or`System.stderr.writeBinary()`.
+
+*since:* 0.3.2
 
 
 == debugger ==

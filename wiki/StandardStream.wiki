@@ -1,0 +1,20 @@
+#summary AVMPlus Standard Stream interface.
+
+<wiki:comment>
+Here we can use asdoc to document the source code.
+So the rule is to document the side notes in the wiki page.
+
+/* more in depth informations: http://code.google.com/p/redtamarin/wiki/StandardStream */
+</wiki:comment>
+
+= About =
+Defines a Standard Stream (either stdout, stderr or stdin).
+
+*interface* {{{avmplus::StandardStream}}}
+
+*product:* redtamarin 0.3
+
+*since:* 0.3.2
+
+
+----

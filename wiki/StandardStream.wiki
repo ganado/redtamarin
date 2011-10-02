@@ -94,4 +94,20 @@ see [System#stdin System.stdin]
 
 = Details =
 
-You will need to use some functions in *C.stdio* for some special cases.
+You will need to use some functions in [C_stdio C.stdio] for some special cases.
+
+== Pipe and Redirection ==
+
+see: http://en.wikipedia.org/wiki/Redirection_(computing)
+
+{{{
+command1 | command2
+}}}
+here the `pipe` will redirect the stdout of command1 to the stdin of command2
+
+Under POSIX, the terminal is smart enough to make the difference between `TEXT` and `BINARY` data.
+
+Under WIN32, the command prompt is a bit different, you have to tell him if you want `TEXT` or `BINARY` data.
+
+TODO
+

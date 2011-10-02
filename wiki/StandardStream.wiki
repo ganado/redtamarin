@@ -88,3 +88,10 @@ see [System#stdin System.stdin]
 `StandardStreamOut` and `StandardStreamErr` will throw errors with the methods `read()` and `readBinary()`.
 
 `StandardStreamIn` will throw errors with the methods `write()` and `writeBinary()`.
+
+<br>
+<br>
+
+= Details =
+
+You will need to use some functions in *C.stdio* for some special cases.

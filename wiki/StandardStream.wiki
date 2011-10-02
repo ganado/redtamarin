@@ -79,7 +79,10 @@ We have 3 classes implementing the 3 standard streams<br>
 `StandardStreamIn` implements *stdin*
 
 You don't need to instantiate those classes yourself as there are accessible as properties
-form the `System` class.
+form the `System` class.<br>
+see [System#stdout System.stdout]<br>
+see [System#stderr System.stderr]<br>
+see [System#stdin System.stdin]
 
 
 `StandardStreamOut` and `StandardStreamErr` will throw errors with the methods `read()` and `readBinary()`.

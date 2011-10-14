@@ -52,6 +52,7 @@ Here some different articles and blog post mentioning redtamarin:
  * [http://www.la-digitale.com/index/redtamarin Cibler Redtamarin avec Flashdevelop] (fr)
  * [http://blog.eversonalves.com.br/2011/02/05/command-line-scripts-in-actionscript-with-classes-using-redtamarin/ Command line scripts in actionscript with classes using redtamarin]
  * [http://blog.bk-zen.com/2011/03/28/453/ Redtamarin やろうぜ！(東京てら子14資料)]
+ * [http://www.flasher.ru/forum/blog.php?b=423 redtamarin Что это за зверь?]
  * [http://www.bobsgear.com/display/ts/Introduction+To+Programming+-+Writing+Hammurabi+In+Actionscript+With+Redtamarin Introduction To Programming - Writing Hammurabi In Actionscript With Redtamarin]
 
 Note that I'm always very interested to read or know about user stories or usage of redtamarin os if you have some not listed here you can send me an email (my username (at) gmail (dot) com).

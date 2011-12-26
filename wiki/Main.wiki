@@ -49,6 +49,7 @@ as tools for the Flash Platform community.*
 here the list of sync from the [http://code.google.com/p/redshell] project, which is a mirror of tamarin-redux
  * *25/07/2010* tamarin-redux-e07844ed9e
  * *26/12/2010* tamarin-redux-d8b78be5b40f
+ * *26/12/2011* tamarin-redux-6fee29500342
 
 
 

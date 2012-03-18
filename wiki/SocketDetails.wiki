@@ -180,15 +180,15 @@ Here what turned out pretty well in the implementation
 
 But even with that I had to make hard choices
 
-simply because of the difference between C/C++ and AS3
+simply because of the difference between C/C++ and AS3<br>
 for example, a lot of berkely sockets function return an integer and need to be passed a `struct sockaddr_in` as arguments
 and I decided to avoid that, in most case for functions like `connect()`, `bind()`, `listen()`, it makes thing easier for the user
 in other cases for functions like `recv()`, `send()` it makes things harder for the implementer
 
 in short, if some function returns `-1` to show something went wrong, I just return a boolean
 
-Things got more interesting with functions like `recv()`
-so what does this function ?
+Things got more interesting with functions like `recv()`<br>
+so what does this function ?<br>
 [http://pubs.opengroup.org/onlinepubs/007904975/functions/recv.html recv - receive a message from a connected socket]
 
 here its signature
@@ -196,4 +196,128 @@ here its signature
 ssize_t recv(int socket, void *buffer, size_t length, int flags);
 }}}
 
+the problem is about the *return value*<br>
+"Upon successful completion, recv() shall return the length of the message in bytes. If no messages are available to be received and the peer has performed an orderly shutdown, recv() shall return 0. Otherwise, -1 shall be returned and errno set to indicate the error."
 
+That's where the 3 layers are important
+
+on VMPI
+{{{
+    int PosixSocket::Receive(char* data, int len, int flags) const
+    {
+        int status = recv(_socket, data, len, flags);
+        return status;
+    }
+
+    int WinSocket::Receive(char* data, int len, int flags) const
+    {
+        int status = recv(_socket, data, len, flags);
+        return status;
+    }
+}}}
+
+the implementation is the same and really basic, really the methods of the class are mainly wrappers for Berkeley sockets function.
+
+
+in C++
+{{{
+    int SocketObject::_receive(int buffer, int flags)
+    {
+        int result = 0;
+        char *data = new char[buffer];
+
+        _buffer->clear(); //reset the buffer before reading
+        
+        result = _socket->Receive(data, buffer, flags);
+        
+        if(result > 0) {
+            _buffer->GetByteArray().Write( data, result );
+        }
+
+        delete [] data;
+        return result;
+    }
+}}}
+
+`_buffer` is private to the API and used to store the received data<br>
+that way the data can be retrieved later and this method can still returns an integer.
+
+based on http://beej.us/guide/bgnet/output/html/singlepage/bgnet.html#sendrecv<br>
+"recv() returns the number of bytes actually read into the buffer, or -1 on error (with errno set, accordingly.)
+
+Wait! recv() can return 0. This can mean only one thing: the remote side has closed the connection on you! A return value of 0 is recv()'s way of letting you know this has occurred."
+
+So the only thing I do is to check if the return value is bigger than zero,<br>
+if `yes` I write the data to the buffer, if `no` I just do nothing about it<br>
+yes I don't but the logic of dealing with the return value in the C++ part of the class
+
+
+in AS3
+{{{
+        private native function _receive( buffer:int, flags:int = 0 ):int;
+
+        public function receive( buffer:uint = 1024, flags:int = 0 ):String
+        {
+            if( !connected ) { return; }
+            
+            if( buffer < _MIN_BUFFER ) { _throwReceiveBufferError(); }
+
+            var data:String = "";
+            var result:int  = _receive( buffer, flags );
+            
+            if( result == 0 ) { _remoteClose(); }
+
+            if( result <= -1 ) { _throwSocketError( lastError ); }
+
+            var _buffer:ByteArray = _getBuffer();
+                _buffer.position = 0;
+            data += _buffer.readUTFBytes( result );
+            
+            this.onReceive( data.length );
+            return data;
+        }
+}}}
+
+Here we play on 2 things
+  * a native method `_receive()`
+  * a public method `receive()`
+
+As you can see, the logic is all here
+  * if the socket is not connect we can abort right away
+  * if the custom buffer has been set to a wrong value we send an error
+  * if the `_receive()` return value is zero, we know the remote party closed so we call `_remoteClose()`
+  * if the `_receive()` return value is `-1`, we know there is an error and we throw an error
+  * and if everything went well, we just get back our private buffer data with `_getBuffer()`
+  * we even use a callback `this.onReceive( data.length );`
+  * and finally simply returns the data
+
+All that are hard choices,and yes it could have been done differently, and no there are real reasons why it has been implemented this way.
+
+So yes, I could have done all the logic of dealing with the return value in C++, so why do it in AS3 ?<br>
+  * less prone to errors (much harder to debug C++ than AS3)
+  * easier to test
+  * easier to change
+  * maybe slightly slower if you test performance in microseconds
+
+That's the whole purpose of those 3 layers
+  * VMPI is here only to abstract the difference of implementations for different operating systems
+  * C++ code are here only yo give access to those native functions
+  * AS3 glue everything and define the API
+
+In short, I do the strict minimum in C/C++ and do all the rest in AS3.
+
+And let's say I make an implementation error on the AS3 side, you can fix it before I do,<br>
+for example like that
+{{{
+package avmplus
+{
+    public class Socket2 extends Socket
+    {
+        public override function receive( buffer:uint = 1024, flags:int = 0 ):String
+        {
+            //change stuff here
+        }
+    }
+}
+}}}
+I'm not sure anyone need this but if you have to go that lower level you can in theory.

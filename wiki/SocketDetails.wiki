@@ -2,12 +2,57 @@
 
 == Introduction ==
 
-Everything you wanted to know about socket implementation in redtamarin.
+Everything you wanted to know about socket implementation details in redtamarin.
 
 
 == Details ==
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+You would think that something like sockets have been standardised for many years by now,
+well ... not exactly.
+
+We are basically fighting 2 battles on the same front:
+  * stay cross platform
+  * allow a socket server to handle thousands of clients simultaneously
+
+Some people could decide is not worthy to have this kind of goals
+but then I would kindly remember them that redtamarin has a clear
+mission statement: *support the use of the AS3 language for cross-platform*.
+
+Because of that, I can not (and don't want) to allow certain features
+only for Linux, or only for Windows, or any particular Operating System;
+sure the C++ implementation can change per system but the API on the AS3 side
+has to be the same for every systems.
+
+
+=== Cross platform sockets ===
+
+When I started to implement `avmplus.Socket` I based the code on two things
+  * [http://beej.us/guide/bgnet/output/html/singlepage/bgnet.html Beej's Guide to Network Programming]
+  * [http://code.google.com/codesearch#OAMlx_jo-ck/src/v8/src/platform.h&exact_package=chromium&l=626 Chromium sockets]
+
+Even if Beej's guide can be considered outdated it was the straightforward approach and tone that I needed to really understand socket programming.
+
+To avoid reinventing the wheel I looked at a lot of different socket implementations in C++ that work both for Linux and Windows,
+I would not say the Chromium implementation was the perfect one, but the fact it was based on an abstract class with 2 separate implementation was fitting well the Tamarin VMPI model and I could patch what was "missing" with what I was learning from other inputs.
+
+But just there you realize Windows world and Linux world clashes quite hard, so pretty soon I had also to refer to the
+[http://tangentsoft.net/wskfaq/ Winsock Programmer’s FAQ].
+
+At the end you obtain an API based on 3 layers
+{{{
+/src/shell
+    |_ Socket.h
+    |_ PosixSocket.h
+    |_ PosixSocket.cpp
+    |_ WinSocket.h
+    |_ WinSocket.cpp
+
+/src/api/shell
+    |_ SocketClass.h
+    |_ SocketClass.cpp
+
+/src/as3/shell/avmplus
+    |_ Socket.as
+
+}}}
+

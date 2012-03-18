@@ -40,19 +40,20 @@ But just there you realize Windows world and Linux world clashes quite hard, so 
 
 At the end you obtain an API based on 3 layers
 {{{
-/src/shell
-    |_ Socket.h
-    |_ PosixSocket.h
+//1st layer
+/src/tamarin/shell
+    |_ Socket.h    <- abstract class
+    |_ PosixSocket.h    <- POSIX implementation
     |_ PosixSocket.cpp
-    |_ WinSocket.h
+    |_ WinSocket.h    <- WIN32 implementation
     |_ WinSocket.cpp
 
-/src/api/shell
-    |_ SocketClass.h
+//2nd layer
+/src/tamarin/api/shell
+    |_ SocketClass.h    <- Tamarin native class C++ implementation
     |_ SocketClass.cpp
 
-/src/as3/shell/avmplus
-    |_ Socket.as
+/src/tamarin/as3/shell/avmplus
+    |_ Socket.as    <- Tamarin native class AS3 implementation
 
 }}}
-

@@ -64,7 +64,7 @@ The hardest part in all those layers is to balance how much in each layer you im
 So if you compare [http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/Socket.html `flash.net::Socket`] with `avmplus::Socket`, not saying that I did a better job than Adobe, but I kept my focus on giving as much low level access to the socket as possible,
 and so if you compare the two `avmplus::Socket` is much more lower level which is at the same time good and bad.
 
-It's bad because you don;t have all the luxuries of `flash.net::Socket`, no events, not based on `IDataOutput`/`IDataInput`, much less example on the web, etc.
+It's bad because you don't have all the luxuries of `flash.net::Socket`, no events, not based on `IDataOutput`/`IDataInput`, much less example on the web, etc.
 
 it's good because with `avmplus::Socket` you can fully re-implements `flash.net::Socket` (without the need to have access to the native source code),
 and it does not stop there, you can also fully implements `flash.net::DatagramSocket`, `flash.net::ServerSocket`, etc.
@@ -106,5 +106,94 @@ if( !SocketFD.listening )
 }
 
 
+var ConnectFD:Socket;
+for(;;)
+{
+    ConnectFD = SocketFD.accept();
+
+    if( !ConnectFD.valid )
+    {
+        trace( "error accept failed" );
+        SocketFD.close();
+        System.exit( EXIT_FAILURE );
+    }
+
+    /* perform read write operations ...
+    var data:String = ConnectFD.receive( buff ); */
+
+    ConnectFD.close();
+
+    if( Socket.lastError > 0 )
+    {
+        trace( Socket.getErrorMessage( Socket.lastError ) );
+        System.exit( EXIT_FAILURE );
+    }
+}
+
+System.exit( EXIT_SUCCESS );
 
 }}}
+
+you could test it like that
+{{{
+$ java -jar asc.jar -AS3 -strict -import builtin.abc -import toplevel.abc server.a
+./redshell_d server.abc
+}}}
+
+and use netcat for the client
+{{{
+$ nc -v -v 127.0.0.1 1100
+localhost [127.0.0.1] 1100 (mctp) open
+ sent 0, rcvd 0
+
+$ nc -v -v 127.0.0.1 1100
+localhost [127.0.0.1] 1100 (mctp) open
+ sent 0, rcvd 0
+
+}}}
+
+in the output you will see
+{{{
+Socket (4): stream socket created.
+Socket (4): Bound to [127.0.0.1:1100].
+Socket (4): [127.0.0.1:1100] listening (backlog=10).
+Socket (5): stream socket created.
+Socket (5): [127.0.0.1:62838] connected to [127.0.0.1:1100].
+Socket (4): [127.0.0.1:1100] accept connection from [5].
+Socket (5): Terminated.
+Socket (5): Disconnected from [127.0.0.1:1100].
+Socket (5): stream socket destroyed.
+Socket (5): stream socket created.
+Socket (5): [127.0.0.1:62840] connected to [127.0.0.1:1100].
+Socket (4): [127.0.0.1:1100] accept connection from [5].
+Socket (5): Terminated.
+Socket (5): Disconnected from [127.0.0.1:1100].
+Socket (5): stream socket destroyed.
+^C
+}}}
+
+
+Here what turned out pretty well in the implementation
+  * most if not all of the [http://en.wikipedia.org/wiki/Berkeley_sockets Berkely sockets] function map to a Class
+  * it works exactly the same cross platform (at least Windows, Linux Ubuntu-like, OSX; probably more but I lack ressources to test more systems)
+  * the API does not hide too many stuff in the background but it still make things simpler than writing it in C
+
+But even with that I had to make hard choices
+
+simply because of the difference between C/C++ and AS3
+for example, a lot of berkely sockets function return an integer and need to be passed a `struct sockaddr_in` as arguments
+and I decided to avoid that, in most case for functions like `connect()`, `bind()`, `listen()`, it makes thing easier for the user
+in other cases for functions like `recv()`, `send()` it makes things harder for the implementer
+
+in short, if some function returns `-1` to show something went wrong, I just return a boolean
+
+Things got more interesting with functions like `recv()`
+so what does this function ?
+[http://pubs.opengroup.org/onlinepubs/007904975/functions/recv.html recv - receive a message from a connected socket]
+
+here its signature
+{{{
+ssize_t recv(int socket, void *buffer, size_t length, int flags);
+}}}
+
+

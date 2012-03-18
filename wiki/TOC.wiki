@@ -46,7 +46,7 @@
     * [SWC SWC]
     * [Projector Projector]
     * [Security Security]
-    * [SocketDetails Socket implementation details]
+    * [SocketDetails Socket details]
     * [Examples Examples]
        * [Examples_Socket Socket programming]
     * [Tutorials Tutorials]

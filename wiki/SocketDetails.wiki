@@ -42,7 +42,7 @@ At the end you obtain an API based on 3 layers
 {{{
 //1st layer: VMPI implementation
 /src/tamarin/shell
-    |_ Socket.h        <- abstract class
+    |_ Socket.h         <- abstract class
     |_ PosixSocket.h    <- POSIX implementation
     |_ PosixSocket.cpp
     |_ WinSocket.h      <- WIN32 implementation

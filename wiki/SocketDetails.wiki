@@ -301,7 +301,7 @@ So yes, I could have done all the logic of dealing with the return value in C++,
 
 That's the whole purpose of those 3 layers
   * VMPI is here only to abstract the difference of implementations for different operating systems
-  * C++ code are here only yo give access to those native functions
+  * C++ code are here only to give access to those native functions
   * AS3 glue everything and define the API
 
 In short, I do the strict minimum in C/C++ and do all the rest in AS3.
@@ -321,3 +321,77 @@ package avmplus
 }
 }}}
 I'm not sure anyone need this but if you have to go that lower level you can in theory.
+
+Another hard choice was to provide some kind of callback without an event system in place in redtamarin,<br>
+you can read more about it here [http://code.google.com/p/redtamarin/wiki/Examples_Socket#Events_and_Logs Socket Events and Logs],<br>
+yes by default all socket activity is logged, you can easily remove it if it gets in your way,<br>
+and more interestingly you can hook your own events or callbacks to replace it<br>
+(this is also where AS3 shine where you can use the prototype to customize a class).
+
+TODO<br>
+show how all that helped or influenced the implementation of `flash.net:Socket` in the lib [http://code.google.com/p/maashaack/wiki/avmglue avmglue].
+
+TODO<br>
+give more details on some operating system differences (file descriptor vs SOCKET, etc.)
+
+
+=== Socket server ===
+
+If you thought making cross platform choices were hard, making choice about the server side of sockets is even harder.
+
+First of all, there is no fucking standard working for every operating systems,<br>
+the differences between Berkeley sockets and Winsock are small potatoes compared to the huge depth of differences you can find when you try to deal will simultaneous connections.
+
+OK, let's starts the big rant...<br>
+
+If you're on Linux, you have `fork()`, and combined with sockets it allow you to isolate each client connections per threads and keep a rather simple code.
+
+But there is no `fork()` on Windows, hard choice: I can not use `fork()`, period. No, I will not implement `fork()` in redtamarin and say "oh it works only for Linux".
+
+So, one solution would be to define VMPI way of doing threads that would work for any systems: Linux, OSX, Windows, etc.<br>
+but wait ... is using multithreading really the best solution to support concurrency ?
+
+let's read [http://drdobbs.com/open-source/184405553 I/O Multiplexing & Scalable Socket Servers] from Dr Dobb's<br>
+here we learn that
+  * "the thread-pooling model" is simple to implement
+  * "one file descriptor is added to a worker thread for the lifetime of the connection"
+  * "Using a single connection per thread lets the data buffer be local on the thread stack"
+
+with those "drawback to thread pools"
+  * "The number of threads an OS can create per process"
+  * "The time it takes to switch between worker threads (context switching)"
+  * "Worker threads are I/O bound"
+
+mainly that "depending on the OS and hardware, the thread-pooling model reaches the point of diminishing returns around 500 concurrent worker threads.",
+and that sorry is not good enough in my book, 500 concurrent connections ? that sucks!
+
+And then the article explains all the goodness of *I/O multiplexing*
+"I/O multiplexing, on the other hand, enables an application to overlap its I/O processing with the completion of I/O operations. Applications manage overlapped I/O by processing socket handles (client connections) through events that are sent from the kernel to the application. These notify the application that I/O has completed. By using an event-based mechanism, each worker thread can process I/O from multiple clients while the underlying driver waits for I/O to complete.
+
+An application's ability to process I/O from many clients per thread is preferential to having one client per worker thread. With one client per thread, context switches must occur each time the application needs to process I/O from another client. Adding multiple clients per worker thread enables a server application to handle a significantly larger number of clients, processing I/O for each client as soon as it is made ready by the OS. Each client is still I/O bound, but the threads are free to process any I/O available. The number of worker threads used to process the I/O should also be considerably smaller than the number used in the thread-pool model. A simple function to calculate the number of worker threads is worker threads= 2*n, where n is the number of CPUs in the server running the application."
+
+and that little nugget
+"Operating systems differ in their native support for I/O multiplexing and the effectiveness of each implementation:
+
+UNIX-based operating systems share similar support for I/O multiplexing through the use of signals, select(), and poll() APIs, and a new device /dev/poll.
+
+Windows supports asynchronous I/O through select(), various Windows APIs, and I/O completion ports.
+
+Java has native I/O multiplexing in the 1.4.1 SDK through the selector API. Unfortunately, the selector API is limited to processing 64 clients per instance of the selector class.
+
+The most efficient mechanisms for I/O multiplexing are /dev/poll for UNIX and I/O completion ports on Windows."
+
+So by the end of the article you can read *Cross-Platform I/O Multiplexing Abstraction*,<br>
+and that's basically what I want to implement for a truly efficient socket server in redtamarin,<br>
+but it's not there yet.
+
+Here basically the problem: almost every operating system do it differently, some will use `select()`, other will use `poll()`, some will have `poll()` as a wrapper around `select()`, and then there is also `epoll()`, and `/dev/poll`, and `kqueue()`, and realtime signals, and I/O completion ports, etc.
+
+For a much detailled explanation of the problem please read [http://www.kegel.com/c10k.html The C10K problem].
+
+TODO<br>
+talk about libevent, then libev<br>
+talk about why not investigate threads<br>
+talk about why select() is cross platform<br>
+talk about the limit of file descriptors<br>
+explain the choices...

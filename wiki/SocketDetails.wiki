@@ -58,3 +58,53 @@ At the end you obtain an API based on 3 layers
     |_ Socket.as 
 
 }}}
+
+The hardest part in all those layers is to balance how much in each layer you implement stuff so the final user (you!) has enough freedom to work with the API.
+
+So if you compare [http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/Socket.html `flash.net::Socket`] with `avmplus::Socket`, not saying that I did a better job than Adobe, but I kept my focus on giving as much low level access to the socket as possible,
+and so if you compare the two `avmplus::Socket` is much more lower level which is at the same time good and bad.
+
+It's bad because you don;t have all the luxuries of `flash.net::Socket`, no events, not based on `IDataOutput`/`IDataInput`, much less example on the web, etc.
+
+it's good because with `avmplus::Socket` you can fully re-implements `flash.net::Socket` (without the need to have access to the native source code),
+and it does not stop there, you can also fully implements `flash.net::DatagramSocket`, `flash.net::ServerSocket`, etc.
+
+And it could be considered "better" as you can fully copy C/C++ socket examples and apply them in AS3.
+
+for example, let's implement a basic TCP server as shown here [http://en.wikipedia.org/wiki/Berkeley_sockets#Server]
+{{{
+//server.as
+import avmplus.System;
+import avmplus.Socket;
+import C.stdlib.*;
+import C.socket.*;
+
+var SocketFD:Socket = new Socket();
+//you could also use
+//var SocketFD:Socket = new Socket( AF_INET, SOCK_STREAM, IPPROTO_TCP );
+
+if( !SocketFD.valid )
+{
+    trace( "can not create socket" );
+    System.exit( EXIT_FAILURE );
+}
+
+SocketFD.bind( 1100 );
+if( !SocketFD.bound )
+{
+    trace( "error bind failed" );
+    SocketFD.close();
+    System.exit( EXIT_FAILURE );
+}
+
+SocketFD.listen( 10 );
+if( !SocketFD.listening )
+{
+    trace( "error listen failed" );
+    SocketFD.close();
+    System.exit( EXIT_FAILURE );
+}
+
+
+
+}}}

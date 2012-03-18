@@ -17,7 +17,7 @@ Provides methods to create client and server sockets.
 *since:* 0.3.0
 
 *note:*
- * everything is blocking and synchronous
+ * everything is blocking by default (since 0.3.2 you can be unblocking) , and synchronous
  * `SIGPIPE` is disabled by default, and `EPIPE` error is thrown instead
  * support Stream (TCP) and Datagram (UDP) sockets
  * no support for IP v6

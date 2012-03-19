@@ -1,5 +1,6 @@
 #summary Socket implementation details.
-<g:plusone size="small"></g:plusone>
+
+<div id="gplus" style="float:right"><g:plusone size="small"></g:plusone></div>
 
 == Introduction ==
 

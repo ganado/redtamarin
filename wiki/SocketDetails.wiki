@@ -26,6 +26,12 @@ has to be the same for every systems.
 
 === Cross platform sockets ===
 
+Basically you cna describe the problem [http://poincare101.blogspot.co.uk/2012/03/experiences-in-go-ing.html like this guy did]<br>
+{{{
+And, the worst problem I faced was of sockets. Non-blocking, multi-plexed and cross-platform socket support with C is basically non-existent (unless I wanted to use libev or libevent, which has documentation scattered across the internet in small chunks). With C++, there are many choices, such as Boost.Asio (basically no documentation), ACE and ICE (this one I'm genuinely excited about, but, I hate their specialized object format crap I have to deal with).
+}}}
+
+
 When I started to implement `avmplus.Socket` I based the code on two things
   * [http://beej.us/guide/bgnet/output/html/singlepage/bgnet.html Beej's Guide to Network Programming]
   * [http://code.google.com/codesearch#OAMlx_jo-ck/src/v8/src/platform.h&exact_package=chromium&l=626 Chromium sockets]

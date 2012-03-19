@@ -385,27 +385,44 @@ and that sorry is not good enough in my book, 500 concurrent connections ? that 
 
 And then the article explains all the goodness of *I/O multiplexing*
 <pre>
-I/O multiplexing, on the other hand, enables an application to overlap its I/O processing with the completion of I/O operations.
-Applications manage overlapped I/O by processing socket handles (client connections) through events that are sent from the kernel to the application.
+I/O multiplexing, on the other hand, enables an application to overlap
+its I/O processing with the completion of I/O operations.
+Applications manage overlapped I/O by processing socket handles
+(client connections) through events that are sent from the kernel to the application.
 These notify the application that I/O has completed.
-By using an event-based mechanism, each worker thread can process I/O from multiple clients while the underlying driver waits for I/O to complete.
+By using an event-based mechanism, each worker thread can process I/O
+from multiple clients while the underlying driver waits for I/O to complete.
 
-An application's ability to process I/O from many clients per thread is preferential to having one client per worker thread. With one client per thread, context switches must occur each time the application needs to process I/O from another client. Adding multiple clients per worker thread enables a server application to handle a significantly larger number of clients, processing I/O for each client as soon as it is made ready by the OS. Each client is still I/O bound, but the threads are free to process any I/O available. The number of worker threads used to process the I/O should also be considerably smaller than the number used in the thread-pool model. A simple function to calculate the number of worker threads is worker threads= 2*n, where n is the number of CPUs in the server running the application.
+An application's ability to process I/O from many clients per thread is preferential
+to having one client per worker thread. With one client per thread, context switches
+must occur each time the application needs to process I/O from another client.
+Adding multiple clients per worker thread enables a server application to handle a
+significantly larger number of clients, processing I/O for each client as soon as it is
+made ready by the OS. Each client is still I/O bound, but the threads are free to
+process any I/O available. The number of worker threads used to process the I/O
+should also be considerably smaller than the number used in the thread-pool model.
+A simple function to calculate the number of worker threads is worker threads= 2*n
+where n is the number of CPUs in the server running the application.
 </pre>
 
 and that little nugget
 <pre>
-Operating systems differ in their native support for I/O multiplexing and the effectiveness of each implementation:
+Operating systems differ in their native support for I/O multiplexing
+and the effectiveness of each implementation:
 
-    * UNIX-based operating systems share similar support for I/O multiplexing through the use of signals,
+    * UNIX-based operating systems share similar support for
+       I/O multiplexing through the use of signals,
        select(), and poll() APIs, and a new device /dev/poll.
 
-    * Windows supports asynchronous I/O through select(), various Windows APIs, and I/O completion ports.
+    * Windows supports asynchronous I/O through select(),
+       various Windows APIs, and I/O completion ports.
 
-    * Java has native I/O multiplexing in the 1.4.1 SDK through the selector API. Unfortunately, the selector API
-       is limited to processing 64 clients per instance of the selector class.
+    * Java has native I/O multiplexing in the 1.4.1 SDK through
+       the selector API. Unfortunately, the selector API is limited
+       to processing 64 clients per instance of the selector class.
 
-The most efficient mechanisms for I/O multiplexing are /dev/poll for UNIX and I/O completion ports on Windows.
+The most efficient mechanisms for I/O multiplexing
+are /dev/poll for UNIX and I/O completion ports on Windows.
 </pre>
 
 So by the end of the article you can read *Cross-Platform I/O Multiplexing Abstraction*,<br>

@@ -1,6 +1,6 @@
 #summary Socket implementation details.
 
-<g:plusone size="small"></g:plusone>
+<g:plusone size="small" href="http://code.google.com/p/redtamarin/wiki/SocketDetails"></g:plusone>
 
 == Introduction ==
 

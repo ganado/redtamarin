@@ -1,6 +1,6 @@
 #summary Socket implementation details.
 
-<meta name="title" content="redtamarin - Socket implementation details" />
+<meta name="title" content="redtamarin - Socket implementation details"></meta>
 <g:plusone size="small"></g:plusone>
 
 == Introduction ==

@@ -29,14 +29,14 @@ has to be the same for every systems.
 
 Basically you can describe the problem [http://poincare101.blogspot.co.uk/2012/03/experiences-in-go-ing.html like this guy did]<br>
 
-<code><pre>
+<pre>
 And, the worst problem I faced was of sockets. Non-blocking, multi-plexed and
 cross-platform socket support with C is basically non-existent (unless I wanted to use
 libev or libevent, which has documentation scattered across the internet in small chunks).
 With C++, there are many choices, such as Boost.Asio (basically no documentation),
 ACE and ICE (this one I'm genuinely excited about, but, I hate their specialized object
 format crap I have to deal with).
-</pre></code>
+</pre>
 
 
 When I started to implement `avmplus.Socket` I based the code on two things

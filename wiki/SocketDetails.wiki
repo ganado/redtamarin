@@ -29,7 +29,7 @@ has to be the same for every systems.
 
 Basically you cna describe the problem [http://poincare101.blogspot.co.uk/2012/03/experiences-in-go-ing.html like this guy did]<br>
 
-<code>
+<code lang="txt">
 And, the worst problem I faced was of sockets. Non-blocking, multi-plexed and
 cross-platform socket support with C is basically non-existent (unless I wanted to use
 libev or libevent, which has documentation scattered across the internet in small chunks).

@@ -1,7 +1,5 @@
 #summary Socket implementation details.
 
-<g:plusone size="tall"></g:plusone>
-
 == Introduction ==
 
 Everything you wanted to know about socket implementation details in redtamarin.

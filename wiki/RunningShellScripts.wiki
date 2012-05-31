@@ -124,9 +124,78 @@ if you obtain a "Permission Denied", see [http://unix.stackexchange.com/question
 $ echo ':AS3:E::as3::/usr/share/redtamarin/redshell_d:' | sudo tee /proc/sys/fs/binfmt_misc/register
 }}}
 
+
+to unregister do that
+{{{
+$ sudo echo -1 > /proc/sys/fs/binfmt_misc/AS3
+}}}
+or
+{{{
+$ echo -1 | sudo tee /proc/sys/fs/binfmt_misc/AS3
+}}}
+
 *note:*<br>
 we register the `*.as3` extension, you could register any `*.as`, or other extension you want<br>
 here we felt that when you have a lot of code with the extension `*.as`, it feels better/safer to separate shell scripts as `*.as3`.
+
+to know the status of binfmt_misc
+{{{
+$ sudo cat /proc/sys/fs/binfmt_misc/status
+}}}
+you should obtain "enabled" or "disabled"
+
+to disable binfmt_misc
+{{{
+$ sudo echo 0 > /proc/sys/fs/binfmt_misc/status
+}}}
+or
+{{{
+$ echo 0 | sudo tee /proc/sys/fs/binfmt_misc/status
+}}}
+
+and to enable binfmt_misc
+{{{
+$ sudo echo 1 > /proc/sys/fs/binfmt_misc/status
+}}}
+or
+{{{
+$ echo 1 | sudo tee /proc/sys/fs/binfmt_misc/status
+}}}
+
+
+you could also register an extension with a wrapper
+
+*abc-wrap.sh*
+{{{
+#! /bin/sh
+
+ABCNAME=$1
+shift
+/usr/share/redtamarin/redshell_d "${ABCNAME}" -- $@
+
+}}}
+
+*as3-wrap.sh*
+{{{
+#! /bin/sh
+
+AS3NAME=$1
+shift
+/usr/share/redtamarin/redshell_d "${AS3NAME}" -- $@
+
+}}}
+
+to register the wrappers do this
+{{{
+$ sudo echo ':AS3:E::as3::/usr/share/redtamarin/as3-wrap.sh:' > /proc/sys/fs/binfmt_misc/register
+$ sudo echo ':ABC:E::abc::/usr/share/redtamarin/abc-wrap.sh:' > /proc/sys/fs/binfmt_misc/register
+}}}  
+or
+{{{
+$ echo ':AS3:E::as3::/usr/share/redtamarin/as3-wrap.sh:' | sudo tee /proc/sys/fs/binfmt_misc/register
+$ echo ':ABC:E::abc::/usr/share/redtamarin/abc-wrap.sh:' | sudo tee /proc/sys/fs/binfmt_misc/register
+}}}
+
 
 
 now let's make a test<br>

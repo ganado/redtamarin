@@ -52,13 +52,10 @@ usage: asc [-abcfuture] [-api <version>] [-AS3] [-avmtarget <vm version
 
 *links:*
  * [http://www.bytearray.org/?p=4789 Introducing ASC 2.0] by Thibault Imbert (Adobe)
- * [http://helpx.adobe.com/flash-builder/actionscript-compiler-backward-compatibility.html ActionScript Compiler 2.0 Backward Compatibility] Adobe Documentation
- * [http://gaming.adobe.com/technologies/flascc/ Flash C++ Compiler] Adobe
- * [http://www.adobe.com/devnet/air/air-sdk-download.html Download Adobe AIR SDK] Adobe
+ * [http://helpx.adobe.com/flash-builder/actionscript-compiler-backward-compatibility.html ActionScript Compiler 2.0 Backward Compatibility] (Adobe Documentation)
+ * [http://gaming.adobe.com/technologies/flascc/ Flash C++ Compiler] (Adobe)
+ * [http://www.adobe.com/devnet/air/air-sdk-download.html Download Adobe AIR SDK] (Adobe)
  * [http://obtw.wordpress.com/2013/04/03/making-bytearray-faster/ Making ByteArray faster] by Romil Mittal (Adobe)
 
 *documents:*
- * (PDF) [http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/flashplayer/pdfs/adobe-actionscript-compiler-20-release-notes.pdf ActionScript Compiler 2.0 release notes]
-
-
-
+ * (PDF) [http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/flashplayer/pdfs/adobe-actionscript-compiler-20-release-notes.pdf ActionScript Compiler 2.0 release notes] (Adobe)

@@ -42,6 +42,7 @@
   * Documentation
     * [Tamarin Tamarin]
     * [ASC ActionScript Compiler] (ASC)
+    * [ASC2 ActionScript Compiler 2] (ASC2)
     * [ABC ActionScript Byte Code] (ABC)
     * [SWC SWC]
     * [Projector Projector]

@@ -29,3 +29,36 @@ usage: asc [-abcfuture] [-api <version>] [-AS3] [-avmtarget <vm version
        <classname,width,height[,fps]>] [-use <namespace>] [-warnings]
        FILENAME...
 }}}
+
+=== Improvements ===
+
+ * Flash Builder 4.7 and the ASC 2.0 command-line compiler now share the same code model. This avoids duplicate representations of a program and means the IDE has an accurate representation of the language - matching the compiler.
+ * A new multi-threaded architecture allows multiple files to be compiled at once, improving compilation time.
+ * Better constant-folding and constant-propagation results in better performing code at runtime.
+ * Reduces function overhead by removing unnecessary activation records.
+ * Contains some demonstration byte-code optimizations for in-lining and dead code elimination.
+ * Non-linear control flow added to AS3 through a new 'goto' keyword.
+ * SWF 13 with LZMA compression is now supported.
+ * A new symbol management system means Flash Builder 4.7 ActionScript workspaces that mix Flash and AIR projects should incrementally compile much faster.
+ * ASC 2.0 based versions of fontswf, optimizer, swfdump and swcdepends command-line tools are available.
+ * Font transcoding has been removed from [Embed] syntax. Fonts should be pre-transcoded and embedded as a SWF, which can be performed using a tool like fontswf or Flash Professional CS6.
+ * Relative paths in source code ([Embed] assets, includes, etc...) resolve relatively from the including file. To specify a path relative from a source root, prefix your path with a forward slash '/'.
+ * US English compiler error messages have been translated into French, Japanese, and Simplified Chinese. The locale is determined by the JVM and can be overridden using the -tools-locale configuration option.
+ * Added support for inlining. When the inlining feature is enabled, the compiler will attempt to inline getters, setters and any functions which are decorated with [Inline] metadata.
+ * Added support for fast memory opcodes
+
+
+=== Ressources ===
+
+*links:*
+ * [http://www.bytearray.org/?p=4789 Introducing ASC 2.0] by Thibault Imbert (Adobe)
+ * [http://helpx.adobe.com/flash-builder/actionscript-compiler-backward-compatibility.html ActionScript Compiler 2.0 Backward Compatibility] Adobe Documentation
+ * [http://gaming.adobe.com/technologies/flascc/ Flash C++ Compiler] Adobe
+ * [http://www.adobe.com/devnet/air/air-sdk-download.html Download Adobe AIR SDK] Adobe
+ * [http://obtw.wordpress.com/2013/04/03/making-bytearray-faster/ Making ByteArray faster] by Romil Mittal (Adobe)
+
+*documents:*
+ * (PDF) [http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/flashplayer/pdfs/adobe-actionscript-compiler-20-release-notes.pdf ActionScript Compiler 2.0 release notes]
+
+
+

@@ -1,0 +1,31 @@
+#summary about the ActionScript Compiler.
+
+=== Introduction ===
+
+The !ActionScript Compiler 2.0, or *ASC2*, has been introduced as part of the AIR 3.4/FP 11.4 SDK preview
+and Flash Builder 4.7 Preview.
+
+*ASC2* is now distributed with *Flash CC* (Flash C++ Compiler) and the *AIR SDK* (since AIR 3.6).
+
+Written in Java, and distributed as a Jar file (asc2.jar), same as ASC<br>
+it allows to compile `*.as` source code to an `*.abc` file ([ABC ActionScript Byte Code]),<br>
+or to a `*.swf` file, or to an executable file.
+
+=== Options ===
+
+{{{
+ActionScript 3.0 Compiler for AVM+
+Version 2.0.0 build 348281
+Copyright 2003-2012 Adobe Systems Incorporated. All rights reserved.
+
+usage: asc [-abcfuture] [-api <version>] [-AS3] [-avmtarget <vm version
+       number>] [-b] [-coach] [-config <ns::name=value>] [-d] [-doc]
+       [-ES] [-ES4] [-exe <avmplus path>] [-f] [-h] [-i] [-import
+       <filename>] [-in <filename>] [-inline] [-l] [-language <lang>]
+       [-le <swc file>] [-li <swc file>] [-log] [-m] [-md] [-merge]
+       [-movieclip] [-o] [-o2 <name=value>] [-optimize] [-out
+       <basename>] [-outdir <output directory name>] [-p] [-parallel]
+       [-removedeadcode] [-sanity] [-static] [-strict] [-swf
+       <classname,width,height[,fps]>] [-use <namespace>] [-warnings]
+       FILENAME...
+}}}

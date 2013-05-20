@@ -90,6 +90,124 @@ options:
  * Added support for fast memory opcodes
 
 
+=== Usage ===
+
+with helloworld.as
+{{{
+trace( "hello world" );
+}}}
+
+a very basic usage
+{{{
+$ java -jar asc2.jar -AS3 -import builtin.abc -import toplevel.abc helloworld.as
+helloworld.abc, 127 bytes written
+}}}
+
+When you need to compile "system" libraries you will need more options
+{{{
+$ java -jar asc2.jar -abcfuture -import builtin.abc
+   shell_toplevel.as Domain.as ByteArray.as ...
+}}}
+
+compile an abc API compatible with AIR_2_0
+{{{
+$ java -jar asc2.jar -AS3 -api 668 -import builtin.abc -import toplevel.abc helloworld.as
+helloworld.abc, 127 bytes written
+}}}
+
+*note:*<br>
+here the list of options for api (see: [http://hg.mozilla.org/tamarin-redux/file/5571cf86fc68/core/api-versions.as api-versions.as]<br>
+  * *660* = FP_9_0
+  * *661* = AIR_1_0
+  * *662* = FP_10_0
+  * *663* = AIR_1_5
+  * *664* = AIR_1_5_1
+  * *665* = FP_10_0_32
+  * *666* = AIR_1_5_2
+  * *667* = FP_10_1
+  * *668* = AIR_2_0
+  * *669* = AIR_2_5
+  * *670* = FP_10_2
+the rest is either not supported or asc2 documentation is not up to date ???
+
+swc are now supported too :)
+{{{
+$ java -jar asc2.jar -AS3 -import builtin.abc -import toplevel.abc -li logd.swc helloworld.as
+helloworld.abc, 127 bytes written
+}}}
+
+or
+
+{{{
+$ java -cp asc2.jar com.adobe.flash.compiler.clients.ASC -help
+
+ActionScript 3.0 Compiler for AVM+
+Version 2.0.0 build 348281
+Copyright 2003-2012 Adobe Systems Incorporated. All rights reserved.
+...
+}}}
+
+{{{
+$ java -cp asc2.jar com.adobe.flash.compiler.clients.COMPC -help
+
+Adobe SWC Component Compiler (compc)
+Version 2.0.0 build 348281
+Copyright 2004-2012 Adobe Systems Incorporated. All rights reserved.
+...
+}}}
+
+{{{
+$ java -cp asc2.jar com.adobe.flash.compiler.clients.MXMLC -help
+
+Adobe ActionScript Compiler (mxmlc)
+Version 2.0.0 build 348281
+Copyright 2004-2012 Adobe Systems Incorporated. All rights reserved.
+...
+}}}
+
+yes, ASC2 contains all the compilers: ASC, COMPC and MXMLC<br>
+hence the much bigger size
+
+{{{
+asc.jar ~= 1.3MB
+asc2.jar ~= 17.4MB
+}}}
+
+
+=== Misc. ===
+
+You can find *asc2.jar* in the Flash C++ Compiler SDK
+
+here
+{{{
+/SDK/FlashCC 1.0/sdk/usr/lib/asc2.jar
+
+FlashCC 1.0/
+.
+├── License_en-US.html
+├── License_fr-FR.html
+├── README.html
+├── docs
+│   ├── …
+│
+├── samples
+│   ├── …
+│
+└── sdk
+    ├── usr
+    │   ├── bin
+    │   ├── include
+    │   ├── lib     <== here
+    │   ├── libexec
+    │   └── share
+    └── ver.txt
+}}}
+
+
+
+
+
+
 === Ressources ===
 
 *links:*

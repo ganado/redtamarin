@@ -116,7 +116,7 @@ helloworld.abc, 127 bytes written
 }}}
 
 *note:*<br>
-here the list of options for api (see: [http://hg.mozilla.org/tamarin-redux/file/5571cf86fc68/core/api-versions.as api-versions.as]<br>
+here the list of options for api (see: [http://hg.mozilla.org/tamarin-redux/file/5571cf86fc68/core/api-versions.as api-versions.as])<br>
   * *660* = FP_9_0
   * *661* = AIR_1_0
   * *662* = FP_10_0

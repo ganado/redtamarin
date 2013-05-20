@@ -203,8 +203,58 @@ FlashCC 1.0/
     └── ver.txt
 }}}
 
+or
+
+you can find *compiler.jar* in the latest AIR SDK (3.6 and 3.7)
+
+here
+{{{
+/SDK/AIR/sdks/AIR_3_7_ASC2/lib/compiler.jar
 
 
+AIR_3_7_ASC2/
+.
+├── AIR\ SDK\ Readme.txt
+├── AIR\ SDK\ license.pdf
+├── air-sdk-description.xml
+├── airsdk.xml
+├── ant
+│   └── …
+│
+├── asdoc
+│   └── …
+│
+├── bin
+│   └── …
+│
+├── frameworks
+│   └── …
+│
+├── include
+│   └── …
+│
+├── lib      <== here
+│   └── ...
+├── runtimes
+│   └── …
+│
+├── samples
+│   └── …
+│
+└── templates
+    └── …
+
+}}}
+
+use it like that
+{{{
+$ java -cp compiler.jar com.adobe.flash.compiler.clients.ASC -help
+
+ActionScript 3.0 Compiler for AVM+
+Version 2.0.0 build 348281
+Copyright 2003-2012 Adobe Systems Incorporated. All rights reserved.
+...
+}}}
 
 
 

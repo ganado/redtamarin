@@ -262,6 +262,21 @@ Usage:
 }}}
 
 
+=== Special Case for OSX ===
+
+under OSX you run executable as `.app`<br>
+and an `.app` file is basically a directory containing other files
+
+so to create a projector with the standalone flash player on OSX you need to do something a bit different
+{{{
+1. option click your "Flash Player.app"
+2. select "Show Package Contents"
+3. in this path "Contents/Resources/"
+drop a swf file named "movie.swf"
+
+voila you got your projector for OSX
+}}}
+
 
 
 === Misc. ===

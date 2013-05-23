@@ -9,16 +9,171 @@ But we got all that wrapped up in a nice Ant build to automate a couple of thing
 
 === Dependencies ===
 
- * you need a 64bit Operating System to build everything<br>the build will work on a 32bit system but you will nto be able to build 64bit targets, nor the SDK, etc.
+ * you need a 64bit Operating System to build everything<br>the build will work on a 32bit system but you will noo be able to build 64bit targets,<br>nor the SDK (as it requires both 32bit and 64bit targets), etc.
  * you need Python 2.6+
  * you need Ant 1.8+
  * see [Coders] for the special requirements on OS X / Linux / Windows
 
-
 === Usage ===
+
+=== how to build the SDK ===
+
+1. build all the binaries under windows
+{{{
+build.32bit = true
+build.64bit = true
+build.release = true
+build.debug = true
+build.debugger = true
+}}}
+
+copy *bin-release/windows* to a shared drive
+
+
+2. build all the binaries under linux
+{{{
+build.32bit = true
+build.64bit = true
+build.release = true
+build.debug = true
+build.debugger = true
+}}}
+
+copy *bin-release/linux* to a shared drive
+
+3. under OS X<br>
+add the windows and linux binaries in your *bin-release* folder
+
+4. enable all the options to *true*
+{{{
+build.32bit = true
+build.64bit = true
+build.release = true
+build.debug = true
+build.debugger = true
+build.documentation = true
+build.components = true
+build.sdk = true
+}}}
+
+5. run the build
+
+here what will happen
+
+after all the darwin binaries have been generated<br>
+your *bin-release* folder will look like that
+{{{
+bin-release/
+├── darwin
+│   ├── 32
+│   │   ├── debug
+│   │   │   └── redshell_d
+│   │   ├── debugger
+│   │   │   └── redshell_dd
+│   │   └── release
+│   │       └── redshell
+│   └── 64
+│       ├── debug
+│       │   └── redshell_d
+│       ├── debugger
+│       │   └── redshell_dd
+│       └── release
+│           └── redshell
+├── linux
+│   ├── 32
+│   │   ├── debug
+│   │   │   └── redshell_d
+│   │   ├── debugger
+│   │   │   └── redshell_dd
+│   │   └── release
+│   │       └── redshell
+│   └── 64
+│       ├── debug
+│       │   └── redshell_d
+│       ├── debugger
+│       │   └── redshell_dd
+│       └── release
+│           └── redshell
+└── windows
+    ├── 32
+    │   ├── debug
+    │   │   └── redshell_d.exe
+    │   ├── debugger
+    │   │   └── redshell_dd.exe
+    │   └── release
+    │       └── redshell.exe
+    └── 64
+        ├── debug
+        │   └── redshell_d.exe
+        ├── debugger
+        │   └── redshell_dd.exe
+        └── release
+            └── redshell.exe
+}}}
+
+after that you will also have the *documentation* and *components*
+{{{
+bin-release/
+├── components
+├── darwin
+├── documentation
+├── linux
+└── windows
+
+}}}
+
+then the SDK build will bundle everything in the *bin-deploy* folder
+{{{
+bin-deploy/
+└── redtamarin-0.4-1R086
+}}}
+
+and you will obtain a zip file<br>
+*redtamarin-0.4-1R086.zip*
+
 
 === Documentation ===
 
+==== building binaries ====
+
+*build.32bit* = `true/false`<br>
+to build all the 32bit targets
+
+*build.64bit* = `true/false`<br>
+to build all the 64bit targets
+
+*build.release* = `true/false`<br>
+to build all the release targets
+
+*build.debug* = `true/false`<br>
+to build all the debug targets
+
+*build.debugger* = `true/false`<br>
+to build all the debug debugger targets
+
+
+*NOTE:*<br>
+setting all to true will build 6 binaries<br>
+and can take quite some time (depending on the system ressources)<br>
+(a good 30mn/1h/2h/etc....)
+
+If for example you just need to compile locally to test some stuff<br>
+you don't need all options set to true, you could for ex<br>
+{{{
+build.32bit = true
+build.64bit = false
+build.release = false
+build.rdebug = true
+build.debugger = false
+}}}
+this will build a single binary (debug 32bit).
+
+
+==== building documentation ====
+
+==== building components ====
+
+==== building SDK ====
 
 === Tamarin ===
 
@@ -38,7 +193,7 @@ $ configure.py --help
 --enable-buffer-guard               [=not enabled]
 --enable-cache-gqcn                 [=not enabled]
 --enable-compilepolicy              [=not enabled]
---enable-cpp-exceptions             [=not enabled]
+--enable-cpp -exceptions             [=not enabled]
 --enable-debug                      [=not enabled]
 --enable-debugger                   [=not enabled]
 --enable-debugger-stub              [=not enabled]

@@ -97,6 +97,39 @@ $ configure.py --help
 --arm_arch=...                      [=armv7-a]
 }}}
 
+here few examples
+{{{
+#create an objdir folder
+$ cd src
+$ mkdir _build
+$ cd _build
+
+#then configure
+
+#conf for a 32bit macintosh
+$ ../configure.py --target=i386-darwin
+
+#conf for a 32bit macintosh using the OSX 10.7 SDK
+$ ../configure.py --mac-sdk=107 --target=i386-darwin
+
+#conf for a 64bit macintosh
+$ ../configure.py --target=x86_64-darwin
+
+#conf for a 32bit macintosh with debug and debugger
+$ ../configure.py --target=i386-darwin --enable-debug --enable-debugger
+
+#conf for a 32bit windows
+$ ../configure.py --target=i386-windows
+
+#conf for a 64bit windows
+$ ../configure.py --target=x86_64-windows
+
+#etc...
+
+#then make it so
+$ make
+}}}
+
 if you want to modify the native classes in C++ and AS3<br>
 you will need to use a compiled avmshell executable<br>
 and declare it in your environment variables

@@ -12,8 +12,120 @@ But we got all that wrapped up in a nice Ant build to automate a couple of thing
  * you need a 64bit Operating System to build everything<br>the build will work on a 32bit system but you will nto be able to build 64bit targets, nor the SDK, etc.
  * you need Python 2.6+
  * you need Ant 1.8+
+ * see [Coders] for the special requirements on OS X / Linux / Windows
 
 
 === Usage ===
 
 === Documentation ===
+
+
+=== Tamarin ===
+
+If you want to build it "old school" without our ant build<br>
+the Tamarin build is based on python scripts and make files
+
+you need to understand *configure.py*
+{{{
+$ configure.py --help
+--enable-abc-interp                 [=not enabled]
+--enable-allocation-sampler         [=not enabled]
+--enable-aot                        [=not enabled]
+--enable-arm-fpu                    [=not enabled]
+--enable-arm-hard-float             [=not enabled]
+--enable-arm-neon                   [=not enabled]
+--enable-arm-thumb                  [=not enabled]
+--enable-buffer-guard               [=not enabled]
+--enable-cache-gqcn                 [=not enabled]
+--enable-compilepolicy              [=not enabled]
+--enable-cpp-exceptions             [=not enabled]
+--enable-debug                      [=not enabled]
+--enable-debugger                   [=not enabled]
+--enable-debugger-stub              [=not enabled]
+--enable-epoc-emulator              [=not enabled]
+--enable-eval                       [=not enabled]
+--enable-exact-tracing              [=not enabled]
+--enable-float                      [=not enabled]
+--enable-halfmoon                   [=not enabled]
+--enable-heap-alloca                [=not enabled]
+--enable-heap-graph                 [=not enabled]
+--enable-interior-pointers          [=not enabled]
+--enable-interrupt-safepoint-poll   [=not enabled]
+--enable-jit                        [=not enabled]
+--enable-lzma-lib                   [=not enabled]
+--enable-memory-profiler            [=not enabled]
+--enable-methodenv-impl32           [=enabled]
+--enable-mmgc-interior-pointers     [=not enabled]
+--enable-mmgc-shared                [=not enabled]
+--enable-optimize                   [=not enabled]
+--enable-osr                        [=not enabled]
+--enable-override-global-new        [=not enabled]
+--enable-perfm                      [=not enabled]
+--enable-protect-jitmem             [=not enabled]
+--enable-safepoints                 [=not enabled]
+--enable-selectable-exact-tracing   [=not enabled]
+--enable-selftest                   [=not enabled]
+--enable-shared-gcheap              [=not enabled]
+--enable-shark                      [=not enabled]
+--enable-shell                      [=enabled]
+--enable-sin-cos-nonfinite          [=not enabled]
+--enable-swf12                      [=not enabled]
+--enable-swf13                      [=not enabled]
+--enable-swf14                      [=not enabled]
+--enable-swf15                      [=not enabled]
+--enable-swf16                      [=not enabled]
+--enable-swf17                      [=not enabled]
+--enable-swf18                      [=not enabled]
+--enable-swf19                      [=not enabled]
+--enable-swf20                      [=not enabled]
+--enable-sys-root-dir               [=not enabled]
+--enable-tamarin                    [=enabled]
+--enable-telemetry                  [=not enabled]
+--enable-telemetry-sampler          [=not enabled]
+--enable-threaded-interp            [=not enabled]
+--enable-use-system-malloc          [=not enabled]
+--enable-valgrind                   [=not enabled]
+--enable-vtune                      [=not enabled]
+--enable-wordcode-interp            [=not enabled]
+--enable-zlib-include-dir           [=not enabled]
+--enable-zlib-lib                   [=not enabled]
+--target=...                        [=None]
+--host=...                          [=None]
+--ignore_unknown_flags=...          [=False]
+--mac_sdk=...                       [=None]
+--mac_xcode=...                     [=None]
+--arm_arch=...                      [=armv7-a]
+}}}
+
+if you want to modify the native classes in C++ and AS3<br>
+you will need to use a compiled avmshell executable<br>
+and declare it in your environment variables
+
+for ex under OS X
+{{{
+$ pico ~/.profile
+
+#and add
+export AVMSHELL_TOOL="/path/to/avmshell"
+}}}
+
+you can not compile an original avmshell from redtamarin<br>
+but you can find pre-compiled avmshells here
+{{{
+build
+├── ant
+│   └── ...
+├── common.properties
+├── shell
+│   ├── darwin
+│   │   └── avmshell
+│   ├── linux
+│   │   └── avmshell
+│   └── windows
+│        └── avmshell.exe
+├── targets
+│   └── ...
+├── tasks
+│   └── ...
+└── version.properties
+}}}

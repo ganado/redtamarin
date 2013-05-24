@@ -16,7 +16,85 @@ But we got all that wrapped up in a nice Ant build to automate a couple of thing
 
 === Usage ===
 
-=== how to build the SDK ===
+=== Versioning and Tag ===
+
+We have changed the way we use the "build number"
+
+before we could use
+{{{
+version = major . minor . build . revision
+}}}
+
+now we use only
+{{{
+version = major . minor
+}}}
+
+and we use a tag
+{{{
+tag = serie | cycle | build
+}}}
+
+for example:
+{{{
+redtamarin-0.4-1R086
+}}}
+
+that's redtamarin
+  * *version* 0.4
+  * *serie* 1
+  * *cycle* R
+  * *build* 086
+
+
+here the basic rules
+  * each time you build, the build number increase to a maximum of *999*
+  * if the build reach *999* then we reset it to *000* and increase the *cycle* to the next letter
+  * if the cycle reach *Z* then we reset the cycle to the letter *A* and increase the *serie*
+
+here what you could get
+{{{
+0.4-1R086
+0.4-1R087
+0.4-1R088
+0.4-1R089
+...
+0.4-1R999
+0.4-1S000
+0.4-1S001
+0.4-1S002
+0.4-1S003
+...
+0.4-1S999
+0.4-1T000
+0.4-1U000
+0.4-1V000
+...
+0.4-1Z000
+...
+0.4-2A000
+0.4-2B000
+...
+etc.
+}}}
+
+we consider the version and the tag independent of each other<br>
+after a suffisant amount of features we could decide to increase the *serie* and/or the *cycle* to create new tag<br>
+after another suffisant amount of features we could decide to increase the version number instead.
+
+
+*Why ?*
+
+from v0.4 to reach v1.0 we want an "agile" way to tag our releases
+  * we don't want a v0.23
+  * v0.9 will be right before v1.0
+  * but we know we can not reach v1.0 in only 7 releases
+  * we gonna need many more "intermediary" releases
+  * the tag is just here to show if you are "before" or "after"<br>eg. *X* is newer than *R*<br>and *3F* is newer than *1X*
+  * you can technically build 25974 times per *serie*
+  * when you build on different OS it's easier to use a tag than a build or revision number<br>eg. wether you are on OSX/Linux/Windows that's the same tag for everyone
+
+=== How to Build the SDK ===
 
 1. build all the binaries under windows
 {{{
@@ -189,16 +267,64 @@ to build and bundle the SDK for redistribution
 
 *build.cleanBeforeDeploy* = `true/false`<br>
 to delete the "deploy" directory before generating the SDK files.
+{{{
+#if you set it to false and generate multiple times the SDK
+
+#you will either merge the files in the same folder
+
+bin-deploy/
+└── redtamarin-0.4
+
+#or if you will create a new folder each time
+
+bin-deploy/
+└── redtamarin-0.4-1R086
+└── redtamarin-0.4-1R087
+└── redtamarin-0.4-1R088
+└── redtamarin-0.4-1R089
+└── etc.
+
+}}}
 
 *build.bundleSDK* = `true/false`<br>
 to bundle only the SDK files without trying to compile them first.
-  * todo
-  * details
+{{{
+# compiling all the exe on a particular system can take 30mn or so
+# and if you have already created the binaries you just want to bundle them
+# without spending yet another 30mn recompiling them
+
+#with this option enabled
+
+#the SDK will take the files from
+
+bin-release/
+├── components
+├── darwin
+├── documentation
+├── linux
+└── windows
+
+#and bundle them into
+
+bin-deploy/
+└── redtamarin-0.4
+
+#which take about 2sec ;)
+}}}
 
 *build.tagSDK* = `true/false`<br>
 to add the build tag to the SDK name
-  * todo
-  * detail
+{{{
+# the difference between obtaining
+
+bin-deploy/
+└── redtamarin-0.4
+
+#or
+
+bin-deploy/
+└── redtamarin-0.4-1R086
+}}}
 
 *build.mergeRuntimesInSDK* = `true/false`<br>
 to merge different precompiled redshell exe into the files fo the SDK

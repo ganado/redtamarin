@@ -14,6 +14,45 @@ But we got all that wrapped up in a nice Ant build to automate a couple of thing
  * you need Ant 1.8+
  * see [Coders] for the special requirements on OS X / Linux / Windows
 
+We build under those OS
+  * Mac OS X 10.8 64bit
+  * Windows 7 Ultimate 64bit
+  * Ubuntu 10.04 64bit
+
+=== Supported Operating System ===
+
+We don't plan to support
+  * Windows 2000
+  * Mac PPC
+  * Windows CE
+  * Android
+  * etc.
+
+but in general
+
+the OSX binaries should work under
+  * Mac OS X 10.6
+  * Mac OS X 10.7
+  * Mac OS X 10.8
+
+the Windows binaries should work under
+  * Windows XP
+  * Windows Vista
+  * Windows 7
+
+the Linux binaries should work under
+  * Ubuntu
+  * CentOS
+  * Debian
+
+if a very demanded/popular OS is missing for whatever reason<br>
+we should be able to add another OS target to the build<br>
+but with no guarantees
+
+think of it like that:<br>
+there are more chances to put effort into supporting a special Ubuntu Kernel running on AWS<br>
+than to support an obscure Linux PPC I patched the kernel myself that 3 person use on the planet.
+
 === Usage ===
 
 === Versioning and Tag ===
@@ -328,8 +367,34 @@ bin-deploy/
 
 *build.mergeRuntimesInSDK* = `true/false`<br>
 to merge different precompiled redshell exe into the files fo the SDK
-  * todo
-  * detail
+{{{
+#you have mainly 3 cases
+
+#either you are compiling the binaries on the current OS AND building the SDK
+
+for ex, under OSX you will generate files in
+bin-release/
+└── darwin
+
+and reuse
+
+bin-release/
+├── linux
+└── windows
+
+#or you already got all your binaries and just want to bundle the SDK
+
+with any OS you will reuse the generated files from
+
+bin-release/
+├── darwin
+├── linux
+└── windows
+
+ok, there is a 3rd case where you would want to generate an SDK for only 1 OS
+but we don't want to do that, we don't want different SDK for different OS
+we want ONE SDK for ANY/ALL OS we support
+}}}
 
 
 

@@ -151,6 +151,13 @@ to build all the debug targets
 *build.debugger* = `true/false`<br>
 to build all the debug debugger targets
 
+*_options:_*
+
+*build.cleanGenerated* = `true/false`<br>
+to regenerate all the tracers, the builtin abc/h/cpp, the shell_toplevel abc/h/cpp<br>
+it will define the environment variable *AVMSHELL_TOOL* for you<br>
+and assign one of the precompiled avmshell exe to it.
+
 
 *NOTE:*<br>
 setting all to true will build 6 binaries<br>
@@ -163,7 +170,7 @@ you don't need all options set to true, you could for ex<br>
 build.32bit = true
 build.64bit = false
 build.release = false
-build.rdebug = true
+build.debug = true
 build.debugger = false
 }}}
 this will build a single binary (debug 32bit).
@@ -174,6 +181,31 @@ this will build a single binary (debug 32bit).
 ==== building components ====
 
 ==== building SDK ====
+
+*build.sdk* = `true/false`<br>
+to build and bundle the SDK for redistribution
+
+*_options:_*
+
+*build.cleanBeforeDeploy* = `true/false`<br>
+to delete the "deploy" directory before generating the SDK files.
+
+*build.bundleSDK* = `true/false`<br>
+to bundle only the SDK files without trying to compile them first.
+  * todo
+  * details
+
+*build.tagSDK* = `true/false`<br>
+to add the build tag to the SDK name
+  * todo
+  * detail
+
+*build.mergeRuntimesInSDK* = `true/false`<br>
+to merge different precompiled redshell exe into the files fo the SDK
+  * todo
+  * detail
+
+
 
 === Tamarin ===
 

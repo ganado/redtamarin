@@ -81,3 +81,9 @@ that will add the following features
  * detect the `asc.jar`, if not found install or download it from the internet
  * support wildcard includes, eg. `asc -import builtin.abc src/*.as main.as`
  * etc.
+
+=== Ressources ===
+
+*links:*
+ * [http://opensource.adobe.com/svn/opensource/flex/sdk/sandbox/asc-redux/ asc-redux repository] (Adobe)
+ * [https://github.com/apache/flex-sdk/tree/master/modules/asc asc module] (Apache Flex)

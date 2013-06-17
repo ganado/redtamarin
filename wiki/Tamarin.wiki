@@ -92,6 +92,8 @@ compiler provides a performance benefit for many applications.
  * [http://www.mozilla.org/projects/tamarin/ The Tamarin project] (Mozilla)
  * [http://learn.adobe.com/wiki/display/AVM2/ActionScript+Virtual+Machine+2 ActionScript Virtual Machine 2 wiki] (Adobe)
  * [http://code.google.com/p/mod-actionscript/ mod-actionscript] Apache module for running server-side !ActionScript 3
+ * [http://en.wikipedia.org/wiki/Tamarin_(JavaScript_engine) Tamarin software] (Wikipedia)
+ * [http://en.wikipedia.org/wiki/Comparison_of_application_virtual_machines Comparison of application virtual machines] (Wikipedia)
 
 *documents:*
  * (PDF) [http://www.stanford.edu/class/ee380/Abstracts/061206-CPUBLISH_avm_tamrin_stanford_Dec6.pdf Adobe Flash Player ActionScript Virtual Machine (Tamarin)] by Rick Reitmaier (Adobe) ([http://www.youtube.com/watch?v=lMSdoBqdeng video on YouTube])

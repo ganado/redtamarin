@@ -1,14 +1,22 @@
 #summary errno.h for AS3.
 
-<wiki:comment>
-Because we are defining libraries for Tamarin we can not really use asdoc to document the source code.
-So the rule is to document everything in the wiki page.
-Yeah it sucks because we have to sync by hand, we'll try to automate it later.
+= Implementation =
 
-on the source code file, we use only one comment
+*Errno.h* is a special case
 
-/* documentation: http://code.google.com/p/redtamarin/wiki/C_errno */
-</wiki:comment>
+in itself the implementation is not hard as this header define mainly a list of constants
+
+but the problem is that those constants vary depending on the systems,<br>
+there are huge difference in WIN32 vs POSIX.
+
+
+
+*references:*
+ * http://www.dinkumware.com/manuals/default.aspx?manual=compleat&page=errno.html
+ * http://en.wikipedia.org/wiki/Errno.h
+ * [http://msdn.microsoft.com/en-GB/library/5814770t(v=vs.90).aspx errno Constants]
+ * [http://msdn.microsoft.com/en-us/library/windows/desktop/ms737828(v=vs.85).aspx Error Codes - errno, h_errno and WSAGetLastError]
+ * [http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx System Error Codes]
 
 = About =
 System error numbers.

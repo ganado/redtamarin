@@ -10,6 +10,20 @@ but the problem is that those constants vary depending on the systems,<br>
 there are huge difference in WIN32 vs POSIX.
 
 
+*equivalence table*
+|| *Number* || *Linux* (errno.h) || *Windows* (errno.h) || *System Error Codes* (equivalent) ||
+||              1 || EPERM                 ||                                 ||                                                      ||
+||              1 || EPERM                 ||                                 ||                                                      ||
+||              1 || EPERM                 ||                                 ||                                                      ||
+||              1 || EPERM                 ||                                 ||                                                      ||
+||              1 || EPERM                 ||                                 ||                                                      ||
+||              1 || EPERM                 ||                                 ||                                                      ||
+||              1 || EPERM                 ||                                 ||                                                      ||
+||              1 || EPERM                 ||                                 ||                                                      ||
+||              1 || EPERM                 ||                                 ||                                                      ||
+||              1 || EPERM                 ||                                 ||                                                      ||
+
+
 
 *references:*
  * http://www.dinkumware.com/manuals/default.aspx?manual=compleat&page=errno.html

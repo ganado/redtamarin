@@ -21,6 +21,7 @@
        * [TamarinNotes notes about Tamarin]
        * [CrossPlatformNotes notes about cross-platform C/C++]
   * [API API reference]
+    * [VMPI VMPI]
     * [StandardC Standard C]
        * [about_clib about C libraries]
        * [C_stdlib stdlib]

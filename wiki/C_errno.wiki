@@ -12,16 +12,56 @@ there are huge difference in WIN32 vs POSIX.
 
 *equivalence table*
 || *Number* || *Linux* (errno.h) || *Windows* (errno.h) || *System Error Codes* (equivalent) ||
-||              1 || EPERM                 ||                                 ||                                                      ||
-||              1 || EPERM                 ||                                 ||                                                      ||
-||              1 || EPERM                 ||                                 ||                                                      ||
-||              1 || EPERM                 ||                                 ||                                                      ||
-||              1 || EPERM                 ||                                 ||                                                      ||
-||              1 || EPERM                 ||                                 ||                                                      ||
-||              1 || EPERM                 ||                                 ||                                                      ||
-||              1 || EPERM                 ||                                 ||                                                      ||
-||              1 || EPERM                 ||                                 ||                                                      ||
-||              1 || EPERM                 ||                                 ||                                                      ||
+|| 1 || EPERM || _N/A_ ||  ||  ||
+|| 2 || ENOENT ||  ||  ||
+|| 3 || EPERM ||                                 ||                                                      ||
+|| 4 || EPERM                 ||                                 ||                                                      ||
+|| 5 || EPERM                 ||                                 ||                                                      ||
+|| 6 || EPERM                 ||                                 ||                                                      ||
+|| 7 || EPERM                 ||                                 ||                                                      ||
+|| 8 || EPERM                 ||                                 ||                                                      ||
+|| 9 || EPERM                 ||                                 ||                                                      ||
+|| 10 || EPERM                 ||                                 ||                                                      ||
+|| 11 || EPERM                 ||                                 ||                                                      ||
+|| 12 || EPERM ||  ||  ||
+|| 13 || EPERM ||  ||  ||
+|| 14 || EPERM ||  ||  ||
+|| 15 || EPERM ||  ||  ||
+|| 16 || EPERM ||  ||  ||
+|| 17 || EPERM ||  ||  ||
+|| 18 || EPERM ||  ||  ||
+|| 19 || EPERM ||  ||  ||
+|| 20 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 30 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 40 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 1 || EPERM ||  ||  ||
+|| 50 || EPERM ||  ||  ||
 
 
 

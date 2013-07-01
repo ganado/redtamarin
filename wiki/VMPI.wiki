@@ -1,0 +1,55 @@
+#summary Virtual Machine Platform Interface.
+
+== Introduction ==
+
+The *VMPI* is where we define native system calls in a cross-platform way.
+
+{{{
+src
+.
+├── AVMPI
+│   └── ...
+├── VMPI
+│   ├── GenericPortUtils.cpp
+│   ├── ...
+│   ├── MacPortUtils.cpp
+│   ├── PosixPortUtils.cpp
+│   ├── PosixPortUtils2.cpp
+│   ├── PosixSpecificUtils.cpp
+│   ├── ...
+│   ├── VMPI.h
+│   ├── VMPI2.h
+│   ├── ...
+│   ├── WinPortUtils.cpp
+│   ├── WinPortUtils2.cpp
+│   └── ...
+│
+├── platform
+│   ├── android
+│   │   └── ...
+│   ├── arm
+│   │   └── ...
+│   ├── mac
+│   │   ├── ...
+│   │   ├── mac-platform.h
+│   │   ├── mac-platform2.h
+│   │   └── manifest.mk
+│   ├── symbian
+│   │   └── ...
+│   ├── system-selection.h
+│   ├── unix
+│   │   ├── ...
+│   │   ├── unix-platform.h
+│   │   └── unix-platform2.h
+│   ├── win32
+│   │   ├── ...
+│   │   ├── win32-platform.h
+│   │   └── win32-platform2.h
+│   └── winrt
+│       └── ...
+│
+└── ...
+}}}
+
+
+== Details ==

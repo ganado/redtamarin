@@ -59,7 +59,149 @@ and depending on *system-selection.h*
 
 a specific platform implementation of the VMPI interfaces will be compiled
 
-either *mac-platform.h*, or *unix-platform.h* or *win32-platform.h*, etc.
+either *mac-platform.h* and *MacPortUtils.cpp*,<br>
+or *unix-platform.h* and *PosixPortUtils.cpp*<br>
+or *win32-platform.h* and *WinPortUtils.cpp*<br>
+etc.
 
 
-== Details ==
+== Implementation Details ==
+
+Let's look at the *exit()* implementation
+
+*unix-platform.h*
+{{{
+#define VMPI_exit           ::exit
+}}}
+
+*win32-platform.h*
+{{{
+#define VMPI_exit    ::exit
+}}}
+
+In this case we define an alias and we don't even need to defien anything in *VMPI.h*
+
+
+<br>
+<br>
+
+Let's look at the *getenv()* implementation
+
+*VMPI.h*
+{{{
+/**
+ * wrapper around getenv function, return's NULL on platforms with no env vars
+ * @return value of env var
+ */
+extern const char *VMPI_getenv(const char *name);
+}}}
+
+*WinPortUtils.cpp*
+{{{
+const char *VMPI_getenv(const char *env)
+{
+    const char *val = NULL;
+    (void)env;
+	// Environment variables are not available for Windows Store applications.
+#ifndef AVMSYSTEM_WINDOWSSTOREAPP
+#ifndef UNDER_CE
+    val = getenv(env);
+#endif
+#endif // AVMSYSTEM_WINDOWSSTOREAPP
+    return val;
+}
+}}}
+
+*PosixPortUtils.cpp*
+{{{
+const char *VMPI_getenv(const char *name)
+{
+    return getenv(name);
+}
+}}}
+
+most of the time Mac OS X will reuse the `PosixPortUtils.cpp`, but for special case you will find the implementation in `MacPortUtils.cpp`
+
+In this case, we have to define the interface in *VMPI.h*
+so the method signature end up being the same everywhere,
+but mainly to be able to "not call" a system function where we know it does not exists.
+
+<br>
+<br>
+
+Let's look at the *realpath()* implementation
+
+when you can see *2* it is just the headers that RedTamarin add
+
+
+*VMPI2.h*
+{{{
+/**
+ * wrapper around realpath function
+ * @return resolved path
+ */
+extern char *VMPI_realpath(char const *path);
+}}}
+
+*WinPortUtils2.cpp*
+{{{
+char *VMPI_realpath(char const *path)
+{
+    /* note:
+       if the path does not exists the path will still resolve
+       and does not set errno to ENOENT "No such file or directory"
+    */
+    char* full = NULL;
+    char* result = NULL;
+    
+    if( VMPI_access(path, F_OK) ) {
+        errno = ENOENT;
+        return NULL;
+    }
+    
+    //char *_fullpath( char *absPath, const char *relPath, size_t maxLength );
+    result = _fullpath( full, path, PATH_MAX );
+    
+    if( result != NULL ) {
+        return result;
+    }
+    
+    return NULL; 
+}
+}}}
+
+*PosixPortUtils2.cpp*
+{{{
+char *VMPI_realpath(char const *path)
+{
+    char* full = NULL;
+    char* result = NULL;
+
+    result = realpath(path, full);
+    
+    if( result != NULL ) {
+        return result;
+    }
+    
+    return NULL;
+}
+}}}
+
+In this case, we have to define the interface in *VMPI2.h*
+so the method signature end up being the same everywhere,
+so we can have 2 different implementations.
+
+You can see that the *_realpath* under Windows is slightly different than the *realpath* under Linux/Mac.
+
+
+== Usage ==
+
+When we want one of our native class to do a system call as *exit()*, *getenv()*, *realpath()*, etc.
+
+we never call the native system call inside our native class<br>
+but we do call a VMPI implemenation.
+
+
+|| when || system call ||
+|| *NEVER* || `exit()` ||
+|| *ALWAYS* || `VMPI_exit()` ||

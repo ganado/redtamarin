@@ -11,6 +11,8 @@ there are huge difference in WIN32 vs POSIX.
 
 System Error Codes
 *equivalence table*
+
+*base errors*
 || *Number* || *Linux (errno.h)* || *Windows (errno.h)* || *(comment)* ||
 || 1 || EPERM || EPERM ||  ||
 || 2 || ENOENT || ENOENT ||  ||
@@ -37,7 +39,7 @@ System Error Codes
 || 23 || ENFILE || ENFILE ||  ||
 || 24 || EMFILE || EMFILE ||  ||
 || 25 || ENOTTY || ENOTTY ||  ||
-|| 26 || ETXTBSY ||  || missing ||
+|| 26 || ETXTBSY || ETXTBSY (139) ||  ||
 || 27 || EFBIG || EFBIG ||  ||
 || 28 || ENOSPC || ENOSPC ||  ||
 || 29 || ESPIPE || ESPIPE ||  ||
@@ -46,14 +48,16 @@ System Error Codes
 || 32 || EPIPE || EPIPE ||  ||
 || 33 || EDOM || EDOM ||  ||
 || 34 || ERANGE || ERANGE || Secure CRT only ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 40 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
+
+|| *Number* || *Linux (errno.h)* || *Windows (errno.h)* || *(comment)* ||
+|| 35 || EDEADLK || EDEADLK (36) || diff ||
+|| 36 || ENAMETOOLONG || ENAMETOOLONG (38) || diff ||
+|| 37 || ENOLCK || ENOLCK (39) || diff ||
+|| 38 || ENOSYS || ENOSYS (40) || diff ||
+|| 39 || ENOTEMPTY || ENOTEMPTY (41) || diff ||
+|| 40 || ELOOP || ELOOP (114) || diff ||
+|| (41) || EWOULDBLOCK = EAGAIN || EWOULDBLOCK (140) || diff ||
+|| 42 || ENOMSG || ENOMSG (122) || diff ||
 || 1 || EPERM ||  ||  ||
 || 1 || EPERM ||  ||  ||
 || 1 || EPERM ||  ||  ||
@@ -62,6 +66,9 @@ System Error Codes
 || 1 || EPERM ||  ||  ||
 || 1 || EPERM ||  ||  ||
 || 50 || EPERM ||  ||  ||
+|| (58) || EDEADLOCK = EDEADLK || EDEADLOCK = EDEADLK ||  ||
+|| 84 || EILSEQ || EILSEQ (42) || diff ||
+
 
 
 

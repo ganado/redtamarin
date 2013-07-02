@@ -9,43 +9,43 @@ in itself the implementation is not hard as this header define mainly a list of 
 but the problem is that those constants vary depending on the systems,<br>
 there are huge difference in WIN32 vs POSIX.
 
-
+System Error Codes
 *equivalence table*
-|| *Number* || *Linux* (errno.h) || *Windows* (errno.h) || *System Error Codes* (equivalent) ||
-|| 1 || EPERM || _N/A_ ||  ||  ||
-|| 2 || ENOENT ||  ||  ||
-|| 3 || EPERM ||                                 ||                                                      ||
-|| 4 || EPERM                 ||                                 ||                                                      ||
-|| 5 || EPERM                 ||                                 ||                                                      ||
-|| 6 || EPERM                 ||                                 ||                                                      ||
-|| 7 || EPERM                 ||                                 ||                                                      ||
-|| 8 || EPERM                 ||                                 ||                                                      ||
-|| 9 || EPERM                 ||                                 ||                                                      ||
-|| 10 || EPERM                 ||                                 ||                                                      ||
-|| 11 || EPERM                 ||                                 ||                                                      ||
-|| 12 || EPERM ||  ||  ||
-|| 13 || EPERM ||  ||  ||
-|| 14 || EPERM ||  ||  ||
-|| 15 || EPERM ||  ||  ||
-|| 16 || EPERM ||  ||  ||
-|| 17 || EPERM ||  ||  ||
-|| 18 || EPERM ||  ||  ||
-|| 19 || EPERM ||  ||  ||
-|| 20 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 30 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
-|| 1 || EPERM ||  ||  ||
+|| *Number* || *Linux (errno.h)* || *Windows (errno.h)* || *(comment)* ||
+|| 1 || EPERM || EPERM ||  ||
+|| 2 || ENOENT || ENOENT ||  ||
+|| 3 || ESRCH || ESRCH ||  ||
+|| 4 || EINTR || EINTR ||  ||
+|| 5 || EIO || EIO ||  ||
+|| 6 || ENXIO || ENXIO ||  ||
+|| 7 || E2BIG || E2BIG ||  ||
+|| 8 || ENOEXEC || ENOEXEC ||  ||
+|| 9 || EBADF || EBADF ||  ||
+|| 10 || ECHILD || ECHILD ||  ||
+|| 11 || EAGAIN || EAGAIN ||  ||
+|| 12 || ENOMEM || ENOMEM ||  ||
+|| 13 || EACCES || EACCES ||  ||
+|| 14 || EFAULT || EFAULT ||  ||
+|| 15 || ENOTBLK ||  || missing ||
+|| 16 || EBUSY || EBUSY ||  ||
+|| 17 || EEXIST || EEXIST ||  ||
+|| 18 || EXDEV || EXDEV ||  ||
+|| 19 || ENODEV || ENODEV ||  ||
+|| 20 || ENOTDIR || ENOTDIR ||  ||
+|| 21 || EISDIR || EISDIR ||  ||
+|| 22 || EINVAL || EINVAL || Secure CRT only ||
+|| 23 || ENFILE || ENFILE ||  ||
+|| 24 || EMFILE || EMFILE ||  ||
+|| 25 || ENOTTY || ENOTTY ||  ||
+|| 26 || ETXTBSY ||  || missing ||
+|| 27 || EFBIG || EFBIG ||  ||
+|| 28 || ENOSPC || ENOSPC ||  ||
+|| 29 || ESPIPE || ESPIPE ||  ||
+|| 30 || EROFS || EROFS ||  ||
+|| 31 || EMLINK || EMLINK ||  ||
+|| 32 || EPIPE || EPIPE ||  ||
+|| 33 || EDOM || EDOM ||  ||
+|| 34 || ERANGE || ERANGE || Secure CRT only ||
 || 1 || EPERM ||  ||  ||
 || 1 || EPERM ||  ||  ||
 || 1 || EPERM ||  ||  ||
@@ -68,7 +68,8 @@ there are huge difference in WIN32 vs POSIX.
 *references:*
  * http://www.dinkumware.com/manuals/default.aspx?manual=compleat&page=errno.html
  * http://en.wikipedia.org/wiki/Errno.h
- * [http://msdn.microsoft.com/en-GB/library/5814770t(v=vs.90).aspx errno Constants]
+ * [http://msdn.microsoft.com/en-GB/library/5814770t(v=vs.90).aspx errno Constants (VS2008)]
+ * [http://msdn.microsoft.com/en-GB/library/5814770t(v=vs.100).aspx errno Constants (VS2010)]
  * [http://msdn.microsoft.com/en-us/library/windows/desktop/ms737828(v=vs.85).aspx Error Codes - errno, h_errno and WSAGetLastError]
  * [http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx System Error Codes]
 

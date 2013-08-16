@@ -108,8 +108,8 @@ use the tags
      */
 }}}
 
-`langversion 3.0` will translate to *Language Version : ActionScript 3.0*<br\>
-`playerversion AVM 0.4` will translate to *Runtime Versions : 	RedTamarin 0.4*
+`langversion 3.0` will translate to *Language Version : !ActionScript 3.0*<br/>
+`playerversion AVM 0.4` will translate to *Runtime Versions : !RedTamarin 0.4*<br/>
 
 Also you will see a little "monkey" icon next to the definition.
 
@@ -120,6 +120,8 @@ The rule is as follow:
   * if API is only for RedTamarin, use "monkey" icon
 
 == Examples ==
+
+We can put a lot of examples.
 
 `src/as3/C/errno.as`
 {{{
@@ -204,6 +206,11 @@ The rule is as follow:
     public const errno:ErrorNumber = new ErrorNumber();
 }}}
 
+<br/>
+<br/>
+
+We can document packages even if asdoc doesn't take them into account.
+
 `src/as3/C/stdio.as`
 {{{
 /**
@@ -232,9 +239,9 @@ package C.stdio
      * @example usage
      * <listing>
      * import C.errno.&#42;;
-     * import C.stdio2.&#42;;
+     * import C.stdio.&#42;;
      * 
-     * var result:int = rename2( "/test/heelo.txt", "/test/world.txt" );
+     * var result:int = rename( "/test/heelo.txt", "/test/world.txt" );
      * 
      * if( result &lt; 0 )
      * {
@@ -266,3 +273,5 @@ package C.stdio
 
 }
 }}}
+
+We do document the "C Error" that a C function can define in *errno*.

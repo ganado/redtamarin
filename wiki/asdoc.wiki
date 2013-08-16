@@ -117,7 +117,7 @@ The rule is as follow:
   * if API is only for Flash Player, no icons
   * if API is for Flash Player and AIR, no icons
   * if API is only for AIR, use AIR icon
-  * if API is only for RedTamarin, use "monkey" icon
+  * if API is only for !RedTamarin, use "monkey" icon
 
 == Examples ==
 

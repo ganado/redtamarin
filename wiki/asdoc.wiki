@@ -1,0 +1,99 @@
+#summary asdoc for low-level stuff.
+
+== Introduction ==
+
+You can see some general info for [https://code.google.com/p/maashaack/wiki/asdoc asdoc] on the maashaack wiki.
+
+In our case, we need to heavily customise *asdoc* and technically "hack it" ;).
+
+
+== Details ==
+
+our main ant task<br/>
+`build/targets/documentation.xml`
+{{{
+		<asdoc output="${app.release}/documentation"
+			templates-path="${basedir}/build/doc/templates/"
+			warnings="false"
+			strict="false"
+			keep-xml="false"
+			skip-xsl="false"
+			restore-builtin-classes="true"
+			failonerror="true"
+			fork="true"
+		>
+			<load-config>${basedir}/build/doc/flex-config.xml</load-config>
+			<define name="CONFIG::debug" value="false"/>
+			<define name="CONFIG::release" value="true"/>
+			<define name="CONFIG::VMCFG_FLOAT" value="false" />
+}}}
+
+
+*restore-builtin-classes* allow us to restore the documentation for the builtins like *Object*, *Array*, etc.
+
+another trick is to use an empy<br/>
+`build/doc/flex-config.xml`
+{{{
+<?xml version="1.0"?>
+
+<flex-config>
+    <!-- Specifies absolutely nothing -->
+</flex-config>
+}}}
+
+and finally we need to define some namespaces
+{{{
+<define name="CONFIG::debug" value="false"/>
+<define name="CONFIG::release" value="true"/>
+<define name="CONFIG::VMCFG_FLOAT" value="false" />
+}}}
+
+by default we don't want to support *float*, but if you changed that in the compilation you would need to change it too in the documentation.
+
+after that you need to include each element you want to document
+{{{
+			<doc-sources path-element="${basedir}/src/core/builtin.as" />
+			<doc-sources path-element="${basedir}/src/core/XML.as" />
+			<doc-sources path-element="${basedir}/src/core/Math.as" />
+			<doc-sources path-element="${basedir}/src/core/Error.as" />
+                        etc.
+}}}
+
+Ideally, you would want to keep one definition per file, but asdoc can deal with multiple definitions per file
+(very useful in our case for the C library).
+
+another tricks is toward the end you will see
+{{{
+<package-description-file>${basedir}/build/doc/package.description.xml</package-description-file>
+}}}
+
+`build/doc/package.description.xml`
+{{{
+<overviews>
+	<all-packages>
+		<description><![CDATA[If you see it here you can use it.]]></description>
+	</all-packages>
+	<packages>
+		<package name="C" >
+			<shortDescription><![CDATA[C standard library.]]></shortDescription>
+			<description><![CDATA[C standard library.]]></description>
+		</package>
+		<package name="C.errno" >
+			<shortDescription><![CDATA[System error numbers.]]></shortDescription>
+			<description><![CDATA[errno.h is a header file in the standard library of C programming language. It defines macros to report error conditions through error codes stored in a static location called errno.]]></description>
+		</package>
+		<package name="C.assert" >
+			<shortDescription><![CDATA[Verify program assertion.]]></shortDescription>
+			<description><![CDATA[assert.h is a header file in the standard library of the C programming language that defines the C preprocessor macro assert(). The macro implements an assertion, which can be used to verify assumptions made by the program and print a diagnostic message if this assumption is false.]]></description>
+		</package>
+		<package name="C.ctype" >
+			<shortDescription><![CDATA[Character types.]]></shortDescription>
+			<description><![CDATA[C character classification is an operation provided by a group of functions in the ANSI C Standard Library for the C programming language. These functions are used to test characters for membership in a particular class of characters, such as alphabetic characters, control characters, etc. Both single-byte, and wide characters are supported.]]></description>
+		</package>
+...
+}}}
+
+we use that to document the packages, formating sucks but I guess it's better than nothing.
+
+All the other tricks and hacks happen in `build/doc/templates/`, there are too numerous to list just do a diff with a basic asdoc template.
+

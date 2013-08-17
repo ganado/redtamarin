@@ -1,4 +1,4 @@
-#summary The C Standard Library.
+#summary The C Standard Library for AS3.
 
 == Introduction ==
 
@@ -28,10 +28,76 @@ import C.stdlib.*;
 var test:String = getenv( "HOME" );
 }}}
 
+<br/>
+<br/>
 these are the main reasons to do that
 
-  # in general, C give you a low-level universal access to things
-wether you know `chmod()` on the command line or you used `mkdir()` in PHP, Python, etc.
-you already used a bit of *C* somewhere
-  # building uppon this kind low-level you can build bigger things<br/>in our case we will reuse `mkdir()` to define `FileSystem.makeDirectory()`<br/>maybe you want to build your own API or do things a bit differently<br/>if yonly you had access to `mkdir()`...well you have access
-  # etc
+  # in general, C give you a low-level universal access to things<br/>wether you know `chmod` on the command line or you used `mkdir()` in PHP, Python, etc.<br/>you already used a bit of *C* somewhere.
+  # building uppon this kind of low-level you can build bigger things<br/>in our case we will reuse `mkdir()` to define `FileSystem.makeDirectory()`<br/>maybe you want to build your own API or do things a bit differently<br/>if only you had access to `mkdir()`...well you have access!!
+  # A C library help to port to AS3 other kind of libraries,<br/>either duplicate something you have seen done in Python or Ruby, etc<br/>or easily port a C code example to AS3.
+  # it helps at the same time C developers coming to AS3<br/>and AS3 developers learning/reusing C.
+
+<br/>
+<br/>
+But let's be clear, we are not saying we giving you a way to compile C to AS3 (if you need that use ANE or CrossBridge).
+
+No, what we are saying is that we give you a way to integrates "C style programming and functionalities" into your AS3 program.
+
+It is not perfect and have limitations, but when you want to build things for the command line and the server side it can come very handy.
+
+== What do we support exactly ? ==
+
+We plan to support
+
+The *C standard library*
+  * *ANSI C* (C89)
+  * *ISO C* (C90)
+
+with those headers:
+  * `<assert.h>`
+  * `<ctype.h>`
+  * `<errno.h>`
+  * `<float.h>`
+  * `<limits.h>`
+  * `<locale.h>`
+  * `<math.h>`
+  * `<setjmp.h>`
+  * `<signal.h>`
+  * `<stdarg.h>`
+  * `<stddef.h>`
+  * `<stdio.h>`
+  * `<stdlib.h>`
+  * `<string.h>`
+  * `<time.h>`
+
+and
+
+The *C POSIX Library*
+  * *POSIX*.1
+
+with those headers
+  * `<cpio.h>`
+  * `<dirent.h>`
+  * `<fcntl.h>`
+  * `<grp.h>`
+  * `<netdb.h>`
+  * `<pthread.h>`
+  * `<pwd.h>`
+  * `<spawn.h>`
+  * `<sys/ipc.h>`
+  * `<sys/mman.h>`
+  * `<sys/msg.h>`
+  * `<sys/sem.h>`
+  * `<sys/stat.h>`
+  * `<sys/time.h>`
+  * `<sys/types.h>`
+  * `<sys/utsname.h>`
+  * `<sys/wait.h>`
+  * `<tar.h>`
+  * `<termios.h>`
+  * `<unistd.h>`
+  * `<utime.h>`
+
+and some non-standard things
+
+All that represent the *clib* or *The C Standard Library for AS3*.

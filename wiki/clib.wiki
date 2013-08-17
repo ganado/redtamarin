@@ -253,145 +253,118 @@ yep, it feels like C but it is still AS3.
 The following will details which level of support we provide per header or package.
 
 
+<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
 
 === `<assert.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
 <font color="red">not implemented</font>
 
 
 === `<ctype.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
 <font color="green">fully supported</font>
 
 
 === `<errno.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
 <font color="green">fully supported</font>
 <font color="blue">some non standard</font>
 
 === `<float.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
 <font color="red">not supported</font>
 
 === `<limits.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
 <font color="orange">partially supported</font>
 
 === `<locale.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
+<font color="red">not implemented</font>
 
 === `<math.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
+<font color="red">not implemented</font>
 
 === `<setjmp.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
 <font color="red">not supported</font>
 
 === `<signal.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
+<font color="red">not implemented</font>
 
 === `<stdarg.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
 <font color="red">not supported</font>
 
 === `<stddef.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
 <font color="red">not supported</font>
 
 === `<stdio.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
 <font color="green">fully supported</font>
 
 === `<stdlib.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
 <font color="green">fully supported</font>
 
 === `<string.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
 <font color="green">fully supported</font>
 
 === `<time.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
+<font color="red">not implemented</font>
 
+
+
+<font color="orange">*POSIX.1*</font>
 === `<cpio.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<dirent.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<fcntl.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<grp.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<netdb.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<pthread.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<pwd.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<spawn.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/ipc.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/mman.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/msg.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/sem.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/stat.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/time.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/types.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/utsname.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/wait.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<tar.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<termios.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<unistd.h>` ===
 <font color="orange">partially supported</font>
 
 === `<utime.h>` ===
-<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>

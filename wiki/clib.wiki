@@ -1,0 +1,37 @@
+#summary The C Standard Library.
+
+== Introduction ==
+
+From the beginning, redtamarin added a bit of support for C-like functions and packages.
+
+We were calling that "a more or less standard C library" ;).
+
+Now, as we want to do the right thing, we want to provide as much support as possible, put things at the right place and avoid shortcuts if possible.
+
+The main principle still is the same
+
+if you have this in *C*
+{{{
+//C
+#include <stdlib.h>
+
+//char *getenv( const char *name );
+char *test = getenv("HOME");
+}}}
+
+then you can have this in *AS3*
+{{{
+//AS3
+import C.stdlib.*;
+
+//public function getenv( name:String ):String;
+var test:String = getenv( "HOME" );
+}}}
+
+these are the main reasons to do that
+
+  # in general, C give you a low-level universal access to things<br/>wether you know `chmod()` on the command line or you used `mkdir()` in PHP, Python, etc. you already used a bit of *C* somewhere
+
+  # building uppon this kind low-level you can build bigger things<br/>in our case we will reuse `mkdir()` to define `FileSystem.makeDirectory()`<br/>maybe you want to build your own API or do things a bit differently<br/>if yonly you had access to `mkdir()`...well you have access
+
+  # etc

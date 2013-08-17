@@ -255,30 +255,33 @@ The following will details which level of support we provide per header or packa
 
 
 === `<assert.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
+<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
 <font color="red">not implemented</font>
 
+
 === `<ctype.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
+<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
 <font color="green">fully supported</font>
+
 
 === `<errno.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
+<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
 <font color="green">fully supported</font>
+<font color="blue">some non standard</font>
 
 === `<float.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
+<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
 <font color="red">not supported</font>
 
 === `<limits.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
+<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
 <font color="orange">partially supported</font>
 
 === `<locale.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
+<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
 
 === `<math.h>` ===
-<font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
+<font color="orange">*ANSI C (C89) / ISO C (C90)*</font>
 
 === `<setjmp.h>` ===
 <font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>

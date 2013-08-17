@@ -258,20 +258,58 @@ The following will details which level of support we provide per header or packa
 === `<assert.h>` ===
 <font color="red">not implemented</font>
 
+Ideally we would like to support it but we are not sure yet how.
+
+This header only define one function <code>assert()</code><br/>
+when used and called in C, it allows to assert than expression is valid<br/>
+and if not, will return the expression used and the line number where it happen and then call <code>abort()</code>.
+
+We can not use the native <code>assert()</code> call "as is", but we could try to replicate its functionalities<br/>
+eg. returning the AS3 line where the assert was not valid and the expression string<br/>
+and instead of calling <code>abort()</code> maybe interrupt the code like a <code>throw error</code> ?
+
 
 === `<ctype.h>` ===
 <font color="green">fully supported</font>
 
+although we do not support the extensions <code>isalnum_l()</code>, <code>isalpha_l</code>, <code>isascii_l</code>, etc.
 
 === `<errno.h>` ===
 <font color="green">fully supported</font>
 <font color="blue">some non standard</font>
 
+*errno* being a very special macro in C, we used some tricks of our own in AS3.
+
+In the AS3 side, *errno* is a constant of the type <code>ErrorNumber</code>.
+
+This class <code>ErrorNumber</code> reuse 2 function calls <code>GetErrno()</code> and <code>SetErrno</code>
+as getter / setter to read and write to *errno* on the C context.
+
+The <code>valueOf()</code> return the integer value of *errno*, but the <code>toString()</code> return the strign from <code>strerror()</code>.
+
+It is usable and works well but the usage is a slightly bit different than in C.
+
+Another bit of headache were the error constants that can be quite different between Windows and OS X / Linux,
+and extremely different when it comes to sockets.
+
+So far we opted to hardcode the constant with the Linux values and later will provide "conversion functions": from WIN32 to Linux and vise versa.
+
+
 === `<float.h>` ===
 <font color="red">not supported</font>
 
+The float header defines the minimum and maximum limits of floating-point number values.
+
+It would be probably difficult to port its usage to an AS3 context, especially when the AVM2 redefine some types,
+in particular of the context of *VMCFG_FLOAT* which can gives access to the *float* and *float4* types on the AS3 side.
+
+
 === `<limits.h>` ===
 <font color="orange">partially supported</font>
+
+We support things like *NAME_MAX* (Maximum number of bytes in a filename) because it can influence how you work with the file system etc.
+
+But we will not support things like *CHARCLASS_NAME_MAX* (Maximum number of bytes in a character class name) as in AVM2/AS3 we roll with different rules.
 
 === `<locale.h>` ===
 <font color="red">not implemented</font>
@@ -282,14 +320,30 @@ The following will details which level of support we provide per header or packa
 === `<setjmp.h>` ===
 <font color="red">not supported</font>
 
+The setjmp header is used for controlling low-level calls and returns to and from functions.
+
+Which would be difficult (if not impossible) to adapt to AS3.
+
 === `<signal.h>` ===
 <font color="red">not implemented</font>
 
 === `<stdarg.h>` ===
 <font color="red">not supported</font>
 
+The stdarg header defines several macros used to get the arguments in a function when the number of arguments is not known.
+
+In an AS3 context we roll with different rules.
+
 === `<stddef.h>` ===
 <font color="red">not supported</font>
+
+The stddef header defines several standard definitions. Many of these definitions also appear in other headers.
+
+We don't plan to support "pointers" in an AS3 context.
+
+We don't plan to adapt the use of <code>sizeof()</code> into the AS3 context.
+
+We plan to support wide char trough the <code>String</code> type.
 
 === `<stdio.h>` ===
 <font color="green">fully supported</font>
@@ -304,7 +358,8 @@ The following will details which level of support we provide per header or packa
 <font color="red">not implemented</font>
 
 
-
+<br/>
+<br/>
 <font color="orange">*POSIX.1*</font>
 === `<cpio.h>` ===
 <font color="red">not implemented</font>

@@ -260,9 +260,11 @@ The following will details which level of support we provide per header or packa
 
 === `<ctype.h>` ===
 <font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
+<font color="green">fully supported</font>
 
 === `<errno.h>` ===
 <font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
+<font color="green">fully supported</font>
 
 === `<float.h>` ===
 <font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
@@ -295,12 +297,15 @@ The following will details which level of support we provide per header or packa
 
 === `<stdio.h>` ===
 <font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
+<font color="green">fully supported</font>
 
 === `<stdlib.h>` ===
 <font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
+<font color="green">fully supported</font>
 
 === `<string.h>` ===
 <font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
+<font color="green">fully supported</font>
 
 === `<time.h>` ===
 <font color="orange">*ANSI C (C89) / ISO C (C90)*</font><br/>
@@ -314,58 +319,76 @@ The following will details which level of support we provide per header or packa
 <font color="red">not implemented</font>
 
 === `<fcntl.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<grp.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<netdb.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<pthread.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<pwd.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<spawn.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/ipc.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/mman.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/msg.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/sem.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/stat.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/time.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/types.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/utsname.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<sys/wait.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<tar.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<termios.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>
 
 === `<unistd.h>` ===
 <font color="orange">partially supported</font>
 
 === `<utime.h>` ===
+<font color="orange">*POSIX.1*</font><br/>
 <font color="red">not implemented</font>

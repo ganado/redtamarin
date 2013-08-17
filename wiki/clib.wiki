@@ -260,19 +260,19 @@ The following will details which level of support we provide per header or packa
 
 Ideally we would like to support it but we are not sure yet how.
 
-This header only define one function <code>assert()</code><br/>
+This header only define one function `assert()`<br/>
 when used and called in C, it allows to assert than expression is valid<br/>
-and if not, will return the expression used and the line number where it happen and then call <code>abort()</code>.
+and if not, will return the expression used and the line number where it happen and then call `abort()`.
 
-We can not use the native <code>assert()</code> call "as is", but we could try to replicate its functionalities<br/>
+We can not use the native `assert()` call "as is", but we could try to replicate its functionalities<br/>
 eg. returning the AS3 line where the assert was not valid and the expression string<br/>
-and instead of calling <code>abort()</code> maybe interrupt the code like a <code>throw error</code> ?
+and instead of calling `abort()` maybe interrupt the code like a `throw error` ?
 
 
 === `<ctype.h>` ===
 <font color="green">fully supported</font>
 
-although we do not support the extensions <code>isalnum_l()</code>, <code>isalpha_l</code>, <code>isascii_l</code>, etc.
+although we do not support the extensions `isalnum_l()`, `isalpha_l()`, `isascii_l()`, etc.
 
 === `<errno.h>` ===
 <font color="green">fully supported</font>
@@ -280,12 +280,12 @@ although we do not support the extensions <code>isalnum_l()</code>, <code>isalph
 
 *errno* being a very special macro in C, we used some tricks of our own in AS3.
 
-In the AS3 side, *errno* is a constant of the type <code>ErrorNumber</code>.
+In the AS3 side, *errno* is a constant of the type `ErrorNumber`.
 
-This class <code>ErrorNumber</code> reuse 2 function calls <code>GetErrno()</code> and <code>SetErrno</code>
+This class `ErrorNumber` reuse 2 function calls `GetErrno()` and `SetErrno`
 as getter / setter to read and write to *errno* on the C context.
 
-The <code>valueOf()</code> return the integer value of *errno*, but the <code>toString()</code> return the strign from <code>strerror()</code>.
+The `valueOf()` return the integer value of *errno*, but the `toString()` return the string from `strerror()`.
 
 It is usable and works well but the usage is a slightly bit different than in C.
 
@@ -341,9 +341,9 @@ The stddef header defines several standard definitions. Many of these definition
 
 We don't plan to support "pointers" in an AS3 context.
 
-We don't plan to adapt the use of <code>sizeof()</code> into the AS3 context.
+We don't plan to adapt the use of `sizeof()` into the AS3 context.
 
-We plan to support wide char trough the <code>String</code> type.
+We plan to support wide char trough the `String` type.
 
 === `<stdio.h>` ===
 <font color="green">fully supported</font>

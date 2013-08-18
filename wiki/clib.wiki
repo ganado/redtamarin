@@ -205,7 +205,7 @@ package C.stdio
      * @langversion 3.0
      * @playerversion AVM 0.4
      */
-    [native(cls="::avmshell::CStdio_FILEClass", methods="auto", construct="none")]
+    [native(cls="::avmshell::CFILEClass", instance="::avmshell::CFILEObject", methods="auto")]
     public class FILE
     {
         //...

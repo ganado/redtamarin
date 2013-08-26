@@ -521,7 +521,8 @@ By extension we also don't support *stdio with explicit client locking* which im
 
 `fmemopen()` is not supported.
 
-We don't support all *print formatted output* namely `dprintf()`, `fprintf()`, `printf()`, `snprintf()`, and `sprintf()`.
+We don't support all *print formatted output* namely `dprintf()`, `fprintf()`, `printf()`, `snprintf()`, and `sprintf()`,
+as well as any functions that *convert formatted input* like `fscanf()`, `scanf()`, and `sscanf()`.
 
 
 === `<stdlib.h>` ===

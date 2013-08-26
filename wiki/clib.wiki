@@ -250,6 +250,18 @@ yep, it feels like C but it is still AS3.
 
 <br/>
 
+Which lead us to *what we will not support in general*.
+
+1. Everything related to threads.
+
+TODO, some explanation plus examples
+
+2. Everything related to memory
+
+TODO, some explanation plus examples
+
+<br/>
+
 The following will details which level of support we provide per header or package.
 
 
@@ -346,7 +358,14 @@ We don't plan to adapt the use of `sizeof()` into the AS3 context.
 We plan to support wide char trough the `String` type.
 
 === `<stdio.h>` ===
-<font color="green">fully supported</font>
+<font color="green">fully supported</font>/<font color="orange">partially supported</font>
+
+We do not support some extensions to ISO C.
+
+*stdio locking functions* namely `flockfile()`, `ftrylockfile()` and `funlockfile()`  are not supported
+because "These functions can be used by a thread to delineate a sequence of I/O statements that are executed as a unit.".
+
+
 
 === `<stdlib.h>` ===
 <font color="green">fully supported</font>

@@ -526,6 +526,9 @@ as well as any functions that *convert formatted input* like `fscanf()`, `scanf(
 
 We don't support `fseeko()`/`ftello()`, use `fseek()`/`ftell()` instead (eg. the *off_t* typedef is not that important).
 
+`getline()` and `getdelim()` are not supported; it is easy in AS3 to to find delimiter or newline char in a string so we don't need native functions for that.
+At best, we could implement in AS3 those function reusing `getc()`/`fgetc()`.
+
 
 === `<stdlib.h>` ===
 <font color="green">fully supported</font>

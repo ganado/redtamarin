@@ -382,13 +382,27 @@ We will not support returning the AS3 Vector type, we will use the Array type.
 
 <br/>
 
-*4. threads*
+*4. print*
+
+In general we will not support print functions as `printf()`, technically we could but we would rather not.
+
+In AS3 we have something called `trace()`, that's our `printf()`, it is less powerful, can not redirect on different streams
+and whatnot other features but it's there and it is what we use.
+
+SO for now we will not support all the variants of printf or printf itself, maybe an AS3 implementation of printf later
+as a formatting function but that would be it.
+
+Oh yeah, if we receive enough hate mails about why we don't support *printf* in a C standard library we may change our mind.
+
+<br/>
+
+*5. threads*
 
 TODO
 
 <br/>
 
-*5. memory*
+*6. memory*
 
 In AS3, within the AVM2, we don't really need to plan for memory use
 so any function dealing with memory would be a dangerous duplicate of what the AVM is doing in the "background".
@@ -506,6 +520,8 @@ By extension we also don't support *stdio with explicit client locking* which im
 `getc_unlocked()`, `getchar_unlocked()`, `putc_unlocked()`, and `putchar_unlocked()`.
 
 `fmemopen()` is not supported.
+
+We don't support all *print formatted output* namely `dprintf()`, `fprintf()`, `printf()`, `snprintf()`, and `sprintf()`.
 
 
 === `<stdlib.h>` ===

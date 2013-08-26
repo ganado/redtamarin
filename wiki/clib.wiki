@@ -535,6 +535,8 @@ and do your own parsing.
 
 `renameat()` is not supported, use `rename()` as equivalent function.
 
+`setbuf()` is not supported, use `setvbuf()` instead as it got more options.
+
 
 === `<stdlib.h>` ===
 <font color="green">fully supported</font>

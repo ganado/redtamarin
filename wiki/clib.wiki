@@ -519,7 +519,7 @@ because "These functions can be used by a thread to delineate a sequence of I/O 
 By extension we also don't support *stdio with explicit client locking* which implies no support for
 `getc_unlocked()`, `getchar_unlocked()`, `putc_unlocked()`, and `putchar_unlocked()`.
 
-`fmemopen()` is not supported.
+`fmemopen()` and `open_memstream` are not supported.
 
 We don't support all *print formatted output* namely `dprintf()`, `fprintf()`, `printf()`, `snprintf()`, and `sprintf()`,
 as well as any functions that *convert formatted input* like `fscanf()`, `scanf()`, and `sscanf()`.
@@ -528,6 +528,11 @@ We don't support `fseeko()`/`ftello()`, use `fseek()`/`ftell()` instead (eg. the
 
 `getline()` and `getdelim()` are not supported; it is easy in AS3 to to find delimiter or newline char in a string so we don't need native functions for that.
 At best, we could implement in AS3 those function reusing `getc()`/`fgetc()`.
+
+We don't support *command option parsing* namely `getopt()`, `optarg`, `opterr`, `optind`, and `optopt`
+because our AS3 programs do not have to follow the rules of `main(int argc, char *argv[ ])`, you can access command line arguments as an Array
+and do your own parsing.
+
 
 
 === `<stdlib.h>` ===

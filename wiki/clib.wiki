@@ -499,6 +499,9 @@ We do not support some extensions to ISO C.
 *stdio locking functions* namely `flockfile()`, `ftrylockfile()` and `funlockfile()`  are not supported
 because "These functions can be used by a thread to delineate a sequence of I/O statements that are executed as a unit.".
 
+By extension we also not support *stdio with explicit client locking* which implies no support for
+`getc_unlocked()`, `getchar_unlocked()`, `putc_unlocked()`, and `putchar_unlocked()`.
+
 
 
 === `<stdlib.h>` ===

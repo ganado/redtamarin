@@ -390,7 +390,10 @@ TODO
 
 *5. memory*
 
-TODO
+In AS3, within the AVM2, we don't really need to plan for memory use
+so any function dealing with memory would be a dangerous duplicate of what the AVM is doing in the "background".
+
+Simply put, we don't want to support memory allocation/deallocation/etc. because the AVM2 already does that for us.
 
 <br/>
 
@@ -499,9 +502,10 @@ We do not support some extensions to ISO C.
 *stdio locking functions* namely `flockfile()`, `ftrylockfile()` and `funlockfile()`  are not supported
 because "These functions can be used by a thread to delineate a sequence of I/O statements that are executed as a unit.".
 
-By extension we also not support *stdio with explicit client locking* which implies no support for
+By extension we also don't support *stdio with explicit client locking* which implies no support for
 `getc_unlocked()`, `getchar_unlocked()`, `putc_unlocked()`, and `putchar_unlocked()`.
 
+`fmemopen()` is not supported.
 
 
 === `<stdlib.h>` ===

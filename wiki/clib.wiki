@@ -537,6 +537,7 @@ and do your own parsing.
 
 `setbuf()` is not supported, use `setvbuf()` instead as it got more options.
 
+`tempnam()` is not supported, use `tmpnam()` or `tmpfile()` instead.
 
 === `<stdlib.h>` ===
 <font color="green">fully supported</font>

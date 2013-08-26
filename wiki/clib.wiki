@@ -509,7 +509,7 @@ We don't plan to adapt the use of `sizeof()` into the AS3 context.
 We plan to support wide char trough the `String` type.
 
 === `<stdio.h>` ===
-<font color="green">fully supported</font>/<font color="orange">partially supported</font>
+<font color="orange">partially supported</font>
 
 We do not support some extensions to ISO C.
 
@@ -533,6 +533,7 @@ We don't support *command option parsing* namely `getopt()`, `optarg`, `opterr`,
 because our AS3 programs do not have to follow the rules of `main(int argc, char *argv[ ])`, you can access command line arguments as an Array
 and do your own parsing.
 
+`renameat()` is not supported, use `rename()` as equivalent function.
 
 
 === `<stdlib.h>` ===

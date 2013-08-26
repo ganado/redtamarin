@@ -250,15 +250,149 @@ yep, it feels like C but it is still AS3.
 
 <br/>
 
-Which lead us to *what we will not support in general*.
+Which lead us to our second more advanced part *what we will not support in general*.
 
-1. Everything related to threads.
+Again, take it with a grain of salt, as said before it is unlikely we can have a 100% port of C into AS3.
 
-TODO, some explanation plus examples
+See it as an API, we start with C signatures and we try to end up with AS3 signatures,
+some times it make sens, some other time we have to improvise.
 
-2. Everything related to memory
+Here a small example:
+{{{
+//fgets - get a string from a stream
+char *fgets(char *restrict s, int n, FILE *restrict stream);
+}}}
 
-TODO, some explanation plus examples
+ideally in AS3 we should end up with the same signature
+{{{
+function fgets( s:String, n:int, stream:FILE ):String;
+}}}
+
+but we ended up with
+{{{
+function fgets( n:int, stream:FILE ):String;
+}}}
+
+why ?<br/>
+
+the simple answer is C and AS3 doen't work with strings the same way
+
+the longer answer is
+
+in C you don't really have a string type per se, you have *char* type
+{{{
+char a = 'a';
+}}}
+this is only for one character
+
+then you have *array of chars* (which is to be considered the "string" type)
+{{{
+char b[] = "hello world";
+}}}
+
+so strings in C are more of sequence of bytes terminated by NUL (`/0`)
+and in fact you could write your string like that too
+{{{
+char c[] = { 'h', 'e', 'l', 'l', 'o', '\0' };
+}}}
+
+and finally you could also use pointers to write a string litteral
+{{{
+char *d = "world";
+}}}
+
+or write an array of strings
+{{{
+char *fruits[] = { "apple", "banana", "orange" };
+}}}
+
+Now with *fgets* we need to be able to allocate a char array when calling the function<br/>
+in C you would do
+{{{
+char s[100]; //allocate your string with 100 bytes
+char *result; //pointer to get a string result
+
+result = fgets(s, sizeof(s), stdin); // read 100 bytes from standard input
+}}}
+
+Let's read what *fgets* is supposed to do<br/>
+"The fgets() function shall read bytes from stream into the array pointed to by s, until n-1 bytes are read, or a <newline> is read and transferred to s, or an end-of-file condition is encountered. The string is then terminated with a null byte."
+
+and as a return value<br/>
+"Upon successful completion, fgets() shall return s."
+
+so, in C, our char array *s* is here to be able to write the data, and if all goes well we then return *s* into the pointer *result*,
+so yeah *s* and *result* have the same value.
+
+And this is why it is different in AS3.
+
+First, we don't need to pass around a pointer to a char array to pre-allocate a string we want to return, we just return a damn string.<br/>
+Second, even if we wanted to do that, we can not really do that as our strings are passed by value and not by reference.
+Third, what *fgets* really does at the API level ? read *n* length from a stream and return a string.
+
+So, yeah, the *s* argument can simply go away as we don't need it<br/>
+in AS3 you would do
+{{{
+var result:String; //variable to get a string result
+
+result = fgets( 100, stdin ); // read 100 bytes from standard input
+}}}
+
+that's one way to do it, we could have done different like this
+{{{
+var s:Array = new Array(100); //allocate an array of 100 entries
+vr result:String; // variable for a string result;
+
+result = fgets( s, s.length, stdin ); // read 100 bytes from standard input
+}}}
+then *result* will contain a string and *s* will contain one char per index, eg.
+{{{
+result = "hello";
+s = [ "h", "e", "l", "l", "o" ];
+}}}
+
+but that would be overkill if not useless.
+
+And this is for one simple argument in one simple basic function.
+
+
+Here some special cases and why we will not support them or why we will do things in a particular way
+
+*1. pointers*
+
+We do not support pointers because AS3 does not have real pointers.
+
+We sill support passing objects by reference when it make sens.
+
+<br/>
+
+*2. NULL*
+
+in AS3 we have `null`, in C we have `NULL`, we consider them interchangeable to some extend.
+
+Some C function on success return a pointer or NULL on failure,
+the AVM2 can return different types of null: nullAtom, nullStringAtom, etc.
+and rarely use the C `NULL` but in our case returning `NULL` instead of `nullAtom` works better.
+
+<br/>
+
+*3. vectors*
+
+We will not support returning the AS3 Vector type, we will use the Array type.
+
+<br/>
+
+*4. threads*
+
+TODO
+
+<br/>
+
+*5. memory*
+
+TODO
+
+<br/>
 
 <br/>
 

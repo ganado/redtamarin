@@ -316,7 +316,7 @@ result = fgets(s, sizeof(s), stdin); // read 100 bytes from standard input
 }}}
 
 Let's read what *fgets* is supposed to do<br/>
-"The fgets() function shall read bytes from stream into the array pointed to by s, until n-1 bytes are read, or a <newline> is read and transferred to s, or an end-of-file condition is encountered. The string is then terminated with a null byte."
+"The fgets() function shall read bytes from stream into the array pointed to by s, until n-1 bytes are read, or a `<newline>` is read and transferred to s, or an end-of-file condition is encountered. The string is then terminated with a null byte."
 
 and as a return value<br/>
 "Upon successful completion, fgets() shall return s."

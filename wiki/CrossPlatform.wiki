@@ -6,10 +6,34 @@ One of the main advantage of the Flash Platform is to be able to write your code
 
 But for this to work you need to have your native implementation (in C/C++) dealing with the cross platform code.
 
-Adobe do a pretty good job at that with Flash and AIR, and here the goal is to do the same with redtamarin.
+Adobe do a pretty good job at that with Flash and AIR, and gave us in Tamarin a pretty solid layout to do it too.
+
+Here the goal is to keep doing that in *redtamarin*, it is a very high priority.
 
 
-== VMPI ==
+== Details ==
+
+Here some basic rules and scopes.
+
+We mainly support 3 Operating System
+  * Windows
+  * Mac OS X
+  * Linux
+
+Ideally we try to avoid implementing a native functionality that would work only in 1 Operating System,
+but there are off course exceptions.
+
+here 2 examples:
+
+*fork()* will work with Mac OS X and Linux but not Windows<br>
+in this particular case the Windows implementation should return an error message "not supported".
+
+*Windows Registry* will work only with Windows and not with Mac OS X or Linux<br>
+this API should support a static property `WindowsRegistry.isSupported:Boolean`.
+
+
+see this document
+<iframe width='500' height='300' frameborder='0' src='https://docs.google.com/spreadsheet/pub?key=0AjVfZaaIMWOcdEthZmtaUldiQ2V1UUl6UlUtVWo4c1E&output=html&widget=true'></iframe>
 
 The *Virtual Machine Platform Interface* (or Virtual Machine Porting Interface).
 
@@ -22,167 +46,10 @@ It basically works like that
 
 You have a common header [http://code.google.com/p/redtamarin/source/browse/tamarin-redux/VMPI/VMPI.h VMPI.h]
 
-that gonna fetch the platform header
-{{{
-//...
-#if AVMSYSTEM_WIN32
-  #include "win32/win32-platform.h"
-#elif AVMSYSTEM_UNIX
-  #include "unix/unix-platform.h"
-#elif AVMSYSTEM_MAC
-  #include "mac/mac-platform.h"
-#elif AVMSYSTEM_SYMBIAN
-  #include "symbian/symbian-platform.h"
-#endif
-//...
-}}}
-
-[http://code.google.com/p/redtamarin/source/browse/tamarin-redux/platform/win32/win32-platform.h win32-platform.h]
-{{{
-//...
-#define VMPI_memcpy         ::memcpy
-#define VMPI_memset         ::memset
-#define VMPI_memcmp         ::memcmp
-#define VMPI_memmove        ::memmove
-#define VMPI_memchr         ::memchr
-#define VMPI_strcmp         ::strcmp
-#define VMPI_strcat         ::strcat
-#define VMPI_strchr         ::strchr
-#define VMPI_strrchr        ::strrchr
-#define VMPI_strcpy         ::strcpy
-#define VMPI_strlen         ::strlen
-#define VMPI_strncat        ::strncat
-#define VMPI_strncmp        ::strncmp
-#define VMPI_strncpy        ::strncpy
-#define VMPI_strtol         ::strtol
-#define VMPI_strstr         ::strstr
-//...
-}}}
-
-[http://code.google.com/p/redtamarin/source/browse/tamarin-redux/platform/mac/mac-platform.h mac-platform.h]
-{{{
-//...
-#define VMPI_memcpy         ::memcpy
-#define VMPI_memset         ::memset
-#define VMPI_memcmp         ::memcmp
-#define VMPI_memmove        ::memmove
-#define VMPI_memchr         ::memchr
-#define VMPI_strcmp         ::strcmp
-#define VMPI_strcat         ::strcat
-#define VMPI_strchr         ::strchr
-#define VMPI_strrchr        ::strrchr
-#define VMPI_strcpy         ::strcpy
-#define VMPI_strlen         ::strlen
-#define VMPI_strncat        ::strncat
-#define VMPI_strncmp        ::strncmp
-#define VMPI_strncpy        ::strncpy
-#define VMPI_strtol         ::strtol
-#define VMPI_strstr         ::strstr
-//...
-}}}
-
-this is for the basics, but *VMPI.h* define more common functions
-{{{
-//...
-/**
-* This method should return the difference in milliseconds between local time and UTC
-* @return offset in milliseconds
-*/
-extern double       VMPI_getLocalTimeOffset();
-
-//...
-
-/**
-* This method is called to output log messages
-* The implementation of this method is platform-defined
-*  @param message NULL-terminated UTF8-encoded string
-* @return none
-*/
-extern void VMPI_log(const char* message);
-//...
-}}}
-
-which have their respective implementations in *!WinPortUtils.cpp*, *!PosixPortUtils.cpp*, etc.
-
-[http://code.google.com/p/redtamarin/source/browse/tamarin-redux/VMPI/WinPortUtils.cpp WinPortUtils.cpp]
-{{{
-//...
-double VMPI_getLocalTimeOffset()
-{
-    TIME_ZONE_INFORMATION tz = UpdateTimeZoneInfo();
-    return -tz.Bias * 60.0 * 1000.0;
-}
-
-//...
-
-void VMPI_log(const char* message)
-{
-#ifndef UNDER_CE
-    ::OutputDebugStringA(message);
-#endif
-
-    if(logFunc)
-        logFunc(message);
-    else {
-        printf("%s",message);
-        fflush(stdout);
-    }
-}
-//...
-}}}
-
-[http://code.google.com/p/redtamarin/source/browse/tamarin-redux/VMPI/PosixPortUtils.cpp PosixPortUtils.cpp]
-{{{
-//...
-double VMPI_getLocalTimeOffset()
-{
-    struct tm* t;
-    time_t current, localSec, globalSec;
-
-    // The win32 implementation ignores the passed in time
-    // and uses current time instead, so to keep similar
-    // behaviour we will do the same
-    time( &current );
-
-    t = localtime( &current );
-    localSec = mktime( t );
-
-    t = gmtime( &current );
-    globalSec = mktime( t );
-
-    return double( localSec - globalSec ) * 1000.0;
-}
-
-//...
-
-void VMPI_log(const char* message)
-{
-    if(logFunc)
-        logFunc(message);
-    else
-        printf("%s",message);
-}
-//...
-}}}
-
 
 This end up being elegant and easy to maintain, and so if we want to add our own cross platform functionalities we need to keep using VMPI.
 
-== How To add a common functionality ==
 
-TODO
-
- * step 1 - edit VMPI.h to add the common definition
- * step 2 - add the implementation in !PosixPortUtils.cpp
- * step 3 - add the implementation in !WinPortUtils.cpp
- * step 4 - test
-
-notes:<br>
- * use basic types in VMPI like char, double, etc.
- * once in your native class you can use avmplus types like Stringp, Atom, etc.
-
-
-== Misc ==
 
 Under WIN32, even if you compile in a cygwin environment, you should test both with cygwin and a basic command prompt as they don't always react the same ( `argv[0]`, path separator, environment variables, etc.).
 

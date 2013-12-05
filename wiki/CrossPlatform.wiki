@@ -32,8 +32,7 @@ in this particular case the Windows implementation should return an error messag
 this API should support a static property `WindowsRegistry.isSupported:Boolean`.
 
 
-see this document
-https://docs.google.com/spreadsheet/pub?key=0AjVfZaaIMWOcdEthZmtaUldiQ2V1UUl6UlUtVWo4c1E&output=html
+see this document [https://docs.google.com/spreadsheet/pub?key=0AjVfZaaIMWOcdEthZmtaUldiQ2V1UUl6UlUtVWo4c1E&output=html Cross Platform POSIX] (google spreadsheet)
 
 The *Virtual Machine Platform Interface* (or Virtual Machine Porting Interface).
 

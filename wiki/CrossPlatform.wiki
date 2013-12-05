@@ -40,7 +40,7 @@ and we follow the same model for RedTamarin.
 Here the general idea:
   * in the *platform* directory you have sub-directory per platform<br>*mac*, *unix*, *win32*, etc.
   * in *VMPI* we define and/or implement a shared API by all those platforms:<br>`VMPI_getenv()`, `VMPI_setenv()`, etc.
-  * in the native classes (see the *api* directory) you can only use VMPI functions when it comes to use Operating System API
+  * in the native classes (see the *api* directory) you can only use VMPI functions<br>when it comes to use Operating System API
 
 basically instead of doing this
 {{{
@@ -83,21 +83,39 @@ Stringp SystemClass::getEnvironment(Stringp name)
 }}}
 
 here the main reasons why
-  * if a particular platform does not support the function call we can throw a "not supported" error
+  * if a particular platform does not support the function call we can throw a "not supported" error from the VMPI function
   * we avoid to use a particular include, `VMPI.h` is used everywhere
   * we use the same function signatures and avoid to use if/else logic
   * if and when we adda new platform we don't have to rewrite the code of the native classes
   * we want to use POSIX even on handicapped platforms like Windows
 
+<br>
+<br>
 
-see this document [https://docs.google.com/spreadsheet/pub?key=0AjVfZaaIMWOcdEthZmtaUldiQ2V1UUl6UlUtVWo4c1E&output=html Cross Platform POSIX] (google spreadsheet) that illustrate which functions of POSIX are implemented in RedTamarin.
+|| see this document [https://docs.google.com/spreadsheet/pub?key=0AjVfZaaIMWOcdEthZmtaUldiQ2V1UUl6UlUtVWo4c1E&output=html Cross Platform POSIX] (google spreadsheet) that illustrate which functions of POSIX are implemented in !RedTamarin. ||
 
+<br>
+<br>
 
-== Cross Platform C/C++ ==
+== Cross Platform C/C++ References ==
 
 Welcome to hell :)
 
 TODO
+
+special case
+
+[http://www.utf8everywhere.org/ UTF-8 Everywhere]<br>
+excellent article and notes about using and implementing UTF-8 in your software.
+
+[http://www.softagalleria.net/dirent.php Dirent API for Microsoft Visual Studio]<br>
+an implementation of `<dirent.h>` for WIN32.
+
+uname
+
+etc.
+
+
 
 some interesting links
  * C Reference Card (ANSI) [http://www.usna.edu/EE/ee462/MANUALS/ansi-c-refcard-letter.pdf PDF]

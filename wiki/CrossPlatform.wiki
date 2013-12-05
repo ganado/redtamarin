@@ -32,27 +32,66 @@ in this particular case the Windows implementation should return an error messag
 this API should support a static property `WindowsRegistry.isSupported:Boolean`.
 
 
-see this document [https://docs.google.com/spreadsheet/pub?key=0AjVfZaaIMWOcdEthZmtaUldiQ2V1UUl6UlUtVWo4c1E&output=html Cross Platform POSIX] (google spreadsheet)
+== The Virtual Machine Platform Interface ==
 
-The *Virtual Machine Platform Interface* (or Virtual Machine Porting Interface).
+The *Virtual Machine Platform Interface* (or *VMPI*) is how Adobe engineers setup Tamarin,
+and we follow the same model for RedTamarin.
 
-Before, we were using ifdef in native classes and it was kind of painful to maintain<br>
-see [http://code.google.com/p/redtamarin/source/browse/tags/0.2.5/src/extensions/StdlibClass.cpp#106].
+Here the general idea:
+  * in the *platform* directory you have sub-directory per platform<br>*mac*, *unix*, *win32*, etc.
+  * in *VMPI* we define and/or implement a shared API by all those platforms:<br>`VMPI_getenv()`, `VMPI_setenv()`, etc.
+  * in the native classes (see the *api* directory) you can only use VMPI functions when it comes to use Operating System API
 
-But in the recent updates of Tamarin, Adobe introduced a more elegant way of doing it with *VMPI*.
+basically instead of doing this
+{{{
+#include <stdlib.h>
 
-It basically works like that
+Stringp SystemClass::getEnvironment(Stringp name)
+{
+    if (!name) {
+        toplevel()->throwArgumentError(kNullArgumentError, "name");
+    }
 
-You have a common header [http://code.google.com/p/redtamarin/source/browse/tamarin-redux/VMPI/VMPI.h VMPI.h]
+    StUTF8String nameUTF8(name);
+    Stringp output = core()->newStringUTF8( "" );
+
+    char *result;
+    result = getenv( nameUTF8.c_str() );
+
+    output = output->append( core()->newStringUTF8( result ) );
+    return output;
+}
+}}}
+
+you're doing that
+{{{
+Stringp SystemClass::getEnvironment(Stringp name)
+{
+    if (!name) {
+        toplevel()->throwArgumentError(kNullArgumentError, "name");
+    }
+
+    StUTF8String nameUTF8(name);
+    Stringp output = core()->newStringUTF8( "" );
+
+    char *result;
+    result = VMPI_getenv( nameUTF8.c_str() );
+
+    output = output->append( core()->newStringUTF8( result ) );
+    return output;
+}
+}}}
+
+here the main reasons why
+  * if a particular platform does not support the function call we can throw a "not supported" error
+  * we avoid to use a particular include, `VMPI.h` is used everywhere
+  * we use the same function signatures and avoid to use if/else logic
+  * if and when we adda new platform we don't have to rewrite the code of the native classes
+  * we want to use POSIX even on handicapped platforms like Windows
 
 
-This end up being elegant and easy to maintain, and so if we want to add our own cross platform functionalities we need to keep using VMPI.
+see this document [https://docs.google.com/spreadsheet/pub?key=0AjVfZaaIMWOcdEthZmtaUldiQ2V1UUl6UlUtVWo4c1E&output=html Cross Platform POSIX] (google spreadsheet) that illustrate which functions of POSIX are implemented in RedTamarin.
 
-
-
-Under WIN32, even if you compile in a cygwin environment, you should test both with cygwin and a basic command prompt as they don't always react the same ( `argv[0]`, path separator, environment variables, etc.).
-
-Also, if Mac OS X and Linux use both the !PosixPortUtils.cpp, you still have to use either ifdef or another specialized include for special case (eg. !MacDebugUtil.cpp).
 
 == Cross Platform C/C++ ==
 

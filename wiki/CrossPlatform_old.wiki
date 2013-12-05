@@ -1,0 +1,221 @@
+#summary notes about writing cross platform C/C++.
+
+== Introduction ==
+
+One of the main advantage of the Flash Platform is to be able to write your code in AS3 and have it running across different Operating Systems: Windows, OS X, Linux, Android, etc.
+
+But for this to work you need to have your native implementation (in C/C++) dealing with the cross platform code.
+
+Adobe do a pretty good job at that with Flash and AIR, and here the goal is to do the same with redtamarin.
+
+
+== VMPI ==
+
+The *Virtual Machine Platform Interface* (or Virtual Machine Porting Interface).
+
+Before, we were using ifdef in native classes and it was kind of painful to maintain<br>
+see [http://code.google.com/p/redtamarin/source/browse/tags/0.2.5/src/extensions/StdlibClass.cpp#106].
+
+But in the recent updates of Tamarin, Adobe introduced a more elegant way of doing it with *VMPI*.
+
+It basically works like that
+
+You have a common header [http://code.google.com/p/redtamarin/source/browse/tamarin-redux/VMPI/VMPI.h VMPI.h]
+
+that gonna fetch the platform header
+{{{
+//...
+#if AVMSYSTEM_WIN32
+  #include "win32/win32-platform.h"
+#elif AVMSYSTEM_UNIX
+  #include "unix/unix-platform.h"
+#elif AVMSYSTEM_MAC
+  #include "mac/mac-platform.h"
+#elif AVMSYSTEM_SYMBIAN
+  #include "symbian/symbian-platform.h"
+#endif
+//...
+}}}
+
+[http://code.google.com/p/redtamarin/source/browse/tamarin-redux/platform/win32/win32-platform.h win32-platform.h]
+{{{
+//...
+#define VMPI_memcpy         ::memcpy
+#define VMPI_memset         ::memset
+#define VMPI_memcmp         ::memcmp
+#define VMPI_memmove        ::memmove
+#define VMPI_memchr         ::memchr
+#define VMPI_strcmp         ::strcmp
+#define VMPI_strcat         ::strcat
+#define VMPI_strchr         ::strchr
+#define VMPI_strrchr        ::strrchr
+#define VMPI_strcpy         ::strcpy
+#define VMPI_strlen         ::strlen
+#define VMPI_strncat        ::strncat
+#define VMPI_strncmp        ::strncmp
+#define VMPI_strncpy        ::strncpy
+#define VMPI_strtol         ::strtol
+#define VMPI_strstr         ::strstr
+//...
+}}}
+
+[http://code.google.com/p/redtamarin/source/browse/tamarin-redux/platform/mac/mac-platform.h mac-platform.h]
+{{{
+//...
+#define VMPI_memcpy         ::memcpy
+#define VMPI_memset         ::memset
+#define VMPI_memcmp         ::memcmp
+#define VMPI_memmove        ::memmove
+#define VMPI_memchr         ::memchr
+#define VMPI_strcmp         ::strcmp
+#define VMPI_strcat         ::strcat
+#define VMPI_strchr         ::strchr
+#define VMPI_strrchr        ::strrchr
+#define VMPI_strcpy         ::strcpy
+#define VMPI_strlen         ::strlen
+#define VMPI_strncat        ::strncat
+#define VMPI_strncmp        ::strncmp
+#define VMPI_strncpy        ::strncpy
+#define VMPI_strtol         ::strtol
+#define VMPI_strstr         ::strstr
+//...
+}}}
+
+this is for the basics, but *VMPI.h* define more common functions
+{{{
+//...
+/**
+* This method should return the difference in milliseconds between local time and UTC
+* @return offset in milliseconds
+*/
+extern double       VMPI_getLocalTimeOffset();
+
+//...
+
+/**
+* This method is called to output log messages
+* The implementation of this method is platform-defined
+*  @param message NULL-terminated UTF8-encoded string
+* @return none
+*/
+extern void VMPI_log(const char* message);
+//...
+}}}
+
+which have their respective implementations in *!WinPortUtils.cpp*, *!PosixPortUtils.cpp*, etc.
+
+[http://code.google.com/p/redtamarin/source/browse/tamarin-redux/VMPI/WinPortUtils.cpp WinPortUtils.cpp]
+{{{
+//...
+double VMPI_getLocalTimeOffset()
+{
+    TIME_ZONE_INFORMATION tz = UpdateTimeZoneInfo();
+    return -tz.Bias * 60.0 * 1000.0;
+}
+
+//...
+
+void VMPI_log(const char* message)
+{
+#ifndef UNDER_CE
+    ::OutputDebugStringA(message);
+#endif
+
+    if(logFunc)
+        logFunc(message);
+    else {
+        printf("%s",message);
+        fflush(stdout);
+    }
+}
+//...
+}}}
+
+[http://code.google.com/p/redtamarin/source/browse/tamarin-redux/VMPI/PosixPortUtils.cpp PosixPortUtils.cpp]
+{{{
+//...
+double VMPI_getLocalTimeOffset()
+{
+    struct tm* t;
+    time_t current, localSec, globalSec;
+
+    // The win32 implementation ignores the passed in time
+    // and uses current time instead, so to keep similar
+    // behaviour we will do the same
+    time( &current );
+
+    t = localtime( &current );
+    localSec = mktime( t );
+
+    t = gmtime( &current );
+    globalSec = mktime( t );
+
+    return double( localSec - globalSec ) * 1000.0;
+}
+
+//...
+
+void VMPI_log(const char* message)
+{
+    if(logFunc)
+        logFunc(message);
+    else
+        printf("%s",message);
+}
+//...
+}}}
+
+
+This end up being elegant and easy to maintain, and so if we want to add our own cross platform functionalities we need to keep using VMPI.
+
+== How To add a common functionality ==
+
+TODO
+
+ * step 1 - edit VMPI.h to add the common definition
+ * step 2 - add the implementation in !PosixPortUtils.cpp
+ * step 3 - add the implementation in !WinPortUtils.cpp
+ * step 4 - test
+
+notes:<br>
+ * use basic types in VMPI like char, double, etc.
+ * once in your native class you can use avmplus types like Stringp, Atom, etc.
+
+
+== Misc ==
+
+Under WIN32, even if you compile in a cygwin environment, you should test both with cygwin and a basic command prompt as they don't always react the same ( `argv[0]`, path separator, environment variables, etc.).
+
+Also, if Mac OS X and Linux use both the !PosixPortUtils.cpp, you still have to use either ifdef or another specialized include for special case (eg. !MacDebugUtil.cpp).
+
+== Cross Platform C/C++ ==
+
+Welcome to hell :)
+
+TODO
+
+some interesting links
+ * C Reference Card (ANSI) [http://www.usna.edu/EE/ee462/MANUALS/ansi-c-refcard-letter.pdf PDF]
+ * [http://www.cplusplus.com/]
+ * [http://www.parashift.com/c++-faq-lite/ C++ FAQ LITE]
+ * [http://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html The GNU C Reference Manual]
+ * Optimizing software in C++: An optimization guide for Windows, Linux and Mac platforms [http://www.agner.org/optimize/ home] [http://www.agner.org/optimize/optimizing_cpp.pdf PDF]
+ * [http://www.crossplatformbook.com/posix.html POSIX.1 API Support] (cross reference MacOS X, Linux, MS Visual C++ RTL, Cygwin, MinGW, and NSPR 4.3)
+ * [http://www.unix.org/apis.html Unix98 API tables]
+ * [http://www.unix.org/version3/apis.html Unix03 (Single Unix Specification) API tables]
+
+some interesting books
+ * [http://publications.gbdirect.co.uk/c_book/ The C Book] (free)
+ * [http://beej.us/guide/bgc/ Beej's Guide to C Programming] (free)
+ * [http://crossplatformbook.com/ Cross-Platform Development in C++] (not free)
+ * [http://msdn.microsoft.com/en-us/library/ms811903.aspx MSDN UNIX Application Migration Guide] (free)
+ * [http://beej.us/guide/bgnet/ Beej's Guide to Network Programming] (free)
+ * [http://beej.us/guide/bgipc/ Beej's Guide to Unix Interprocess Communication] (free)
+ * [http://beej.us/guide/bggdb/ Beej's Quick Guide to GDB] (free)
+
+
+most of the API implemented are double-checked and referenced with
+ * [http://www.open-std.org/JTC1/SC22/WG14/www/standards ISO/IEC 9899 - Programming languages - C] [http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1256.pdf PDF]
+ * [http://www.unix.org/single_unix_specification/ The Single UNIX Specification Version 3 Interface]
+ * [http://msdn.microsoft.com/en-us/library/59ey50w6.aspx Microsoft Run-Time Library Reference]
+ * [http://www.dinkumware.com/manuals/default.aspx?manual=compleat&page=lib_over.html Dinkum Compleat Reference]

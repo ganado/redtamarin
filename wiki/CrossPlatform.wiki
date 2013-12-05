@@ -33,7 +33,7 @@ this API should support a static property `WindowsRegistry.isSupported:Boolean`.
 
 
 see this document
-<iframe width='500' height='300' frameborder='0' src='https://docs.google.com/spreadsheet/pub?key=0AjVfZaaIMWOcdEthZmtaUldiQ2V1UUl6UlUtVWo4c1E&output=html&widget=true'></iframe>
+https://docs.google.com/spreadsheet/pub?key=0AjVfZaaIMWOcdEthZmtaUldiQ2V1UUl6UlUtVWo4c1E&output=html
 
 The *Virtual Machine Platform Interface* (or Virtual Machine Porting Interface).
 

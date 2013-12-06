@@ -103,7 +103,7 @@ Welcome to hell :)
 
 TODO
 
-special case
+=== special case ===
 
 [http://www.utf8everywhere.org/ UTF-8 Everywhere]<br>
 excellent article and notes about using and implementing UTF-8 in your software.
@@ -120,8 +120,8 @@ Dynamically loaded library<br>
 [http://tldp.org/HOWTO/C++-dlopen/ C++ dlopen mini HOWTO]<br>
 
 
-Adobe blog post listing linked libraries for Linux
-[http://blogs.adobe.com/penguinswf/2006/09/librarian.html Librarian]<br>
+Adobe blog post listing linked libraries for Linux<br>
+[http://blogs.adobe.com/penguinswf/2006/09/librarian.html Librarian]
 <pre>
 libdl.so.2
 libpthread.so.0
@@ -148,7 +148,7 @@ If either library is not present, its representative features will be disabled.
 
 etc.
 
-
+=== online references ===
 
 some interesting links
  * C Reference Card (ANSI) [http://www.usna.edu/EE/ee462/MANUALS/ansi-c-refcard-letter.pdf PDF]

@@ -122,7 +122,7 @@ Dynamically loaded library<br>
 
 Adobe blog post listing linked libraries for Linux<br>
 [http://blogs.adobe.com/penguinswf/2006/09/librarian.html Librarian]
-<pre>
+{{{
 libdl.so.2
 libpthread.so.0
 libX11.so.6
@@ -143,7 +143,56 @@ libasound.so (for ALSA audio I/O)
 and libssl.so (for certain SSL connections).
 
 If either library is not present, its representative features will be disabled.
-</pre>
+}}}
+
+
+Adobe blog post about cURL under Linux<br>
+[http://blogs.adobe.com/penguinswf/2008/08/curl_tradeoffs.html cURL Tradeoffs]
+{{{
+We will use dlopen() and dlsym() to load required functions from libcurl.so.4.
+If that library is not there, fall back to libcurl.so.3.
+}}}
+
+Informations about mms.cfg, shared object paths, installer options, etc.<br>
+[http://www.adobe.com/devnet/flashplayer/articles/flash_player_admin_guide.html Adobe Flash Player Administration Guides]<br>
+[http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/flashplayer/pdfs/flash_player_11_9_admin_guide.pdf Adobe Flash Player 11.9 Administration Guide] (PDF)<br>
+useful for when redtamarin will want to add same behaviour as flash player etc.
+
+Little peek into how Linux support SSL, audio, and Video library
+[http://www.kaourantin.net/2006/10/extending-reach-of-flash-player-on.html Extending the reach of the Flash Player on Linux]<br>
+[http://www.kaourantin.net/flashplayer/flashsupport.c flashsupport.c]<br>
+good start for implementations =)
+
+implement a headless flash player with an event loop<br>
+[http://blog.kaourantin.net/?p=82 Timing it right]<br>
+[https://code.google.com/p/redshell/source/browse/test/performance/canaries/simpleflexapputil/playershell.as?spec=svn09c5c83eea908c195ce602623d78616612252afc&r=fec870a438a8054ec2028deffd990bcec067ba0f playershell.as]<br>
+in short, we should be able to provide a basic global event loop with a simple implementation of EventDispatcher
+and some polling in a loop locked by a timer or simply the `sleep()` function.
+
+[http://blog.kaourantin.net/?p=19 PNG support in Flash Player 8]<br>
+{{{
+we currently fully support:
+  IHDR Image header
+  IDAT Image data
+  PLTE Palette information
+  tRNS Transparency extension
+  gAMA Image gamma
+  IEND End of stream
+
+here are the chunk types we do NOT support
+  cHRM Primary chromaticities
+  sRGB Standard RGB color space
+  iCCP Embedded ICC profile
+  tEXt Textual data
+  zTXt Compressed textual data
+  iTXt International textual data
+  bKGD Background color
+  pHYs Physical pixel dimensions
+  sBIT Significant bits
+  sPLT Suggested palette
+  hIST Palette histogram
+  tIME Image last-modification time
+}}}
 
 
 etc.

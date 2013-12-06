@@ -203,7 +203,10 @@ etc.
 
 We need to refer to Internet standards to implement some components
 
-  * HTTP
+Network protocols
+  * HTTP - Hypertext Transfer Protocol
+    * [http://tools.ietf.org/html/rfc2616 [RFC2616] Hypertext Transfer Protocol -- HTTP/1.1]
+    * [http://tools.ietf.org/html/rfc2817 [RFC2817] Upgrading to TLS Within HTTP/1.1]
   * HTTPS
   * SOAP - Simple Object Access Protocol
   * UNC - Universal Naming Convention

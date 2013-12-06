@@ -113,6 +113,39 @@ an implementation of `<dirent.h>` for WIN32.
 
 uname
 
+Dynamically loaded library<br>
+[http://en.wikipedia.org/wiki/Dynamic_loading Wikipedia Dynamic_loading] (cross platform)<br>
+[http://en.wikipedia.org/wiki/Dynamic-link_library Wikipedia Dynamic-link_library] (windows only)<br>
+[http://tldp.org/HOWTO/Program-Library-HOWTO/dl-libraries.html DL libraries] (linux, mac)<br>
+[http://tldp.org/HOWTO/C++-dlopen/ C++ dlopen mini HOWTO]<br>
+
+
+Adobe blog post listing linked libraries for Linux
+[http://blogs.adobe.com/penguinswf/2006/09/librarian.html Librarian]<br>
+<pre>
+libdl.so.2
+libpthread.so.0
+libX11.so.6
+libXext.so.6
+libXt.so.6
+libfreetype.so.6
+libfontconfig.so.1
+libgtk-x11-2.0.so.0
+libgobject-2.0.so.0
+libglib-2.0.so.0
+libm.so.6
+libc.so.6
+
+...
+
+There are 2 more optional libraries:
+libasound.so (for ALSA audio I/O)
+and libssl.so (for certain SSL connections).
+
+If either library is not present, its representative features will be disabled.
+</pre>
+
+
 etc.
 
 

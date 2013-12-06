@@ -199,6 +199,27 @@ here are the chunk types we do NOT support
 
 etc.
 
+=== RFC ===
+
+We need to refer to Internet standards to implement some components
+
+  * HTTP
+  * HTTPS
+  * SOAP - Simple Object Access Protocol
+  * UNC - Universal Naming Convention
+  * TCP/IP
+  * FTP
+  * SMB
+  * SSL
+
+Adobe protocols
+  * AMF
+  * RTMP - Real Time Messaging Protocol
+  * RTMPT - RTMP tunneling via HTTP
+  * RTMPS - RTMP tunneling via HTTPS
+  * RTMFP
+
+
 === online references ===
 
 some interesting links

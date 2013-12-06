@@ -6,7 +6,18 @@ the motto basically is "do the right thing now, don't postpone it"
 == v0.4 series ==
 
 === v0.4 1R00-???? ===
+  * new build system
+     * driven by Ant
+     * publish clean and complete documentation
+     * publish redshell exe for Windows / Mac OS X / Linux
+        * release, debug, debug debugger
+        * 32bit and 64bit
+  * updated to latest tamarin-redux
+     * Proxy class
+     * AMF serialisation
+     * Workers
+     * etc.
   * refactor of the API
-     * *CLIB* C Standard Library for AS3<br>provide implementations of *ISO C / ANSI C* and *POSIX* C libraries to use them in the context of ActionScript 3.0
-     * *RNL* RedTamarin Native Library<br>provides system level libraries: file system, sockets, etc.
+     * *CLIB* C Standard Library for AS3<br>provide implementations of *ISO C / ANSI C* and *POSIX* C libraries<br>to use them in the context of !ActionScript 3.0
+     * *RNL* !RedTamarin Native Library<br>provides system level libraries: file system, sockets, databases, etc.
      * *AVMGlue* Flash Platform Glue Library<br>provides implementation of the Flash Platform API (FPAPI, eg. Flash Player and AIR)

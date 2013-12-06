@@ -111,7 +111,9 @@ excellent article and notes about using and implementing UTF-8 in your software.
 [http://www.softagalleria.net/dirent.php Dirent API for Microsoft Visual Studio]<br>
 an implementation of `<dirent.h>` for WIN32.
 
-uname
+uname<br>
+we need to implement `uname()` for Windows (already done)<br>
+see https://code.google.com/p/redtamarin/source/browse/trunk/VMPI/WinPortUtils2.cpp?r=1245#479
 
 Dynamically loaded library<br>
 [http://en.wikipedia.org/wiki/Dynamic_loading Wikipedia Dynamic_loading] (cross platform)<br>
@@ -158,7 +160,7 @@ Informations about mms.cfg, shared object paths, installer options, etc.<br>
 [http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/flashplayer/pdfs/flash_player_11_9_admin_guide.pdf Adobe Flash Player 11.9 Administration Guide] (PDF)<br>
 useful for when redtamarin will want to add same behaviour as flash player etc.
 
-Little peek into how Linux support SSL, audio, and Video library
+Little peek into how Linux support SSL, audio, and Video library<br>
 [http://www.kaourantin.net/2006/10/extending-reach-of-flash-player-on.html Extending the reach of the Flash Player on Linux]<br>
 [http://www.kaourantin.net/flashplayer/flashsupport.c flashsupport.c]<br>
 good start for implementations =)

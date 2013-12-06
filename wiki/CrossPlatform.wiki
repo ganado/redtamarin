@@ -196,7 +196,7 @@ here are the chunk types we do NOT support
   tIME Image last-modification time
 }}}
 
-
+http://tools.ietf.org/rfc/index
 etc.
 
 === RFC ===
@@ -205,22 +205,79 @@ We need to refer to Internet standards to implement some components
 
 Network protocols
   * HTTP - Hypertext Transfer Protocol
-    * [http://tools.ietf.org/html/rfc2616 [RFC2616] Hypertext Transfer Protocol -- HTTP/1.1]
-    * [http://tools.ietf.org/html/rfc2817 [RFC2817] Upgrading to TLS Within HTTP/1.1]
-  * HTTPS
+    * [http://tools.ietf.org/html/rfc1945 RFC1945] Hypertext Transfer Protocol -- HTTP/1.0
+    * [http://tools.ietf.org/html/rfc2616 RFC2616] Hypertext Transfer Protocol -- HTTP/1.1
+    * [http://tools.ietf.org/html/rfc6266 RFC6266] Use of the Content-Disposition Header Field in the Hypertext Transfer Protocol (HTTP)
+    * [http://tools.ietf.org/html/rfc6585 RFC6585] Additional HTTP Status Codes
+    * [http://tools.ietf.org/html/rfc2109 RFC2109] HTTP State Management Mechanism
+    * [http://tools.ietf.org/html/rfc2145 RFC2145] Use and Interpretation of HTTP Version Numbers
+    * [http://tools.ietf.org/html/rfc2069 RFC2069] An Extension to HTTP : Digest Access Authentication
+  * HTTPS - Hypertext Transfer Protocol Secure
+    * [http://tools.ietf.org/html/rfc2817 RFC2817] Upgrading to TLS Within HTTP/1.1
+    * [http://tools.ietf.org/html/rfc2818 RFC2818] HTTP Over TLS
+    * [http://tools.ietf.org/html/rfc2231 RFC2231] MIME Parameter Value and Encoded Word Extensions: Character Sets, Languages, and Continuations
+    * [http://tools.ietf.org/html/rfc5987 RFC5987] Character Set and Language Encoding for Hypertext Transfer Protocol (HTTP) Header Field Parameters
   * SOAP - Simple Object Access Protocol
+    * [http://tools.ietf.org/html/rfc4227 RFC4227] Using the Simple Object Access Protocol (SOAP) in Blocks Extensible Exchange Protocol (BEEP)
   * UNC - Universal Naming Convention
+    * [http://tools.ietf.org/html/rfc3986 RFC3986] Uniform Resource Identifier (URI): Generic Syntax
+    * [http://tools.ietf.org/html/rfc3987 RFC3987] Internationalized Resource Identifiers (IRIs)
+    * [http://tools.ietf.org/html/rfc5785 RFC5785] Defining Well-Known Uniform Resource Identifiers (URIs)
+    * [http://tools.ietf.org/html/rfc3406 RFC3406] Uniform Resource Names (URN) Namespace Definition Mechanisms
+    * [http://tools.ietf.org/html/rfc4395 RFC4395] Guidelines and Registration Procedures for New URI Schemes
+    * [http://tools.ietf.org/html/rfc2397 RFC2397] The "data" URL scheme
+    * [http://tools.ietf.org/html/draft-crhertel-smb-url-12 DRAFT-12] SMB File Sharing URI Scheme
   * TCP/IP
+    * [http://tools.ietf.org/html/rfc791 RFC791] INTERNET PROTOCOL
+    * [http://tools.ietf.org/html/rfc1349 RFC1349] Type of Service in the Internet Protocol Suite
+    * [http://tools.ietf.org/html/rfc68w64 RFC] Updated Specification of the IPv4 ID Field
+    * [http://tools.ietf.org/html/rfc793 RFC793] TRANSMISSION CONTROL PROTOCOL
+    * [http://tools.ietf.org/html/rfc3168 RFC3168] The Addition of Explicit Congestion Notification (ECN) to IP
+    * [http://tools.ietf.org/html/rfc6093 RFC6093] On the Implementation of the TCP Urgent Mechanism
+    * [http://tools.ietf.org/html/rfc6528 RFC6528] Defending against Sequence Number Attacks
+    * [http://tools.ietf.org/html/rfc1122 RFC1122] Requirements for Internet Hosts -- Communication Layers
+    * [http://tools.ietf.org/html/rfc6298 RFC6298] Computing TCP's Retransmission Timer
+  * ICMP
+    * [http://tools.ietf.org/html/rfc792 RFC792] INTERNET CONTROL MESSAGE PROTOCOL
+    * [http://tools.ietf.org/html/rfc950 RFC950] Internet Standard Subnetting Procedure
+    * [http://tools.ietf.org/html/rfc4884 RFC4884] Extended ICMP to Support Multi-Part Messages
+    * [http://tools.ietf.org/html/rfc6633 RFC6633] Deprecation of ICMP Source Quench Messages
+    * [http://tools.ietf.org/html/rfc6918 RFC] Formally Deprecating Some ICMPv4 Message Types
+  * TELNET
+    * [http://tools.ietf.org/html/rfc854 RFC854] TELNET PROTOCOL SPECIFICATION
+    * [http://tools.ietf.org/html/rfc855 RFC855] TELNET OPTION SPECIFICATIONS
+    * [http://tools.ietf.org/html/rfc5198 RFC5198] Unicode Format for Network Interchange
   * FTP
+    * [http://tools.ietf.org/html/rfc959 RFC959] FILE TRANSFER PROTOCOL (FTP)
+    * [http://tools.ietf.org/html/rfc2228 RFC2228] FTP Security Extensions
+    * [http://tools.ietf.org/html/rfc2640 RFC2640] Internationalization of the File Transfer Protocol
+    * [http://tools.ietf.org/html/rfc2773 RFC2773] Encryption using KEA and SKIPJACK
+    * [http://tools.ietf.org/html/rfc3659 RFC3659] Extensions to FTP
+    * [http://tools.ietf.org/html/rfc5797 RFC5797] FTP Command and Extension Registry
   * SMB
-  * SSL
+  * SSL / Security / Authorization
+    * [http://tools.ietf.org/html/rfc2617 RFC2617] HTTP Authentication: Basic and Digest Access Authentication
+    * [http://tools.ietf.org/html/rfc6101 RFC6101] The Secure Sockets Layer (SSL) Protocol Version 3.0
+    * [http://tools.ietf.org/html/rfc6176 RFC6176] Prohibiting Secure Sockets Layer (SSL) Version 2.0
+    * [http://tools.ietf.org/html/rfc5849 RFC5849] The OAuth 1.0 Protocol
+    * [http://tools.ietf.org/html/rfc6749 RFC6749] The OAuth 2.0 Authorization Framework
+    * [http://tools.ietf.org/html/rfc6750 RFC6750] The OAuth 2.0 Authorization Framework: Bearer Token Usage
+  * MISC
+    * [http://tools.ietf.org/html/rfc5234 RFC5234] Augmented BNF for Syntax Specifications: ABNF
 
-Adobe protocols
-  * AMF
+[http://en.wikipedia.org/wiki/List_of_RFCs List of RFCs]
+
+Adobe protocols and specifications
+  * SWF
+     * [http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/swf/pdf/swf-file-format-spec.pdf SWF 19] SWF File Format Specification (version 19) (PDF)
+     * [http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/swf/pdf/swf-file-format-spec-v10.pdf SWF 10] (PDF)
+  * AMF - Action Message Format
+     * [http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/amf/pdf/amf-file-format-spec.pdf AMF spec] (PDF)
   * RTMP - Real Time Messaging Protocol
   * RTMPT - RTMP tunneling via HTTP
   * RTMPS - RTMP tunneling via HTTPS
   * RTMFP
+    * [http://tools.ietf.org/html/rfc7016 RFC7016] Adobe's Secure Real-Time Media Flow Protocol
 
 
 === online references ===

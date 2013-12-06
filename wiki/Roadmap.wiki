@@ -1,23 +1,35 @@
 #summary Past and future release plan.
 
-from v0.4 redtamarin have gone to a big refactor<br>
+from v0.4 redtamarin have gone to a huge refactor<br>
 the motto basically is "do the right thing now, don't postpone it"
 
 == v0.4 series ==
 
-=== v0.4 1R00-???? ===
-  * new build system
-     * driven by Ant
+=== v0.4 2R00-???? - codename: Ginza ===
+  * implement essential libraries like HTTP, URL, TELNET, FTP, etc.
+  * implement more of AVMGlue: SharedObject reader/writer (.SOL)
+  * implement a basic event loop
+  * implement a headless flash player
+  * more to come etc.
+
+=== v0.4 1R00-???? - codename: Akihabara ===
+  * new build system - *done*
+     * driven by Ant and cross platform
      * publish clean and complete documentation
      * publish redshell exe for Windows / Mac OS X / Linux
         * release, debug, debug debugger
         * 32bit and 64bit
-  * updated to latest tamarin-redux
+  * updated to latest tamarin-redux - *done*
      * Proxy class
      * AMF serialisation
      * Workers
      * etc.
-  * refactor of the API
+  * refactor of the API - *in the work*
      * *CLIB* C Standard Library for AS3<br>provide implementations of *ISO C / ANSI C* and *POSIX* C libraries<br>to use them in the context of !ActionScript 3.0
-     * *RNL* !RedTamarin Native Library<br>provides system level libraries: file system, sockets, databases, etc.
-     * *AVMGlue* Flash Platform Glue Library<br>provides implementation of the Flash Platform API (FPAPI, eg. Flash Player and AIR)
+     * *RNL* !RedTamarin Native Library<br>provides system level libraries: file system, sockets, databases, etc.<br>not 100% will be implemented, we focus mainly on socket and file system
+     * *AVMGlue* Flash Platform Glue Library<br>provides implementation of the Flash Platform API (FPAPI, eg. Flash Player and AIR)<br>not 100% will be implemented for this release but at least mock/fake class will be available with API versioning
+  * tools - *in the work*
+     * !RedTamarin SDK<br>install all the tools, define environment variables, documentations, etc.
+     * redshell<br>our runtime based on avmshell<br>embed all the API: CLIB, RNL and AVMGlue<br> can run AS3 file, ABC file, SWF file
+     * redbean<br>make tool using AS3 syntax<br>compiler tool reusing asc.jar, asc2.jar, etc.<br>produce ABC file, SWF file, EXE file
+     * as3distro<br>package management util<br>allow to distribute libraries as: ABC, SWC, EXE

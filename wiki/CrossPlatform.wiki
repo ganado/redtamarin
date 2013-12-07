@@ -282,6 +282,16 @@ Adobe protocols and specifications
 
 === online references ===
 
+about cross platform
+ * [http://www.crossplatformbook.com/posix.html Cross Platform POSIX.1]
+ * [http://patrakov.blogspot.co.uk/2008/10/porting-cc-code-from-unix-to-win32.html Porting C/C++ code from Unix to Win32]
+ * https://code.google.com/p/msinttypes/<br>the project fills the absence of stdint.h and inttypes.h in Microsoft Visual Studio.
+ * [https://developer.apple.com/library/mac/documentation/Porting/Conceptual/PortingUnix/background/background.html#//apple_ref/doc/uid/TP40002848-TPXREF101 Porting UNIX/Linux Applications to OS X] (Mac Developer Library)
+ * [http://fearthecow.net/guest/rosetta/ Porting C/C++ to/from Win32 & Unix - A C/C++ Rosetta Stone]
+ * [http://msdn.microsoft.com/en-us/library/y23kc048.aspx Porting from UNIX to Win32] (MSDN)
+ * [http://www.ibm.com/developerworks/aix/library/au-porting/index.html Windows to UNIX porting, Part 1: Porting C/C++ sources] (IBM developerWorks)
+ * [http://www.ibm.com/developerworks/aix/library/au-porting2/index.html Windows to UNIX porting, Part 2: Internals of porting C/C++ sources] (IBM developerWorks)
+
 some interesting links
  * C Reference Card (ANSI) [http://www.usna.edu/EE/ee462/MANUALS/ansi-c-refcard-letter.pdf PDF]
  * [http://www.cplusplus.com/]

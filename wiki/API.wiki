@@ -2,6 +2,21 @@
 
 == Introduction ==
 
+from v0.4 we have a brand new API design, here the context and rules.
+
+ * we embed in the runtime (redshell) all core and essential libraries<br>so we can access them at all time without the need to load them first.
+ * we split our API in 3 distinct parts:
+   * CLIB: C libraries, the lowest level
+   * RNL: Native libraries, system level
+   * AVMGlue: framework libraries, high level
+ * any other code or libraries is user level<br>either constitute the main program or external library to load
+ * by default we are synchronous, blocking and use function callbacks
+ * we then provide options to allow the user to be asynchronous, non-blocking and use events
+ * an API definition can have those states
+   * not implemented
+   * not supported
+   * stub/mock/fake implementation
+   * implemented
 
 == CLIB ==
 

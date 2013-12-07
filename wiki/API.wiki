@@ -20,8 +20,51 @@ from v0.4 we have a brand new API design, here the context and rules.
 
 == CLIB ==
 
+The C Standard Library for AS3.
+
+Provides the *low-level* access to the system as if you were writing C code.
+
+This is based on *ISO C / ANSI C* and *POSIX*, the goal is to let developers
+work with standard C functions.
+
+Maybe you want to duplicate a C example you saw online to do a very special thing,
+or maybe you already know C and work with what you already know, etc.
+
+The idea is if you can do it in C, you will be able to do it with this API.
+
+But, off course, there are differences:
+  * it's way easier to manipulate strings in AS3 than in C<br>so all functions like `printf`, `scanf` are not supported.
+  * because we run inside a Virtual Machine with Garbage Collection<br>we don't support functions related to the memory and buffer<br>for ex: `malloc()`, `free()`, etc. are not supported
+  * because the *AVM2* has its own logic of workers<br>we do not support threads, semaphores, mutexes, etc. no `fork()`, no `pthread_create()`, no `sem_init()`
+  * most of the function signatures are adapted to AS3 syntax
 
 === RNL ===
 
+The !RedTamarin Native Library.
+
+Provides *native* access to the system in a convenient way.
+
+It focus on the file system, the operating system, sockets, processes, environments, databases, etc.
+
+This is where the most work on API occurs because we have to define something where we had nothing.
+
+Our focus is the following
+  * well named and organised classes<br> we will not use *fs* but *FileSystem* for example.
+  * abstraction and lowest common denominator for cross platform implementation<br>we want all our native classes to work the same under different Operating System<br>(unless exception like the Windows Registry).
+  * focus on the native parts, it's not the goal to duplicate here the *FPAPI*<br>because we will implement the FPAPI anyway in AVMGlue.
+  * provide all the "tools" that we or you can reuse to build more complex classes.
+
 
 === AVMGlue ===
+
+The AVMGlue Library.
+
+Provides an open source implementation of the *Flash Player API* and *AIR API*<br>
+(what we call the *FPAPI*: Flash Platform API).
+
+The goal is to let the developer use what he or she already knows from working with Flash or AIR.
+
+But as we are not building an open source Flash Player there are limitations
+  * it is not our goal to display graphics<br>even if you can use a `Sprite` or `Bitmap` class it will not show something on the screen.
+  * it took more than 10 years for a talented team of Adobe engineers<br>to define and implement all those API, don't expect a 100% implementation for everything.
+  * because we run on the command line and server side we may change slightly the FPAPI<br>some behaviours or rules could be completely different,<br>for ex it would make no sense to limit our API based on a security sandbox.

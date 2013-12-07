@@ -1,13 +1,8 @@
-#summary One-sentence summary of this page.
+#summary The C Standard Library for AS3.
 
-= Introduction =
-
-Add your content here.
+== Introduction ==
 
 
-= Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+
+== Details ==

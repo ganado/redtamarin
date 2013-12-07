@@ -57,3 +57,5 @@
     * [FAQ FAQ]
   * Old Stuff
       * [Build_old HOWTO Build]
+      * [CrossPlatform_old Cross Platform]
+      * [Roadmap_old Roadmap]

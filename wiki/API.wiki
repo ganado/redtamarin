@@ -49,7 +49,7 @@ It focus on the file system, the operating system, sockets, processes, environme
 This is where the most work on API occurs because we have to define something where we had nothing.
 
 Our focus is the following
-  * well named and organised classes<br> we will not use *fs* but *FileSystem* for example.
+  * well named and organised classes<br> we will not use `fs` but `FileSystem` for example.
   * abstraction and lowest common denominator for cross platform implementation<br>we want all our native classes to work the same under different Operating System<br>(unless exception like the Windows Registry).
   * focus on the native parts, it's not the goal to duplicate here the *FPAPI*<br>because we will implement the FPAPI anyway in AVMGlue.
   * provide all the "tools" that we or you can reuse to build more complex classes.

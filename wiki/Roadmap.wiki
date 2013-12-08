@@ -40,7 +40,7 @@ the motto basically is "do the right thing now, don't postpone it"
      * *RNL* !RedTamarin Native Library<br>provides system level libraries: file system, sockets, databases, etc.<br>not 100% will be implemented, we focus mainly on socket and file system
      * *AVMGlue* Flash Platform Glue Library<br>provides implementation of the Flash Platform API (FPAPI, eg. Flash Player and AIR)<br>not 100% will be implemented for this release but at least mock/fake class will be available with API versioning
   * tools - *in the work*
-     * !RedTamarin SDK<br>install all the tools, define environment variables, documentations, etc.
-     * redshell<br>our runtime based on avmshell<br>embed all the API: CLIB, RNL and AVMGlue<br> can run AS3 file, ABC file, SWF file
-     * redbean<br>make tool using AS3 syntax<br>compiler tool reusing asc.jar, asc2.jar, etc.<br>produce ABC file, SWF file, EXE file
-     * as3distro<br>package management util<br>allow to distribute and install libraries as: AS, ABC, SWC, EXE
+     * *!RedTamarin SDK*<br>install all the tools, define environment variables, documentations, etc.
+     * *redshell*<br>our runtime based on avmshell<br>embed all the API: CLIB, RNL and AVMGlue<br> can run AS3 file, ABC file, SWF file
+     * *redbean*<br>make tool using AS3 syntax<br>compiler tool reusing asc.jar, asc2.jar, etc.<br>produce ABC file, SWF file, EXE file
+     * *as3distro*<br>package management util<br>allow to distribute and install libraries as: AS, ABC, SWC, EXE

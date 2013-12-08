@@ -1,3 +1,134 @@
 #summary notes about AVMGlue.
 
+== Introduction ==
+
+AVMGlue is all about implementing the *Flash Player API* and *AIR API* so it can works under *redtamarin*.
+
+Basically we have very few ideas about this source code because it is proprietary.
+
+Those notes are here to gather help about implementing this API.
+
+
+== Flash Platform documentation ==
+
+[http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/ ActionScript® 3.0 Reference for the Adobe® Flash® Platform] (we refer to it as *AS3LCR*).
+
+The official Flash Platform documentation allow us to obtain the classes and methods signatures,
+it's not the whole source code but it is a good base.
+
+== Versioning ==
+
+Those API need to be versioned, based on the [https://code.google.com/p/redshell/source/browse/doc/apiversioning.txt API Versioning in AVM] doc and also on the AS3LCR.
+
+the AVM2 rely on those different files
+  * [https://code.google.com/p/redshell/source/browse/core/api-versions.xml api-versions.xml]
+  * [https://code.google.com/p/redshell/source/browse/core/api-versions.as api-versions.as]
+  * [https://code.google.com/p/redshell/source/browse/core/api-versions.h api-versions.h]
+  * [https://code.google.com/p/redshell/source/browse/core/api-versions.cpp api-versions.cpp]
+  * [https://code.google.com/p/redshell/source/browse/core/api-versions.java api-versions.java]
+
+From *api-versions.xml* we generate AS code that defines a compatibility matrix.
+
+This code is embedded in the release of Flash runtime glue and used by
+ASC and AVM to control the visibility of names in the API.
+
+here and example on how it is used<br>
+[https://code.google.com/p/redshell/source/browse/core/ByteArray.as ByteArray.as]
+{{{
+package flash.utils
+{
+
+include "api-versions.as"
+
+public class ByteArray implements IDataInput, IDataOutput
+{
+
+    /**
+     * Compresses the byte array using the deflate compression algorithm.
+     * The entire byte array is compressed.
+     *
+     * @see #inflate()
+     * @playerversion Flash 10
+     * @playerversion AIR 1.5
+     * @langversion 3.0
+     *
+     * @playerversion Lite 4
+     */
+    [API(CONFIG::FP_10_0)]
+    public function deflate():void
+    {
+        _compress("deflate");
+    }
+
+}
+
+}
+}}}
+
+
+That basically means that the `deflate()` method in the `ByteArray` class is only visible from "Flash Player v10".
+
+Now there is a little trick we need to apply to make all that work, this `[API(CONFIG::FP_10_0)]` is only available to the builtin code,
+in your case we build 2 ABC: builtin.abc and shell_toplevel.abc based on how Tamarin works, our API are all declared in "shell_toplevel"
+and so we can not use the same versioning as we would do in the "builtin".
+
+There are 2 way to solve that:
+  * either we shadow the declarations into public vars<br>`public const API_FP_10_0 = CONFIG::FP_10_0 - 660;`
+  * or we define our own set of variables<br>`example here`
+
+in */src/as3/* look at [http://TODO Versioning.as]
+{{{
+public const AVMGLUE::FP_10_0
+}}}
+
+that's what we use
+
+for example: with [http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/crypto/package.html#generateRandomBytes() flash.crypto.generateRandomBytes()]
+
+we can not do this
+{{{
+package flash.crypto
+{
+
+    /**
+     * Generates a sequence of random bytes.
+     * 
+     * @playerversion Flash 11
+     * @playerversion AIR 3
+     * @langversion 3.0
+     */
+    [API(CONFIG::SWF_13,CONFIG::AIR_3_0)]
+    public function generateRandomBytes( numberRandomBytes:uint ):ByteArray
+    {
+        //...
+    }
+
+}
+}}}
+
+we have to do that
+{{{
+package flash.crypto
+{
+
+    /**
+     * Generates a sequence of random bytes.
+     * 
+     * @playerversion Flash 11
+     * @playerversion AIR 3
+     * @langversion 3.0
+     */
+    [API(AVMGLUE::SWF_13,AVMGLUE::AIR_3_0)]
+    public function generateRandomBytes( numberRandomBytes:uint ):ByteArray
+    {
+        //...
+    }
+
+}
+}}}
+
+
+also we need to compile our code with this special namespace
+{{{
 TODO
+}}}

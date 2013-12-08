@@ -56,7 +56,7 @@
       * [TutorialsVideo Video Tutorials]
     * [FAQ FAQ]
   * Old Stuff
-    * [Main ↑ Home]
+    * [Main_old ↑ Home]
     * [Users Working with redtamarin]
       * [GettingStarted Getting Started]
         * [GettingStarted_0_2_5 Getting Started 0.2.5]

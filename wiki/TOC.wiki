@@ -35,12 +35,6 @@
     * [SWC SWC]
     * [Projector Projector]
     * [Security Security]
-    * [SocketDetails Socket details]
-    * [Examples Examples]
-       * [Examples_Socket Socket programming]
-    * [Tutorials Tutorials]
-      * [TutorialsVideo Video Tutorials]
-    * [FAQ FAQ]
   * Old Stuff
     * [Main_old ↑ Home]
     * [Users_old Working with redtamarin]
@@ -84,14 +78,6 @@
            * [Profile Profile]
       * [FlashPlatform Flash Platform]
     * Documentation
-      * [Tamarin Tamarin]
-      * [ASC ActionScript Compiler] (ASC)
-      * [ASC2 ActionScript Compiler 2] (ASC2)
-      * [ABC ActionScript Byte Code] (ABC)
-      * [asdoc asdoc]
-      * [SWC SWC]
-      * [Projector Projector]
-      * [Security Security]
       * [SocketDetails Socket details]
       * [Examples Examples]
          * [Examples_Socket Socket programming]

@@ -65,13 +65,13 @@ Provides an open source implementation of the *Flash Player API* and *AIR API*<b
 The goal is to let the developer use what he or she already knows from working with Flash or AIR.
 
 But as we are not building an open source Flash Player there are limitations
+  * we support AS3, not AS2, not AS1
+  * we support AMF3, not AMF0
   * it is not our goal to display graphics<br>even if you can use a `Sprite` or `Bitmap` class it will not show something on the screen.
   * it took more than 10 years for a talented team of Adobe engineers<br>to define and implement all those API, don't expect a 100% implementation for everything.
   * because we run on the command line and server side we may change slightly the FPAPI<br>some behaviours or rules could be completely different,<br>for ex it would make no sense to limit our API based on a security sandbox.
 
 The name come from `avmglue.abc` used by Adobe to produce the Flash Player.
-
-
 
 
 

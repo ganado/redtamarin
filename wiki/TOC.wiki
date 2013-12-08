@@ -56,7 +56,6 @@
       * [TutorialsVideo Video Tutorials]
     * [FAQ FAQ]
   * Old Stuff
-
     * [Main ↑ Home]
     * [Users Working with redtamarin]
       * [GettingStarted Getting Started]

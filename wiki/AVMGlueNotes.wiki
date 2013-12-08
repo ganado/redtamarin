@@ -143,7 +143,21 @@ need to be tested, but if we could cross compile from OS X to Linux and Windows,
 Now, we need to be sure of the quality and performance (eg. does MS compilers compile better exe than GCC with MinGW?).
 
 
-== SharedObject ==
+== mms.cfg / mm.cfg ==
+
+Informations about mms.cfg, shared object paths, installer options, etc.<br>
+[http://www.adobe.com/devnet/flashplayer/articles/flash_player_admin_guide.html Adobe Flash Player Administration Guides]<br>
+[http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/flashplayer/pdfs/flash_player_11_9_admin_guide.pdf Adobe Flash Player 11.9 Administration Guide] (PDF)<br>
+useful for when redtamarin will want to add same behaviour as flash player etc.
+
+some ref
+  * [http://jpauclair.net/2010/02/10/mmcfg-treasure/ AS3 hidden treasure in the mm.cfg file. Revealing and documenting many Flash secrets!]
+  * [http://blog.coursevector.com/whistler .whistler – An AIR Trace Viewer]
+
+for ex:<br>
+same as with `flash.trace.Trace`, if redshell find a `mm.cfg` file, try to follow the same behaviour as Flash Player / AIR.
+
+== !SharedObject ==
 
 Long time ago as a fun side project I started to reverse engineer the LSO, the reading was working but that's it.
 
@@ -152,6 +166,10 @@ I need to finnish this code to read/write LSO files, so it can reused to impleme
 few references:
   * http://en.wikipedia.org/wiki/Local_shared_object
   * http://epic.org/privacy/cookies/flash.html
+  * [http://solve.sourceforge.net/ SolVE: Local Shared Object Viewer/Editor]
+  * [http://www.sephiroth.it/python/solreader.php Shared Object Reader]
+  * [http://blog.coursevector.com/minerva .minerva – An AIR Shared Object Editor]
+
 
 *note:* now with an AMF serialiser/deseiraliser in redtmarin it should go much faster, just need to work on the header.
 
@@ -161,6 +179,7 @@ few references:
 We already have the implementation, we just need to compare and document the difference of usage between Flash Player / AIR and !RedTamarin.
 
 basic usage:<br>
+[http://www.eliatlas.com/blog/2011/02/27/as3-flash-trace-trace-hidden-class/ AS3 flash.trace.Trace Hidden Class]<br>
 [http://blog.sangupta.com/2011/08/magic-of-flashtracetrace.html Magic of flash.trace.Trace]
 
 for ex:<br>
@@ -251,23 +270,6 @@ IME: you know what? I don’t think we’ve settled on this one yet…
 }}}
 
 
-== mms.cfg / mm.cfg ==
-
-Informations about mms.cfg, shared object paths, installer options, etc.<br>
-[http://www.adobe.com/devnet/flashplayer/articles/flash_player_admin_guide.html Adobe Flash Player Administration Guides]<br>
-[http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/flashplayer/pdfs/flash_player_11_9_admin_guide.pdf Adobe Flash Player 11.9 Administration Guide] (PDF)<br>
-useful for when redtamarin will want to add same behaviour as flash player etc.
-
-[http://jpauclair.net/2010/02/10/mmcfg-treasure/ AS3 hidden treasure in the mm.cfg file. Revealing and documenting many Flash secrets!]
-
-== flash.trace.Trace ==
-
-we already have this class implemented.
-
-we need to document and compare how this class is used from Flash/AIR and !RedTamarin
-
-[http://www.eliatlas.com/blog/2011/02/27/as3-flash-trace-trace-hidden-class/ AS3 flash.trace.Trace Hidden Class]
-
 
 == flashsupport.c ==
 
@@ -328,6 +330,20 @@ here are the chunk types we do NOT support
   hIST Palette histogram
   tIME Image last-modification time
 }}}
+
+
+== Pixel Bender PBJ assembler and disassembler ==
+
+[http://www.kaourantin.net/2008/09/pixel-bender-pbj-files.html Pixel Bender .pbj files]
+
+files:
+  * http://www.kaourantin.net/source/pbjtools/apbj.cpp
+  * http://www.kaourantin.net/source/pbjtools/dpbj.cpp
+  * http://www.kaourantin.net/source/pbjtools/apbj.zip
+  * http://www.kaourantin.net/source/pbjtools/dpbj.zip
+
+not a high priority but still good to have
+
 
 
 == AGAL ==
@@ -446,9 +462,17 @@ Sometimes when there is no other way because we are stucke
 
 Why?: because most of the native classes in avmglue.abc also use AS3, at least we can get the AS3 part.
 
+various flash decompilers
+  * [http://www.buraks.com/asv/ ActionScript Viewer] (imho the best)
+  * tamarin-redux abcdump (good)
+  * tamarin-redux abcdis (better)
+  * [http://labs.adobe.com/technologies/swfinvestigator/ Adobe SWF Investigator] ([http://sourceforge.net/adobe/swfinvestigator/code/HEAD/tree/ sources])
+  * [http://yogda.2ka.org/ Yogda AVM2 workbench] interesting AVM2 Bytecode Assembler / Disassembler / Injector (sadly only WIN32)
+  * [http://yogda.2ka.org/bytecodes Yogda AVM2 Library ] example of bytecode usage in Tamarin
+
 *Decompiling C/C++*
   * [http://www.blackhat.com/presentations/bh-dc-07/Sabanal_Yason/Paper/bh-dc-07-Sabanal_Yason-WP.pdf Reversing C++] (PDF) (by X-Force, Black Hat DC, Feb 2007)
-  * 
+  * more to add
   * todo
   * todo
   * todo

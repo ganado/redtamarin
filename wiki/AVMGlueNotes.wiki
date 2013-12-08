@@ -133,6 +133,24 @@ also we need to compile our code with this special namespace
 TODO
 }}}
 
+== Versioning support and update ==
+
+As of now Tamarin and !RedTamarin supports the following
+{{{
+
+}}}
+
+to support more version we need to update the !RedTamarin source code<br>
+but we need to also update the ASC source code.
+
+*problem:*<br>
+to be able to compile the builtins we use a special older version of asc.jar,<br>
+which is not the sources of asc.jar that we can find in the Apache Flex project<br>
+so we would need to diff the 2 source code and update consequently<br>
+possible but a bit of a pain.<br>
+<br>
+And same for asc2.jar which we don;t have officially the source code.
+
 
 == Cross Compiling ==
 
@@ -454,7 +472,7 @@ Adobe protocols and specifications
 
 == Reverse Engineering ==
 
-Sometimes when there is no other way because we are stucke
+Sometimes when there is no other way because we are stuck
 
 *Decompiling SWC*
   * playerglobal.swc
@@ -469,6 +487,14 @@ various flash decompilers
   * [http://labs.adobe.com/technologies/swfinvestigator/ Adobe SWF Investigator] ([http://sourceforge.net/adobe/swfinvestigator/code/HEAD/tree/ sources])
   * [http://yogda.2ka.org/ Yogda AVM2 workbench] interesting AVM2 Bytecode Assembler / Disassembler / Injector (sadly only WIN32)
   * [http://yogda.2ka.org/bytecodes Yogda AVM2 Library ] example of bytecode usage in Tamarin
+  * http://www.swfwire.com/ seem very good too and open source
+  * http://bruce-lab.blogspot.co.uk/2010_08_01_archive.html (other stuff)
+
+*Decompiling Java*
+  * the best http://jd.benow.ca/ (was http://java.decompiler.free.fr/)
+  * seriously there are no other [http://en.wikipedia.org/wiki/Java_Decompiler Java Decompiler on Wikipedia]
+
+Why?: even if most compiler tools are open source we need to decompile particuliar versions of asc.jar and asc2.jar
 
 *Decompiling C/C++*
   * [http://www.blackhat.com/presentations/bh-dc-07/Sabanal_Yason/Paper/bh-dc-07-Sabanal_Yason-WP.pdf Reversing C++] (PDF) (by X-Force, Black Hat DC, Feb 2007)

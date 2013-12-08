@@ -270,7 +270,22 @@ here are the chunk types we do NOT support
 }}}
 
 
-=== RFC ===
+== AGAL ==
+
+AGAL - Adobe Graphics Assembly Language
+
+[http://www.adobe.com/devnet/flashplayer/articles/what-is-agal.html What is AGAL]<br>
+[http://blogs.adobe.com/flascc/2012/12/14/bringing-opengl-cc-code-to-the-web-with-flascc/ Bringing OpenGL C/C++ code to the web with FlasCC]
+
+[https://github.com/adobe/glsl2agal glsl2agal GLSL To AGAL Compiler]<br>
+[https://github.com/adobe/glsl2agal/tree/master/agalassembler AGAL assembler] (C++)<br>
+[https://github.com/adobe/glsl2agal/tree/master/agaloptimiser/src/com/adobe/AGALOptimiser AGAL optimiser] (AS3)
+
+
+[http://www.bytearray.org/wp-content/projects/agalassembler/com.zip AGALMiniAssembler.as (original)]
+[https://github.com/PrimaryFeather/Starling-Framework/blob/master/starling/src/com/adobe/utils/AGALMiniAssembler.as AGALMiniAssembler.as (updated)]
+
+== RFC ==
 
 We need to refer to Internet standards to implement some components
 

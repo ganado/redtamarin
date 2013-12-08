@@ -22,7 +22,7 @@
     * [Roadmap Roadmap]
   * [API API reference]
     * [CLIB The C Standard Library for AS3]
-    * [RNL The !RedTamarin Native Library]
+    * [RNL The RedTamarin Native Library]
     * [AVMGlue The AVMGlue Library]
     * [FlashPlatform Flash Platform]
   * Documentation

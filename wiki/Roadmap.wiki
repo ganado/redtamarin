@@ -15,6 +15,9 @@ the motto basically is "do the right thing now, don't postpone it"
      * as a library (ABC)
      * as a command line tool (EXE)
      * start to write unit tests for all those libraries
+     * integrate the tool in the SDK
+  * port/integrate *abcdump* to the SDK
+  * port/integrate *abcdis* to the SDK
   * implement a basic event loop
   * implement a headless flash player
   * review all the encoding to support fully UTF-8 on stdin/stderr/stdout

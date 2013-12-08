@@ -4,7 +4,7 @@
 
 Tamarin is an open source virtual machine with just-in-time compilation (JIT) support intended to implement the fourth edition of the ECMAScript standard. 
 
-Tamarin was developed by Adobe for its ActionScript Virtual Machine ([AVM2]) used in Flash 9 and up, and later open sourced in 2006.
+Tamarin was developed by Adobe for its ActionScript Virtual Machine (AVM2) used in Flash 9 and up, and later open sourced in 2006.
 
 <pre>
 The goal of the "Tamarin" project is to implement a high-performance,

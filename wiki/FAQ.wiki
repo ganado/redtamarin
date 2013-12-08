@@ -1,5 +1,9 @@
 #summary Frequently Asked Questions.
 
+|| *note:* merge this FAQ with the web site FAQ, re-edit for CLIB, RNl and AVMGlue ||
+
+----
+
  * *What's the main difference with [http://www.mozilla.org/projects/tamarin/ Tamarin] ?*
  Tamarin focus on VM and optimization (like GC, nanoJIT, etc.), redtamarin focus on shell and APIs.
 

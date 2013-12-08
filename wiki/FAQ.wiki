@@ -1,6 +1,6 @@
 #summary Frequently Asked Questions.
 
-|| *note:* merge this FAQ with the web site FAQ, re-edit for CLIB, RNl and AVMGlue ||
+|| *note:* merge this FAQ with the web site FAQ, re-edit for CLIB, RNL and AVMGlue ||
 
 ----
 

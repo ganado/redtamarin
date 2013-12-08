@@ -134,6 +134,15 @@ TODO
 }}}
 
 
+== Cross Compiling ==
+
+[http://crossgcc.rts-software.org/doku.php Cross Compilers for Mac OS X]
+
+need to be tested, but if we could cross compile from OS X to Linux and Windows, we could generate all the exe in one go.
+
+Now, we need to be sure of the quality and performance (eg. does MS compilers compile better exe than GCC with MinGW?).
+
+
 == UTF-8 Encoding ==
 
 For now, AS3 source code can use UTF-8, and most of stdout can output UTF-8,
@@ -224,6 +233,16 @@ Informations about mms.cfg, shared object paths, installer options, etc.<br>
 [http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/flashplayer/pdfs/flash_player_11_9_admin_guide.pdf Adobe Flash Player 11.9 Administration Guide] (PDF)<br>
 useful for when redtamarin will want to add same behaviour as flash player etc.
 
+[http://jpauclair.net/2010/02/10/mmcfg-treasure/ AS3 hidden treasure in the mm.cfg file. Revealing and documenting many Flash secrets!]
+
+== flash.trace.Trace ==
+
+we already have this class implemented.
+
+we need to document and compare how this class is used from Flash/AIR and !RedTamarin
+
+[http://www.eliatlas.com/blog/2011/02/27/as3-flash-trace-trace-hidden-class/ AS3 flash.trace.Trace Hidden Class]
+
 
 == flashsupport.c ==
 
@@ -240,6 +259,22 @@ implement a headless flash player with an event loop<br>
 [https://code.google.com/p/redshell/source/browse/test/performance/canaries/simpleflexapputil/playershell.as?spec=svn09c5c83eea908c195ce602623d78616612252afc&r=fec870a438a8054ec2028deffd990bcec067ba0f playershell.as]<br>
 in short, we should be able to provide a basic global event loop with a simple implementation of EventDispatcher
 and some polling in a loop locked by a timer or simply the `sleep()` function.
+
+
+== Multimedias: image, sound, video ==
+
+[http://www.zdnet.com/blog/stewart/interview-with-mike-melanson-lead-engineer-on-the-linux-flash-player-team/96 Interview with Mike Melanson, lead engineer on the Linux Flash Player team]<br>
+[https://plus.google.com/115891738491519168693/about Mike Melanson google+]<br>
+
+[http://wiki.multimedia.cx/ The multimedia wiki]<br>
+wealth of resources for formats, codecs, etc.
+  * [http://wiki.multimedia.cx/index.php?title=PNG PNG]
+  * [http://wiki.multimedia.cx/index.php?title=H.264 H264]
+  * etc.
+
+[http://multimedia.cx/eggs/ Breaking Eggs And Making Omelettes] Topics On Multimedia Technology and Reverse Engineering
+
+[http://guru.multimedia.cx/ Lair Of The Multimedia Guru]
 
 
 == PNG ==
@@ -282,8 +317,15 @@ AGAL - Adobe Graphics Assembly Language
 [https://github.com/adobe/glsl2agal/tree/master/agaloptimiser/src/com/adobe/AGALOptimiser AGAL optimiser] (AS3)
 
 
-[http://www.bytearray.org/wp-content/projects/agalassembler/com.zip AGALMiniAssembler.as (original)]
+[http://www.bytearray.org/wp-content/projects/agalassembler/com.zip AGALMiniAssembler.as (original)]<br>
 [https://github.com/PrimaryFeather/Starling-Framework/blob/master/starling/src/com/adobe/utils/AGALMiniAssembler.as AGALMiniAssembler.as (updated)]
+
+
+more 3D stuff:
+
+PixarAnimationStudios / OpenSubdiv<br>
+[https://github.com/PixarAnimationStudios/OpenSubdiv Github OpenSubDiv]<br>
+[http://graphics.pixar.com/opensubdiv/architecture.html OpenSubDiv Architecture]
 
 == RFC ==
 
@@ -366,3 +408,24 @@ Adobe protocols and specifications
   * RTMPS - RTMP tunneling via HTTPS
   * RTMFP
     * [http://tools.ietf.org/html/rfc7016 RFC7016] Adobe's Secure Real-Time Media Flow Protocol
+
+
+
+== Reverse Engineering ==
+
+Sometimes when there is no other way because we are stuck
+
+*Decompiling SWC*
+  * playerglobal.swc
+  * airglobal.swc
+
+Why?: because most of the native classes in avmglue.abc also use AS3, at least we can get the AS3 part.
+
+**
+  * [http://www.blackhat.com/presentations/bh-dc-07/Sabanal_Yason/Paper/bh-dc-07-Sabanal_Yason-WP.pdf Reversing C++] (PDF) (by X-Force, Black Hat DC, Feb 2007)
+  * 
+  * 
+  * 
+  * 
+
+

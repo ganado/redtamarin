@@ -143,6 +143,19 @@ need to be tested, but if we could cross compile from OS X to Linux and Windows,
 Now, we need to be sure of the quality and performance (eg. does MS compilers compile better exe than GCC with MinGW?).
 
 
+== SharedObject ==
+
+Long time ago as a fun side project I started to reverse engineer the LSO, the reading was working but that's it.
+
+I need to finnish this code to read/write LSO files, so it can reused to implement `flash.net.SharedObject`.
+
+few references:
+  * http://en.wikipedia.org/wiki/Local_shared_object
+  * http://epic.org/privacy/cookies/flash.html
+
+*note:* now with an AMF serialiser/deseiraliser in redtmarin it should go much faster, just need to work on the header.
+
+
 == UTF-8 Encoding ==
 
 For now, AS3 source code can use UTF-8, and most of stdout can output UTF-8,
@@ -427,5 +440,3 @@ Why?: because most of the native classes in avmglue.abc also use AS3, at least w
   * 
   * 
   * 
-
-

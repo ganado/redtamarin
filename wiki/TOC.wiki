@@ -19,6 +19,7 @@
       * [VMPI VMPI]
       * [TamarinNotes notes about Tamarin]
       * [CrossPlatformNotes notes about cross-platform C/C++]
+      * [AVMGlueNotes notes about AVMGlue]
     * [Roadmap Roadmap]
   * [API API reference]
     * [CLIB The C Standard Library for AS3]

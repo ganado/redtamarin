@@ -156,6 +156,18 @@ few references:
 *note:* now with an AMF serialiser/deseiraliser in redtmarin it should go much faster, just need to work on the header.
 
 
+== flash.trace.Trace ==
+
+We already have the implementation, we just need to compare and document the difference of usage between Flash Player / AIR and !RedTamarin.
+
+basic usage:<br>
+[http://blog.sangupta.com/2011/08/magic-of-flashtracetrace.html Magic of flash.trace.Trace]
+
+for ex:<br>
+if someone edit `mm.cfg` it can generate traces in the flashlog.txt<br>
+we could add a check in the redtamarin boot sequence and duplicate this behaviour.
+
+
 == UTF-8 Encoding ==
 
 For now, AS3 source code can use UTF-8, and most of stdout can output UTF-8,
@@ -426,7 +438,7 @@ Adobe protocols and specifications
 
 == Reverse Engineering ==
 
-Sometimes when there is no other way because we are stuck
+Sometimes when there is no other way because we are stucke
 
 *Decompiling SWC*
   * playerglobal.swc
@@ -434,9 +446,9 @@ Sometimes when there is no other way because we are stuck
 
 Why?: because most of the native classes in avmglue.abc also use AS3, at least we can get the AS3 part.
 
-**
+*Decompiling C/C++*
   * [http://www.blackhat.com/presentations/bh-dc-07/Sabanal_Yason/Paper/bh-dc-07-Sabanal_Yason-WP.pdf Reversing C++] (PDF) (by X-Force, Black Hat DC, Feb 2007)
   * 
-  * 
-  * 
-  * 
+  * todo
+  * todo
+  * todo

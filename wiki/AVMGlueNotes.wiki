@@ -287,6 +287,62 @@ SSL: OpenSSL
 IME: you know what? I don’t think we’ve settled on this one yet…
 }}}
 
+Even better, found a patch for Tamarin from fklockii at adobe =)
+[http://hg.mozilla.org/users/fklockii_adobe.com/dlopen-patches/file/3eca1b256724/checkpoint-dlopen-play checkpoint-dlopen-play]
+
+here the layout
+{{{
+DynamicLibraryGlue.h
+DynamicLibraryGlue.cpp
+    |_ DynamicHandleClass
+    |_ DynamicHandleObject
+    |_ DynamicLibraryClass
+    |_ DynamicLibraryObject
+
+
+DynamicHandle.as
+----
+package avmshell
+{
+    
+    [native(cls="::avmshell::DynamicHandleClass", instance="::avmshell::DynamicHandleObject", methods="auto")]
+    public class DynamicHandle
+    {
+    
+    }
+    
+}
+----
+
+
+DynamicLibrary.as
+----
+package avmshell
+{
+    
+    [native(cls="::avmshell::DynamicLibraryClass", instance="::avmshell::DynamicLibraryObject", methods="auto")]
+    public class DynamicLibrary
+    {
+        public function DynamicLibrary() {}
+        public native function open(filename:String):void;
+        public native function close():void;
+        public function resolve(name:String):DynamicHandle
+        {
+            var dh:DynamicHandle = new DynamicHandle();
+            resolveWithin(name, dh);
+            return dh;
+        }
+        private native function resolveWithin(nm:String, dh:DynamicHandle):void;
+        public native function addUserSearchPath(path:String):void;
+        public native function removeUserSearchPath(path:String):void;
+        
+    }
+    
+}
+----
+
+}}}
+
 
 
 == flashsupport.c ==

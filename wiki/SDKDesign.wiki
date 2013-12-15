@@ -112,7 +112,7 @@ The installer is responsible to
 
 based on redtamarin `/src/platform` our platform names should be
   * *mac* for Mac OS X
-    * replace *osx* thagt we were using before
+    * replace *osx* that we were using before
     * for special case we can have *mac105* for OS X 10.5
   * *unix* for Linux
     * we will fall back to *nix* to keep 3 letters
@@ -136,6 +136,7 @@ based on redtamarin `/src/platform` our platform names should be
  * mac: `REDTAMARIN_CONF = "~/.redtamarin/config"`
  * nix: `REDTAMARIN_CONF = "~/.redtamarin/config"`
 
+*REDTAMARIN_PATH* : allow to augment the default search path for library files (optional)
 
 see:
   * http://docs.python.org/2/using/cmdline.html#environment-variables

@@ -98,8 +98,30 @@ The installer is responsible to
 │               ├── redshell_d.exe
 │               └── redshell_dd.exe
 └── tools
+    ├── as3distro.abc
     └── redbean.abc
 }}}
+
+*notes*:
+  * `/bin/redshell` is a copy of `/runtimes/redshell/32/mac/redshell` (or any other options)
+  * `/bin/redshell` can be changed depending on your preferences
+  * `redbean` will use the `redshell` from the path `/runtimes/redshell/...` not from `/bin/redshell`
+  * `/tools` only store ABC files to generate EXE into `/bin`
+
+== Platform Names ==  
+
+based on redtamarin `/src/platform` our platform names should be
+  * *mac* for Mac OS X
+    * replace *osx* thagt we were using before
+    * for special case we can have *mac105* for OS X 10.5
+  * *unix* for Linux
+    * we will fall back to *nix* to keep 3 letters
+  * *win32* for Windows
+    * we will fall back to *win* to not confuse 32-bit and 64-bit
+
+*API NOTE*
+  * `Runtime.platform` should be available before `OperatingSystem.name` or any other
+  * `Runtime.platform` should return "nix" or "mac" or "win"
 
 == Environment Variables ==
 
@@ -118,6 +140,8 @@ The installer is responsible to
 see:
   * http://docs.python.org/2/using/cmdline.html#environment-variables
   * http://www.mono-project.com/FAQ:_Technical
+  * http://en.wikipedia.org/wiki/Environment_variable
+  * http://en.wikipedia.org/wiki/Special_Folders
 
 === ENV VARS under Windows ===
 

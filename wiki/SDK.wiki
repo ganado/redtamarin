@@ -2,7 +2,7 @@
 
 == Introduction ==
 
-The RedTamarin SDK is what a developer need to install to be able to work with the different redtamarin tools and libraries.
+The !RedTamarin SDK is what a developer need to install to be able to work with the different redtamarin tools and libraries.
 
 The SDK provides:
   * *redshell* AS3 command line runtimes

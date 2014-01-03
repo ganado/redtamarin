@@ -22,6 +22,7 @@
       * [TamarinNotes notes about Tamarin]
       * [CrossPlatformNotes notes about cross-platform C/C++]
       * [AVMGlueNotes notes about AVMGlue]
+         * [EventLoopNotes notes about Event Loop]
     * [Roadmap Roadmap]
   * [API API reference]
     * [CLIB The C Standard Library for AS3]

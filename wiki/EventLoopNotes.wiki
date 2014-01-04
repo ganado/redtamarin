@@ -55,5 +55,19 @@ trace( "end of the program" );
 <br>
 
 
-TO change this behaviour to *asynchronous* (or non-blocking)
+To change this behaviour to *asynchronous* (or non-blocking)<br>
+we need to create a global event loop that prevent the program to terminate<br>
+and which can process events.
+
+{{{
+while( true )
+{
+    // do stuff
+    process_events(); //poll
+    // do more stuff
+    sleep( 1 ); // buffer a little
+}
+}}}
+
+Yes, that's the irony, you have an infinite loop which is blocking your program from exiting to make it non-blocking.
 

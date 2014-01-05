@@ -80,10 +80,8 @@ Based on different posts and articles we can have a general idea on how this eve
 
 <pre>
 Until now the Flash Player has been using a poll based system.
-
 Poll based means that everything which happens in the player is served
 from a single thread and entry point using a periodic timer which polls the run-time.
-
 In pseudo code the top level function in the Flash Player looked like this
 </pre>
 

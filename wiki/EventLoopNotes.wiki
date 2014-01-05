@@ -149,6 +149,10 @@ sleep period = 1000 / N = frequency of polling // N fps
 etc.
 }}}
 
+as a side note, the Flash player is limited to 60fps<br>
+see [http://www.tekool.net/blog/2008/05/27/overriding-flash-player-60fps-limit-in-firefox-up-to-950fps-as-silverlight-2-in-bubblemark/ Overriding Flash player 60fps limit in Firefox]
+
+
 Following the post we can see another way to implement this event loop
 {{{
 while ( sleepuntil( nextEventTime  ) OR externalEventOccured() ) {
@@ -202,6 +206,4 @@ No rendering occurs unless the SWF becomes visible again.
 - For backwards compatibility reasons we override the 2 frames/sec frame rate
 to 8 frames/sec when audio is playing.
 </pre>
-
-
 

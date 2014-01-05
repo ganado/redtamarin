@@ -113,3 +113,95 @@ while ( sleep ( 1000/120 milliseconds ) ) {
   ...
 }
 }}}
+
+note: `1000/120 milliseconds = 8.3333 milliseconds`
+
+also
+<pre>
+The periodic timer is not driven by the Flash Player, it is driven by the browser.
+In case of Internet Explorer there is an API for this purpose. In the case of Safari on OS X
+is it hard coded to 50 frames/sec.
+Every browser implements this slightly differently and things become very complex
+quickly once you go into details.
+This has been causing a lot of frustration among designers who could never count
+on a consistent cross platform behavior.
+</pre>
+
+and from [http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/utils/Timer.html#delay Timer delay asdoc]
+<pre>
+A delay lower than 20 milliseconds is not recommended.
+Timer frequency is limited to 60 frames per second,
+meaning a delay lower than 16.6 milliseconds causes runtime problems.
+</pre>
+
+We can extrapolate that Flash/AIR were using a sleep period of
+`1000/60 milliseconds = 16.666 milliseconds`
+
+in our case, we can not and don't want to reuse a periodic timer based on a browser API
+and we probably want to allow users to change the sleep period, so we will reuse (as in the pseudo code above)
+a hard coded sleep period.
+
+{{{
+sleep period = 1000 / N = frequency of polling // N fps
+
+1000 / 120 =  8.333 // 120fps
+1000 /  60 = 16.666 //  60fps
+etc.
+}}}
+
+Following the post we can see another way to implement this event loop
+{{{
+while ( sleepuntil( nextEventTime  ) OR externalEventOccured() ) {
+  ...
+  if ( timerPending ) { // AS2 Intervals, AS3 Timers
+    handleTimers();
+    nextEventTime = nextTimerTime();
+  }
+  if ( localConnectionPending ) {
+    handleLocalConnection();
+    nextEventTime = min(nextEventTime , nextLocalConnectionTime());
+  }
+  if ( videoFrameDue ) {
+    decodeVideoFrame();
+    nextEventTime = min(nextEventTime , nextVideoFrameTime());
+  }
+  if ( audioBufferEmpty ) {
+    refillAudioBuffer();
+    nextEventTime = min(nextEventTime , nextAudioRebufferTime());
+  }
+  if ( nextSWFFrameDue ) {
+    parseSWFFrame();
+    if ( actionScriptInSWFFrame ) {
+      executeActionScript();
+    }
+    nextEventTime = min(nextEventTime , nextFrameTime());
+  }
+  if ( needsToUpdateScreen ) {
+    updateScreen();
+  }
+  ...
+}
+}}}
+
+with some rules
+<pre>
+Visible:
+- SWF frame rates are limited and aligned to jiffies, i.e. 60 frames a second.
+(Note that Flash Playe 10.1 Beta 3 still has an upper limit of 120 which will be changed before the final release)
+- timers (AS2 Interval and AS3 Timers) are limited and aligned to jiffies.
+- local connections are limited and aligned to jiffies. That means a full round trip from one SWF to another
+will take at least 33 milliseconds. Some reports we get say it can be up to 40ms.
+- video is NOT aligned to jiffies and can play at any frame rate. This increases video playback fidelity.
+
+Invisible:
+- SWF frame rate is clocked down to 2 frames/sec.
+No rendering occurs unless the SWF becomes visible again.
+- timers (AS2 Interval and AS3 Timers) are clocked down to 2 a second.
+- local connections are clocked down to 2 a second.
+- video is decoded (not rendered or displayed) using idle CPU time only.
+- For backwards compatibility reasons we override the 2 frames/sec frame rate
+to 8 frames/sec when audio is playing.
+</pre>
+
+
+

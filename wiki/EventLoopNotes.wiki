@@ -60,7 +60,7 @@ we need to create a global event loop that prevent the program to terminate<br>
 and which can process events.
 
 {{{
-while( true )
+while( true ) //prevent program termination
 {
     // do stuff
     process_events(); //poll
@@ -71,3 +71,47 @@ while( true )
 
 Yes, that's the irony, you have an infinite loop which is blocking your program from exiting to make it non-blocking.
 
+
+== Copy the Flash/AIR event loop ==
+
+Based on different posts and articles we can have a general idea on how this event loop is working with Flash/AIR.
+
+[http://blog.kaourantin.net/?p=82 Timing it right] by Tinic Uro (Adobe)
+
+<pre>
+Until now the Flash Player has been using a poll based system.
+
+Poll based means that everything which happens in the player is served
+from a single thread and entry point using a periodic timer which polls the run-time.
+
+In pseudo code the top level function in the Flash Player looked like this
+</pre>
+
+{{{
+while ( sleep ( 1000/120 milliseconds ) ) {
+  // Every browser provides a different timer interval
+  ...
+  if ( timerPending ) { // AS2 Intervals, AS3 Timers
+    handleTimers();
+  }
+  if ( localConnectionPending ) {
+    handleLocalConnection();
+  }
+  if ( videoFrameDue ) {
+    decodeVideoFrame();
+  }
+  if ( audioBufferEmpty ) {
+    refillAudioBuffer();
+  }
+  if ( nextSWFFrameDue ) {
+    parseSWFFrame();
+    if ( actionScriptInSWFFrame ) {
+      executeActionScript();
+    }
+  }
+  if ( needsToUpdateScreen ) {
+    updateScreen();
+  }
+  ...
+}
+}}}

@@ -255,3 +255,48 @@ It's a work in progress, but here some basic rules
   * respect the Flash/AIR API signatures but allow us to use the *AVM2* namespace to add/access special stuff
   * starts simple then go more complex
   * define an *IEventLoop*
+
+So we start simple and gonna test only the Timer events
+
+{{{
+package shell
+{
+    public interface IEventLoop
+    {
+        
+        function get frequency():uint;
+        function set frequency( value:uint ):void;
+        
+        function get timerPending():Boolean;
+        
+        function handleTimers():void;
+        
+        function start():void
+        function stop():void;
+    }
+}
+}}}
+
+
+
+our main loop should look like
+{{{
+private function _loop():void
+{
+
+    while ( sleep ( 1000/frequency ) && run )
+    {
+    
+        if( timerPending )
+        {
+            handleTimers();
+        }
+    
+    }
+
+}
+}}}
+
+we should be able to
+  * update the *frequency* dynamically
+  * exit the loop at any time

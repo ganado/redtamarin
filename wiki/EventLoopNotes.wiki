@@ -262,7 +262,8 @@ Yep, Marc did a great work implementing W3C DOM Events Level 2/3 in JS and AS2.
 
 [http://blog.johannest.com/2009/06/15/the-movieclip-life-cycle-revisited-from-event-added-to-event-removed_from_stage/ The MovieClip life cycle revisited. From Event.ADDED to Event.REMOVED_FROM_STAGE]
 
-also http://www.alanklement.com/img/fp10_timeline.gif
+from [http://www.alanklement.com/img/fp10_timeline.gif?norender]
+
 
 
 == How We Are Doing It ==

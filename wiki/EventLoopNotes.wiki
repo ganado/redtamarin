@@ -267,6 +267,13 @@ http://www.alanklement.com/img/fp10_timeline.gif
 
 [http://blog.joa-ebert.com/2010/10/03/opening-the-blackbox/ Opening the Blackbox]<br>
 and see [https://github.com/joa/apparat/blob/master/apparat-taas/src/main/scala/apparat/taas/frontend/abc/AbcFrontend.scala AbcFrontend.scala] for the list of interfaces to support
+
+<pre>
+The playerglobal.swc contains all classes the Flash Player knows about.
+It should and it does with some minor differences. Of course it could be a bug on my end but some interfaces are missing.
+And they are suspicious since they cause/have special behaviour. Have a look at the AbcFrontend code.
+The Synthetic object contains part of the AST that is synthesized since those interfaces are missing in playerglobal.swc.
+</pre>
 {{{
 IBitmapDrawable
 IGraphicsFill

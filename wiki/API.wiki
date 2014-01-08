@@ -66,9 +66,28 @@ Provides an open source implementation of the *Flash Player API* and *AIR API*<b
 The goal is to let the developer use what he or she already knows from working with Flash or AIR.
 
 But as we are not building an open source Flash Player there are limitations
+  * we support from Flash Player 9 and later, not earlier versions
   * we support AS3, not AS2, not AS1
   * we support AMF3, not AMF0
   * it is not our goal to display graphics<br>even if you can use a `Sprite` or `Bitmap` class it will not show something on the screen.
   * it took more than 10 years for a talented team of Adobe engineers<br>to define and implement all those API, don't expect a 100% implementation for everything.
   * because we run on the command line and server side we may change slightly the FPAPI<br>some behaviours or rules could be completely different,<br>for ex it would make no sense to limit our API based on a security sandbox.
 
+
+=== Special Cases ===
+
+*Packages*
+  * we consider the package `flash.*` reserved<br>used in Tamarin, the Flash Player and AIR API
+  * we consider the package `avmplus.*` reserved<br>used in Tamarin, the Flash Player and AIR API
+  * we consider the package `avm2.*` reserved<br>used in Tamarin, the Flash Player 11.6 and AIR API 3.6 and later
+  * we consider the package `C.*` reserved<br>used for CLIB
+  * we consider the package `shell.*` reserved<br>used for RNL
+
+*NameSpaces*
+  * we consider the namespace `AS3` reserved<br>used in Tamarin, Flash Player and AIR
+  * we consider the namespace `flash_proxy` reserved<br>used in Tamarin, Flash Player and AIR
+  * we consider the namespace `object_proxy` reserved<br>used in the Flex SDK
+  * we consider the namespace `mx_internal` reserved<br>used in the Flex SDK
+  * we consider the namespace `mx_inner` reserved<br>used in the Flex SDK
+  * we consider the namespace `flash10` reserved<br>used in old asdoc ?
+  * we consider the namespace `AVM2` reserved<br>used for !RedTamarin internals

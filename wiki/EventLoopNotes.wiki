@@ -256,6 +256,12 @@ in particular [https://code.google.com/p/vegas/source/browse/AS2/trunk/src/vegas
 
 Yep, Marc did a great work implementing W3C DOM Events Level 2/3 in JS and AS2.
 
+== Some of Others implementation ==
+
+[https://github.com/PrimaryFeather/Starling-Framework/blob/master/starling/src/starling/events/EventDispatcher.as Starling EventDispatcher.as]
+
+
+
 == More Documentation on the Flash Internals ==
 
 [http://www.senocular.com/flash/tutorials/orderofoperations/ Order of Operations in ActionScript]
@@ -288,6 +294,17 @@ and flash.net
 IDataInput
 IDataOutput
 }}}
+
+
+[http://tedpatrick.com/2005/07/19/flash-player-mental-model-the-elastic-racetrack/ Flash Player Mental Model – The Elastic Racetrack]<br>
+[http://tedpatrick.com/2008/04/18/flash-player-mental-model-the-elastic-racetrack-revisited/ Flash Player Mental Model – The Elastic Racetrack Revisited]<br>
+[http://www.craftymind.com/2008/04/18/updated-elastic-racetrack-for-flash-9-and-avm2/ Updated ‘Elastic Racetrack’ for Flash 9 and AVM2]
+
+http://www.craftymind.com/wp-content/uploads/2008/04/elasticracetrackexport.png
+
+http://www.craftymind.com/wp-content/uploads/2008/04/marshalledsliceexport.png
+
+http://www.craftymind.com/wp-content/uploads/2008/04/framemarshalingexport.png
 
 
 
@@ -346,3 +363,27 @@ we should be able to
   * update the *frequency* dynamically
   * exit the loop manually at any time (eg. `run = false`)
   * exit the loop on an interrupt (eg. `abort()`, `exit()`, etc.)
+
+
+== If We Go Native ==
+
+Different article about implementing event loop in C/C++
+
+[http://cr.yp.to/docs/selfpipe.html The self-pipe trick]
+
+[http://www.win.tue.nl/~aeb/linux/lk/lk-12.html Handling of asynchronous events]
+
+[http://stackoverflow.com/questions/282176/waitpid-equivalent-with-timeout Waitpid equivalent with timeout?]
+
+[http://www.w3.org/TR/DOM-Level-3-Events/ Document Object Model (DOM) Level 3 Events Specification]
+
+[http://www.w3.org/Library/ Libwww - the W3C Protocol Library]
+
+WebIDL<br>
+[http://dev.w3.org/2006/webapi/WebIDL/]<br>
+  * [http://heycam.github.io/webidl/ WebIDL specification]
+  * [https://github.com/heycam/webidl]
+
+[https://code.google.com/p/es-operating-system/wiki/CplusplusDOM C++ DOM API Introduction]
+
+[http://www.codeproject.com/Articles/18766/Create-Cross-platform-Thread-Independent-Event-Loo Create Cross-platform Thread-Independent Event Loops]

@@ -83,7 +83,7 @@ But as we are not building an open source Flash Player there are limitations
   * we consider the package `C.*` reserved<br>used for CLIB
   * we consider the package `shell.*` reserved<br>used for RNL
 
-*NameSpaces*
+*Namespaces*
   * we consider the namespace `AS3` reserved<br>used in Tamarin, Flash Player and AIR
   * we consider the namespace `flash_proxy` reserved<br>used in Tamarin, Flash Player and AIR
   * we consider the namespace `object_proxy` reserved<br>used in the Flex SDK

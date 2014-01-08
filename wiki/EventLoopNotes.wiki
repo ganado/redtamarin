@@ -299,4 +299,5 @@ private function _loop():void
 
 we should be able to
   * update the *frequency* dynamically
-  * exit the loop at any time
+  * exit the loop manually at any time (eg. `run = false`)
+  * exit the loop on an interrupt (eg. `abort()`, `exit()`, etc.)

@@ -247,6 +247,14 @@ Very interesting bit of code which allow us to see a glimpse of
   * how to run an event loop
   * even how to parse a SWF file and some of its tags (like DoABC)
 
+== Some of Our Implementations in the Past ==
+
+!EventDispatcher in AS2, see [https://code.google.com/p/vegas/source/browse/AS2/trunk/src/vegas/events/]<br>
+in particular [https://code.google.com/p/vegas/source/browse/AS2/trunk/src/vegas/events/EventDispatcher.as EventDispatcher.as]
+
+!EventDispatcher in JS, see [https://code.google.com/p/vegas/source/browse#svn%2FJS%2Ftrunk%2Fsrc%2Fsystem%2Fevents]!
+
+Yep, Marc did a great work implementing W3C DOM Events Level 2/3 in JS and AS2.
 
 == How We Are Doing It ==
 

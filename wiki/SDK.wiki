@@ -9,7 +9,7 @@ The SDK provides:
   * *redbean* AS3 make and compiler tools
   * *as3distro* AS3 package manager
 
-At the contrary of Java we don't make differences between a JDK (Java Development Kit) and a SDK (Software Development Kit), we have only a SDK.
+At the contrary of Java we don't make differences between a JDK (Java Development Kit) and a SDK (Software Development Kit), we have only one SDK for everyone.
 
 == Installation ==
 

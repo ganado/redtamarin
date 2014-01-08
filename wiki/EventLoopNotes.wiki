@@ -364,6 +364,27 @@ we should be able to
   * exit the loop manually at any time (eg. `run = false`)
   * exit the loop on an interrupt (eg. `abort()`, `exit()`, etc.)
 
+We copy CrossBridge `AS3_GoAsync();` to kickstart the main event loop from !RedTamarin.
+
+for example
+{{{
+//if we do nothing, everything run sync/blocking
+
+//some stuff
+
+//the program will terminate
+
+----
+//if we want to be async and non-blocking
+import shell.Program;
+
+Program.goAsync(); //will run an implementation of IEventLoop
+
+//eg.
+//Program.loop = new DefaultLoop();
+//Program.loop.start();
+}}}
+
 
 == If We Go Native ==
 

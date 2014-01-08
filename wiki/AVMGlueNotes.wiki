@@ -130,14 +130,77 @@ package flash.crypto
 
 also we need to compile our code with this special namespace
 {{{
-TODO
+			<define name="CONFIG::debug" value="false"/>
+			<define name="CONFIG::release" value="true"/>
+			<define name="CONFIG::VMCFG_FLOAT" value="false" />
+			<define name="AVMGLUE::REDTAMARIN" value="true" />
+			<define name="AVMGLUE::AIR_1_0"    value="661" />
+			<define name="AVMGLUE::FP_10_0"    value="662" />
+			<define name="AVMGLUE::AIR_1_5"    value="663" />
+			<define name="AVMGLUE::AIR_1_5_1"  value="664" />
+			<define name="AVMGLUE::FP_10_0_32" value="665" />
+			<define name="AVMGLUE::AIR_1_5_2"  value="666" />
+			<define name="AVMGLUE::FP_10_1"    value="667" />
+			<define name="AVMGLUE::AIR_2_0"    value="668" />
+			<define name="AVMGLUE::AIR_2_5"    value="669" />
+			<define name="AVMGLUE::FP_10_2"    value="670" />
+			<define name="AVMGLUE::AIR_2_6"    value="671" />
+			<define name="AVMGLUE::SWF_12"     value="672" />
+			<define name="AVMGLUE::AIR_2_7"    value="673" />
+			<define name="AVMGLUE::SWF_13"     value="674" />
+			<define name="AVMGLUE::AIR_3_0"    value="675" />
+			<define name="AVMGLUE::SWF_14"     value="676" />
+			<define name="AVMGLUE::AIR_3_1"    value="677" />
+			<define name="AVMGLUE::SWF_15"     value="678" />
+			<define name="AVMGLUE::AIR_3_2"    value="679" />
+			<define name="AVMGLUE::SWF_16"     value="680" />
+			<define name="AVMGLUE::AIR_3_3"    value="681" />
+			<define name="AVMGLUE::SWF_17"     value="682" />
+			<define name="AVMGLUE::AIR_3_4"    value="683" />
+			<define name="AVMGLUE::SWF_18"     value="684" />
+			<define name="AVMGLUE::AIR_3_5"    value="685" />
+			<define name="AVMGLUE::SWF_19"     value="686" />
+			<define name="AVMGLUE::AIR_3_6"    value="687" />
+			<define name="AVMGLUE::VM_INTERNAL" value="688" />
 }}}
 
 == Versioning support and update ==
 
 As of now Tamarin and !RedTamarin supports the following
 {{{
+package
+{
 
+	AVMGLUE const AIR_1_0     = 661;
+	AVMGLUE const FP_10_0     = 662;
+	AVMGLUE const AIR_1_5     = 663;
+	AVMGLUE const AIR_1_5_1   = 664;
+	AVMGLUE const FP_10_0_32  = 665;
+	AVMGLUE const AIR_1_5_2   = 666;
+	AVMGLUE const FP_10_1     = 667;
+	AVMGLUE const AIR_2_0     = 668;
+	AVMGLUE const AIR_2_5     = 669;
+	AVMGLUE const FP_10_2     = 670;
+	AVMGLUE const AIR_2_6     = 671;
+	AVMGLUE const SWF_12      = 672;
+	AVMGLUE const AIR_2_7     = 673;
+	AVMGLUE const SWF_13      = 674;
+	AVMGLUE const AIR_3_0     = 675;
+	AVMGLUE const SWF_14      = 676;
+	AVMGLUE const AIR_3_1     = 677;
+	AVMGLUE const SWF_15      = 678;
+	AVMGLUE const AIR_3_2     = 679;
+	AVMGLUE const SWF_16      = 680;
+	AVMGLUE const AIR_3_3     = 681;
+	AVMGLUE const SWF_17      = 682;
+	AVMGLUE const AIR_3_4     = 683;
+	AVMGLUE const SWF_18      = 684;
+	AVMGLUE const AIR_3_5     = 685;
+	AVMGLUE const SWF_19      = 686;
+	AVMGLUE const AIR_3_6     = 687;
+	AVMGLUE const VM_INTERNAL = 688;
+
+}
 }}}
 
 to support more version we need to update the !RedTamarin source code<br>

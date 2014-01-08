@@ -356,10 +356,10 @@ good start for implementations =)
 == headless flash player ==
 
 implement a headless flash player with an event loop<br>
-[http://blog.kaourantin.net/?p=82 Timing it right]<br>
-[https://code.google.com/p/redshell/source/browse/test/performance/canaries/simpleflexapputil/playershell.as?spec=svn09c5c83eea908c195ce602623d78616612252afc&r=fec870a438a8054ec2028deffd990bcec067ba0f playershell.as]<br>
 in short, we should be able to provide a basic global event loop with a simple implementation of EventDispatcher
 and some polling in a loop locked by a timer or simply the `sleep()` function.
+
+see [EventLoopNotes Event Loop notes] for more details.
 
 
 == Multimedias: image, sound, video ==

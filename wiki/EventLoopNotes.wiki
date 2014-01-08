@@ -265,7 +265,22 @@ Yep, Marc did a great work implementing W3C DOM Events Level 2/3 in JS and AS2.
 from `http://www.alanklement.com/img/fp10_timeline.gif`<br>
 http://www.alanklement.com/img/fp10_timeline.gif
 
-[http://blog.joa-ebert.com/2010/10/03/opening-the-blackbox/ Opening the Blackbox]
+[http://blog.joa-ebert.com/2010/10/03/opening-the-blackbox/ Opening the Blackbox]<br>
+and see [https://github.com/joa/apparat/blob/master/apparat-taas/src/main/scala/apparat/taas/frontend/abc/AbcFrontend.scala AbcFrontend.scala] for the list of interfaces to support
+{{{
+IBitmapDrawable
+IGraphicsFill
+IGraphicsData
+IGraphicsPath
+IGraphicsStroke
+IDynamicPropertyOutput
+IDataInput
+IDataOutput
+
+and flash.net
+IDataInput
+IDataOutput
+}}}
 
 
 

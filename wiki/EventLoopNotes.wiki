@@ -307,6 +307,15 @@ http://www.craftymind.com/wp-content/uploads/2008/04/marshalledsliceexport.png
 http://www.craftymind.com/wp-content/uploads/2008/04/framemarshalingexport.png
 
 
+[http://www.adobe.com/devnet/scout/articles/understanding-flashplayer-with-scout.html Understanding Flash Player with Adobe Scout]
+
+this must be the most comprehensible and detailed article about the internals of the flash player :)
+
+http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/scout/articles/understanding-flashplayer-with-scout/understanding-flashplayer-with-scout-fig04.png
+
+http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/scout/articles/understanding-flashplayer-with-scout/understanding-flashplayer-with-scout-fig05.png
+
+from that we know now that we'll need a *FrameTicker* class , a *DisplayListRenderer* class and a *SWFLoader* class.
 
 
 

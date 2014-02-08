@@ -315,7 +315,7 @@ http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/scout/artic
 
 http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/scout/articles/understanding-flashplayer-with-scout/understanding-flashplayer-with-scout-fig05.png
 
-from that we know now that we'll need a *FrameTicker* class , a *DisplayListRenderer* class and a *SWFLoader* class.
+from that we know now that we'll need a *!FrameTicker* class , a *!GraphicRenderer* class (for *DisplayListRenderer*, *Stage3DRenderer*, etc.) and a *SWFLoader* class.
 
 
 

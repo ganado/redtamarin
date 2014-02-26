@@ -288,6 +288,88 @@ Windows does not support `<dirent.h>` by default and we want to use it in a cros
 for the CLIB but also in the implementation of RNL.
 
 
+== Linux Daemon ==
+
+see [http://www.ics.uzh.ch/~dpotter/howto/daemonize How to Daemonize in Linux]
+
+{{{
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+#define EXIT_SUCCESS 0
+#define EXIT_FAILURE 1
+
+static void daemonize(void)
+{
+    pid_t pid, sid;
+
+    /* already a daemon */
+    if ( getppid() == 1 ) return;
+
+    /* Fork off the parent process */
+    pid = fork();
+    if (pid < 0) {
+        exit(EXIT_FAILURE);
+    }
+    /* If we got a good PID, then we can exit the parent process. */
+    if (pid > 0) {
+        exit(EXIT_SUCCESS);
+    }
+
+    /* At this point we are executing as the child process */
+
+    /* Change the file mode mask */
+    umask(0);
+
+    /* Create a new SID for the child process */
+    sid = setsid();
+    if (sid < 0) {
+        exit(EXIT_FAILURE);
+    }
+
+    /* Change the current working directory.  This prevents the current
+       directory from being locked; hence not being able to remove it. */
+    if ((chdir("/")) < 0) {
+        exit(EXIT_FAILURE);
+    }
+
+    /* Redirect standard files to /dev/null */
+    freopen( "/dev/null", "r", stdin);
+    freopen( "/dev/null", "w", stdout);
+    freopen( "/dev/null", "w", stderr);
+}
+
+int main( int argc, char *argv[] ) {
+    daemonize();
+
+    /* Now we are a daemon -- do the work for which we were paid */
+
+
+    return 0;
+}
+}}}
+
+under Linux supports fully `getppid()`, `fork()`, `setsid()`, etc.<br>
+even if half or not supported under Mac OS X and Windows.
+
+for example, under Windows<br>
+`fork()` would return `-1`<br>
+see [http://pubs.opengroup.org/onlinepubs/9699919799/functions/fork.html fork function]<br>
+"Otherwise, -1 shall be returned to the parent process, no child process shall be created, and errno shall be set to indicate the error."<br>
+and we would set the `errno` to `ENOTSUP` (Not supported).
+
+Ideally, to respect our cross platform approach gives the tools to allow to create a "Windows Service"<br>
+see [http://en.wikipedia.org/wiki/Windows_service]<br>
+also [http://code.msdn.microsoft.com/windowsdesktop/CppWindowsService-cacf4948 A basic Windows service in C++ ]
+
+Even better, have a class `Daemon` that creates daemons under Linux and services under Windows (see other for Mac OS X).
+
+
+
+
 == uname ==
 
 we need to implement `uname()` for Windows (already done)<br>

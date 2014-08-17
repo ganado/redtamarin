@@ -164,6 +164,13 @@ Those 2 pages explain the rest, eg. you need more than just converting char to w
 Which functions do you have to supports ?
 
 || *POSIX* || *Windows (narrow)* || *Windows (wide)* ||
+|| `system` || `system` || `_wsystem` ||
+|| `getenv` || `getenv` || `_wgetenv` ||
+|| `setenv` ||  ||  ||
+|| `unsetenv` ||  ||  ||
+|| `putenv` || `_putenv` || `_wputenv` ||
+|||||| stdlib.h ||
+||  ||  ||  ||
 ||  ||  ||  ||
 ||  ||  ||  ||
 ||  ||  ||  ||

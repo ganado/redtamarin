@@ -45,9 +45,22 @@ There, the concept of "all UTF-8" is not present at all, you are first and forem
 by default you use *char* to works with ANSI characters (narrow chars)<br>
 and you use *wchar_t* to works with Unicode characters (wide chars).
 
-In Tamarin we do create our own *wchar* type
+In Tamarin we do have our own *wchar* type
 {{{
 /* wchar is our version of wchar_t, since wchar_t is different sizes
  on different platforms, but we want to use UTF-16 uniformly. */
 typedef uint16_t wchar;
 }}}
+
+When we create strings internally we use the type *Stringp* and some macros
+{{{
+Stringp name; //our string variable
+
+StUTF8String nameUTF8(name); //macro to make it a UTF-8 string
+nameUTF8.c_str() //return a char type
+
+StUTF16String nameUTF16(name); //macro to make it a UTF-16 string
+nameUTF16.c_str() //return a wchar type
+}}}
+
+

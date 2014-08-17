@@ -23,6 +23,7 @@
       * [CrossPlatformNotes notes about cross-platform C/C++]
       * [AVMGlueNotes notes about AVMGlue]
          * [EventLoopNotes notes about Event Loop]
+         * [UTF-8Notes notes about UTF-8]
     * [Roadmap Roadmap]
   * [API API reference]
     * [CLIB The C Standard Library for AS3]

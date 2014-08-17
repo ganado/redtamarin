@@ -1,0 +1,24 @@
+#summary notes about UTF-8.
+
+== Introduction ==
+
+You can go in a lot of details about why a system deal with Unicode this or that way,
+all the nifty differences between codepages, UCS2, UCS4, UTF-8, UTF-16, UTF-32, etc.
+
+The bottom line is you want to be able to handle different locale in a nice and easy way,
+wether to read a file name in japanese, write some text in french with accents, or create/read directories in greek.
+
+On the server side is even more important, all the browsers and HTML pages are supposed to work in UTF-8,
+and from my personal experience PHP is a pain, Python is a joy, and databases is yet another problem.
+
+== The Good ==
+
+Tamarin by default already deal with most of the problems, you can create Latin1, UTF-8 and UTF-16 strings,
+you even have a UnicodeUtils that tell you if a UTF-8 sring is valid, convert from UTF-8 to UTF-16, etc.
+
+In fact, it is so well done, that even without changes, you could write
+{{{
+trace( "となりのトトロ" );
+}}}
+
+and it would just work, it would output a nice `となりのトトロ`.

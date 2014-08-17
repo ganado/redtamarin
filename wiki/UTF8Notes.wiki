@@ -14,7 +14,7 @@ and from my personal experience PHP is a pain, Python is a joy, and databases is
 == The Good ==
 
 Tamarin by default already deal with most of the problems, you can create Latin1, UTF-8 and UTF-16 strings,
-you even have a UnicodeUtils that tell you if a UTF-8 sring is valid, convert from UTF-8 to UTF-16, etc.
+you even have a !UnicodeUtils that tell you if a UTF-8 sring is valid, convert from UTF-8 to UTF-16, etc.
 
 In fact, it is so well done, that even without changes, you could write
 {{{
@@ -102,7 +102,49 @@ in our API we would call it like that
 }}}
 
 in short
-  - we take a *Stringp*
-  - make it a UTF-8 string
-  - pass the *char* type
+  * we take a *Stringp*
+  * make it a UTF-8 string
+  * pass the *char* type
+
+So, our main problem is from the inside of *VMPI_mkdir()* we need to
+  * convert a *char* to a *wchar*
+  * use the wide char Unicode function
+  * and do that only under Windows
+
+Here how you would do it without thinking of the Unicode
+{{{
+int VMPI_mkdir(const char *path, int mode)
+{
+    (void)mode;
+    return _mkdir( path );
+}
+}}}
+
+And here how to make it work with Unicode
+{{{
+int VMPI_mkdir(const char *path, int mode)
+{
+    (void)mode;
+
+    int size_needed = MultiByteToWideChar( CP_UTF8, 0, path, -1, NULL, 0 );
+
+    if( size_needed != 0 )
+    {
+        wchar* wpath = new wchar[size_needed];
+        int result = MultiByteToWideChar( CP_UTF8, 0, path, -1, wpath, size_needed );
+        return _wmkdir( wpath );
+    }
+    else
+    {
+        return -1;
+    }
+}
+}}}
+
+a bit more details
+  * we use first !MultiByteToWideChar to calculate the size needed for the *wchar* buffer
+  * if this return zero, the UTF-8 chain must contains some invalid chars
+  * if not, then we create our *wchar* buffer with the size needed
+  * then we call a second time !MultiByteToWideChar, but this time we convert the *char* `path` to a *wchar* `wpath`
+  * we then use it with the function *_wmkdir()*
 

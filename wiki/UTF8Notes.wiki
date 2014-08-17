@@ -22,3 +22,32 @@ trace( "となりのトトロ" );
 }}}
 
 and it would just work, it would output a nice `となりのトトロ`.
+
+Well... in most systems, but not on Windows.
+
+The good thing is for Linux and Mac OS X those systems adopted a "all UTF-8" approach,
+so fi your string encoding can deal with UTF-8 for ex, then all the rest follow without a fuss,
+you can do something like
+{{{
+mkdir( "となりのトトロ" );
+}}}
+
+it will just works.
+
+== The Bad ==
+
+Windows is a problem on itself, it does not work like that at all.
+
+There, the concept of "all UTF-8" is not present at all, you are first and foremost using the codepage and the locale of the system defaults.
+
+=== The C++ part ===
+
+by default you use *char* to works with ANSI characters (narrow chars)<br>
+and you use *wchar_t* to works with Unicode characters (wide chars).
+
+In Tamarin we do create our own *wchar* type
+{{{
+/* wchar is our version of wchar_t, since wchar_t is different sizes
+ on different platforms, but we want to use UTF-16 uniformly. */
+typedef uint16_t wchar;
+}}}

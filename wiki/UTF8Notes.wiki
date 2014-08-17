@@ -164,17 +164,63 @@ Those 2 pages explain the rest, eg. you need more than just converting char to w
 Which functions do you have to supports ?
 
 || *POSIX* || *Windows (narrow)* || *Windows (wide)* ||
+|||||| stdlib.h ||
 || `system` || `system` || `_wsystem` ||
 || `getenv` || `getenv` || `_wgetenv` ||
 || `setenv` ||  ||  ||
 || `unsetenv` ||  ||  ||
 || `putenv` || `_putenv` || `_wputenv` ||
-|||||| stdlib.h ||
+|| `atof` ||  ||  ||
+|| `atoi` ||  ||  ||
+|| `atol` ||  ||  ||
+|| `atoll` ||  ||  ||
+|| `mkdtemp` ||  ||  ||
+|| `mkstemp` ||  ||  ||
+|| `realpath` || `_fullpath` || `_wfullpath` ||
+|| `strtod` ||  ||  ||
+|| `strtof` ||  ||  ||
+|| `strtol` ||  ||  ||
+|| `strtold` ||  ||  ||
+|| `strtoll` ||  ||  ||
+|| `strtoul` ||  ||  ||
+|| `strtoull` ||  ||  ||
 ||  ||  ||  ||
+|||||| stdio.h ||
+|| `fopen` || `fopen` || `_wfopen` ||
+|| `freopen` || `freopen` || `_wfreopen` ||
+|| `remove` || `remove` || `_wremove` ||
+|| `rename` || `rename` || `_wrename` ||
+|| `fputs` || `fputs` || `_fputws` ||
+|| `perror` || `perror` || `_wperror` ||
+|| `popen` || `_popen` || `_wpopen` ||
+|| `puts` || `puts` || `_putws` ||
+|| `tempnam` ||  ||  ||
+|| `tmpfile` ||  ||  ||
+|| `tmpnam` ||  ||  ||
 ||  ||  ||  ||
-||  ||  ||  ||
-||  ||  ||  ||
+|||||| sys/stat.h ||
+|| `chmod` || `_chmod` || `_wchmod` ||
+|| `lstat` ||  ||  ||
 || `mkdir` || `_mkdir` || `_wmkdir` ||
+|| `stat` || `_stat` || `_wstat` ||
 ||  ||  ||  ||
-||  ||  ||  ||
+|||||| unistd.h ||
+|| `access` || `_access` || `_waccess` ||
+|| `chdir` || `_chdir` || `_wchdir` ||
+|| `chown` ||  ||  ||
+|| `crypt` ||  ||  ||
+|| `encrypt` ||  ||  ||
+|| `execl` || `_execl` || `_wexecl` ||
+|| `execle` || `_execle` || `_wexecle` ||
+|| `execlp` || `_execlp` || `_wexeclp` ||
+|| `execv` || `_execv` || `_wexecv` ||
+|| `execve` || `_execve` || `_wexecve` ||
+|| `execvp` || `_execvp` || `_wexecvp` ||
+|| `getcwd` || `_getcwd` || `_wgetcwd` ||
+|| `link` ||  ||  ||
+|| `readlink` ||  ||  ||
+|| `rmdir` || `_rmdir` || `_wrmdir` ||
+|| `symlink` ||  ||  ||
+|| `truncate` ||  ||  ||
+|| `unlink` || `_unlink` || `_wunlink` ||
 ||  ||  ||  ||

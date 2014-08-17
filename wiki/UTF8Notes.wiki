@@ -158,3 +158,16 @@ a bit more details
 
 Those 2 pages explain the rest, eg. you need more than just converting char to wchar, you need also to deal with input encoding, output encoding, etc.
 
+
+== The C Runtime Reference ==
+
+Which functions do you have to supports ?
+
+|| POSIX || Windows (narrow) || Windows (wide) ||
+||  ||  ||  ||
+||  ||  ||  ||
+||  ||  ||  ||
+|| mkdir || _mkdir || _wmkdir ||
+||  ||  ||  ||
+||  ||  ||  ||
+||  ||  ||  ||

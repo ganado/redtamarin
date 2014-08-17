@@ -148,3 +148,13 @@ a bit more details
   * then we call a second time !MultiByteToWideChar, but this time we convert the *char* `path` to a *wchar* `wpath`
   * we then use it with the function *_wmkdir()*
 
+
+== The Documents ==
+
+[http://www.utf8everywhere.org/ UTF-8 Everywhere] for some general directives.
+
+[http://alfps.wordpress.com/2011/11/22/unicode-part-1-windows-console-io-approaches/ Unicode part 1: Windows console i/o approaches]<br>
+[http://alfps.wordpress.com/2011/12/08/unicode-part-2-utf-8-stream-mode/ Unicode part 2: UTF-8 stream mode]
+
+Those 2 pages explain the rest, eg. you need more than just converting char to wchar, you need also to deal with input encoding, output encoding, etc.
+

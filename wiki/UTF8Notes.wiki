@@ -40,7 +40,7 @@ Windows is a problem on itself, it does not work like that at all.
 
 There, the concept of "all UTF-8" is not present at all, you are first and foremost using the codepage and the locale of the system defaults.
 
-=== The C++ part ===
+=== The C++ easy part ===
 
 by default you use *char* to works with ANSI characters (narrow chars)<br>
 and you use *wchar_t* to works with Unicode characters (wide chars).
@@ -63,4 +63,46 @@ StUTF16String nameUTF16(name); //macro to make it a UTF-16 string
 nameUTF16.c_str() //return a wchar type
 }}}
 
+
+=== The C++ difficult part ===
+
+The difficult is mainly Windows.
+
+The C-Runtime Library, that we use to implement POSIX under Windows, use different functions depending if you *UNICODE* or not.
+
+for example *mkdir()*
+{{{
+int _mkdir( const char *dirname );
+
+int _wmkdir( const wchar_t *dirname );
+}}}
+
+In our case, we can directly replace *wchar_t* by *wchar*.
+
+Now, the main problem is to translate from *char* to *wchar* and vise versa.
+
+So, for our own POSIX system we basically implements *VMPI_mkdir()*
+
+wether you are under Windows, Mac OS X or Linux the function signature is the same
+{{{
+int VMPI_mkdir( const char *path, int mode )
+}}}
+
+in our API we would call it like that
+{{{
+    int CSysStatClass::mkdir(Stringp path, int mode)
+    {
+        if (!path) {
+            toplevel()->throwArgumentError(kNullArgumentError, "path");
+        }
+
+        StUTF8String pathUTF8(path);
+        return VMPI_mkdir(pathUTF8.c_str(), mode);
+    }
+}}}
+
+in short
+  - we take a *Stringp*
+  - make it a UTF-8 string
+  - pass the *char* type
 

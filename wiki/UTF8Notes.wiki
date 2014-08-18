@@ -148,6 +148,110 @@ a bit more details
   * then we call a second time !MultiByteToWideChar, but this time we convert the *char* `path` to a *wchar* `wpath`
   * we then use it with the function *_wmkdir()*
 
+=== The Tamarin super easy part ===
+
+With *Stringp* and the UTF8 and UTF16 macros you can make all that much simpler.
+
+The only catch is to do it one level upper than VMPI, because you can access those macros only from !AvmCore
+and you want to keep basic type like *char* and *wchar* in the VMPI part.
+
+Now in VMPI we will add wide chars functions
+{{{
+int VMPI_mkdir(const char *path, int mode)
+{
+    (void)mode;
+    return _mkdir( path );
+}
+
+int VMPI_mkdir16(const wchar *path, int mode)
+{
+    (void)mode;
+    return _wmkdir( path );
+}
+}}}
+
+pretty straightforward.
+
+now in our API, we just need to check for WIN32 and redirect the call accordingly
+{{{
+    int CSysStatClass::mkdir(Stringp path, int mode)
+    {
+        if (!path) {
+            toplevel()->throwArgumentError(kNullArgumentError, "path");
+        }
+
+        #if AVMSYSTEM_WIN32
+            StUTF16String pathUTF16(path);
+            return VMPI_mkdir16(pathUTF16.c_str(), mode);
+        #elif
+            StUTF8String pathUTF8(path);
+            return VMPI_mkdir(pathUTF8.c_str(), mode);
+        #endif
+    }
+}}}
+
+Here we reuse the core strength of Tamarin which already do all the work for us,
+converting strings to UTF8, UTF16, checking for invalid chars, etc.
+
+On a function like `mkdir()` we can see a bit of advantages but not that much.
+
+Let's see with another function like `getenv()` where the conversion is more complex.
+
+let' set up VMPI
+{{{
+const char *VMPI_getenv(const char *env)
+{
+    return getenv( env );
+}
+
+const wchar *VMPI_getenv16(const wchar *env)
+{
+    return _wgetenv( env );
+}
+}}}
+
+and now let's see the API implementation
+{{{
+    /*static*/ Stringp CStdlibClass::getenv(ScriptObject* self, Stringp name)
+    {
+        AvmCore *core = self->core();
+        Toplevel* toplevel = self->toplevel();
+
+        if( !name )
+        {
+            toplevel->throwArgumentError(kNullArgumentError, "name");
+        }
+        
+        #if AVMSYSTEM_WIN32
+            StUTF16String nameUTF16(name);
+            const wchar * str = VMPI_getenv16( nameUTF16.c_str() );
+            
+            Stringp value = core->newStringUTF16( str );
+            StUTF8String valueUTF8(value);
+            return core->newStringUTF8( valueUTF8.c_str() );
+            
+            //return core->newStringUTF16( str );
+        #elif
+            StUTF8String nameUTF8(name);
+            const char * str = VMPI_getenv( nameUTF8.c_str() );
+            return core->newStringUTF8( str );
+        #endif
+    }
+}}}
+
+So here what's happening
+  * we first use `VMPI_getenv16()` with a `StUTF16String`
+  * but this return also a `StUTF16String`
+  * we could return a *Stringp* but the internal encoding would stay UTF16
+  * so we convert this UTF16 string to a `StUTF8String`
+  * and we return a *Stringp* based on UTF8
+
+Here the advantages are more obvious, it just take a couple of lines to convert from UTF8 to UTF16 to UTF8,
+if we had the same code with `MultiByteToWideChar` and `WideCharToMultiByte` we would have a more complex code
+and it would much prone to errors.
+
+Conclusion is we want to use *Stringp* with the UTF8 and UTF16 macros,
+it make our API calls a little less elegant but much more easier and straightforward.
 
 == The Documents ==
 

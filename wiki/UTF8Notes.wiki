@@ -229,8 +229,6 @@ and now let's see the API implementation
             Stringp value = core->newStringUTF16( str );
             StUTF8String valueUTF8(value);
             return core->newStringUTF8( valueUTF8.c_str() );
-            
-            //return core->newStringUTF16( str );
         #elif
             StUTF8String nameUTF8(name);
             const char * str = VMPI_getenv( nameUTF8.c_str() );

@@ -1,0 +1,1 @@
+[Command line scripts in actionscript with classes using redtamarin](http://blog.eversonalves.com.br/2011/02/05/command-line-scripts-in-actionscript-with-classes-using-redtamarin/)
